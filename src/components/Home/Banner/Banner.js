@@ -109,7 +109,7 @@ const Banner = () => {
         variant="none"
         style={{
           position: 'absolute',
-          width: '100%',
+          width: '100vw',
           top: '50%',
           background: 'none',
           transform: 'translate(0 ,-50%)',
@@ -130,7 +130,7 @@ const Banner = () => {
         steps={maxSteps}
         position="static"
         variant="dots"
-        style={{ position: 'absolute', width: '100%', bottom: '0', background: 'none' }}
+        style={{ position: 'absolute', width: '100vw', bottom: '0', background: 'none' }}
         activeStep={activeStep}
         nextButton={
           <Button size="small" onClick={handleNext} style={{ color: 'transparent' }}>

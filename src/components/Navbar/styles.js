@@ -9,7 +9,10 @@ export default makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+  },
   title: {
     minWidth: '80px',
     display: 'flex',

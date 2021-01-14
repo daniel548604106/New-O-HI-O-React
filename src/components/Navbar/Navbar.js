@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-
+import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
@@ -95,9 +95,11 @@ const Navbar = () => {
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            O.HI.O
-          </Typography>
+          <Link to="/" className={classes.link}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              O.HI.O
+            </Typography>
+          </Link>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

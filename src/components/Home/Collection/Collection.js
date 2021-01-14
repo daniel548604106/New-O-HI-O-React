@@ -6,23 +6,32 @@ import { Link, BrowserRouter as Router } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
+    overflow: 'scroll',
+    flexWrap: 'nowrap',
     '& > *': {
       margin: theme.spacing(0.5),
     },
   },
 }));
 
+const labels = ['Shoes', 'Clothes', 'Men', 'Fashion', 'Beauty', 'Women'];
+
 const Collection = () => {
   const classes = useStyles();
 
   return (
-    <Router className={classes.root}>
-      <Link to="/shoes">
-        <Chip label="Basic" variant="outlined" />
-      </Link>
-    </Router>
+    <div className={classes.root}>
+      {labels.map((label) => (
+        <Chip
+          label={label}
+          variant="outlined"
+          component={Link}
+          style={{ cursor: 'pointer', margin: '10px 10px' }}
+          to={`/${label.toLowerCase()}`}
+          key={label}
+        />
+      ))}
+    </div>
   );
 };
 
