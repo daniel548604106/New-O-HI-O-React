@@ -13,10 +13,9 @@ import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
-
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 const Navbar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,14 +68,6 @@ const Navbar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -115,9 +106,9 @@ const Navbar = () => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
+            <IconButton>
+              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
+                <ShoppingBasketIcon style={{ color: 'black' }} />
               </Badge>
             </IconButton>
             <IconButton
@@ -132,6 +123,11 @@ const Navbar = () => {
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
+            <IconButton>
+              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
+                <ShoppingBasketIcon style={{ color: 'black' }} />
+              </Badge>
+            </IconButton>
             <IconButton
               edge="start"
               className={classes.menuButton}

@@ -78,6 +78,43 @@ const Product = () => {
     if (numOfPurchase === 1) return;
     setNumOfPurchase((prevNum) => (prevNum > 1 ? (prevNum -= 1) : null));
   };
+
+  const addToCart = (product) => {
+    const addedProduct = JSON.stringify({
+      id: product.id,
+      totalNum: numOfPurchase,
+      size: activeSize,
+      color: activeColor,
+    });
+    //check if cart has products
+    if (!localStorage.getItem('cart')) {
+      let cart = [];
+      cart.push({
+        id: product.id,
+        totalNum: numOfPurchase,
+        size: activeSize,
+        color: activeColor,
+      });
+      return localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    let originalCart = JSON.parse(localStorage.getItem('cart'));
+
+    const data = originalCart.filter((cart) => {
+      return cart.id === product.id;
+    });
+    if (data) {
+      return (originalCart.totalNum += numOfPurchase);
+    } else {
+      originalCart.push({
+        id: product.id,
+        totalNum: numOfPurchase,
+        size: activeSize,
+        color: activeColor,
+      });
+    }
+    console.log(data);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -211,6 +248,7 @@ const Product = () => {
               }}
             >
               <Button
+                onClick={() => addToCart(product)}
                 variant="outlined"
                 style={{
                   color: 'black',
