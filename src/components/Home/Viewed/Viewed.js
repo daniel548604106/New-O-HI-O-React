@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { Grid, Card, IconButton } from '@material-ui/core';
+import { Grid, Card, IconButton, Divider } from '@material-ui/core';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -62,8 +62,11 @@ const useStyles = makeStyles({
 const Viewed = () => {
   const classes = useStyles();
   return (
-    <div style={{ padding: '15px' }}>
-      <h2>Recently Viewed</h2>
+    <div style={{ padding: '15px', marginTop: '20px' }}>
+      <div>
+        <h2 style={{ fontSize: '22px' }}>Recently Viewed</h2>
+      </div>
+      <Divider style={{ margin: '10px 0 20px 0' }} />
       <Grid container spacing={2}>
         {products.map((product) => (
           <Grid

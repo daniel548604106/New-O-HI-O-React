@@ -1,5 +1,12 @@
 import { fade, makeStyles } from '@material-ui/core';
 
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['Tangerine', 'cursive'].join(','),
+  },
+});
 export default makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'white',
@@ -8,6 +15,9 @@ export default makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  logoName: {
+    fontFamily: '"Tangerine", cursive',
   },
   link: {
     textDecoration: 'none',

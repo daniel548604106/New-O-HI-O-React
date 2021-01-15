@@ -11,51 +11,41 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import useStyles from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { SwipeableDrawer, Button, ThemeProvider } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import MenuDrawer from './MenuDrawer';
+import { openLoginModal } from '../../store/actions/indexActions';
+
 const Navbar = () => {
   const classes = useStyles();
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: ['Tangerine', 'cursive'].join(','),
+    },
+  });
+
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+  const handleOpenLoginModal = () => {
+    dispatch(openLoginModal());
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -68,7 +58,7 @@ const Navbar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -87,23 +77,11 @@ const Navbar = () => {
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Link to="/" className={classes.link}>
-            <Typography className={classes.title} variant="h6" noWrap>
-              O.HI.O
-            </Typography>
+            <ThemeProvider theme={theme}>
+              <Typography variant="h3">O.HI.O</Typography>
+            </ThemeProvider>
           </Link>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton>
@@ -112,11 +90,11 @@ const Navbar = () => {
               </Badge>
             </IconButton>
             <IconButton
+              onClick={() => handleOpenLoginModal()}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <AccountCircle />
@@ -129,21 +107,31 @@ const Navbar = () => {
               </Badge>
             </IconButton>
             <IconButton
+              onClick={() => handleOpenLoginModal()}
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <IconButton
               edge="start"
               className={classes.menuButton}
               aria-label="show more"
+              style={{ marginLeft: '5px' }}
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuDrawer />
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
+
       {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 };
