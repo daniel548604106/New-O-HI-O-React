@@ -79,7 +79,7 @@ const Sale = () => {
             className={classes.card}
             key={product.id}
             component={Link}
-            to={`/product/${product.id}`}
+            to={`/products/${product.id}`}
             style={{ textDecoration: 'none' }}
           >
             <Chip

@@ -8,6 +8,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'scroll',
     flexWrap: 'nowrap',
+    '&::-webkit-scrollbar': {
+      width: '0',
+    },
+    '&::-webkit-scrollbar-track': {
+      width: 0,
+    },
+    '&::-webkit-scrollbar-thumb': {},
     '& > *': {
       margin: theme.spacing(0.5),
     },

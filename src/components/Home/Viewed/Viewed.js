@@ -75,7 +75,7 @@ const Viewed = () => {
             key={product.id}
             component={Link}
             className={classes.link}
-            to={`/product/${product.id}`}
+            to={`/products/${product.id}`}
           >
             <Card className={classes.card}>
               <IconButton

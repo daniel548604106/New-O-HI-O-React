@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './components/index';
-import { Home, Shoes } from './pages/index';
+import { Home, Shoes, Product } from './pages/index';
 import Footer from './components/Footer/Footer';
 
 const App = () => {
@@ -14,6 +14,9 @@ const App = () => {
         </Route>
         <Route path="/shoes" exact>
           <Shoes />
+        </Route>
+        <Route path={`/products/:id`}>
+          <Product />
         </Route>
       </main>
       <Footer />
