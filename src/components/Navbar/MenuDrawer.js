@@ -11,6 +11,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { setUserLogout } from '../../store/actions/indexActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   list: {
@@ -23,6 +26,11 @@ const useStyles = makeStyles({
 
 const MenuDrawer = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const isUserLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
+  const logout = () => {
+    dispatch(setUserLogout());
+  };
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -54,12 +62,22 @@ const MenuDrawer = () => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
+        {isUserLoggedIn && (
+          <ListItem button onClick={logout}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Logout'} />
+          </ListItem>
+        )}
       </List>
       <Divider />
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}

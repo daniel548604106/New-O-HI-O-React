@@ -10,8 +10,15 @@ const theme = createMuiTheme({
 export default makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'white',
+
     boxShadow: '1px 1px 1px rgba(0,0,0,0.2)',
     color: '#3a3737',
+  },
+  toolBar: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   grow: {
     flexGrow: 1,

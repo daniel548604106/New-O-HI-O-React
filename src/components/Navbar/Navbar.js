@@ -75,14 +75,18 @@ const Navbar = () => {
   return (
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
+          <MenuDrawer />
+
           <Link to="/" className={classes.link}>
             <ThemeProvider theme={theme}>
-              <Typography variant="h3">O.HI.O</Typography>
+              <Typography variant="h3" style={{ fontSize: '20px' }}>
+                O.HI.O
+              </Typography>
             </ThemeProvider>
           </Link>
 
-          <div className={classes.grow} />
+          {/* <div className={classes.grow} /> */}
           <div className={classes.sectionDesktop}>
             <IconButton>
               <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
@@ -115,17 +119,6 @@ const Navbar = () => {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              aria-label="show more"
-              style={{ marginLeft: '5px' }}
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <MenuDrawer />
             </IconButton>
           </div>
         </Toolbar>

@@ -5,6 +5,7 @@ import { Navbar } from './components/index';
 import { Home, Shoes, Product } from './pages/index';
 import Footer from './components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
+import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
   }, [isLoginModalShow]);
 
   return (
-    <Router>
+    <Router history={history}>
       <Navbar />
       {isLoginModalShow}
       <div className="loginModal">
@@ -54,6 +55,9 @@ const App = () => {
         </Route>
         <Route path={`/products/:id`}>
           <Product />
+        </Route>
+        <Route path="/checkout" exact>
+          <Checkout />
         </Route>
       </main>
       <Footer />

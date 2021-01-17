@@ -8,7 +8,8 @@ import Notification from '../../../components/notification';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import Loader from '../../../components/loader';
-
+import { openLoginModal } from '../../../store/actions/indexActions';
+import { useHistory } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/actions/productActions';
 const useStyles = makeStyles((theme) => ({
@@ -74,6 +75,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Product = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const isLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const classes = useStyles();
@@ -82,6 +85,12 @@ const Product = () => {
   const [activeColor, setActiveColor] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [numOfPurchase, setNumOfPurchase] = useState(1);
+  const checkout = () => {
+    if (isLoggedIn) {
+      return dispatch(openLoginModal());
+    }
+    history.push('/checkout');
+  };
   useEffect(() => {
     dispatch(listProducts());
   }, []);
@@ -287,7 +296,11 @@ const Product = () => {
                     />
                     <p>Add To Cart</p>
                   </Button>
-                  <Button variant="contained" style={{ backgroundColor: 'black', color: 'white' }}>
+                  <Button
+                    onClick={checkout}
+                    variant="contained"
+                    style={{ backgroundColor: 'black', color: 'white' }}
+                  >
                     Checkout
                   </Button>
                 </div>
