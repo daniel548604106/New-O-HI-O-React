@@ -1,11 +1,20 @@
 import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { IconButton } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-const SearchBar = () => {
+const SearchBar = ({ searchBarOpen }) => {
   return (
-    <div>
-      <div style={{ height: '50px', display: 'flex', width: '100%' }}>
+    <div
+      style={{
+        height: searchBarOpen ? '100%' : '0',
+        opacity: searchBarOpen ? '100%' : '0',
+        transition: 'ease-in-out',
+        transitionDuration: '500',
+        transitionProperty: 'all',
+      }}
+    >
+      <div style={{ display: 'flex', width: '100%' }}>
         <input
           type="text"
           placeholder="Please type in keywords"
@@ -82,6 +91,10 @@ const SearchBar = () => {
       </div>
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  searchBarOpen: PropTypes.bool,
 };
 
 export default SearchBar;

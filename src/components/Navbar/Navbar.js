@@ -12,6 +12,8 @@ import {
 import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 import { SwipeableDrawer, Button, ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -39,7 +41,9 @@ const Navbar = () => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const handleClickAway = () => {
+    setSearchBarOpen(false);
+  };
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -116,19 +120,29 @@ const Navbar = () => {
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton onClick={() => setSearchBarOpen(!searchBarOpen)}>
-              <SearchIcon />
-            </IconButton>
-            <IconButton
+            <ClickAwayListener onClickAway={handleClickAway}>
+              <IconButton onClick={() => setSearchBarOpen(!searchBarOpen)}>
+                <SearchIcon />
+              </IconButton>
+            </ClickAwayListener>
+
+            <span
               onClick={() => handleOpenLoginModal()}
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              color="inherit"
+              style={{
+                border: '1px solid black ',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '0 10px',
+                margin: '0 10px',
+                fontSize: '14px',
+              }}
             >
-              <AccountCircle />
-            </IconButton>
+              登入
+            </span>
+
             <IconButton>
               <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
                 <ShoppingBasketIcon style={{ color: 'black' }} />
@@ -137,16 +151,7 @@ const Navbar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <div
-        style={{
-          height: searchBarOpen ? '100%' : '0',
-          transition: 'ease-in-out',
-          transitionDuration: '500',
-          transitionProperty: 'all',
-        }}
-      >
-        {<SearchBar />}
-      </div>
+      <div>{<SearchBar searchBarOpen={searchBarOpen} />}</div>
       {renderMobileMenu}
     </div>
   );
