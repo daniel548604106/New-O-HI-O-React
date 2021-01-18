@@ -17,9 +17,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuDrawer from './MenuDrawer';
 import { openLoginModal } from '../../store/actions/indexActions';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -31,6 +33,7 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
 
@@ -76,39 +79,45 @@ const Navbar = () => {
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
-          <MenuDrawer />
-
-          <Link to="/" className={classes.link}>
-            <ThemeProvider theme={theme}>
-              <Typography variant="h3" style={{ fontSize: '20px' }}>
-                O.HI.O
-              </Typography>
-            </ThemeProvider>
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div className={classes.sectionMobile}>
+              <MenuDrawer />
+            </div>
+            <Link to="/" className={classes.link}>
+              <ThemeProvider theme={theme}>
+                <Typography variant="h3" style={{ fontSize: '20px', marginLeft: '10px' }}>
+                  O.HI.O
+                </Typography>
+              </ThemeProvider>
+            </Link>
+          </div>
 
           {/* <div className={classes.grow} /> */}
           <div className={classes.sectionDesktop}>
+            <div
+              onClick={() => handleOpenLoginModal()}
+              style={{
+                border: '1px solid black ',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: '0 10px',
+                marginRight: '10px',
+              }}
+            >
+              <p style={{ fontSize: '14px' }}>登入/註冊</p>
+            </div>
             <IconButton>
               <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
                 <ShoppingBasketIcon style={{ color: 'black' }} />
               </Badge>
-            </IconButton>
-            <IconButton
-              onClick={() => handleOpenLoginModal()}
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton>
-              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
-                <ShoppingBasketIcon style={{ color: 'black' }} />
-              </Badge>
+            <IconButton onClick={() => setSearchBarOpen(!searchBarOpen)}>
+              <SearchIcon />
             </IconButton>
             <IconButton
               onClick={() => handleOpenLoginModal()}
@@ -119,11 +128,25 @@ const Navbar = () => {
               color="inherit"
             >
               <AccountCircle />
+            </IconButton>
+            <IconButton>
+              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
+                <ShoppingBasketIcon style={{ color: 'black' }} />
+              </Badge>
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
-
+      <div
+        style={{
+          height: searchBarOpen ? '100%' : '0',
+          transition: 'ease-in-out',
+          transitionDuration: '500',
+          transitionProperty: 'all',
+        }}
+      >
+        {<SearchBar />}
+      </div>
       {renderMobileMenu}
     </div>
   );

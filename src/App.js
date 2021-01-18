@@ -34,7 +34,7 @@ const App = () => {
             onClick={preventProp}
             style={{
               maxWidth: '600px',
-              height: '60vh',
+
               borderRadius: '10px',
               zIndex: 12,
               backgroundColor: '#fff',

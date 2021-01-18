@@ -10,8 +10,10 @@ const theme = createMuiTheme({
 export default makeStyles((theme) => ({
   appBar: {
     backgroundColor: 'white',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    boxShadow: 'none',
 
-    boxShadow: '1px 1px 1px rgba(0,0,0,0.2)',
     color: '#3a3737',
   },
   toolBar: {
