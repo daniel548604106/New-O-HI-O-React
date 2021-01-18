@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:3001",
   "name": "react-shoe-ecommerce",
   "version": "0.1.0",
   "private": true,
@@ -12,7 +13,10 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.7",
     "query-string": "^6.13.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
