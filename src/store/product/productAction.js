@@ -1,14 +1,9 @@
 import axios from 'axios';
 
-import {
-  PRODUCT_LIST_FAIL,
-  PRODUCT_LIST_REQUEST,
-  PRODUCT_LIST_SUCCESS,
-} from '../constants/productConstants';
+import { PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from '../reducerTypes';
 
 export const listProducts = () => async (dispatch) => {
   try {
-    console.log('ihihi');
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
     console.log(data);

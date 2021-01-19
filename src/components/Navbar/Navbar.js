@@ -32,6 +32,7 @@ const Navbar = () => {
       fontFamily: ['Tangerine', 'cursive'].join(','),
     },
   });
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -41,6 +42,11 @@ const Navbar = () => {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const totalCartItems = cartItems.reduce((total, cartItem) => {
+    return (total += cartItem.quantity);
+  }, 0);
+
   const handleClickAway = () => {
     setSearchBarOpen(false);
   };
@@ -114,7 +120,7 @@ const Navbar = () => {
               <p style={{ fontSize: '14px' }}>登入/註冊</p>
             </div>
             <IconButton>
-              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
+              <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
                 <ShoppingBasketIcon style={{ color: 'black' }} />
               </Badge>
             </IconButton>
@@ -144,7 +150,7 @@ const Navbar = () => {
             </span>
 
             <IconButton>
-              <Badge badgeContent={17} color="secondary" component={Link} to="/cart">
+              <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
                 <ShoppingBasketIcon style={{ color: 'black' }} />
               </Badge>
             </IconButton>

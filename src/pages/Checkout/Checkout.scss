@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  .cards {
+    width: 60%;
+
+    .card {
+      display: flex;
+      padding: 15px;
+      justify-content: space-between;
+      align-content: flex-start;
+      border: 1px solid rgb(197, 193, 193);
+      width: 100%;
+
+      .picture {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+      }
+
+      .description {
+        display: flex;
+        flex-direction: column;
+        * {
+          display: inline-block;
+        }
+
+        .discount-tag {
+          margin: 10px 0;
+          background-color: #fd821d;
+          color: white;
+          width: 100%;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+.card-total {
+  width: 30%;
+
+  border: 1px solid rgb(197, 193, 193);
+  .card-total-header {
+    background-color: #f6f6f6;
+    padding: 10px;
+  }
+  .card-total-body {
+    padding: 10px;
+
+    .card-total-body-content {
+      display: flex;
+      margin: 10px 0;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .card-total-checkout-button {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      background-color: #fd821d;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
