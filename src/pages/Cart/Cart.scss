@@ -48,6 +48,17 @@
           width: 100%;
           padding: 5px;
         }
+
+        .adjustQty {
+          display: flex;
+          align-items: center;
+          .quantity {
+            margin: 0 10px;
+          }
+          .icon {
+            cursor: pointer;
+          }
+        }
       }
     }
   }

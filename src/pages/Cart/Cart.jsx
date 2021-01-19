@@ -3,8 +3,10 @@ import './Cart.scss';
 import { Divider } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
-import { removeItemFromCart } from '../../store/cart/cartAction';
+import { addToCart, removeItemFromCart, clearItemFromCart } from '../../store/cart/cartAction';
 const TotalInfo = () => {
   return (
     <div className="card-total">
@@ -36,7 +38,7 @@ const TotalInfo = () => {
   );
 };
 
-const Card = ({ item, idx }) => {
+const Card = ({ item }) => {
   const dispatch = useDispatch();
   return (
     <div className="cards">
@@ -46,18 +48,17 @@ const Card = ({ item, idx }) => {
           <div className="description">
             <p>{item.name}</p>
             <span className="discount-tag">9折</span>
-            <select
-              value={item.quantity}
-              onChange={(e) => handleAmountChange(e.target.value)}
-              name="amount"
-              id="amount"
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
+            <div className="adjustQty">
+              <RemoveIcon
+                onClick={() => dispatch(removeItemFromCart(item))}
+                style={{ cursor: 'pointer' }}
+              />
+              <span className="quantity">{item.quantity}</span>
+              <AddIcon onClick={() => dispatch(addToCart(item))} style={{ cursor: 'pointer' }} />
+            </div>
           </div>
         </div>
-        <div className="delete" onClick={() => dispatch(removeItemFromCart(idx))}>
+        <div className="delete" onClick={() => dispatch(clearItemFromCart(item))}>
           <DeleteIcon />
         </div>
         <div className="price">${item.price * item.quantity}</div>

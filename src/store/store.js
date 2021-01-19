@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './rootReducer';
 import logger from 'redux-logger';
-
 const initialState = {};
 const middleware = [thunk, logger];
 
