@@ -1,6 +1,7 @@
 const axios = require('axios');
 const qs = require('query-string');
 const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
 const authFacebook = async (req, res, next) => {
   try {
     let code;
@@ -19,10 +20,43 @@ const authFacebook = async (req, res, next) => {
     const my_token = data.access_token;
     // 2) Get User Info using access_token and fields specified
     const access_token_url = `https://graph.facebook.com/me?access_token=${my_token}&fields=name,email,picture`;
-    const user = (await axios.get(access_token_url)).data;
-
+    const { email, name, picture, id } = (await axios.get(access_token_url)).data;
+    console.log(email, name, picture);
     // 3) Check if user exists in  DB
-    console.log(user);
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      const newUser = await User.create({
+        email,
+        name,
+        picture: picture.data.url,
+        oAuth: { facebook: { id, email, name, picture: picture.data.url } },
+      });
+
+      return res
+        .status(200)
+        .json({
+          newUser,
+        })
+        .redirect('http://localhost:3000');
+    }
+
+    if (user && !user.oAuth.facebook) {
+      user.oAuth.facebook = { id, email, name, picture: picture.data.url };
+      await user.save();
+
+      return res
+        .status(200)
+        .json({
+          user,
+        })
+        .redirect('http://localhost:3000');
+    }
+
+    res.status(200).json({
+      user,
+    });
+    // .redirect('http://localhost:3000');
   } catch (error) {
     console.log(error);
   }
