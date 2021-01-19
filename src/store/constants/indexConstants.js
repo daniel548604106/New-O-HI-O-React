@@ -1,0 +1,4 @@
+export const CLOSE_LOGIN_MODAL = 'CLOSE_LOGIN_MODAL';
+export const OPEN_LOGIN_MODAL = 'OPEN_LOGIN_MODAL';
+export const SET_USER_LOGIN = 'SET_USER_LOGIN';
+export const SET_USER_LOGOUT = 'SET_USER_LOGOUT';
