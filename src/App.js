@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
+import Cart from './pages/Cart/Cart.jsx';
+import './App.scss';
 const App = () => {
   const dispatch = useDispatch();
   const isLoginModalShow = useSelector((state) => state.login.isLoginModalShow);
@@ -58,6 +60,9 @@ const App = () => {
         </Route>
         <Route path="/checkout" exact>
           <Checkout />
+        </Route>
+        <Route path="/cart" exact>
+          <Cart />
         </Route>
       </main>
       <Footer />

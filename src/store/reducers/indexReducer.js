@@ -3,7 +3,7 @@ import {
   CLOSE_LOGIN_MODAL,
   OPEN_LOGIN_MODAL,
   SET_USER_LOGOUT,
-} from '../constants/indexConstants';
+} from '../reducerTypes';
 
 let initialState = {
   isUserLoggedIn: false,
