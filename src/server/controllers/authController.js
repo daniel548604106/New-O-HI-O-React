@@ -30,33 +30,21 @@ const authFacebook = async (req, res, next) => {
         email,
         name,
         picture: picture.data.url,
-        oAuth: { facebook: { id, email, name, picture: picture.data.url } },
+        facebook: { id, email, name, picture: picture.data.url },
       });
 
-      return res
-        .status(200)
-        .json({
-          newUser,
-        })
-        .redirect('http://localhost:3000');
+      return res.redirect(`${process.env.REDIRECT_URI}?userId=${newUser._id}`);
     }
 
-    if (user && !user.oAuth.facebook) {
-      user.oAuth.facebook = { id, email, name, picture: picture.data.url };
+    if (user && !user.facebook) {
+      user.facebook = { id, email, name, picture: picture.data.url };
       await user.save();
 
-      return res
-        .status(200)
-        .json({
-          user,
-        })
-        .redirect('http://localhost:3000');
+      res.redirect(`${process.env.REDIRECT_URI}?userId=${user._id}`);
     }
+    console.log(user);
 
-    res.status(200).json({
-      user,
-    });
-    // .redirect('http://localhost:3000');
+    res.redirect(`${process.env.REDIRECT_URI}?userId=${user._id}`);
   } catch (error) {
     console.log(error);
   }

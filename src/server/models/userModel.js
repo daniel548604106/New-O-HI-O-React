@@ -27,30 +27,27 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    oAuth: {
-      facebook: {
-        id: String,
-        token: String,
-        email: String,
-        name: String,
-        picture: String,
-      },
-      google: {
-        id: String,
-        token: String,
-        email: String,
-        name: String,
-        picture: String,
-      },
-      line: {
-        id: String,
-        token: String,
-        email: String,
-        name: String,
-        picture: String,
-      },
+    facebook: {
+      id: String,
+      token: String,
+      email: String,
+      name: String,
+      picture: String,
     },
-
+    google: {
+      id: String,
+      token: String,
+      email: String,
+      name: String,
+      picture: String,
+    },
+    line: {
+      id: String,
+      token: String,
+      email: String,
+      name: String,
+      picture: String,
+    },
     isAdmin: {
       type: Boolean,
       required: true,

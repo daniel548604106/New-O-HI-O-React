@@ -35,6 +35,7 @@ const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const dispatch = useDispatch();
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -104,21 +105,27 @@ const Navbar = () => {
 
           {/* <div className={classes.grow} /> */}
           <div className={classes.sectionDesktop}>
-            <div
-              onClick={() => handleOpenLoginModal()}
-              style={{
-                border: '1px solid black ',
-                borderRadius: '10px',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '0 10px',
-                marginRight: '10px',
-              }}
-            >
-              <p style={{ fontSize: '14px' }}>登入/註冊</p>
-            </div>
+            {isUserLoggedIn ? (
+              <div>{/* <img src={} alt="" />
+                <span>{}</span> */}</div>
+            ) : (
+              <div
+                onClick={() => handleOpenLoginModal()}
+                style={{
+                  border: '1px solid black ',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '0 10px',
+                  marginRight: '10px',
+                }}
+              >
+                <p style={{ fontSize: '14px' }}>登入/註冊</p>
+              </div>
+            )}
+
             <IconButton>
               <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
                 <ShoppingBasketIcon style={{ color: 'black' }} />

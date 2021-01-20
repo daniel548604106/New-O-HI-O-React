@@ -9,8 +9,13 @@ import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
 import Cart from './pages/Cart/Cart.jsx';
+import OAuth from './pages/OAuth/OAuth.jsx';
+import PropTypes from 'prop-types';
+import qs from 'query-string';
+import { setUserLoggedIn } from './store/user/userAction';
+import { apiGetUserData } from './api/index';
 import './App.scss';
-const App = () => {
+const App = (props) => {
   const dispatch = useDispatch();
   const isLoginModalShow = useSelector((state) => state.login.isLoginModalShow);
   const [open, setOpen] = useState(false);
@@ -21,6 +26,24 @@ const App = () => {
   const preventProp = (e) => {
     e.stopPropagation();
   };
+
+  useEffect(() => {
+    const query = window.location.search;
+    let userId;
+    const getUserData = async () => {
+      try {
+        const { data } = await apiGetUserData(userId);
+        console.log('res', data);
+        dispatch(setUserLoggedIn(data.user));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (query) {
+      userId = query.split('=')[1];
+      getUserData();
+    }
+  }, []);
 
   useEffect(() => {
     setOpen(isLoginModalShow);
@@ -51,6 +74,9 @@ const App = () => {
       <main>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="/oauth/:type" exact>
+          <OAuth props={props} />
         </Route>
         <Route path="/shoes" exact>
           <Shoes />
