@@ -2,6 +2,7 @@ const axios = require('axios');
 const qs = require('query-string');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const generateToken = require('../tools/generateToken');
 const oAuth = async (req, res, next) => {
   try {
     const { type, code } = req.body;
@@ -93,22 +94,29 @@ const oAuth = async (req, res, next) => {
         [type]: { id, email, name, picture },
       });
 
+      const token = generateToken(newUser._id);
+
       return res.status(200).json({
-        newUser,
+        token,
+        user: newUser,
       });
     }
 
     if (user && !user[type]) {
       user[type] = { id, email, name, picture };
       await user.save();
-
+      const token = generateToken(user._id);
       return res.status(200).json({
+        token,
         user,
       });
     }
     console.log(user);
 
+    const token = generateToken(user._id);
+
     res.status(200).json({
+      token,
       user,
     });
   } catch (error) {
