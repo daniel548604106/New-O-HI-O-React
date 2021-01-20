@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { closeLoginModal } from '../../store/actions/indexActions';
 import { redirectUri, config } from '../../lib/oAuth';
 import qs from 'query-string';
-import SearchBar from '../../components/Navbar/SearchBar';
 import CloseIcon from '@material-ui/icons/Close';
 const Login = () => {
   const dispatch = useDispatch();
@@ -59,6 +58,13 @@ const Login = () => {
             style={{ backgroundColor: '#fff', color: 'black', marginBottom: '15px' }}
           >
             Login with Google
+          </Button>
+          <Button
+            onClick={() => oAuthLogin('line')}
+            variant="contained"
+            style={{ backgroundColor: '#00C300', color: 'white', marginBottom: '15px' }}
+          >
+            Login with Line
           </Button>
           <Button
             onClick={login}

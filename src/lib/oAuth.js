@@ -4,6 +4,8 @@ export const redirectUri = (provider) => {
       return 'https://accounts.google.com/o/oauth2/v2/auth?';
     case 'facebook':
       return 'https://www.facebook.com/v9.0/dialog/oauth?';
+    case 'line':
+      return `https://access.line.me/oauth2/v2.1/authorize?`;
   }
 };
 
@@ -19,6 +21,14 @@ export const config = {
     response_type: 'code',
     redirect_uri: process.env.REACT_APP_GOOGLE_URI,
     client_id: process.env.REACT_APP_GOOGLE_ID,
+  },
+  line: {
+    state: 'login',
+    scope: 'openid profile email',
+    response_type: 'code',
+    redirect_uri: process.env.REACT_APP_LINE_URI,
+    client_id: process.env.REACT_APP_LINE_ID,
+    nonce: '09876xyz',
   },
   // linkedin: {
   //   scope: 'r_liteprofile r_emailaddress',
