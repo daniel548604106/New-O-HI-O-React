@@ -48,7 +48,7 @@ const oAuth = async (req, res, next) => {
         const res = (await axios.get(access_token_url)).data;
         email = res.email;
         name = res.name;
-        picture = res.picture;
+        picture = res.picture.data.url;
         id = res.id;
 
         console.log('email', email, name, picture);
@@ -89,8 +89,8 @@ const oAuth = async (req, res, next) => {
       const newUser = await User.create({
         email,
         name,
-        picture: picture || picture.data.url,
-        [type]: { id, email, name, picture: picture || picture.data.url },
+        picture,
+        [type]: { id, email, name, picture },
       });
 
       return res.status(200).json({
@@ -99,7 +99,7 @@ const oAuth = async (req, res, next) => {
     }
 
     if (user && !user[type]) {
-      user[type] = { id, email, name, picture: picture || picture.data.url };
+      user[type] = { id, email, name, picture };
       await user.save();
 
       return res.status(200).json({
