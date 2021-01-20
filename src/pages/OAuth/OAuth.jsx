@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { apiPostOauthLogin } from '../../api/index';
 import PropTypes from 'prop-types';
 import Loader from '../../components/loader';
 import Cookie from 'js-cookie';
+import { setUserLoggedIn } from '../../store/user/userAction';
 const OAuth = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const params = useParams();
   const location = useLocation();
   useEffect(() => {
@@ -25,13 +28,11 @@ const OAuth = () => {
         const { data } = await apiPostOauthLogin({ type, code });
         Cookie.set('me', data.user);
         Cookie.set('token', data.token);
-        console.log(res.data.token);
-        console.log(res.data.user);
-        // dispatch(setUserLoggedIn(data.user));
-        window.location.href = '/';
+        history.push('/');
+        dispatch(setUserLoggedIn(data.user));
         console.log(res.data.user);
       } catch (error) {
-        window.location.href = '/';
+        history.push('/');
         console.log(error);
       }
     };

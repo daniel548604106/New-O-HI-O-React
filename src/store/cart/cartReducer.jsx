@@ -8,7 +8,7 @@ import {
 } from './cartUtils';
 
 const initialState = {
-  cartItems: getCartItemsFromLocalStorage() || [],
+  cartItems: [],
 };
 
 export const cartReducer = (state = initialState, action) => {

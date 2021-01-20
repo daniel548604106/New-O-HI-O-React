@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
 import Cart from './pages/Cart/Cart.jsx';
+import Account from './pages/Account/Account.jsx';
 import OAuth from './pages/OAuth/OAuth.jsx';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
@@ -72,14 +73,14 @@ const App = (props) => {
         </Backdrop>
       </div>
       <main>
-        <Route path="/" exact>
-          <Home />
-        </Route>
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
         </Route>
         <Route path="/shoes" exact>
           <Shoes />
+        </Route>
+        <Route path="/account" exact>
+          <Account />
         </Route>
         <Route path={`/products/:id`}>
           <Product />
@@ -89,6 +90,9 @@ const App = (props) => {
         </Route>
         <Route path="/cart" exact>
           <Cart />
+        </Route>
+        <Route path="/" exact>
+          <Home />
         </Route>
       </main>
       <Footer />

@@ -9,11 +9,11 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import './Navbar.scss';
+import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
 import { SwipeableDrawer, Button, ThemeProvider } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -22,8 +22,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuDrawer from './MenuDrawer';
+import Dropdown from './Dropdown';
 import { openLoginModal } from '../../store/actions/indexActions';
 import SearchBar from './SearchBar';
+import Cookie from 'js-cookie';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -32,15 +34,17 @@ const Navbar = () => {
       fontFamily: ['Tangerine', 'cursive'].join(','),
     },
   });
-  const cartItems = useSelector((state) => state.cart.cartItems);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+  const meData = useSelector((state) => state.user.currentUser);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
-
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -48,6 +52,9 @@ const Navbar = () => {
     return (total += cartItem.quantity);
   }, 0);
 
+  const toCart = () => {
+    isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
+  };
   const handleClickAway = () => {
     setSearchBarOpen(false);
   };
@@ -106,8 +113,26 @@ const Navbar = () => {
           {/* <div className={classes.grow} /> */}
           <div className={classes.sectionDesktop}>
             {isUserLoggedIn ? (
-              <div>{/* <img src={} alt="" />
-                <span>{}</span> */}</div>
+              <div className="avatar" style={{ position: 'relative' }}>
+                {
+                  <img
+                    style={{ borderRadius: '50%', width: '30px', height: '30px', margin: '0 10px' }}
+                    src={meData.picture}
+                    alt=""
+                  />
+                }
+                <div
+                  className="dropdown"
+                  style={{
+                    position: 'absolute',
+                    bottom: '-80px',
+                    right: '0',
+                    zIndex: '12',
+                  }}
+                >
+                  <Dropdown />
+                </div>
+              </div>
             ) : (
               <div
                 onClick={() => handleOpenLoginModal()}
@@ -138,26 +163,45 @@ const Navbar = () => {
                 <SearchIcon />
               </IconButton>
             </ClickAwayListener>
-
-            <span
-              onClick={() => handleOpenLoginModal()}
-              style={{
-                border: '1px solid black ',
-                borderRadius: '10px',
-                cursor: 'pointer',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: '0 10px',
-                margin: '0 10px',
-                fontSize: '14px',
-              }}
-            >
-              登入
-            </span>
+            {isUserLoggedIn ? (
+              <div>
+                {
+                  <Link to="/account">
+                    <img
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                      }}
+                      className={(classes.avatar, 'avatar')}
+                      src={meData.picture}
+                      alt=""
+                    />
+                  </Link>
+                }
+              </div>
+            ) : (
+              <span
+                onClick={() => handleOpenLoginModal()}
+                style={{
+                  border: '1px solid black ',
+                  borderRadius: '10px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: '0 10px',
+                  margin: '0 10px',
+                  fontSize: '14px',
+                }}
+              >
+                登入
+              </span>
+            )}
 
             <IconButton>
-              <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
+              <Badge badgeContent={totalCartItems} color="secondary" onClick={() => toCart()}>
                 <ShoppingBasketIcon style={{ color: 'black' }} />
               </Badge>
             </IconButton>

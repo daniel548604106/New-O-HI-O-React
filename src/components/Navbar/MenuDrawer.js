@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 const MenuDrawer = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const isUserLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const logout = () => {
     dispatch(setUserLogout());
   };

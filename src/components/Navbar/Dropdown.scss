@@ -1,0 +1,23 @@
+.logout {
+  cursor: pointer;
+}
+
+.arrow {
+  /* Border */
+  border: 8px solid transparent;
+  border-top-color: white;
+  outline: 1px black;
+
+  /* Position */
+  top: 0%;
+  right: 10px;
+  position: absolute;
+  transform: translate(0, -50%) rotate(180deg);
+
+  /* Zero size */
+  height: 5px;
+  width: 5px;
+
+  /* Displayed on top of other element */
+  z-index: 13;
+}

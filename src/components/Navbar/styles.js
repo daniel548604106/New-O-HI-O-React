@@ -22,6 +22,13 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  avatar: {
+    width: '30px',
+    height: '30px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    margin: '0 10px',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -77,12 +84,15 @@ export default makeStyles((theme) => ({
   },
   sectionDesktop: {
     display: 'none',
+    position: 'relative',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
+      alignItems: 'center',
     },
   },
   sectionMobile: {
     display: 'flex',
+    alignItems: 'center',
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
