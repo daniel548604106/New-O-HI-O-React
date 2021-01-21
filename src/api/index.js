@@ -8,3 +8,8 @@ export const apiPostLogin = postLogin;
 export const apiPostSignup = postSignup;
 export const apiPostOauthLogin = postOAuthLogin;
 export const apiPostLogout = postLogout;
+
+// 產品
+import { getAllProducts, getProduct } from './productRequest';
+export const apiGetAllProducts = getAllProducts;
+export const apiGetProduct = getProduct;

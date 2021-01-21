@@ -47,7 +47,9 @@ const Card = ({ item }) => {
           <img className="picture" src={item.images[0]} alt="" />
           <div className="description">
             <p>{item.name}</p>
-            <span className="discount-tag">9折</span>
+            <span className="discount-tag">
+              {(item.discountPrice / item.fullPrice).toFixed(2) * 10} 折
+            </span>
             <div className="adjustQty">
               <RemoveIcon
                 onClick={() => dispatch(removeItemFromCart(item))}
@@ -61,7 +63,14 @@ const Card = ({ item }) => {
         <div className="delete" onClick={() => dispatch(clearItemFromCart(item))}>
           <DeleteIcon />
         </div>
-        <div className="price">${item.price * item.quantity}</div>
+        <div className="price" style={{ display: 'flex' }}>
+          <div style={{ textDecoration: item.discountPrice ? 'line-through' : 'none' }}>
+            ${item.fullPrice}
+          </div>
+          {item.discountPrice && (
+            <div style={{ marginLeft: '5px', color: 'red' }}>${item.discountPrice}</div>
+          )}
+        </div>
       </div>
     </div>
   );
