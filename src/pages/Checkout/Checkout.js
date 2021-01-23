@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './Checkout.scss';
+import PropTypes from 'prop-types';
 import { Divider } from '@material-ui/core';
-
-const TotalInfo = () => (
+import StripeButton from '../../components/StripeButton/StripeButton.jsx';
+const TotalInfo = ({ total }) => (
   <div className="card-total">
     <div className="card-total-header">訂單摘要</div>
     <div className="card-total-body">
@@ -26,10 +27,15 @@ const TotalInfo = () => (
         <span>總結帳金額</span>
         <span>NTD 4000</span>
       </div>
+      <StripeButton price={total} />
       <div className="card-total-checkout-button">前往結帳</div>
     </div>
   </div>
 );
+
+TotalInfo.propTypes = {
+  total: PropTypes.number,
+};
 
 const Card = () => (
   <div className="cards">
@@ -64,7 +70,7 @@ const Checkout = () => {
       <h1 className="title">Checkout</h1>
       <div className="container">
         <Card />
-        <TotalInfo />
+        <TotalInfo total="400" />
       </div>
     </div>
   );
