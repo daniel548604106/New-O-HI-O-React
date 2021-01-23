@@ -9,10 +9,11 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import Loader from '../../../components/loader';
 import { openLoginModal } from '../../../store/actions/indexActions';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/product/productAction';
 import { addToCart } from '../../../store/cart/cartAction';
+import { apiGetProduct } from '../../../api/index';
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '15px',
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
 const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const params = useParams();
   const isLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -86,6 +88,7 @@ const Product = () => {
   const [activeColor, setActiveColor] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [numOfPurchase, setNumOfPurchase] = useState(1);
+  const [product, setProduct] = useState({});
   const checkout = () => {
     if (isLoggedIn) {
       return dispatch(openLoginModal());
@@ -94,6 +97,15 @@ const Product = () => {
   };
   useEffect(() => {
     dispatch(listProducts());
+  }, []);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const { data } = await apiGetProduct(params.id);
+      console.log(data.product);
+      setProduct(data.product);
+    };
+    getProduct();
   }, []);
   const decrement = () => {
     if (numOfPurchase === 1) return;
@@ -138,7 +150,7 @@ const Product = () => {
 
   return (
     <div>
-      {loading ? (
+      {!product ? (
         <Loader />
       ) : error ? (
         <Notification type={'error'} />
@@ -157,10 +169,10 @@ const Product = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 borderRadius: '20px',
-                backgroundImage: `url(${product.images[activeImage]})`,
+                // backgroundImage: product && `url(${product.images[activeImage]})`,
               }}
             >
-              <div
+              {/* <div
                 style={{
                   display: 'flex',
                   left: '50%',
@@ -178,7 +190,7 @@ const Product = () => {
                     alt=""
                   />
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <p>{products.title}</p>
@@ -200,11 +212,19 @@ const Product = () => {
                   </p>
                 </div>
                 <div>
-                  <span style={{ fontWeight: 500, fontSize: '16px', marginRight: '10px' }}>
-                    $ {product.price}
-                  </span>
-                  <span style={{ textDecoration: 'line-through', fontSize: '12px', color: 'gray' }}>
-                    $ {product.originalPrice}
+                  {product.discountPrice && (
+                    <span style={{ fontWeight: 500, fontSize: '16px', marginRight: '10px' }}>
+                      $ {product.discountPrice}
+                    </span>
+                  )}
+                  <span
+                    style={{
+                      textDecoration: product.discountPrice ? 'line-through' : 'none',
+                      fontSize: '12px',
+                      color: 'gray',
+                    }}
+                  >
+                    $ {product.fullPrice}
                   </span>
                 </div>
               </div>
@@ -212,7 +232,7 @@ const Product = () => {
               <div>
                 <h5 style={{ margin: '10px 0' }}>Available Sizes</h5>
                 <div style={{ display: 'flex' }}>
-                  {product.availableSizes.map((sizes, idx) => (
+                  {/* {product.availableSizes.map((sizes, idx) => (
                     <p
                       onClick={() => setActiveSize(idx)}
                       className={activeSize === idx ? classes.activeSize : null}
@@ -230,11 +250,11 @@ const Product = () => {
                     >
                       {sizes.size}
                     </p>
-                  ))}
+                  ))} */}
                 </div>
                 <h5 style={{ margin: '10px 0' }}>Colors</h5>
                 <div style={{ display: 'flex' }}>
-                  {product.availableSizes.map((sizes) => {
+                  {/* {product.availableSizes.map((sizes) => {
                     sizes.stocks.map((stock) => (
                       <div
                         key={stock.color}
@@ -248,7 +268,7 @@ const Product = () => {
                         {stock.color}
                       </div>
                     ));
-                  })}
+                  })} */}
                 </div>
 
                 <div

@@ -11,6 +11,7 @@ import LoginModal from './components/Login/index';
 import Cart from './pages/Cart/Cart.jsx';
 import Account from './pages/Account/Account.jsx';
 import OAuth from './pages/OAuth/OAuth.jsx';
+import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
 import { setUserLoggedIn } from './store/user/userAction';
@@ -90,6 +91,9 @@ const App = (props) => {
         </Route>
         <Route path="/cart" exact>
           <Cart />
+        </Route>
+        <Route path="/beauty">
+          <Beauty />
         </Route>
         <Route path="/" exact>
           <Home />
