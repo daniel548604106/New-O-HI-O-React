@@ -25,4 +25,16 @@ const getProduct = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllProducts, getProduct };
+const getCollectionProducts = async (req, res, next) => {
+  try {
+    const { collection } = req.params;
+    const products = await Product.find({ category: collection });
+    res.status(200).json({
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { getAllProducts, getProduct, getCollectionProducts };
