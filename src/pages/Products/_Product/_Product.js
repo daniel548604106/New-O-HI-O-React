@@ -88,7 +88,7 @@ const Product = () => {
   const [activeColor, setActiveColor] = useState(0);
   const [activeTab, setActiveTab] = useState(0);
   const [numOfPurchase, setNumOfPurchase] = useState(1);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState('');
   const checkout = () => {
     if (isLoggedIn) {
       return dispatch(openLoginModal());
@@ -169,28 +169,30 @@ const Product = () => {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 borderRadius: '20px',
-                // backgroundImage: product && `url(${product.images[activeImage]})`,
+                backgroundImage: product && `url(${product.images[activeImage]})`,
               }}
             >
-              {/* <div
-                style={{
-                  display: 'flex',
-                  left: '50%',
-                  transform: 'translate(-50%,0)',
-                  position: 'absolute',
-                  bottom: '5%',
-                }}
-              >
-                {product.images.map((image, idx) => (
-                  <img
-                    src={image}
-                    className={classes.imageTab}
-                    key={image}
-                    onClick={() => setActiveImage(idx)}
-                    alt=""
-                  />
-                ))}
-              </div> */}
+              {
+                <div
+                  style={{
+                    display: 'flex',
+                    left: '50%',
+                    transform: 'translate(-50%,0)',
+                    position: 'absolute',
+                    bottom: '5%',
+                  }}
+                >
+                  {product.images.map((image, idx) => (
+                    <img
+                      src={image}
+                      className={classes.imageTab}
+                      key={image}
+                      onClick={() => setActiveImage(idx)}
+                      alt=""
+                    />
+                  ))}
+                </div>
+              }
             </div>
 
             <p>{products.title}</p>
