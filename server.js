@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const path = require('path')
 const bodyParser = require('body-parser');
 const authRoute = require('./server/routes/authRoute');
 const userRoute = require('./server/routes/userRoute');
@@ -23,6 +23,15 @@ app.use('/v1/oauth', oAuthRoute);
 app.use('/v1/products', productRoute);
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+
+if(process.env.NODE_ENV==='production'){
+  app.use(express.static(path.join(__dirname,'client/build')))
+  app.get('*', function(req,res){
+    res.sendFile(path.join(__dirname,'client/build','index.html'))
+  })
+}  //static is a middleware that allows us to serve a static file, which when we run 'npm run build', it will generate a file called build
+
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port  http://localhost:${port}`);
 });
