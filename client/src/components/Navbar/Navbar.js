@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import './Navbar.scss';
+import styles from './Navbar.module.scss';
 import { Link, useHistory } from 'react-router-dom';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -113,7 +113,7 @@ const Navbar = () => {
           {/* <div className={classes.grow} /> */}
           <div className={classes.sectionDesktop}>
             {isUserLoggedIn ? (
-              <div className="avatar" style={{ position: 'relative' }}>
+              <div className={styles.avatar} style={{ position: 'relative' }}>
                 {
                   <img
                     style={{ borderRadius: '50%', width: '30px', height: '30px', margin: '0 10px' }}
@@ -122,7 +122,7 @@ const Navbar = () => {
                   />
                 }
                 <div
-                  className="dropdown"
+                  className={styles.dropdown}
                   style={{
                     position: 'absolute',
                     bottom: '-80px',

@@ -14,6 +14,7 @@ import OAuth from './pages/OAuth/OAuth.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
+import Latest from './pages/Latest/Latest.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
 import './App.scss';
@@ -73,7 +74,7 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <main>
+      <main className="global-container">
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
         </Route>
@@ -82,6 +83,9 @@ const App = (props) => {
         </Route>
         <Route path="/account" exact>
           <Account />
+        </Route>
+        <Route path="/latest" exact>
+          <Latest />
         </Route>
         <Route path={`/products/:id`}>
           <Product />

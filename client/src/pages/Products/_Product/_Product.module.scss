@@ -1,0 +1,89 @@
+.productRoot {
+  padding: 15px;
+  max-width: 1200px;
+}
+
+.containerLayout {
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  .productDisplay,
+  .productDescription {
+    flex: 3;
+  }
+  .productMainInfo,
+  .designShopInfo {
+    flex: 2;
+    @media (max-width: 720px) {
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    margin-left: 20px;
+  }
+}
+
+.root {
+  padding: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.main {
+  @media (max-width: 720px) {
+    display: block;
+  }
+  justify-content: space-between;
+  display: flex;
+}
+
+.productName {
+  font-size: 22px;
+}
+.mainInfo {
+  margin-left: 30px;
+  @media (max-width: 720px) {
+    margin-left: 0;
+  }
+  min-width: 300px;
+}
+
+.disabled {
+  background-color: gray;
+  color: black;
+}
+.imageTab {
+  @media (max-width: 720px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  width: 80px;
+  height: 80px;
+
+  border: white;
+  cursor: pointer;
+  border-radius: 10px;
+  &:not(:last-of-type) {
+    margin-right: 20px;
+  }
+}
+
+.activeSize {
+  background-color: #fa9b20;
+  border: none;
+}
+.activeColor {
+  border: black;
+}
+.removeBtn {
+  padding: 5px;
+  background-color: black;
+  color: white;
+}
+.activeTab {
+  color: black;
+  font-weight: 500;
+}

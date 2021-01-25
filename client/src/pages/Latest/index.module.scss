@@ -1,0 +1,35 @@
+.sidebar {
+  @media (max-width: 720px) {
+    display: none;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+
+  .title {
+    font-family: var(--title-font);
+    @media (max-width: 720px) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .title::after {
+    @media (max-width: 720px) {
+      display: none;
+    }
+    content: '';
+    height: 1px;
+    width: 100%;
+    margin: 30px 0 20px 0;
+    display: block;
+    background: #f0f0f0;
+  }
+}
+
+.layout {
+  display: flex;
+}

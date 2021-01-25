@@ -1,0 +1,47 @@
+.card {
+  border-radius: 0px;
+  box-shadow: none;
+  position: relative;
+}
+
+.root {
+  position: relative;
+}
+
+.media {
+  height: 250px;
+  width: 100%;
+}
+.cardContent {
+  padding: 10px;
+}
+
+.brandName {
+  color: var(--primary-gray);
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.productName {
+  font-size: 16px;
+  font-weight: semi-bold;
+}
+.heartIcon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: rgba(0, 0, 0, 0.3);
+  &:hover {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+.label {
+  position: absolute;
+  background-color: var(--primary-black);
+  font-family: var(--primary-font);
+  top: 0;
+  right: 0;
+  z-index: 12;
+  padding: 5px 20px;
+  color: white;
+  text-transform: uppercase;
+}

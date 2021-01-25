@@ -1,0 +1,77 @@
+.brandName {
+  font-size: 18px;
+  color: var(--primary-gray);
+}
+
+.productName {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: var(--title-font);
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+
+  .discount {
+    margin-right: 10px;
+  }
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  justify-content: space-between;
+
+  .option {
+    h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: var(--primary-font);
+    }
+    p {
+      color: var(--primary-gray);
+      margin-top: 5px;
+    }
+  }
+}
+
+.priceRow {
+  padding: 20px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  .price {
+    display: flex;
+    align-items: flex-end;
+    font-weight: bold;
+    font-family: var(--primary-font);
+    .discountPrice {
+      margin-right: 10px;
+      font-size: 20px;
+      color: var(--primary-pink);
+    }
+
+    .fullPrice {
+      font-size: 18px;
+    }
+    .originalPrice {
+      font-size: 16px;
+      text-decoration: line-through;
+    }
+  }
+
+  .brandOrigin {
+    p {
+      color: var(--primary-gray);
+      font-family: var(--secondary-font);
+      span {
+        color: var(--primary-black);
+      }
+    }
+  }
+}
