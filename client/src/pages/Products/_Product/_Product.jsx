@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import StarIcon from '@material-ui/icons/Star';
-import { Divider, Button } from '@material-ui/core';
-import Notification from '../../../components/notification';
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
 import Loader from '../../../components/loader';
 import { openLoginModal } from '../../../store/actions/indexActions';
 import { useHistory, useParams } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/product/productAction';
-import { addToCart } from '../../../store/cart/cartAction';
 import { apiGetProduct } from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
@@ -18,6 +12,7 @@ import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
 import ProductInfo from '../../../components/Product/ProductInfo/ProductInfo.jsx';
 import ProductDescription from '../../../components/Product/ProductDescription/ProductDescription.jsx';
 import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDisplay.jsx';
+import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,12 +20,9 @@ const Product = () => {
   const isLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
-  const [activeImage, setActiveImage] = useState(0);
-  const [activeSize, setActiveSize] = useState(0);
-  const [activeColor, setActiveColor] = useState(0);
-  const [activeTab, setActiveTab] = useState(0);
-  const [numOfPurchase, setNumOfPurchase] = useState(1);
   const [product, setProduct] = useState('');
+  const [showBanner, setShowBanner] = useState(false);
+
   const checkout = () => {
     if (isLoggedIn) {
       return dispatch(openLoginModal());
@@ -41,6 +33,26 @@ const Product = () => {
     dispatch(listProducts());
   }, []);
 
+  // Show Banner
+  useEffect(() => {
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 400) {
+        setShowBanner(true);
+      } else {
+        setShowBanner(false);
+      }
+    });
+    return () => {
+      window.removeEventListener('scroll', () => {
+        if (window.pageYOffset > 400) {
+          console.log('hihihi');
+        }
+      });
+    };
+  }, [window.pageYOffset]);
+
+  // Fetch Product
+
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await apiGetProduct(params.id);
@@ -49,13 +61,12 @@ const Product = () => {
     };
     getProduct();
   }, []);
-  const Product = () => {
-    if (numOfPurchase === 1) return;
-    setNumOfPurchase((prevNum) => (prevNum > 1 ? (prevNum -= 1) : null));
-  };
 
   return (
     <div className={classes.productRoot}>
+      <div className={showBanner ? classes.showBanner : classes.hideBanner}>
+        <ProductBanner product={product} />
+      </div>
       <div className={classes.containerLayout}>
         <div className={classes.productDisplay}>
           <ProductDisplay product={product} />
@@ -71,6 +82,10 @@ const Product = () => {
       </div>
       <div className={classes.containerLayout}>
         <div className={classes.productDescription}>
+          <ProductDescription id="product-description" product={product} />
+          <ProductDescription product={product} />
+          <ProductDescription product={product} />
+          <ProductDescription product={product} />
           <ProductDescription product={product} />
         </div>
         <div className={classes.designShopInfo}>

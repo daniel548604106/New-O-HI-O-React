@@ -2,6 +2,24 @@
   padding: 15px;
   max-width: 1200px;
 }
+.showBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100%;
+  transition: 0.3s ease-in-out;
+}
+
+.hideBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100%;
+  transform: translate(0, -90px);
+  transition: 0.3s ease-in-out;
+}
 
 .containerLayout {
   @media (max-width: 720px) {
@@ -23,6 +41,12 @@
     }
     margin-left: 20px;
   }
+}
+
+.designShopInfo {
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
 }
 
 .root {
