@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
 import StarIcon from '@material-ui/icons/Star';
+import Stars from '../../Global/Stars/Stars.jsx';
 const DesignShopInfo = () => {
   return (
     <div>
@@ -15,7 +16,7 @@ const DesignShopInfo = () => {
           />
           <div>
             <p>KENZO</p>
-            <StarIcon />
+            <Stars />
           </div>
         </div>
         <div className={classes.ctaBtnRow}>
