@@ -34,6 +34,7 @@ const ShopCard = ({ shop }) => {
             Followers <span>{shop.followers}</span>
           </p>
         </div>
+
         <button>
           <AddIcon />
           <span>Follow</span>

@@ -74,6 +74,9 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
+      <Route path="/" exact>
+        <Home />
+      </Route>
       <main className="global-container">
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
@@ -98,9 +101,6 @@ const App = (props) => {
         </Route>
         <Route path="/beauty">
           <Beauty />
-        </Route>
-        <Route path="/" exact>
-          <Home />
         </Route>
       </main>
       <Footer />

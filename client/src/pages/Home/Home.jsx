@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Banner from '../../components/Home/Banner/Banner';
-import Sale from '../../components/Home/Sale/Sale';
-import Viewed from '../../components/Home/Viewed/Viewed';
+import DiscountedItems from '../../components/Home/DiscountedItems/DiscountedItems.jsx';
+import NewItems from '../../components/Home/NewItems/NewItems.jsx';
+import Campaign from '../../components/Home/Campaign/Campaign.jsx';
+import PopularItems from '../../components/Home/PopularItems/PopularItems.jsx';
 import Shop from '../../components/Home/Shops/Shops.jsx';
 import Subscription from '../../components/Home/Subscription/Subscription.jsx';
 import { apiGetAllProducts } from '../../api/index';
@@ -23,19 +25,25 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '15px' }}>
+      <main>
         <section>
-          <Sale products={products} />
+          <NewItems products={products} />
         </section>
         <section>
-          <Viewed />
+          <PopularItems products={products} />
         </section>
+        <div className={classes.campaign}>
+          <Campaign products={products} />
+        </div>
         <section>
           <Shop />
         </section>
-        <div style={{ width: '100%' }}>
+        <section>
+          <DiscountedItems products={products} />
+        </section>
+        <section style={{ width: '100%' }}>
           <Subscription />
-        </div>
+        </section>
       </main>
     </div>
   );
