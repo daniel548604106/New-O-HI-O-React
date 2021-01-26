@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Banner from '../../components/Home/Banner/Banner';
+import Banner from '../../components/Home/Banner/Banner.jsx';
 import DiscountedItems from '../../components/Home/DiscountedItems/DiscountedItems.jsx';
 import NewItems from '../../components/Home/NewItems/NewItems.jsx';
 import Campaign from '../../components/Home/Campaign/Campaign.jsx';

@@ -44,3 +44,14 @@ a {
   max-width: 1200px;
   padding: 0 15px;
 }
+
+.swiper-button-next {
+  display: none;
+}
+.swiper-button-prev {
+  display: none;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+}
