@@ -34,7 +34,7 @@ const Sale = ({ products }) => {
   const classes = useStyles();
 
   return (
-    <div style={{ padding: '0 20px ' }}>
+    <div>
       <div>
         <h2 style={{ fontSize: '22px' }}>Flash Sale</h2>
       </div>

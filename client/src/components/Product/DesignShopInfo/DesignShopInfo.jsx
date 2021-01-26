@@ -3,6 +3,8 @@ import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
 import StarIcon from '@material-ui/icons/Star';
 import Stars from '../../Global/Stars/Stars.jsx';
+import googleLogo from '../../../assets/images/global/google.svg';
+import facebookLogo from '../../../assets/images/global/facebook.svg';
 const DesignShopInfo = () => {
   return (
     <div>
@@ -32,18 +34,10 @@ const DesignShopInfo = () => {
         <div className={classes.shareRow}>
           <h1 className={classes.title}>Share</h1>
           <div>
-            <img
-              style={{ width: '30px', height: '30px' }}
-              src="../../../assets/images/global/facebook.svg"
-              alt=""
-            />
+            <img style={{ width: '30px', height: '30px' }} src={facebookLogo} alt="" />
           </div>
           <div>
-            <img
-              style={{ width: '30px', height: '30px' }}
-              src="../../../assets/images/global/google.svg"
-              alt=""
-            />
+            <img style={{ width: '30px', height: '30px' }} src={googleLogo} alt="" />
           </div>
         </div>
       </div>

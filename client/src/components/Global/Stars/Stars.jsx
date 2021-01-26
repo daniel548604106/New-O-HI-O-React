@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import StarIcon from '@material-ui/icons/Star';
+import Star from '../../../assets/images/global/star.png';
 import classes from './Stars.module.scss';
 const Stars = () => {
   let score = '4.5';
@@ -21,13 +21,7 @@ const Stars = () => {
   return (
     <div className={classes.starRow}>
       {starArr.map((star, idx) => (
-        <div key={idx}>
-          <img
-            style={{ width: '50%', height: '30px' }}
-            src="../../../assets/images/global/star.png"
-            alt=""
-          />
-        </div>
+        <img key={idx} style={{ width: '20%', height: '30px' }} src={Star} alt="" />
       ))}
     </div>
   );

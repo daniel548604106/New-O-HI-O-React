@@ -1,0 +1,17 @@
+.title {
+  margin-bottom: 10px;
+}
+
+.shopCardLayout {
+  width: 100%;
+}
+
+.shops {
+  display: flex;
+  overflow: scroll;
+  width: 100%;
+  white-space: nowrap;
+  .shop {
+    margin-right: 20px;
+  }
+}

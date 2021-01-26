@@ -4,6 +4,9 @@
 }
 
 .bannerLayout {
+  @media (max-width: 500px) {
+    padding: 0;
+  }
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -42,6 +45,10 @@
 }
 
 .ctaBtnRow {
+  @media (max-width: 500px) {
+    width: 100%;
+    padding: 0;
+  }
   display: flex;
   padding: 10px;
   height: 100%;
@@ -59,12 +66,20 @@
     }
 
     &.wishList {
+      @media (max-width: 500px) {
+        border: none;
+      }
       color: var(--primary-black);
       border: 1px solid var(--primary-black);
       background-color: white;
     }
 
     &.addToCart {
+      @media (max-width: 500px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
       background-color: var(--primary-black);
       color: white;
     }

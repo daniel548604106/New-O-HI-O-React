@@ -3,6 +3,10 @@
   max-width: 1200px;
 }
 .showBanner {
+  @media (max-width: 500px) {
+    top: 100%;
+    transform: translate(0, -60px);
+  }
   position: fixed;
   top: 0;
   left: 0;
@@ -12,6 +16,10 @@
 }
 
 .hideBanner {
+  @media (max-width: 500px) {
+    top: 100%;
+    transform: translate((0, 0));
+  }
   position: fixed;
   top: 0;
   left: 0;

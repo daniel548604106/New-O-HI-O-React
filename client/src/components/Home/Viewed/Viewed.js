@@ -62,7 +62,7 @@ const useStyles = makeStyles({
 const Viewed = () => {
   const classes = useStyles();
   return (
-    <div style={{ padding: '15px', marginTop: '20px' }}>
+    <div style={{ marginTop: '20px' }}>
       <div>
         <h2 style={{ fontSize: '22px' }}>Recently Viewed</h2>
       </div>
