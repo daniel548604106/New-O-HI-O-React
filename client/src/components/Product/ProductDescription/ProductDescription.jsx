@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Dropdown from '../../Global/Dropdown/Dropdown.jsx';
 import PropTypes from 'prop-types';
 import Stars from '../../Global/Stars/Stars.jsx';
 import classes from './ProductDescription.module.scss';
-const ProductDescription = ({ product }) => {
+const ProductDescription = ({ product, evaluationRef, productDescriptionRef }) => {
+  const productDescription = useRef(null);
+  const evaluation = useRef(null);
   return (
     <div>
-      <div className="description">
+      <div ref={productDescriptionRef} className="description">
         <Dropdown title="Product Description" product={product} />
       </div>
       <div className="description">
         <Dropdown title="Tags" product={product} />
       </div>
-      <div>
+      <div ref={evaluationRef}>
         <h2>購買評價</h2>
         <hr />
         <div className={classes.feedbackRow}>
@@ -51,6 +53,8 @@ const ProductDescription = ({ product }) => {
 
 ProductDescription.propTypes = {
   product: PropTypes.object,
+  evaluationRef: PropTypes.func,
+  productDescriptionRef: PropTypes.func,
 };
 
 export default ProductDescription;

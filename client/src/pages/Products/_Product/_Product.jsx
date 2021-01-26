@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../../components/loader';
 import { openLoginModal } from '../../../store/actions/indexActions';
@@ -16,11 +16,13 @@ import ProductBanner from '../../../components/Product/ProductBanner/ProductBann
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 const Product = () => {
   const dispatch = useDispatch();
+  const topDisplay = useRef(null);
+  const productDescription = createRef();
+  const evaluation = createRef();
   const history = useHistory();
   const params = useParams();
   const isLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
   const [product, setProduct] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
@@ -75,13 +77,19 @@ const Product = () => {
     getRecommendedProducts();
   }, []);
 
+  const scrollToPage = (idx) => {
+    idx === 2 && window.scrollTo({ behavior: 'smooth', top: evaluation.current.offsetTop - 80 });
+    idx === 0 &&
+      window.scrollTo({ behavior: 'smooth', top: productDescription.current.offsetTop - 80 });
+  };
+
   return (
     <div className={classes.productRoot}>
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
-        <ProductBanner product={product} />
+        <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <div className={classes.productDisplay}>
+        <div ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
         </div>
         <div className={classes.productMainInfo}>
@@ -95,7 +103,12 @@ const Product = () => {
       </div>
       <div className={classes.containerLayout}>
         <div className={classes.productDescription}>
-          <ProductDescription id="product-description" product={product} />
+          <ProductDescription
+            productDescriptionRef={productDescription}
+            evaluationRef={evaluation}
+            id="product-description"
+            product={product}
+          />
         </div>
         <div className={classes.designShopInfo}>
           <DesignShopInfo />

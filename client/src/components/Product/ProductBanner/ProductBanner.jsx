@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import classes from './ProductBanner.module.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../store/cart/cartAction.jsx';
-const ProductBanner = ({ product }) => {
+const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
     {
       name: 'Product Description',
@@ -25,17 +25,14 @@ const ProductBanner = ({ product }) => {
   const addItemToCart = (product) => {
     dispatch(addToCart(product));
   };
-  const scrollTo = (idx) => {
-    console.log(idx);
-    setActiveBtn(idx);
-  };
+
   return (
     <div className={classes.bannerRoot}>
       <div className={classes.bannerLayout}>
         <div className={classes.scrollBtnRow}>
           {scrollBtns.map((scrollBtn, idx) => (
             <div key={scrollBtn.name}>
-              <a onClick={() => scrollTo(idx)} className={activeBtn === idx && classes.active}>
+              <a onClick={() => scrollToPage(idx)} className={activeBtn === idx && classes.active}>
                 {scrollBtn.name}
               </a>
             </div>
@@ -57,6 +54,7 @@ const ProductBanner = ({ product }) => {
 
 ProductBanner.propTypes = {
   product: PropTypes.object,
+  scrollToPage: PropTypes.func,
 };
 
 export default ProductBanner;
