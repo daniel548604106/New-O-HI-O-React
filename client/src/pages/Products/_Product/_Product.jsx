@@ -5,7 +5,7 @@ import { openLoginModal } from '../../../store/actions/indexActions';
 import { useHistory, useParams } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/product/productAction';
-import { apiGetProduct } from '../../../api/index';
+import { apiGetProduct, apiGetAllProducts } from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
@@ -13,6 +13,7 @@ import ProductInfo from '../../../components/Product/ProductInfo/ProductInfo.jsx
 import ProductDescription from '../../../components/Product/ProductDescription/ProductDescription.jsx';
 import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDisplay.jsx';
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
+import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,6 +22,7 @@ const Product = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const [product, setProduct] = useState('');
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
 
   const checkout = () => {
@@ -62,6 +64,17 @@ const Product = () => {
     getProduct();
   }, []);
 
+  // Fetch Recommended Products
+  useEffect(() => {
+    const getRecommendedProducts = async () => {
+      const { data } = await apiGetAllProducts();
+      console.log('recommended =>', data);
+      setRecommendedProducts(data.products);
+      console.log(recommendedProducts);
+    };
+    getRecommendedProducts();
+  }, []);
+
   return (
     <div className={classes.productRoot}>
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
@@ -83,14 +96,13 @@ const Product = () => {
       <div className={classes.containerLayout}>
         <div className={classes.productDescription}>
           <ProductDescription id="product-description" product={product} />
-          <ProductDescription product={product} />
-          <ProductDescription product={product} />
-          <ProductDescription product={product} />
-          <ProductDescription product={product} />
         </div>
         <div className={classes.designShopInfo}>
           <DesignShopInfo />
         </div>
+      </div>
+      <div>
+        <ProductRecommendation products={recommendedProducts} />
       </div>
     </div>
   );

@@ -1,0 +1,35 @@
+.feedbackRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  > .feedbackRow {
+    display: flex;
+    margin-right: 10px;
+
+    .name {
+      color: var(--primary-gray);
+      span {
+        color: var(--primary-pink);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    > img {
+      width: 50px;
+      margin-right: 20px;
+      height: 50px;
+    }
+    > div > img {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+}

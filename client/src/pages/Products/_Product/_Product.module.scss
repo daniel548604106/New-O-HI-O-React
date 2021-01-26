@@ -27,13 +27,14 @@
   }
   display: flex;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   .productDisplay,
   .productDescription {
     flex: 3;
   }
   .productMainInfo,
   .designShopInfo {
+    width: 100%;
     flex: 2;
     @media (max-width: 720px) {
       margin-left: 0;

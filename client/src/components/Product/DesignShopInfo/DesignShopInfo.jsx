@@ -28,6 +28,24 @@ const DesignShopInfo = () => {
             <p>聯絡店家</p>
           </button>
         </div>
+        <hr />
+        <div className={classes.shareRow}>
+          <h1 className={classes.title}>Share</h1>
+          <div>
+            <img
+              style={{ width: '30px', height: '30px' }}
+              src="../../../assets/images/global/facebook.svg"
+              alt=""
+            />
+          </div>
+          <div>
+            <img
+              style={{ width: '30px', height: '30px' }}
+              src="../../../assets/images/global/google.svg"
+              alt=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
