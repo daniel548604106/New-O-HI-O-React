@@ -3,6 +3,7 @@ import Banner from '../components/Home/Banner/Banner';
 import Collection from '../components/Home/Collection/Collection';
 import Sale from '../components/Home/Sale/Sale';
 import Viewed from '../components/Home/Viewed/Viewed';
+import Subscription from '../components/Home/Subscription/Subscription.jsx';
 import { apiGetAllProducts } from '../api/index';
 
 const Home = () => {
@@ -26,6 +27,9 @@ const Home = () => {
         <Collection />
         <Sale products={products} />
         <Viewed />
+        <div style={{ width: '100%' }}>
+          <Subscription />
+        </div>
       </main>
     </div>
   );

@@ -1,0 +1,91 @@
+.subscriptionLayout {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+
+  .subscriptionImage {
+    @media (max-width: 720px) {
+      display: none;
+    }
+    > img {
+      height: 400px;
+    }
+  }
+
+  .subscriptionMain {
+    @media (max-width: 720px) {
+      padding: 0;
+    }
+    width: 100%;
+    padding: 20px;
+    > .title {
+      font-family: var(--title-font);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .description {
+      margin-bottom: 20px;
+    }
+
+    .preferenceLayout {
+      padding: 20px;
+      background-color: var(--secondary-gray);
+
+      h2 {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-family: var(--primary-font);
+        margin-bottom: 10px;
+      }
+
+      p:first-of-type {
+        color: var(--primary-gray);
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .optionsLayout {
+        display: flex;
+        margin-bottom: 10px;
+        .option {
+          display: flex;
+          align-items: center;
+          margin-right: 50px;
+          input {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .emailLayout {
+      display: flex;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      input {
+        padding: 6px;
+        width: 200px;
+        border: 1px solid var(--primary-gray);
+        border-radius: 2px;
+        &::placeholder {
+          color: var(--primary-gray);
+        }
+      }
+      button {
+        background-color: var(--primary-black);
+        color: white;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-family: var(--primary-font);
+      }
+    }
+
+    p {
+      font-size: 14px;
+      span {
+        color: var(--primary-gray);
+        cursor: pointer;
+      }
+    }
+  }
+}
