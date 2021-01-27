@@ -1,0 +1,14 @@
+.browseLayout {
+  display: flex;
+  padding: 15px 0;
+
+  .sideBar {
+    flex: 1;
+    position: sticky;
+    top: 50px;
+    align-self: flex-start;
+  }
+  .mainContent {
+    flex: 4;
+  }
+}
