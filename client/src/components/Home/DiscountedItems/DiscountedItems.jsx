@@ -3,12 +3,12 @@ import classes from './DiscountedItems.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'react';
 
-const DiscountedItems = ({ products }) => {
+const DiscountedItems = ({ products, t }) => {
   return (
     <div>
       <div className={classes.titleRow}>
-        <h2 className={classes.title}>Discounted Items</h2>
-        <span className={classes.seeMore}>See More</span>
+        <h2 className={classes.title}>{t('discountedItems')}</h2>
+        <span className={classes.seeMore}>{t('seeMore')}</span>
       </div>
       <div className={classes.cardRow}>
         {products.map((product) => (
@@ -23,6 +23,7 @@ const DiscountedItems = ({ products }) => {
 
 DiscountedItems.propTypes = {
   products: PropTypes.Array,
+  t: PropTypes.func,
 };
 
 export default DiscountedItems;

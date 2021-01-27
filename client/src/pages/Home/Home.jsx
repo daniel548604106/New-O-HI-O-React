@@ -8,8 +8,10 @@ import Shop from '../../components/Home/Shops/Shops.jsx';
 import Subscription from '../../components/Home/Subscription/Subscription.jsx';
 import { apiGetAllProducts } from '../../api/index';
 import classes from './Home.module.scss';
+import { useTranslation } from 'react-i18next';
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -27,22 +29,22 @@ const Home = () => {
       <Banner />
       <main>
         <section>
-          <NewItems products={products} />
+          <NewItems products={products} t={t} />
         </section>
         <section>
-          <PopularItems products={products} />
+          <PopularItems products={products} t={t} />
         </section>
         <div className={classes.campaign}>
-          <Campaign products={products} />
+          <Campaign products={products} t={t} />
         </div>
         <section>
-          <Shop />
+          <Shop t={t} />
         </section>
         <section>
-          <DiscountedItems products={products} />
+          <DiscountedItems products={products} t={t} />
         </section>
         <section style={{ width: '100%' }}>
-          <Subscription />
+          <Subscription t={t} />
         </section>
       </main>
     </div>

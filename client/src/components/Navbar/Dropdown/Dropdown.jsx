@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Dropdown.scss';
 import { useDispatch } from 'react-redux';
-import { setUserLogout } from '../../store/user/userAction';
+import { setUserLogout } from '../../../store/user/userAction';
 const Dropdown = () => {
   const dispatch = useDispatch();
   const logout = () => {

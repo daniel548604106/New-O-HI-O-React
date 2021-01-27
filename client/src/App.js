@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
-import { Navbar } from './components/index';
-import { Home, Shoes, Product } from './pages/index';
-import Footer from './components/Footer/Footer';
+import Header from './components/Navbar/Header.jsx';
+import { Home, Product } from './pages/index';
+import Footer from './components/Footer/Footer.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
@@ -54,7 +54,7 @@ const App = (props) => {
 
   return (
     <Router history={history}>
-      <Navbar />
+      <Header />
       {isLoginModalShow}
       <div className="loginModal">
         <Backdrop open={open} onClick={handleClose} style={{ zIndex: 11 }}>
@@ -80,9 +80,6 @@ const App = (props) => {
       <main className="global-container">
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
-        </Route>
-        <Route path="/shoes" exact>
-          <Shoes />
         </Route>
         <Route path="/account" exact>
           <Account />

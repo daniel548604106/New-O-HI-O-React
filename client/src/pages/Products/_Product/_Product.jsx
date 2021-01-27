@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../../components/loader';
 import { openLoginModal } from '../../../store/actions/indexActions';
 import { useHistory, useParams } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';

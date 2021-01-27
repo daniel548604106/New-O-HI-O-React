@@ -3,7 +3,7 @@ import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { apiPostOauthLogin } from '../../api/index';
 import PropTypes from 'prop-types';
-import Loader from '../../components/loader';
+import Loader from '../../components/Global/Loader/Loader.jsx';
 import Cookie from 'js-cookie';
 import { setUserLoggedIn } from '../../store/user/userAction';
 const OAuth = () => {
