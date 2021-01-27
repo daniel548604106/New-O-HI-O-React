@@ -18,8 +18,7 @@
 
 .cardRow {
   display: flex;
-  overflow: scroll;
-  white-space: nowrap;
+  overflow-x: scroll;
 
   .cards {
     margin-right: 10px;

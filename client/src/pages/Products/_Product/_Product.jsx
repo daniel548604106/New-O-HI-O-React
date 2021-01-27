@@ -78,9 +78,9 @@ const Product = () => {
   }, []);
 
   const scrollToPage = (idx) => {
-    idx === 2 && window.scrollTo({ behavior: 'smooth', top: evaluation.current.offsetTop - 80 });
-    idx === 0 &&
-      window.scrollTo({ behavior: 'smooth', top: productDescription.current.offsetTop - 80 });
+    idx === 0
+      ? window.scrollTo({ behavior: 'smooth', top: productDescription.current.offsetTop - 80 })
+      : window.scrollTo({ behavior: 'smooth', top: evaluation.current.offsetTop - 80 });
   };
 
   return (

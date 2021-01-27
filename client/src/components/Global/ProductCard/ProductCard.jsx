@@ -12,7 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
 
-const ProductCard = ({ product, collection }) => {
+const ProductCard = ({ product }) => {
   return (
     <div>
       <div className={classes.root}>
@@ -21,7 +21,7 @@ const ProductCard = ({ product, collection }) => {
           className={classes.card}
           key={product.id}
           component={Link}
-          to={`/${collection}/${product._id}`}
+          to={`/products/${product._id}`}
           style={{ textDecoration: 'none' }}
         >
           <CardActionArea>
@@ -33,32 +33,27 @@ const ProductCard = ({ product, collection }) => {
             <FavoriteIcon className={classes.heartIcon} />
           </CardActionArea>
           <div className={classes.cardContent}>
-            <h2 className={classes.brandName}>Kenzo</h2>
             <h2 className={classes.productName}>{product.name}</h2>
-            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-              <Typography
-                variant="h6"
-                color="textSecondary"
-                component="p"
-                style={{
-                  fontWeight: 'bold',
-                  textDecoration: product.discountPrice ? 'line-through' : ' none',
-                  color: 'black',
-                  marginRight: '5px',
-                }}
-              >
-                $ {product.fullPrice}
-              </Typography>
-              {product.discountPrice && (
-                <Typography
-                  variant="h6"
-                  color="textSecondary"
-                  component="p"
-                  style={{ fontSize: '16px', color: '#178fac' }}
+            <div>
+              <h2 className={classes.brandName}>Kenzo</h2>
+              <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                {product.discountPrice && (
+                  <p className={classes.discountPrice}>
+                    <span>NTD</span> ${product.discountPrice}
+                  </p>
+                )}
+                <p
+                  className={`
+                  ${classes.originalPrice} 
+                  ${!product.discountPrice && classes.noDiscountPrice}
+                `}
+                  style={{
+                    textDecoration: product.discountPrice ? 'line-through' : ' none',
+                  }}
                 >
-                  $ {product.discountPrice}
-                </Typography>
-              )}
+                  ${product.fullPrice}
+                </p>
+              </div>
             </div>
           </div>
         </Card>

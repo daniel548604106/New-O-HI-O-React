@@ -12,10 +12,6 @@ const ProductBanner = ({ product, scrollToPage }) => {
       scrollTo: 'product-description',
     },
     {
-      name: 'Fares & Other Details',
-      scrollTo: 'fares-&-others',
-    },
-    {
       name: 'Evaluation & Comments',
       scrollTo: 'evaluation-&-comments',
     },
@@ -26,13 +22,18 @@ const ProductBanner = ({ product, scrollToPage }) => {
     dispatch(addToCart(product));
   };
 
+  const scrollEffect = (idx) => {
+    setActiveBtn(idx);
+    scrollToPage(idx);
+  };
+
   return (
     <div className={classes.bannerRoot}>
       <div className={classes.bannerLayout}>
         <div className={classes.scrollBtnRow}>
           {scrollBtns.map((scrollBtn, idx) => (
             <div key={scrollBtn.name}>
-              <a onClick={() => scrollToPage(idx)} className={activeBtn === idx && classes.active}>
+              <a onClick={() => scrollEffect(idx)} className={activeBtn === idx && classes.active}>
                 {scrollBtn.name}
               </a>
             </div>
