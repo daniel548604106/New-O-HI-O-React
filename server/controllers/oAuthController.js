@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const generateToken = require('../tools/generateToken');
 const oAuth = async (req, res, next) => {
   try {
+    
     const { type, code } = req.body;
     let email, name, picture, id;
 
@@ -37,7 +38,6 @@ const oAuth = async (req, res, next) => {
       client_secret: process.env.REACT_APP_LINE_SECRET,
     });
     const line_url_verify = 'https://api.line.me/oauth2/v2.1/verify';
-
     switch (type) {
       case 'facebook':
         // 1) Get access_token
@@ -81,6 +81,7 @@ const oAuth = async (req, res, next) => {
         break;
     }
     console.log('email', email);
+    
 
     // 3) Check if user exists in  DB
     const user = await User.findOne({ email });
