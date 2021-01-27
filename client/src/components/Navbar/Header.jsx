@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-
+import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -139,6 +139,7 @@ const Navbar = () => {
       </div>
       <div>{<SearchBar searchBarOpen={searchBarOpen} />}</div>
       {renderMobileMenu}
+      <NavMenu />
     </>
   );
 };
