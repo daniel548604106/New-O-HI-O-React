@@ -1,0 +1,26 @@
+img {
+  height: 100px;
+  width: 100%;
+}
+
+.swiperBackground {
+  @media (max-width: 720px) {
+    padding-top: 50%;
+  }
+  width: 100%;
+  padding-top: 30%;
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000 !important;
+}
+
+#swiper-banner .swiper-button-next {
+  color: red !important;
+}
+
+.swiper-button-next {
+  display: none;
+}

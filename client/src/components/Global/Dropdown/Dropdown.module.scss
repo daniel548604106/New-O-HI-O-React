@@ -1,0 +1,34 @@
+.title {
+  font-family: var(--primary-font);
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.dropdownRoot {
+  padding: 15px 0;
+}
+
+.dropdownLayout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon {
+    cursor: pointer;
+    transition: all 0.5s ease-in-out smooth;
+
+    .rotateIcon {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.hideContent {
+  height: 0;
+}
+
+.showContent {
+  margin-top: 20px;
+  height: 100%;
+}

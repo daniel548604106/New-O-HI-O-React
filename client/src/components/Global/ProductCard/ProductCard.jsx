@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,102 +8,54 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Chip, Divider } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'react';
-const useStyles = makeStyles((theme) => ({
-  card: {
-    minWidth: 250,
-    maxWidth: 260,
-    marginRight: '20px',
-    height: 300,
-    borderRadius: '20px',
-    position: 'relative',
-  },
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  media: {
-    height: 200,
-    width: '100%',
-  },
-}));
+import classes from './ProductCard.module.scss';
 
-const ProductCard = ({ product, collection }) => {
-  const classes = useStyles();
-
+const ProductCard = ({ product }) => {
   return (
-    <div style={{ padding: '0 20px ' }}>
+    <div>
       <div className={classes.root}>
+        <div className={classes.label}>New</div>
         <Card
           className={classes.card}
           key={product.id}
           component={Link}
-          to={`/${collection}/${product._id}`}
+          to={`/products/${product._id}`}
           style={{ textDecoration: 'none' }}
         >
-          {product.discountPrice && (
-            <Chip
-              label={`${(1 - product.discountPrice / product.fullPrice).toFixed(2) * 100}% OFF`}
-              variant="outlined"
-              style={{
-                cursor: 'pointer',
-                margin: '10px 10px',
-                position: 'absolute',
-                top: '10px',
-                zIndex: '10',
-                color: '#ac5318',
-                border: '1px solid #b1340e',
-              }}
-            />
-          )}
           <CardActionArea>
             <CardMedia
               className={classes.media}
               image={product.images[0]}
               title="Contemplative Reptile"
             />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="h2"
-                style={{
-                  marginBottom: '0',
-                  textOverflow: 'ellipsis',
-                  width: '100%',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                }}
-              >
-                {product.name}
-              </Typography>
+            <FavoriteIcon className={classes.heartIcon} />
+          </CardActionArea>
+          <div className={classes.cardContent}>
+            <h2 className={classes.productName}>{product.name}</h2>
+            <div>
+              <h2 className={classes.brandName}>Kenzo</h2>
               <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                <Typography
-                  variant="h6"
-                  color="textSecondary"
-                  component="p"
+                {product.discountPrice && (
+                  <p className={classes.discountPrice}>
+                    <span>NTD</span> ${product.discountPrice}
+                  </p>
+                )}
+                <p
+                  className={`
+                  ${classes.originalPrice} 
+                  ${!product.discountPrice && classes.noDiscountPrice}
+                `}
                   style={{
-                    fontWeight: 'bold',
                     textDecoration: product.discountPrice ? 'line-through' : ' none',
-                    color: 'black',
-                    marginRight: '5px',
                   }}
                 >
-                  $ {product.fullPrice}
-                </Typography>
-                {product.discountPrice && (
-                  <Typography
-                    variant="h6"
-                    color="textSecondary"
-                    component="p"
-                    style={{ fontSize: '16px', color: '#178fac' }}
-                  >
-                    $ {product.discountPrice}
-                  </Typography>
-                )}
+                  ${product.fullPrice}
+                </p>
               </div>
-            </CardContent>
-          </CardActionArea>
+            </div>
+          </div>
         </Card>
       </div>
     </div>

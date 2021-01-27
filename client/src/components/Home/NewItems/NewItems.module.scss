@@ -1,0 +1,42 @@
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  .title {
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
+    font-size: 24px;
+  }
+  .seeMore {
+    font-size: 14px;
+    color: var(--primary-pink);
+    cursor: pointer;
+  }
+}
+
+.cardRow {
+  display: flex;
+  justify-content: start;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    width: 0;
+    height: 1px;
+  }
+
+  .cards {
+    margin-right: 10px;
+  }
+}
