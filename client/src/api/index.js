@@ -14,3 +14,9 @@ import { getAllProducts, getProduct, getCollectionProducts } from './productRequ
 export const apiGetAllProducts = getAllProducts;
 export const apiGetProduct = getProduct;
 export const apiGetCollectionProducts = getCollectionProducts;
+
+// Banner
+
+import { getBanners } from './bannerRequest';
+
+export const apiGetBanners = getBanners;

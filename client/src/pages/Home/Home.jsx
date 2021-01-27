@@ -6,12 +6,24 @@ import Campaign from '../../components/Home/Campaign/Campaign.jsx';
 import PopularItems from '../../components/Home/PopularItems/PopularItems.jsx';
 import Shop from '../../components/Home/Shops/Shops.jsx';
 import Subscription from '../../components/Home/Subscription/Subscription.jsx';
-import { apiGetAllProducts } from '../../api/index';
+import { apiGetAllProducts, apiGetBanners } from '../../api/index';
 import classes from './Home.module.scss';
 import { useTranslation } from 'react-i18next';
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [banners, setBanners] = useState([]);
   const { t, i18n } = useTranslation();
+  // 取得 Banners
+  useEffect(() => {
+    const getBanners = async () => {
+      const { data } = await apiGetBanners();
+      console.log('banners', data);
+      setBanners(data.banners);
+    };
+    getBanners();
+  }, []);
+
+  //取得 Products
   useEffect(() => {
     const getAllProducts = async () => {
       try {
@@ -26,7 +38,7 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <Banner />
+      <Banner banners={banners} />
       <main>
         <section>
           <NewItems products={products} t={t} />
