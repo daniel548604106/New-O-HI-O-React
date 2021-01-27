@@ -7,6 +7,8 @@ const getBanners = async(req,res) =>{
     res.status(200).json({
       banners
     })
+
+    console.log('success')
     
   }catch(error){
     console.log(error)
