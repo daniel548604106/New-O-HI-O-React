@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Campaign.module.scss';
-const Campaign = () => {
+import PropTypes from 'prop-types';
+const Campaign = ({ t }) => {
   return (
     <div className={classes.campaignLayout}>
       <img
@@ -8,15 +9,16 @@ const Campaign = () => {
         alt=""
       />
       <div>
-        <h2 className={classes.title}>5% OFF your first purchase</h2>
-        <p className={classes.content}>
-          Join O.HI.O today, and receive 5% off your first order.
-          <br /> Limited to 72 hours
-        </p>
-        <button>Join Now</button>
+        <h2 className={classes.title}>{t('campaignTitle')}</h2>
+        <p className={classes.content}>{t('campaignContent')}</p>
+        <button>{t('joinNow')}</button>
       </div>
     </div>
   );
+};
+
+Campaign.propTypes = {
+  t: PropTypes.func,
 };
 
 export default Campaign;

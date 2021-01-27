@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Subscription.module.scss';
-const Subscription = () => {
+import PropTypes from 'prop-types';
+const Subscription = ({ t }) => {
   return (
     <div className={classes.subscriptionLayout}>
       <div className={classes.subscriptionImage}>
@@ -41,6 +42,10 @@ const Subscription = () => {
       </div>
     </div>
   );
+};
+
+Subscription.propTypes = {
+  t: PropTypes.func,
 };
 
 export default Subscription;

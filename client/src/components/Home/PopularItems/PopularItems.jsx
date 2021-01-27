@@ -3,12 +3,12 @@ import classes from './PopularItems.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'react';
 
-const PopularItems = ({ products }) => {
+const PopularItems = ({ products, t }) => {
   return (
     <div>
       <div className={classes.titleRow}>
-        <h2 className={classes.title}>Popular Items</h2>
-        <span className={classes.seeMore}>See More</span>
+        <h2 className={classes.title}>{t('popularItems')}</h2>
+        <span className={classes.seeMore}>{t('seeMore')}</span>
       </div>
       <div className={classes.cardRow}>
         {products.map((product) => (
@@ -23,6 +23,7 @@ const PopularItems = ({ products }) => {
 
 PopularItems.propTypes = {
   products: PropTypes.Array,
+  t: PropTypes.func,
 };
 
 export default PopularItems;
