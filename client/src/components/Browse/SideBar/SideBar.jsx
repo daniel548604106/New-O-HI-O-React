@@ -1,11 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { menuOptions } from '../../../lib/allCategories';
+import classes from './Sidebar.module.scss';
+import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+const Sidebar = ({ categoryId }) => {
+  const location = useLocation();
+  const [activeCategory, setActiveCategory] = useState([]);
+  useEffect(() => {
+    const active = () => {
+      const category = menuOptions.find((option) => {
+        return option.id === +categoryId;
+      });
+      setActiveCategory(category);
+      console.log(category, categoryId);
+    };
+    active();
+  }, [categoryId]);
 
-const SideBar = () => {
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
   return (
     <div>
-      <h2>商品分類</h2>
+      <h2 className={classes.title}>商品分類</h2>
+      {categoryId ? (
+        <>
+          <Link to={`/browse`} className={classes.back}>
+            <ChevronLeftIcon />
+            <span className={classes.options}>所有分類</span>
+          </Link>
+          <div>
+            {activeCategory &&
+              activeCategory.category.map((category) => (
+                <Link
+                  key={category.id}
+                  to={`${location.pathname}?category=${categoryId}&subcategory=${category.id}`}
+                >
+                  <p>{category.name}</p>
+                </Link>
+              ))}
+          </div>
+        </>
+      ) : (
+        menuOptions.map((option) => (
+          <>
+            <Link to={`/browse?category=${option.id}`} key={option.id}>
+              <p className={classes.options}>{option.title}</p>
+            </Link>
+          </>
+        ))
+      )}
     </div>
   );
 };
 
-export default SideBar;
+Sidebar.propTypes = {
+  categoryId: PropTypes.string,
+};
+
+export default Sidebar;
