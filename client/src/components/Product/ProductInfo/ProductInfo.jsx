@@ -34,7 +34,9 @@ const ProductInfo = ({ product }) => {
         <hr />
         <div className={classes.priceRow}>
           <div className={classes.price}>
-            <div className={classes.discountPrice}>${product.discountPrice}</div>
+            {product.discountPrice && (
+              <div className={classes.discountPrice}>${product.discountPrice}</div>
+            )}
             <div className={product.discountPrice ? classes.originalPrice : classes.fullPrice}>
               ${product.fullPrice}
             </div>

@@ -42,7 +42,10 @@ a {
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 15px;
+  @media (max-width: 500px) {
+    padding: 15px 15px;
+  }
+  padding: 30px 15px;
 }
 
 body {

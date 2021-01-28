@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
 import Cart from './pages/Cart/Cart.jsx';
+import Browse from './pages/Browse/Browse.jsx';
 import Account from './pages/Account/Account.jsx';
 import OAuth from './pages/OAuth/OAuth.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
@@ -83,6 +84,9 @@ const App = (props) => {
         </Route>
         <Route path="/account" exact>
           <Account />
+        </Route>
+        <Route path="/browse">
+          <Browse />
         </Route>
         <Route path="/latest" exact>
           <Latest />

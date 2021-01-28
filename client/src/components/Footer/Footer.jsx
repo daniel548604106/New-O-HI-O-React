@@ -13,14 +13,7 @@ const Footer = () => {
       : (setLanguage('English'), i18n.changeLanguage('en'));
   };
   return (
-    <div
-      style={{
-        backgroundColor: '#000000',
-        height: '100%',
-        padding: '50px 15px 100px 15px',
-        marginTop: '50px',
-      }}
-    >
+    <div className={classes.footerLayout}>
       <div
         style={{
           width: '100%',
