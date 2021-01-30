@@ -8,6 +8,7 @@ const userRoute = require('./server/routes/userRoute');
 const oAuthRoute = require('./server/routes/oAuthRoute');
 const productRoute = require('./server/routes/productRoute');
 const bannerRoute = require('./server/routes/bannerRoute');
+const reviewRoute = require('./server/routes/reviewRoute')
 const connectDB = require('./server/tools/db');
 
 // Basic requirements and setup
@@ -26,6 +27,7 @@ app.use('/v1/products', productRoute);
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/v1/banners', bannerRoute)
+app.use('/v1/reviews', reviewRoute)
 
 if(process.env.NODE_ENV==='production'){
   app.use(express.static(path.join(__dirname,'client/build')))
