@@ -17,6 +17,7 @@ const SearchBar = ({ searchBarOpen }) => {
       onClick={(e) => e.stopPropagation()}
       className={classes.searchBar}
       style={{
+        display: searchBarOpen ? 'block' : 'none',
         height: searchBarOpen ? '100%' : '0',
         opacity: searchBarOpen ? '100%' : '0',
       }}
@@ -33,7 +34,7 @@ const SearchBar = ({ searchBarOpen }) => {
           <SearchIcon />
         </span>
       </div>
-      <div style={{ padding: '10px 10px' }}>
+      <div className={classes.recommendation}>
         <h3 style={{ fontSize: '16px', marginBottom: '10px' }}>Recommended</h3>
         <div
           style={{ display: 'flex', overflow: 'scroll', flexWrap: 'nowrap', whiteSpace: 'nowrap' }}
