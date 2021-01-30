@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
+import LanguageIcon from '@material-ui/icons/Language';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { IconButton } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import classes from './MenuDrawer.module.scss';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,18 +16,15 @@ import MailIcon from '@material-ui/icons/Mail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setUserLogout } from '../../../store/actions/indexActions';
 import { useDispatch, useSelector } from 'react-redux';
-
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
-
+import { useTranslation } from 'react-i18next';
 const MenuDrawer = () => {
-  const classes = useStyles();
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState('繁體中文(台灣)');
+  const changeLanguage = () => {
+    language === 'English'
+      ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
+      : (setLanguage('English'), i18n.changeLanguage('en'));
+  };
   const dispatch = useDispatch();
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const logout = () => {
@@ -81,6 +80,10 @@ const MenuDrawer = () => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
+        <div className={classes.langaugeSelector}>
+          <LanguageIcon />
+          <p onClick={() => changeLanguage()}>{language}</p>
+        </div>
       </List>
     </div>
   );

@@ -1,0 +1,13 @@
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .sort {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 5px;
+    }
+  }
+}

@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-import { Home, Product } from './pages/index';
+import { Home, Product, Search, Cart, Browse, Checkout, Account, OAuth } from './pages/index';
 import Footer from './components/Footer/Footer.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import Checkout from './pages/Checkout/Checkout';
 import { closeLoginModal } from './store/actions/indexActions';
 import LoginModal from './components/Login/index';
-import Cart from './pages/Cart/Cart.jsx';
-import Browse from './pages/Browse/Browse.jsx';
-import Account from './pages/Account/Account.jsx';
-import OAuth from './pages/OAuth/OAuth.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
@@ -96,6 +91,9 @@ const App = (props) => {
         </Route>
         <Route path="/checkout" exact>
           <Checkout />
+        </Route>
+        <Route path="/search">
+          <Search />
         </Route>
         <Route path="/cart" exact>
           <Cart />

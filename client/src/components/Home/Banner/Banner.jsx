@@ -25,7 +25,6 @@ const Banner = ({ banners }) => {
         AutoPlaySwipeableViews
         pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.title}>
