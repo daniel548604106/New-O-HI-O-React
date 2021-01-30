@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -19,6 +18,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const history = useHistory();
+  const location = useLocation();
   const meData = useSelector((state) => state.user.currentUser);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -29,7 +29,9 @@ const Navbar = () => {
   const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  useEffect(() => {
+    setSearchBarOpen(false);
+  }, [location]);
   const totalCartItems = cartItems.reduce((total, cartItem) => {
     return (total += cartItem.quantity);
   }, 0);
@@ -37,9 +39,7 @@ const Navbar = () => {
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
   };
-  const handleClickAway = () => {
-    setSearchBarOpen(false);
-  };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -48,7 +48,10 @@ const Navbar = () => {
     dispatch(openLoginModal());
   };
 
-  const menuId = 'primary-search-account-menu';
+  const toggleSearchBar = (e) => {
+    e.stopPropagation();
+    setSearchBarOpen(!searchBarOpen);
+  };
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -112,11 +115,9 @@ const Navbar = () => {
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-            <ClickAwayListener onClickAway={handleClickAway}>
-              <IconButton onClick={() => setSearchBarOpen(!searchBarOpen)}>
-                <SearchIcon />
-              </IconButton>
-            </ClickAwayListener>
+            <IconButton onClick={(e) => toggleSearchBar(e)}>
+              <SearchIcon />
+            </IconButton>
             {isUserLoggedIn ? (
               <div>
                 <Link to="/account">

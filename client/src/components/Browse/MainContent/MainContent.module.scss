@@ -1,0 +1,22 @@
+.topRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 5px;
+    font-size: 14px;
+  }
+}
+
+.products {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(autofill, minmax(150px, 1fr));
+}

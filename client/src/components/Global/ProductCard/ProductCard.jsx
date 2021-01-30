@@ -14,50 +14,48 @@ import classes from './ProductCard.module.scss';
 
 const ProductCard = ({ product }) => {
   return (
-    <div>
-      <div className={classes.root}>
-        <div className={classes.label}>New</div>
-        <Card
-          className={classes.card}
-          key={product.id}
-          component={Link}
-          to={`/products/${product._id}`}
-          style={{ textDecoration: 'none' }}
-        >
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={product.images[0]}
-              title="Contemplative Reptile"
-            />
-            <FavoriteIcon className={classes.heartIcon} />
-          </CardActionArea>
-          <div className={classes.cardContent}>
-            <h2 className={classes.productName}>{product.name}</h2>
-            <div>
-              <h2 className={classes.brandName}>Kenzo</h2>
-              <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                {product.discountPrice && (
-                  <p className={classes.discountPrice}>
-                    <span>NTD</span> ${product.discountPrice}
-                  </p>
-                )}
-                <p
-                  className={`
+    <div className={classes.root}>
+      <div className={classes.label}>New</div>
+      <Card
+        className={classes.card}
+        key={product.id}
+        component={Link}
+        to={`/products/${product._id}`}
+        style={{ textDecoration: 'none' }}
+      >
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={product.images[0]}
+            title="Contemplative Reptile"
+          />
+          <FavoriteIcon className={classes.heartIcon} />
+        </CardActionArea>
+        <div className={classes.cardContent}>
+          <h2 className={classes.productName}>{product.name}</h2>
+          <div>
+            <h2 className={classes.brandName}>Kenzo</h2>
+            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+              {product.discountPrice && (
+                <p className={classes.discountPrice}>
+                  <span>NTD</span> ${product.discountPrice}
+                </p>
+              )}
+              <p
+                className={`
                   ${classes.originalPrice} 
                   ${!product.discountPrice && classes.noDiscountPrice}
                 `}
-                  style={{
-                    textDecoration: product.discountPrice ? 'line-through' : ' none',
-                  }}
-                >
-                  ${product.fullPrice}
-                </p>
-              </div>
+                style={{
+                  textDecoration: product.discountPrice ? 'line-through' : ' none',
+                }}
+              >
+                ${product.fullPrice}
+              </p>
             </div>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Card>
     </div>
   );
 };

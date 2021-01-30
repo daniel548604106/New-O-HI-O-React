@@ -1,48 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { IconButton } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import classes from './SearchBar.module.scss';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 const SearchBar = ({ searchBarOpen }) => {
+  const [searchInput, setSearchInput] = useState('');
+  const history = useHistory();
+  const search = () => {
+    history.push(`/search?q=${searchInput}`);
+    setSearchInput('');
+  };
   return (
     <div
+      onClick={(e) => e.stopPropagation()}
+      className={classes.searchBar}
       style={{
+        display: searchBarOpen ? 'block' : 'none',
         height: searchBarOpen ? '100%' : '0',
         opacity: searchBarOpen ? '100%' : '0',
-        transition: 'ease-in-out',
-        transitionDuration: '500',
-        transitionProperty: 'all',
       }}
     >
       <div style={{ display: 'flex', width: '100%' }}>
         <input
+          onChange={(e) => setSearchInput(e.target.value)}
           type="text"
+          value={searchInput}
           placeholder="Please type in keywords"
-          style={{
-            flex: 1,
-            width: '100%',
-            paddingLeft: '10px',
-            fontSize: '14px',
-            color: 'gray',
-            border: 'none',
-            backgroundColor: '#f0f0f0',
-          }}
+          className={classes.inputBox}
         />
-        <span
-          style={{
-            backgroundColor: 'black',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '5px 10px',
-            cursor: 'pointer',
-          }}
-        >
+        <span className={classes.searchBtn} onClick={() => search()}>
           <SearchIcon />
         </span>
       </div>
-      <div style={{ padding: '10px 10px' }}>
+      <div className={classes.recommendation}>
         <h3 style={{ fontSize: '16px', marginBottom: '10px' }}>Recommended</h3>
         <div
           style={{ display: 'flex', overflow: 'scroll', flexWrap: 'nowrap', whiteSpace: 'nowrap' }}

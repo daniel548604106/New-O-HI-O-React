@@ -1,0 +1,27 @@
+.inputBox {
+  flex: 1;
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  color: gray;
+  border: none;
+  background-color: #f0f0f0;
+}
+
+.recommendation {
+  padding: 10px;
+}
+.searchBtn {
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.searchBar {
+  transition: ease-in-out;
+  transition-duration: 500;
+  transition-property: all;
+}

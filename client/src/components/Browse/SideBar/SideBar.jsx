@@ -37,7 +37,7 @@ const Sidebar = ({ categoryId }) => {
                   key={category.id}
                   to={`${location.pathname}?category=${categoryId}&subcategory=${category.id}`}
                 >
-                  <p>{category.name}</p>
+                  <p className={classes.options}>{category.name}</p>
                 </Link>
               ))}
           </div>
