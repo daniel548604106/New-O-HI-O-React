@@ -65,8 +65,12 @@
   right: 10px;
   color: rgba(0, 0, 0, 0.3);
   &:hover {
-    color: rgba(0, 0, 0, 0.5);
+    color: white;
   }
+}
+
+.activeHeartIcon {
+  color: var(--primary-pink);
 }
 .label {
   position: absolute;
@@ -74,7 +78,7 @@
   font-family: var(--primary-font);
   top: 0;
   right: 0;
-  z-index: 12;
+  z-index: 10;
   padding: 5px 20px;
   color: white;
   text-transform: uppercase;

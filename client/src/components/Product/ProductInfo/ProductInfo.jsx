@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './ProductInfo.module.scss';
 import Tags from '../../Global/Tags/Tags.jsx';
-const ProductInfo = ({ product }) => {
+const ProductInfo = ({ product, t }) => {
   return (
     <div className={classes.rootInfo}>
       <div className={classes.main}>
@@ -54,5 +54,6 @@ const ProductInfo = ({ product }) => {
 
 ProductInfo.propTypes = {
   product: PropTypes.object,
+  t: PropTypes.func,
 };
 export default ProductInfo;

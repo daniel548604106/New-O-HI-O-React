@@ -4,6 +4,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { apiAddToFavorite } from '../../../api/index';
+import { useParams } from 'react-router-dom';
 import { addToCart } from '../../../store/cart/cartAction.jsx';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
@@ -18,6 +20,7 @@ const ProductBanner = ({ product, scrollToPage }) => {
   ];
   const [activeBtn, setActiveBtn] = useState(0);
   const dispatch = useDispatch();
+  const params = useParams();
   const addItemToCart = (product) => {
     dispatch(addToCart(product));
   };
@@ -25,6 +28,12 @@ const ProductBanner = ({ product, scrollToPage }) => {
   const scrollEffect = (idx) => {
     setActiveBtn(idx);
     scrollToPage(idx);
+  };
+
+  const addToWishList = () => {
+    const type = 'product';
+    const { data } = apiAddToFavorite(params.id, type);
+    console.log(data);
   };
 
   return (
@@ -40,7 +49,7 @@ const ProductBanner = ({ product, scrollToPage }) => {
           ))}
         </div>
         <div className={classes.ctaBtnRow}>
-          <button className={classes.wishList}>
+          <button onClick={() => addToWishList()} className={classes.wishList}>
             <FavoriteBorderIcon />
             <p>Add To WishList</p>
           </button>

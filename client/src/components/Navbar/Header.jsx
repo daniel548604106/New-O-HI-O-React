@@ -10,8 +10,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuDrawer from './MenuDrawer/MenuDrawer.jsx';
 import Dropdown from './Dropdown/Dropdown.jsx';
-import { openLoginModal } from '../../store/actions/indexActions';
+import { openLoginModal } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Cookie from 'js-cookie';
 
 const Navbar = () => {
@@ -94,25 +95,30 @@ const Navbar = () => {
           </div>
           <div className={classes.sectionDesktop}>
             {isUserLoggedIn ? (
-              <div className={classes.avatar}>
-                {<img src={meData.picture} alt="" />}
-                <div className={classes.dropdown}>
-                  <Dropdown />
+              <div className={classes.tabs}>
+                <div className={classes.avatar}>
+                  <img src={meData.picture} alt="" />
+                  <div className={classes.dropdown}>
+                    <Dropdown />
+                  </div>
+                </div>
+                <div>
+                  <Link to="/favorite/products" className={classes.favIcon}>
+                    <FavoriteBorderIcon />
+                  </Link>
                 </div>
               </div>
             ) : (
-              <div onClick={() => handleOpenLoginModal()}>
-                <p className={classes.loginBtn} style={{ fontSize: '14px' }}>
-                  {t('login')}
-                </p>
+              <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
+                <p style={{ fontSize: '14px' }}>{t('login')}</p>
               </div>
             )}
 
-            <IconButton>
+            <div>
               <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
-                <ShoppingBasketIcon style={{ color: 'black' }} />
+                <ShoppingBasketIcon className={classes.cart} style={{ color: 'black' }} />
               </Badge>
-            </IconButton>
+            </div>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton onClick={(e) => toggleSearchBar(e)}>
@@ -123,6 +129,9 @@ const Navbar = () => {
                 <Link to="/account">
                   <img className={classes.avatar} src={meData.picture} alt="" />
                 </Link>
+                <div>
+                  <FavoriteBorderIcon />
+                </div>
               </div>
             ) : (
               <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>

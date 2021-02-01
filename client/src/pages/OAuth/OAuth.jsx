@@ -26,11 +26,12 @@ const OAuth = () => {
     const postOauthLogin = async () => {
       try {
         const { data } = await apiPostOauthLogin({ type, code });
+        console.log('token', data.token, data.user);
         Cookie.set('me', data.user);
         Cookie.set('token', data.token);
         history.push('/');
         dispatch(setUserLoggedIn(data.user));
-        console.log(res.data.user);
+        console.log(data.user);
       } catch (error) {
         history.push('/');
         console.log(error);

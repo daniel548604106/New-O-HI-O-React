@@ -40,15 +40,30 @@
       font-family: var(--primary-font);
     }
 
-    button {
+    .followBtn {
       display: flex;
       align-items: center;
       background-color: var(--primary-pink);
       color: white;
       border-radius: 4px;
       border: none;
+      font-size: 12px;
       cursor: pointer;
-      padding: 3px 8px;
+      padding: 2px 8px;
+
+      &.following {
+        background-color: white;
+        border: 1px solid black;
+        color: black;
+      }
+      span {
+        margin-left: 3px;
+      }
+
+      .icon {
+        width: 16px;
+        height: 16px;
+      }
     }
   }
 }

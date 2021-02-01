@@ -3,19 +3,28 @@ import classes from './ProductCTA.module.scss';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { apiAddToFavorite } from '../../../api/index';
 import { addToCart } from '../../../store/cart/cartAction.jsx';
+import Cookie from 'js-cookie';
 const ProductCTA = ({ product }) => {
   const dispatch = useDispatch();
+  const params = useParams();
   const addItemToCart = () => {
     dispatch(addToCart(product));
+  };
+
+  const addToWishList = () => {
+    const { data } = apiAddToFavorite(params.id);
+    console.log(data);
   };
   return (
     <div className={classes.productCta}>
       <div className={classes.addToCart} onClick={() => addItemToCart()}>
         Add To Cart
       </div>
-      <div className={classes.wishlist}>
+      <div onClick={() => addToWishList()} className={classes.wishlist}>
         <div>
           <FavoriteIcon />
           <span>Add to Wishlist</span>

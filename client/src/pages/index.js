@@ -6,4 +6,5 @@ import Browse from './Browse/Browse.jsx';
 import Checkout from './Checkout/Checkout.jsx';
 import Account from './Account/Account.jsx';
 import OAuth from './OAuth/OAuth.jsx';
-export { Home, Product, Search, Cart, Browse, Checkout, Account, OAuth };
+import Favorite from './Favorite/Favorite.jsx';
+export { Home, Product, Search, Cart, Browse, Checkout, Account, OAuth, Favorite };
