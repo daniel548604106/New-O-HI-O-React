@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Favorite.module.scss';
 import { useHistory, useLocation } from 'react-router-dom';
-import { apiGetFavProducts } from '../../api/index';
+import { apiGetFavList } from '../../api/index';
 import ProductCard from '../../components/Global/ProductCard/ProductCard.jsx';
 import { useSelector } from 'react-redux';
-import Cookie from 'js-cookie';
+import ShopCard from '../../components/Global/ShopCard/ShopCard.jsx';
 const Favorite = () => {
   const history = useHistory();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(0);
-  const [favProducts, setFavProducts] = useState([]);
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
+  const favoriteShops = useSelector((state) => state.global.favoriteShops);
   const toProducts = () => {
     history.push('/favorite/products');
     setActiveTab(0);
@@ -20,14 +20,11 @@ const Favorite = () => {
     setActiveTab(1);
   };
 
+  const [showProducts, setShowProducts] = useState(true);
+
   useEffect(() => {
-    const getFavProducts = async () => {
-      const token = Cookie.get('token');
-      console.log(token);
-      const { data } = await apiGetFavProducts(token);
-      setFavProducts(data.userFavList.favoriteItems);
-    };
-    getFavProducts();
+    location.pathname.includes('products') ? setShowProducts(true) : setShowProducts(false);
+    console.log(location);
   }, [location, favoriteProducts]);
   return (
     <div>
@@ -43,11 +40,15 @@ const Favorite = () => {
       <hr />
       <div className={classes.favorites}>
         <div className={classes.productsRow}>
-          {favProducts ? (
-            favProducts.map((product) => <ProductCard key={product._id} product={product} />)
-          ) : (
-            <h1>目前沒有任何收藏</h1>
-          )}
+          {showProducts
+            ? favoriteProducts &&
+              favoriteProducts.map((product) => <ProductCard key={product._id} product={product} />)
+            : favoriteShops &&
+              favoriteShops.map((shop) => (
+                <ShopCard key={shop._id} shop={shop}>
+                  hihihi
+                </ShopCard>
+              ))}
         </div>
       </div>
     </div>

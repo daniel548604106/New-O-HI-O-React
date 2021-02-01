@@ -12,23 +12,9 @@ export const addToFavorite = async (id, token, type) => {
   );
 };
 
-// export const addFavShop = async (shopId, token) => {
-//   return await axios.patch(
-//     '/v1/favorite/shops',
-//     {
-//       shopId,
-//     },
-//     {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     },
-//   );
-// };
-
-export const getFavProducts = async (token) => {
+export const getFavList = async (token) => {
   console.log('get Products');
-  return await axios.get('/v1/favorite/products', {
+  return await axios.get('/v1/favorite', {
     headers: {
       Authorization: `Bearer ${token}`,
     },

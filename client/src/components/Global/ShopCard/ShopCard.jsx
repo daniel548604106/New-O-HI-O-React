@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './ShopCard.module.scss';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
+import DoneIcon from '@material-ui/icons/Done';
 import { addToFavorite } from '../../../store/index/indexAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 const ShopCard = ({ shop }) => {
   const dispatch = useDispatch();
+  const favoriteShops = useSelector((state) => state.global.favoriteShops);
   const followShop = () => {
     const type = 'shop';
     dispatch(addToFavorite(shop._id, type));
   };
+  const [followedFavoriteShop, setFollowedFavoriteShop] = useState(-1);
+  useEffect(() => {
+    if (!favoriteShops) return;
+    const checkFollowedShop = () => {
+      const shopIds = favoriteShops.map((item) => {
+        return item._id;
+      });
+      setFollowedFavoriteShop(shopIds.indexOf(shop._id));
+      console.log(favoriteShops);
+    };
+    checkFollowedShop();
+  }, [shop, favoriteShops]);
+
   return (
     <div className={classes.shopCardLayout}>
       <div className={classes.profileImageLayout}>
@@ -42,9 +58,21 @@ const ShopCard = ({ shop }) => {
           </p>
         </div>
 
-        <button onClick={() => followShop()}>
-          <AddIcon />
-          <span>Follow</span>
+        <button
+          onClick={() => followShop()}
+          className={`${followedFavoriteShop !== -1 && classes.following}  ${classes.followBtn}`}
+        >
+          {followedFavoriteShop === -1 ? (
+            <>
+              <AddIcon className={classes.icon} />
+              <span>Follow</span>
+            </>
+          ) : (
+            <>
+              <DoneIcon className={classes.icon} />
+              <span>Following</span>
+            </>
+          )}
         </button>
       </div>
     </div>

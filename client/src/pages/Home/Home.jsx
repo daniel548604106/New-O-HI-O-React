@@ -8,7 +8,7 @@ import Shop from '../../components/Home/Shops/Shops.jsx';
 import Subscription from '../../components/Home/Subscription/Subscription.jsx';
 import { apiGetAllProducts, apiGetBanners, apiGetHotShop } from '../../api/index';
 import classes from './Home.module.scss';
-import { getFavProducts } from '../../store/index/indexAction';
+import { getFavList } from '../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
@@ -58,7 +58,7 @@ const Home = () => {
     const fetchFavProducts = async () => {
       try {
         const token = Cookie.get('token');
-        dispatch(getFavProducts(token));
+        dispatch(getFavList(token));
       } catch (error) {
         console.log(error);
       }
