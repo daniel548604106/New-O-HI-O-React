@@ -13,11 +13,14 @@ const resources = {
       campaignContent: 'Join O.HI.O today, and receive 5% off your first order.Limited to 72 hours',
       seeMore: 'See More',
       discountedItems: 'Discounted Items',
+      productDescription: 'Product Description',
+      tags: 'Tags',
+      evaluation: 'Evaluation',
     },
   },
   tw: {
     translation: {
-      login: '登入',
+      login: '登入/註冊',
       newRelease: '新品上架',
       hotShop: '每日新星',
       popularItems: '熱門精選',
@@ -26,6 +29,9 @@ const resources = {
       campaignContent: '把握現在擁有質感好設計！立即加入會員，享有95折首購優惠',
       seeMore: '看更多',
       discountedItems: '精選優惠',
+      productDescription: '商品介紹',
+      tags: '商品標籤',
+      evaluation: '購買評價',
     },
   },
 };

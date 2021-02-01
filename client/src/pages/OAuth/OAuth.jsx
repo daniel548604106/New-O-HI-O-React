@@ -26,7 +26,7 @@ const OAuth = () => {
     const postOauthLogin = async () => {
       try {
         const { data } = await apiPostOauthLogin({ type, code });
-        console.log(data.token, data.user);
+        console.log('token', data.token, data.user);
         Cookie.set('me', data.user);
         Cookie.set('token', data.token);
         history.push('/');

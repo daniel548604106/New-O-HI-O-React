@@ -4,14 +4,14 @@ const reviewSchema = new mongoose.Schema({
     type: Number,
     default: 1
   },
-  comment:[{
+  comment:{
     text: {
       type: String
     },
     images:[{
       type: String
     }]
-  }],
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   padding: 0 15px;
+  height: 70px;
 
   .toolBar {
     display: flex;
@@ -19,6 +20,15 @@
   }
   display: flex;
   align-items: center;
+  .loginBtn {
+    margin-right: 20px;
+    p {
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid black;
+    }
+  }
 }
 
 .sectionMobile {
@@ -29,18 +39,34 @@
   display: none;
 }
 
-.loginBtn {
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 4px;
-  border: 1px solid black;
-}
+.tabs {
+  display: flex;
+  align-items: center;
+  .favIcon {
+    cursor: pointer;
+  }
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+  }
+  .dropdown {
+    position: absolute;
+    bottom: -80px;
+    right: 0;
+    z-index: 12;
+  }
+  .favIcon {
+    display: flex;
+    align-items: center;
+  }
 
-.dropdown {
-  position: absolute;
-  bottom: -80px;
-  right: 0;
-  z-index: 12;
+  .favIcon:hover {
+    color: var(--primary-pink);
+  }
 }
 
 .avatar {
@@ -49,6 +75,9 @@
   position: relative;
   border-radius: 50%;
   cursor: pointer;
+  &:hover .dropdown {
+    display: flex;
+  }
   img {
     border-radius: 50%;
     width: 30px;
@@ -56,10 +85,11 @@
     margin: 0 10px;
   }
 }
-.avatar:hover .dropdown {
-  display: flex;
-}
 
 .dropdown {
   display: none;
+}
+
+.cart:hover {
+  color: var(--primary-pink);
 }

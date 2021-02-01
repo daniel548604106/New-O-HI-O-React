@@ -11,16 +11,25 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
+import { useHistory } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+  const history = useHistory();
+  const directToProduct = () => {
+    history.push(`/products/${product._id}`);
+    console.log('clicked');
+  };
+  const addToFavorite = (e) => {
+    e.stopPropagation();
+    console.log('favorite');
+  };
   return (
     <div className={classes.root}>
       <div className={classes.label}>New</div>
       <Card
         className={classes.card}
         key={product.id}
-        component={Link}
-        to={`/products/${product._id}`}
+        onClick={() => directToProduct()}
         style={{ textDecoration: 'none' }}
       >
         <CardActionArea>
@@ -29,7 +38,7 @@ const ProductCard = ({ product }) => {
             image={product.images[0]}
             title="Contemplative Reptile"
           />
-          <FavoriteIcon className={classes.heartIcon} />
+          <FavoriteIcon onClick={(e) => addToFavorite(e)} className={classes.heartIcon} />
         </CardActionArea>
         <div className={classes.cardContent}>
           <h2 className={classes.productName}>{product.name}</h2>

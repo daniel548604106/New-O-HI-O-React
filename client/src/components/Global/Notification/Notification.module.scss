@@ -1,0 +1,18 @@
+.notificationBg {
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-pink);
+  position: relative;
+  opacity: 0.8;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

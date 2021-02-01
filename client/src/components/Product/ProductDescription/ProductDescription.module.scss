@@ -1,8 +1,9 @@
 .feedbackRow {
   display: flex;
+  margin-top: 20px;
   justify-content: space-between;
   align-items: flex-start;
-  > .feedbackRow {
+  .feedbackRow {
     display: flex;
     margin-right: 10px;
 
@@ -22,8 +23,9 @@
       margin-right: 20px;
       height: 50px;
     }
-    > div > img {
+    .commentImage {
       width: 100%;
+      height: 100%;
       margin-top: 20px;
     }
   }

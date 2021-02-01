@@ -4,7 +4,7 @@ import { openLoginModal } from '../../../store/actions/indexActions';
 import { useHistory, useParams } from 'react-router-dom';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/product/productAction';
-import { apiGetProduct, apiGetAllProducts } from '../../../api/index';
+import { apiGetProduct, apiGetAllProducts, apiGetReviews } from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
@@ -13,7 +13,10 @@ import ProductDescription from '../../../components/Product/ProductDescription/P
 import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDisplay.jsx';
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
+import Notification from '../../../components/Global/Notification/Notification.jsx';
+import { useTranslation } from 'react-i18next';
 const Product = () => {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const topDisplay = useRef(null);
   const productDescription = createRef();
@@ -25,7 +28,7 @@ const Product = () => {
   const [product, setProduct] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
-
+  const [reviews, setReviews] = useState([]);
   const checkout = () => {
     if (isLoggedIn) {
       return dispatch(openLoginModal());
@@ -53,6 +56,16 @@ const Product = () => {
       });
     };
   }, [window.pageYOffset]);
+  // Fetch Reviews
+
+  useEffect(() => {
+    const getReviews = async () => {
+      const { data } = await apiGetReviews(params.id);
+      console.log('reviews=>', data);
+      setReviews(data.reviews);
+    };
+    getReviews();
+  }, []);
 
   // Fetch Product
 
@@ -71,7 +84,6 @@ const Product = () => {
       const { data } = await apiGetAllProducts();
       console.log('recommended =>', data);
       setRecommendedProducts(data.products);
-      console.log(recommendedProducts);
     };
     getRecommendedProducts();
   }, []);
@@ -84,6 +96,9 @@ const Product = () => {
 
   return (
     <div className={classes.productRoot}>
+      <div className="notification">
+        <Notification title="已加入慾望清單" />
+      </div>
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
@@ -93,7 +108,7 @@ const Product = () => {
         </div>
         <div className={classes.productMainInfo}>
           <div className={classes.info}>
-            <ProductInfo product={product} />
+            <ProductInfo t={t} product={product} />
           </div>
           <div className={classes.cta}>
             <ProductCTA product={product} />
@@ -103,10 +118,12 @@ const Product = () => {
       <div className={classes.containerLayout}>
         <div className={classes.productDescription}>
           <ProductDescription
+            t={t}
             productDescriptionRef={productDescription}
             evaluationRef={evaluation}
             id="product-description"
             product={product}
+            reviews={reviews}
           />
         </div>
         <div className={classes.designShopInfo}>

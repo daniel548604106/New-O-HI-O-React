@@ -20,3 +20,15 @@ export const apiGetCollectionProducts = getCollectionProducts;
 import { getBanners } from './bannerRequest';
 
 export const apiGetBanners = getBanners;
+
+// Review
+
+import { getReviews } from './reviewRequest';
+
+export const apiGetReviews = getReviews;
+
+// Favorite
+import { addFavProduct, getFavProducts } from './favoriteRequest';
+
+export const apiAddFavProduct = addFavProduct;
+export const apiGetFavProducts = getFavProducts;

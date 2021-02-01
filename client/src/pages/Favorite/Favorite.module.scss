@@ -1,0 +1,32 @@
+.list {
+  display: flex;
+  align-items: flex-end;
+
+  div {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--primary-gray);
+    border-bottom: 4px solid transparent;
+    cursor: pointer;
+    &.active {
+      border-bottom: 4px solid var(--primary-black);
+      color: var(--primary-black);
+      font-weight: 500;
+    }
+  }
+}
+
+hr {
+  margin: 0;
+}
+
+.favorites {
+  margin-top: 20px;
+
+  .productsRow {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(autofill, minmax(150px, 1fr));
+  }
+}
