@@ -36,7 +36,7 @@ const Product = () => {
   };
   useEffect(() => {
     dispatch(listProducts());
-  }, []);
+  }, [dispatch]);
 
   // Show Banner
   useEffect(() => {
@@ -54,7 +54,7 @@ const Product = () => {
         }
       });
     };
-  }, [window.pageYOffset]);
+  }, []);
   // Fetch Reviews
 
   useEffect(() => {

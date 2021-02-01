@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const { protect} = require('../middleware/authMiddleware')
-const {getFavProducts, getFavShops,addFavProduct}  = require('../controllers/favoriteController.js')
-router.route('/products').get(protect,getFavProducts).patch(protect,addFavProduct)
-router.route('/shops').get(getFavShops).post
+const {getFavProducts, getFavShops,addToFavorite}  = require('../controllers/favoriteController.js')
+router.route('/').patch(protect, addToFavorite)
+router.route('/shops').get(getFavShops)
+router.route('/products').get(protect,getFavProducts)
+
 module.exports = router

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const addFavProduct = async (productId, token) => {
+export const addToFavorite = async (id, token, type) => {
   return await axios.patch(
-    `/v1/favorite/products`,
-    { productId },
+    '/v1/favorite',
+    { id, type },
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -11,6 +11,20 @@ export const addFavProduct = async (productId, token) => {
     },
   );
 };
+
+// export const addFavShop = async (shopId, token) => {
+//   return await axios.patch(
+//     '/v1/favorite/shops',
+//     {
+//       shopId,
+//     },
+//     {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     },
+//   );
+// };
 
 export const getFavProducts = async (token) => {
   console.log('get Products');

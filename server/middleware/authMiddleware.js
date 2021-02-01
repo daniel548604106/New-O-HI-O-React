@@ -5,7 +5,7 @@ const User = require('../models/userModel')
 const protect = async (req,res,next) =>{
   try{
     console.log('protected')
-    console.log(req.body, req.headers)
+    // console.log(req.body, req.headers)
     let token  = ''
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
       token = req.headers.authorization.split(' ')[1]

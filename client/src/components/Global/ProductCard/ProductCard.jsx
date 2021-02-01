@@ -9,7 +9,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
 import { useHistory } from 'react-router-dom';
-import { addFavProduct, openLoginModal } from '../../../store/index/indexAction.js';
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,11 +20,11 @@ const ProductCard = ({ product }) => {
     history.push(`/products/${product._id}`);
     console.log('clicked');
   };
-  const addToFavorite = (e, id) => {
+  const addItemToFavorite = (e, id) => {
     e.stopPropagation();
     if (isUserLoggedIn) {
-      const token = Cookie.get('token');
-      dispatch(addFavProduct(id, token));
+      const type = 'product';
+      dispatch(addToFavorite(id, type));
       console.log('favorite');
       return;
     }
@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
             title="Contemplative Reptile"
           />
           <FavoriteIcon
-            onClick={(e) => addToFavorite(e, product._id)}
+            onClick={(e) => addItemToFavorite(e, product._id)}
             className={[classes.heartIcon, addedFavorite > -1 && classes.activeHeartIcon]}
           />
         </CardActionArea>

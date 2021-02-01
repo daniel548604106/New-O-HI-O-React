@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './MainContent.module.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) => {
   const location = useLocation();
+  const history = useHistory();
   const [activeSubcategory, setActiveSubcategory] = useState([]);
   useEffect(() => {
     let subcategory;
@@ -16,16 +17,25 @@ const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) =>
     console.log(subcategory);
     console.log(products);
   }, [activeCategory, subcategoryId]);
+
+  const filter = (e) => {
+    const params = new URLSearchParams(location.search);
+    console.log(params);
+    console.log(JSON.parse(e.target.value));
+    const query = JSON.parse(e.target.value);
+    params.append('sortby', query.name);
+    console.log(location);
+  };
   return (
     <>
       <div className={classes.topRow}>
         <div>{activeCategory ? <h2>{activeCategory.title}</h2> : <h2>今日熱門商品</h2>}</div>
         <div className={classes.filter}>
           <label htmlFor="">排序</label>
-          <select name="sort" id="sort">
-            <option value="popular">熱門程度優先</option>
-            <option value="high-low">價格由高至低</option>
-            <option value="low-high">價格由低至高</option>
+          <select onChange={(e) => filter(e)} name="sort" id="sort">
+            <option value='{"name": "rank", "order": ""}'>熱門程度優先</option>
+            <option value='{"name": "price", "order": "ascending"}'>價格由高至低</option>
+            <option value='{"name": "price", "order": "descending"}'>價格由低至高</option>
           </select>
         </div>
       </div>

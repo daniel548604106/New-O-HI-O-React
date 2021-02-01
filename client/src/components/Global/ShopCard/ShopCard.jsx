@@ -2,7 +2,14 @@ import React from 'react';
 import classes from './ShopCard.module.scss';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
+import { addToFavorite } from '../../../store/index/indexAction';
+import { useDispatch } from 'react-redux';
 const ShopCard = ({ shop }) => {
+  const dispatch = useDispatch();
+  const followShop = () => {
+    const type = 'shop';
+    dispatch(addToFavorite(shop._id, type));
+  };
   return (
     <div className={classes.shopCardLayout}>
       <div className={classes.profileImageLayout}>
@@ -35,7 +42,7 @@ const ShopCard = ({ shop }) => {
           </p>
         </div>
 
-        <button>
+        <button onClick={() => followShop()}>
           <AddIcon />
           <span>Follow</span>
         </button>

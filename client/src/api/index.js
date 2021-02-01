@@ -28,7 +28,14 @@ import { getReviews } from './reviewRequest';
 export const apiGetReviews = getReviews;
 
 // Favorite
-import { addFavProduct, getFavProducts } from './favoriteRequest';
+import { getFavProducts, addToFavorite } from './favoriteRequest';
 
-export const apiAddFavProduct = addFavProduct;
+// export const apiAddFavProduct = addFavProduct;
+export const apiAddToFavorite = addToFavorite;
 export const apiGetFavProducts = getFavProducts;
+
+// Shop
+
+import { getHotShop } from './shopRequest';
+
+export const apiGetHotShop = getHotShop;

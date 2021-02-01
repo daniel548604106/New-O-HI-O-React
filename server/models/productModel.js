@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  seller: {
+  publishedBy: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
   },

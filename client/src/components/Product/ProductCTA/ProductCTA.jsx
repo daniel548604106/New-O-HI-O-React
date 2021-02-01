@@ -5,7 +5,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { apiAddFavProduct } from '../../../api/index';
+import { apiAddToFavorite } from '../../../api/index';
 import { addToCart } from '../../../store/cart/cartAction.jsx';
 import Cookie from 'js-cookie';
 const ProductCTA = ({ product }) => {
@@ -16,8 +16,7 @@ const ProductCTA = ({ product }) => {
   };
 
   const addToWishList = () => {
-    const token = Cookie.get('token');
-    const { data } = apiAddFavProduct(params.id, token);
+    const { data } = apiAddToFavorite(params.id);
     console.log(data);
   };
   return (

@@ -4,7 +4,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { apiAddFavProduct } from '../../../api/index';
+import { apiAddToFavorite } from '../../../api/index';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../../../store/cart/cartAction.jsx';
 const ProductBanner = ({ product, scrollToPage }) => {
@@ -31,7 +31,8 @@ const ProductBanner = ({ product, scrollToPage }) => {
   };
 
   const addToWishList = () => {
-    const { data } = apiAddFavProduct(params.id);
+    const type = 'product';
+    const { data } = apiAddToFavorite(params.id, type);
     console.log(data);
   };
 

@@ -1,14 +1,24 @@
 const Favorite = require('../models/favoriteModel')
 
-const addFavProduct = async(req,res) =>{
+const addToFavorite = async(req,res) =>{
   try{
-    const {productId } = req.body
-    console.log('req.body',req.body)
+    const { id,type} = req.body
     const { _id } = req.user
-    const user = await Favorite.findOne({user: _id})
-    if(!user){
+    let productId, shopId;
+
+    switch(type){
+      case 'product':
+      productId = id
+      break;
+      case 'shop':
+        shopId = id
+      break;
+    }
+    const favoriteList = await Favorite.findOne({user: _id})
+    if(!favoriteList){
       const favorite = await Favorite.create({
-        favoriteItems: productId,
+        favoriteProducts: productId,
+        favoriteShops: shopId,
         user: _id
       })
       console.log(favorite)
@@ -16,28 +26,35 @@ const addFavProduct = async(req,res) =>{
         favorite
       })
     }
-    if(user.favoriteItems.indexOf(productId) === -1){
-      user.favoriteItems.push(productId)
-      user.save()
-    }else{
-      const index = user.favoriteItems.indexOf(productId)
-      user.favoriteItems.splice(index,1)
-      user.save()
+
+    switch(type){
+      case 'product':
+        if(favoriteList.favoriteItems.indexOf(productId) === -1){
+          favoriteList.favoriteItems.push(productId)
+          favoriteList.save()
+        }else{
+          const index = favoriteList.favoriteItems.indexOf(productId)
+          favoriteList.favoriteItems.splice(index,1)
+          favoriteList.save()
+        }
+        break;
+        case 'shop':
+          if(favoriteList.favoriteShops.indexOf(shopId) === -1){
+            favoriteList.favoriteShops.push(shopId)
+            favoriteList.save()
+          }else{
+            const index = favoriteList.favoriteShops.indexOf(shopId)
+            favoriteList.favoriteShops.splice(index,1)
+            favoriteList.save()
+          }
+          break;
     }
     res.status(200).json({
-      user
+      favoriteList
     })
 
-    console.log(user)
+    console.log(favoriteList)
     console.log('add Products ')
-  }catch(error){
-    console.log(error)
-  }
-}
-
-const addFavShop = async(req,res) =>{
-  try{
-    console.log('add Shop')
   }catch(error){
     console.log(error)
   }
@@ -67,4 +84,4 @@ const getFavShops= async(req,res) =>{
 
 
 
-module.exports = {addFavShop,addFavProduct,getFavProducts,getFavShops}
+module.exports = {addToFavorite,getFavProducts,getFavShops}
