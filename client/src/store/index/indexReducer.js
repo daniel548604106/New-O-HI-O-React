@@ -5,6 +5,9 @@ import {
   ADD_FAV_PRODUCT_REQUEST,
   ADD_FAV_PRODUCT_SUCCESS,
   ADD_FAV_PRODUCT_FAILURE,
+  GET_FAV_PRODUCT_REQUEST,
+  GET_FAV_PRODUCT_SUCCESS,
+  GET_FAV_PRODUCT_FAILURE,
 } from '../reducerTypes';
 
 let initialState = {
@@ -24,6 +27,12 @@ export const indexReducer = (state = initialState, action) => {
     case ADD_FAV_PRODUCT_SUCCESS:
       return { loading: false, favoriteProducts: action.payload };
     case ADD_FAV_PRODUCT_FAILURE:
+      return { loading: false, error: action.payload };
+    case GET_FAV_PRODUCT_REQUEST:
+      return { loading: true, favoriteProducts: [] };
+    case GET_FAV_PRODUCT_SUCCESS:
+      return { loading: false, favoriteProducts: action.payload };
+    case GET_FAV_PRODUCT_FAILURE:
       return { loading: false, error: action.payload };
     default:
       return initialState;

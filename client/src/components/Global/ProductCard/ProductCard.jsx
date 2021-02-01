@@ -34,7 +34,10 @@ const ProductCard = ({ product }) => {
   useEffect(() => {
     if (!favoriteProducts) return;
     const searchFavorite = () => {
-      setAddedFavorite(favoriteProducts.indexOf(product._id));
+      const productIds = favoriteProducts.map((item) => {
+        return item._id;
+      });
+      setAddedFavorite(productIds.indexOf(product._id));
     };
     searchFavorite();
   }, [favoriteProducts]);
