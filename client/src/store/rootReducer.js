@@ -13,7 +13,7 @@ const persistConfig = {
 
 const rootReducers = combineReducers({
   productList: productListReducer,
-  login: indexReducer,
+  global: indexReducer,
   user: userReducer,
   cart: cartReducer,
 });

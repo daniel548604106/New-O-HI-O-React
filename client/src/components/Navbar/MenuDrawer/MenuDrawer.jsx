@@ -14,7 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { setUserLogout } from '../../../store/actions/indexActions';
+import { setUserLogout } from '../../../store/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 const MenuDrawer = () => {

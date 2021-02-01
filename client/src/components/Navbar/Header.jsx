@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuDrawer from './MenuDrawer/MenuDrawer.jsx';
 import Dropdown from './Dropdown/Dropdown.jsx';
-import { openLoginModal } from '../../store/actions/indexActions';
+import { openLoginModal } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Cookie from 'js-cookie';

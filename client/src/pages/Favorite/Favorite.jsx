@@ -3,12 +3,14 @@ import classes from './Favorite.module.scss';
 import { useHistory, useLocation } from 'react-router-dom';
 import { apiGetFavProducts } from '../../api/index';
 import ProductCard from '../../components/Global/ProductCard/ProductCard.jsx';
+import { useSelector } from 'react-redux';
 import Cookie from 'js-cookie';
 const Favorite = () => {
   const history = useHistory();
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(0);
   const [favProducts, setFavProducts] = useState([]);
+  const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const toProducts = () => {
     history.push('/favorite/products');
     setActiveTab(0);
@@ -26,7 +28,7 @@ const Favorite = () => {
       setFavProducts(data.userFavList.favoriteItems);
     };
     getFavProducts();
-  }, [location]);
+  }, [location, favoriteProducts]);
   return (
     <div>
       <h2 className={classes.title}>慾望清單</h2>

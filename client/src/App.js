@@ -16,7 +16,7 @@ import {
 import Notification from './components/Global/Notification/Notification.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeLoginModal } from './store/actions/indexActions';
+import { closeLoginModal } from './store/index/indexAction';
 import LoginModal from './components/Login/index';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ import { apiGetUserData } from './api/index';
 import './App.scss';
 const App = (props) => {
   const dispatch = useDispatch();
-  const isLoginModalShow = useSelector((state) => state.login.isLoginModalShow);
+  const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
   const [open, setOpen] = useState(false);
   const handleClose = (e) => {
     dispatch(closeLoginModal());

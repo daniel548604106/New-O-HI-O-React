@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextField, FormLabel, Button, IconButton } from '@material-ui/core';
-import { setUserLogin } from '../../store/actions/indexActions';
+import { setUserLoggedIn } from '../../store/user/userAction';
 import { useDispatch } from 'react-redux';
-import { closeLoginModal } from '../../store/actions/indexActions';
+import { closeLoginModal } from '../../store/index/indexAction';
 import { redirectUri, config } from '../../lib/oAuth';
 import qs from 'query-string';
 import CloseIcon from '@material-ui/icons/Close';

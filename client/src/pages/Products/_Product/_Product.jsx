@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { openLoginModal } from '../../../store/actions/indexActions';
+import { openLoginModal } from '../../../store/index/indexAction';
 import { useHistory, useParams } from 'react-router-dom';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { listProducts } from '../../../store/product/productAction';
 import { apiGetProduct, apiGetAllProducts, apiGetReviews } from '../../../api/index';
 import classes from './_Product.module.scss';
@@ -23,7 +22,7 @@ const Product = () => {
   const evaluation = createRef();
   const history = useHistory();
   const params = useParams();
-  const isLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const productList = useSelector((state) => state.productList);
   const [product, setProduct] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
