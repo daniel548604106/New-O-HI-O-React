@@ -2,28 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-import {
-  Home,
-  Product,
-  Search,
-  Cart,
-  Browse,
-  Checkout,
-  Favorite,
-  Account,
-  OAuth,
-} from './pages/index';
-import Notification from './components/Global/Notification/Notification.jsx';
+import { Home, Product, Search, Cart, Browse, Checkout, Favorite, My, OAuth } from './pages/index';
 import Footer from './components/Footer/Footer.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal } from './store/index/indexAction';
 import LoginModal from './components/Login/index';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
-import PropTypes from 'prop-types';
-import qs from 'query-string';
 import Latest from './pages/Latest/Latest.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
+import { ToastContainer } from 'react-toastify';
+
 import './App.scss';
 const App = (props) => {
   const dispatch = useDispatch();
@@ -61,6 +50,13 @@ const App = (props) => {
 
   return (
     <Router history={history}>
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={true}
+        pauseOnHover
+        newestOnTop={false}
+        closeOnClick
+      />
       <Header />
       {isLoginModalShow}
       <div className="loginModal">
@@ -88,8 +84,8 @@ const App = (props) => {
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
         </Route>
-        <Route path="/account" exact>
-          <Account />
+        <Route path={`/my/:type?/:state?`}>
+          <My />
         </Route>
         <Route path="/browse">
           <Browse />

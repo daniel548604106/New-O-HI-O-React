@@ -3,15 +3,21 @@ import classes from './ShopCard.module.scss';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import DoneIcon from '@material-ui/icons/Done';
-import { addToFavorite } from '../../../store/index/indexAction';
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ShopCard = ({ shop }) => {
   const dispatch = useDispatch();
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
   const followShop = () => {
-    const type = 'shop';
-    dispatch(addToFavorite(shop._id, type));
+    if (isUserLoggedIn) {
+      console.log(isUserLoggedIn);
+      const type = 'shop';
+      dispatch(addToFavorite(shop._id, type));
+      return;
+    }
+    dispatch(openLoginModal());
   };
   const [followedFavoriteShop, setFollowedFavoriteShop] = useState(-1);
   useEffect(() => {

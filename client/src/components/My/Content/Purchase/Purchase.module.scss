@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  margin-top: 20px;
+}
+
+.tabTitle {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 10px;
+  text-transform: capitalize;
+  border-bottom: 4px solid transparent;
+  cursor: pointer;
+
+  &.active {
+    border-bottom: 4px solid black;
+  }
+
+  span {
+    padding: 0 5px 0 10px;
+  }
+}

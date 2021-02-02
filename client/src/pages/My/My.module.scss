@@ -1,0 +1,9 @@
+.myLayout {
+  display: flex;
+  .mySidebar {
+    flex: 1;
+  }
+  .myContent {
+    flex: 4;
+  }
+}

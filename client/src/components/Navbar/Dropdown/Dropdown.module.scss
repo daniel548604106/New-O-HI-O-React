@@ -1,0 +1,30 @@
+.logout {
+  cursor: pointer;
+}
+
+.dropdownLayout {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 1px 1px 1px #ada9a9;
+  display: flex;
+  border-radius: 4px;
+  min-width: 100px;
+  z-index: 12;
+  flex-direction: column;
+}
+
+.userMenuTabs {
+  li {
+    font-size: 14px;
+    padding: 5px 0;
+    width: 100%;
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--primary-pink);
+      * {
+        color: var(--primary-pink);
+      }
+    }
+  }
+}
