@@ -11,6 +11,8 @@ const bannerRoute = require('./server/routes/bannerRoute');
 const reviewRoute = require('./server/routes/reviewRoute')
 const favoriteRoute = require('./server/routes/favoriteRoute')
 const shopRoute =  require('./server/routes/shopRoute')
+const myRoute = require('./server/routes/myRoute')
+
 const connectDB = require('./server/tools/db');
 
 // Basic requirements and setup
@@ -32,7 +34,7 @@ app.use('/v1/banners', bannerRoute)
 app.use('/v1/reviews', reviewRoute)
 app.use('/v1/favorite', favoriteRoute)
 app.use('/v1/shops',shopRoute)
-
+app.use('/v1/my', myRoute)
 
 
 if(process.env.NODE_ENV==='production'){

@@ -39,3 +39,8 @@ export const apiGetFavList = getFavList;
 import { getHotShop } from './shopRequest';
 
 export const apiGetHotShop = getHotShop;
+
+// My
+
+import { patchMyData } from './myRequest';
+export const apiPatchMyData = patchMyData;

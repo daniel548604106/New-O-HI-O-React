@@ -1,30 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Dropdown.scss';
-import { useDispatch } from 'react-redux';
+import classes from './Dropdown.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserLogout } from '../../../store/user/userAction';
+
 const Dropdown = () => {
+  const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(setUserLogout());
   };
   return (
-    <div style={{ position: 'relative' }}>
-      <div className="arrow"></div>
-      <div
-        style={{
-          backgroundColor: 'white',
-          padding: '15px',
-          boxShadow: '1px 1px 1px #ada9a9',
-          display: 'flex',
-          borderRadius: '4px',
-          flexDirection: 'column',
-        }}
-      >
-        {<Link to={'checkout'}>Checkout</Link>}
-        <span onClick={() => logout()} className="logout">
-          登出
-        </span>
+    <div>
+      <div className={classes.dropdownLayout}>
+        <ul className={classes.userMenuTabs}>
+          <li>
+            <Link to={'/my/setting'}>帳戶設定</Link>
+          </li>
+          <li>
+            <Link to={'/my/email'}>我的信箱</Link>
+          </li>
+          <li>
+            <Link to={'/my/notification'}>通知中心</Link>
+          </li>
+          <li>
+            <Link to={'/my/purchase/unpaid'}>購買訂單</Link>
+          </li>
+          <li onClick={() => logout()} className="logout">
+            登出
+          </li>
+        </ul>
       </div>
     </div>
   );

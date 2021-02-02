@@ -1,6 +1,5 @@
 import React from 'react';
-import { TextField, FormLabel, Button, IconButton } from '@material-ui/core';
-import { setUserLoggedIn } from '../../store/user/userAction';
+import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { closeLoginModal } from '../../store/index/indexAction';
 import { redirectUri, config } from '../../lib/oAuth';

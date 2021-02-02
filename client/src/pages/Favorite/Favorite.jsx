@@ -39,17 +39,19 @@ const Favorite = () => {
       </div>
       <hr />
       <div className={classes.favorites}>
-        <div className={classes.productsRow}>
-          {showProducts
-            ? favoriteProducts &&
-              favoriteProducts.map((product) => <ProductCard key={product._id} product={product} />)
-            : favoriteShops &&
-              favoriteShops.map((shop) => (
-                <ShopCard key={shop._id} shop={shop}>
-                  hihihi
-                </ShopCard>
+        {showProducts ? (
+          <div className={classes.productsRow}>
+            {favoriteProducts &&
+              favoriteProducts.map((product) => (
+                <ProductCard key={product._id} product={product} />
               ))}
-        </div>
+          </div>
+        ) : (
+          <div className={classes.shopsRow}>
+            {favoriteShops &&
+              favoriteShops.map((shop) => <ShopCard key={shop._id} shop={shop}></ShopCard>)}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -24,7 +24,8 @@ hr {
 
 button,
 input,
-select {
+select,
+textarea {
   outline: none;
 }
 
@@ -73,4 +74,8 @@ body {
       height: 1px;
     }
   }
+}
+
+li {
+  list-style: none;
 }
