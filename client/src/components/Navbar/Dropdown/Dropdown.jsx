@@ -15,7 +15,7 @@ const Dropdown = () => {
       <div className={classes.dropdownLayout}>
         <ul className={classes.userMenuTabs}>
           <li>
-            <Link to={'/my'}>{user.name}</Link>
+            <Link to={'/my/setting'}>帳戶設定</Link>
           </li>
           <li>
             <Link to={'/my/email'}>我的信箱</Link>
@@ -24,10 +24,7 @@ const Dropdown = () => {
             <Link to={'/my/notification'}>通知中心</Link>
           </li>
           <li>
-            <Link to={'/my/purchase'}>購買訂單</Link>
-          </li>
-          <li>
-            <Link to={'/my/setting'}>帳戶設定</Link>
+            <Link to={'/my/purchase/unpaid'}>購買訂單</Link>
           </li>
           <li onClick={() => logout()} className="logout">
             登出

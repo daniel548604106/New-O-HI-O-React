@@ -7,11 +7,17 @@ const SideBar = () => {
       <ul>
         <li>
           <Link to={`/my/setting`}>帳號設定</Link>
+          <div className={classes.options}>
+            <Link to={`my/setting`}>General Setting</Link>
+            <Link to={`my/setting?p=about`}>About Me</Link>
+          </div>
         </li>
         <li>
           <Link to={`/my/purchase/unpaid`}>購買訂單</Link>
         </li>
-        <li>退款申請</li>
+        <li>
+          <Link to={`/my/refund/processing`}>退款申請</Link>
+        </li>
         <li>我的信箱</li>
       </ul>
     </div>

@@ -11,7 +11,8 @@ form {
     font-weight: 500;
   }
   input,
-  select {
+  select,
+  textarea {
     border: 1px solid var(--primary-gray);
     border-radius: 2px;
     margin-top: 5px;
@@ -68,4 +69,8 @@ form {
       cursor: pointer;
     }
   }
+}
+
+.hr {
+  margin: 20px 0;
 }
