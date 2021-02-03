@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    birthday:{
+      type: String
+    },
     picture: {
       type: String,
       default: '',

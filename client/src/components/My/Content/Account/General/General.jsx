@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { apiPatchMyData } from '../../../../../api/index';
 import { setUserLoggedIn } from '../../../../../store/user/userAction';
 import Cookie from 'js-cookie';
+const _ = require('lodash');
 import notify from '../../../../../lib/notification';
 const General = () => {
   const dispatch = useDispatch();
@@ -15,17 +16,23 @@ const General = () => {
     name: '',
     email: '',
     gender: '',
+    birthday: '',
   });
 
   useEffect(() => {
-    const { email, gender, name } = user;
+    const { email, gender, name, birthday } = user;
     setUserData({
       name,
       email,
       gender,
+      birthday,
     });
     console.log(userData);
   }, [user]);
+
+  const yearSelection = _.range(1950, 2020);
+  const monthSelection = _.range(1, 13);
+  const dateSelection = _.range(1, 32);
 
   const onInputChange = (e) => {
     setUserData({
@@ -35,11 +42,9 @@ const General = () => {
   };
   const save = async () => {
     try {
-      console.log('hi1');
       const token = Cookie.get('token');
       const { data } = await apiPatchMyData(userData, token);
       dispatch(setUserLoggedIn(data.user));
-      console.log(data);
       notify('更新個人資料成功！');
     } catch (error) {
       notify('很抱歉，目前系統出現了異常，暫時無法更新');
@@ -85,18 +90,27 @@ const General = () => {
         <label htmlFor="birthday">Birthday</label>
         <div className={classes.birthday}>
           <select name="year" id="year">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            {yearSelection.map((index) => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))}
           </select>
           <span> / </span>
           <select name="month" id="month">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            {monthSelection.map((index) => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))}
           </select>
           <span> / </span>
           <select name="date" id="date">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            {dateSelection.map((index) => (
+              <option key={index} value={index}>
+                {index}
+              </option>
+            ))}
           </select>
         </div>
       </form>
