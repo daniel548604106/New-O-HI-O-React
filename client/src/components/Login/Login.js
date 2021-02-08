@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const Login = () => {
   const dispatch = useDispatch();
   const oAuthLogin = (provider) => {
+    dispatch(closeLoginModal());
     const uri = redirectUri(provider);
     const query = qs.stringify(config[provider]);
     window.location = `${uri}${query}`;

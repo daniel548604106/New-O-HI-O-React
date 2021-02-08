@@ -5,10 +5,16 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 const lodash = require('lodash');
 import { removeItemFromCart, updateCartItemQuantity } from '../../../../store/cart/cartAction';
+import { addItemToCheckoutList } from '../../../../store/checkout/checkoutAction';
 const CartProductCard = ({ item, idx }) => {
   const dispatch = useDispatch();
+  const addToCheckoutList = (e) => {
+    e.stopPropagation();
+    dispatch(addItemToCheckoutList());
+  };
+  const removeItem = (e, id) => {
+    e.stopPropagation();
 
-  const removeItem = (id) => {
     console.log('remove', id);
     dispatch(removeItemFromCart(id));
   };
@@ -20,10 +26,10 @@ const CartProductCard = ({ item, idx }) => {
     <div className={classes.cardLayout}>
       <div className={classes.header}>
         <div>
-          <input type="checkbox" />
-          <p>{item.publishedBy.name}</p>
+          <input onClick={(e) => addToCheckoutList(e)} type="checkbox" />
+          <p>{item.name}</p>
         </div>
-        <CloseIcon onClick={() => removeItem(item._id)} className={classes.clearBtn} />
+        <CloseIcon onClick={(e) => removeItem(e, item._id)} className={classes.clearBtn} />
       </div>
       <hr />
       <div className={classes.body}>

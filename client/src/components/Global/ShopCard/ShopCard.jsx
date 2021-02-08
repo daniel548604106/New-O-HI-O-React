@@ -38,7 +38,7 @@ const ShopCard = ({ shop }) => {
 
   return (
     <div className={classes.shopCardLayout}>
-      <div onClick={() => toShop(shop._id)} className={classes.profileImageLayout}>
+      <div onClick={() => toShop(shop.account)} className={classes.profileImageLayout}>
         <div className={classes.mainImage}>
           <img
             src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFzaGlvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"

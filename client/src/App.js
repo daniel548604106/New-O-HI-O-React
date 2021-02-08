@@ -99,7 +99,7 @@ const App = (props) => {
         <Route path="/favorite">
           <Favorite />
         </Route>
-        <Route path={`/shop/:id`}>
+        <Route path={`/shop/:account`}>
           <Shop />
         </Route>
         <Route path="/search">

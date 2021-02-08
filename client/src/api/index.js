@@ -41,11 +41,16 @@ export const apiGetFavList = getFavList;
 
 // Shop
 
-import { getHotShop } from './shopRequest';
-
+import { getHotShop, getShopProducts } from './shopRequest';
+export const apiGetShopProducts = getShopProducts;
 export const apiGetHotShop = getHotShop;
 
 // My
 
 import { patchMyData } from './myRequest';
 export const apiPatchMyData = patchMyData;
+
+// Order
+
+import { postNewOrder } from './orderRequest';
+export const apiPostNewOrder = postNewOrder;
