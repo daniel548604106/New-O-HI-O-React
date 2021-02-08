@@ -21,7 +21,7 @@ const CartProductCard = ({ item, idx }) => {
       <div className={classes.header}>
         <div>
           <input type="checkbox" />
-          <p>{item.name}</p>
+          <p>{item.publishedBy.name}</p>
         </div>
         <CloseIcon onClick={() => removeItem(item._id)} className={classes.clearBtn} />
       </div>

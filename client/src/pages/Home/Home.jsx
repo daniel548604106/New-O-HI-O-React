@@ -4,7 +4,12 @@ import Campaign from '../../components/Home/Campaign/Campaign.jsx';
 import Shop from '../../components/Home/Shops/Shops.jsx';
 import Cards from '../../components/Home/Cards/Cards.jsx';
 import Subscription from '../../components/Home/Subscription/Subscription.jsx';
-import { apiGetAllProducts, apiGetBanners, apiGetHotShop } from '../../api/index';
+import {
+  apiGetAllProducts,
+  apiGetDiscountedProducts,
+  apiGetBanners,
+  apiGetHotShop,
+} from '../../api/index';
 import classes from './Home.module.scss';
 import { getFavList } from '../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
@@ -14,6 +19,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [hotShops, setHotShops] = useState([]);
   const [banners, setBanners] = useState([]);
+  const [discountedProducts, setDiscountedProducts] = useState([]);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -46,10 +52,22 @@ const Home = () => {
     }
   };
 
+  //取得精選優惠
+  const getDiscountedProducts = async () => {
+    try {
+      const { data } = await apiGetDiscountedProducts();
+      console.log('discounted', data);
+      setDiscountedProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getBanners();
     getAllProducts();
     getHotShop();
+    getDiscountedProducts();
   }, []);
 
   useEffect(() => {
@@ -80,7 +98,7 @@ const Home = () => {
           <Shop t={t} shops={hotShops} />
         </section>
         <section>
-          <Cards title="discountedItems" products={products} t={t} />
+          <Cards title="discountedItems" products={discountedProducts} t={t} />
         </section>
         <section style={{ width: '100%' }}>
           <Subscription t={t} />

@@ -1,9 +1,40 @@
 const Product = require('../models/productModel');
+const Shop = require('../models/shopModel')
+const addNewProduct = async(req,res,next) =>{
+  try{ 
+    const { ...all } = req.body
+    const id = req.user._id
+    console.log(all,id)
+    const shop = await Shop.findOne({ user: id})
+    const shopId = shop._id
+    const newProduct = await Product.create({
+      ...all,
+      publishedBy: shopId
+    })
+    console.log(newProduct)
+    res.status(200).json({
+      newProduct
+    })
 
+  }catch(error){
+    console.log(error)
+  }
+}
+const getDiscountedProducts = async(req,res,next) =>{
+  try{
+    console.log('discount')
+    const products = await Product.find({"discountPrice": { $ne: null }})
+    console.log('discount',products)
+    res.status(200).json({
+      products
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
 const getAllProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
-    console.log(products);
     res.status(200).json({
       products,
     });
@@ -15,7 +46,7 @@ const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     console.log(id);
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate('publishedBy');
     console.log(product);
     res.status(200).json({
       product,
@@ -37,4 +68,4 @@ const getCollectionProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllProducts, getProduct, getCollectionProducts };
+module.exports = { addNewProduct, getAllProducts, getProduct, getCollectionProducts,getDiscountedProducts };

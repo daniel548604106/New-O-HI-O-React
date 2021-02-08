@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   publishedBy: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',
+    ref: 'Shop',
   },
   name: {
     type: String,

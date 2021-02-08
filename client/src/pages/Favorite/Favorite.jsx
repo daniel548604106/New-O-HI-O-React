@@ -37,7 +37,7 @@ const Favorite = () => {
 
       <div className={classes.favorites}>
         {showProducts ? (
-          <div className={favoriteProducts.length && classes.productsRow}>
+          <div className={favoriteProducts && favoriteProducts.length && classes.productsRow}>
             {favoriteProducts && favoriteProducts.length ? (
               favoriteProducts.map((product) => <ProductCard key={product._id} product={product} />)
             ) : (
@@ -45,7 +45,7 @@ const Favorite = () => {
             )}
           </div>
         ) : (
-          <div className={classes.shopsRow}>
+          <div className={favoriteShops && favoriteShops.length && classes.shopsRow}>
             {favoriteShops && favoriteShops.length ? (
               favoriteShops.map((shop) => <ShopCard key={shop._id} shop={shop}></ShopCard>)
             ) : (

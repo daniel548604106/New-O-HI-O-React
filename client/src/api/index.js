@@ -10,11 +10,16 @@ export const apiPostOauthLogin = postOAuthLogin;
 export const apiPostLogout = postLogout;
 
 // 產品
-import { getAllProducts, getProduct, getCollectionProducts } from './productRequest';
+import {
+  getAllProducts,
+  getProduct,
+  getCollectionProducts,
+  getDiscountedProducts,
+} from './productRequest';
 export const apiGetAllProducts = getAllProducts;
 export const apiGetProduct = getProduct;
 export const apiGetCollectionProducts = getCollectionProducts;
-
+export const apiGetDiscountedProducts = getDiscountedProducts;
 // Banner
 
 import { getBanners } from './bannerRequest';

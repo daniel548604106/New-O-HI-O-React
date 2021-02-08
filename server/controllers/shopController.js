@@ -23,7 +23,7 @@ const addNewShop = async(req,res) =>{
 const getHotShop = async(req,res) =>{
   try{
     const shop = await Shop.find().limit(10)
-    console.log('hot shop')
+    
     res.status(200).json({
       shop
     })

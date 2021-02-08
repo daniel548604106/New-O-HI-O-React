@@ -49,6 +49,16 @@ const admin = (req,res, next) =>{
   next()
 }
 
+const seller = (req,res, next) =>{
+  if(!req.user.roles.includes('seller')){
+    return res.status(403).json({
+      status: 'fail',
+      message: "User is not a valid seller"
+    })
+  }
+  next()
+}
 
 
-module.exports = { protect, admin}
+
+module.exports = { protect, admin ,seller}

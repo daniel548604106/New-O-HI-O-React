@@ -126,7 +126,7 @@ const Product = () => {
           />
         </div>
         <div className={classes.designShopInfo}>
-          <DesignShopInfo />
+          <DesignShopInfo product={product} />
         </div>
       </div>
       <div>
