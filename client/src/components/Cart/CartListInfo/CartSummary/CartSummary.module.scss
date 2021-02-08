@@ -1,0 +1,43 @@
+.totalHeader {
+  background-color: #f6f6f6;
+  padding: 10px;
+}
+.totalBody {
+  padding: 10px;
+
+  .totalBodyContent {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    > span {
+      font-size: 14px;
+    }
+
+    .price {
+      font-weight: 500;
+    }
+  }
+
+  .checkoutButton {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: var(--primary-pink);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.totalPriceContent {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  justify-content: space-between;
+  .totalPriceTitle,
+  .totalPrice {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}

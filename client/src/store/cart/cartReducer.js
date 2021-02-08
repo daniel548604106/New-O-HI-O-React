@@ -1,18 +1,28 @@
-import { ADD_CART_ITEM, CLEAR_CART_ITEM, REMOVE_CART_ITEM } from '../reducerTypes';
+import {
+  ADD_CART_ITEM,
+  CLEAR_CART_ITEM,
+  REMOVE_CART_ITEM,
+  UPDATE_CART_ITEM_QTY,
+  UPDATE_CHECKOUT_PROGRESS,
+} from '../reducerTypes';
 import {
   addItemToCart,
   removeItemFromCart,
   getCartItemsFromLocalStorage,
   saveCartItemsToLocalStorage,
   clearItemFromCart,
+  updateCartItemQuantity,
 } from './cartUtils';
 
 const initialState = {
+  checkoutProgress: 1,
   cartItems: [],
 };
 
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_CHECKOUT_PROGRESS:
+      return { ...state, checkoutProgress: action.payload };
     case ADD_CART_ITEM:
       console.log('add');
       saveCartItemsToLocalStorage({
@@ -27,7 +37,13 @@ export const cartReducer = (state = initialState, action) => {
         cartItems: removeItemFromCart(state.cartItems, action.payload),
       });
       return { ...state, cartItems: removeItemFromCart(state.cartItems, action.payload) };
-
+    case UPDATE_CART_ITEM_QTY:
+      console.log('update');
+      saveCartItemsToLocalStorage({
+        ...state,
+        cartItems: updateCartItemQuantity(state.cartItems, action.payload),
+      });
+      return { ...state, cartItems: updateCartItemQuantity(state.cartItems, action.payload) };
     case CLEAR_CART_ITEM:
       console.log('clear');
       saveCartItemsToLocalStorage({
@@ -36,6 +52,6 @@ export const cartReducer = (state = initialState, action) => {
       });
       return { ...state, cartItems: clearItemFromCart(state.cartItems, action.payload) };
     default:
-      return state;
+      return initialState;
   }
 };

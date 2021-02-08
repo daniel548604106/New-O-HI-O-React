@@ -1,0 +1,17 @@
+.backBtn {
+  cursor: pointer;
+  color: var(--primary-pink);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.nextBtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

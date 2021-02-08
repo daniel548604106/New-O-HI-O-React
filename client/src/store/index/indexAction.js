@@ -33,7 +33,6 @@ export const getFavList = (token) => async (dispatch) => {
     const { data } = await apiGetFavList(token);
     console.log(data);
     dispatch({ type: GET_FAVORITE_LIST_SUCCESS, payload: data.userFavList });
-    notify('已更新收藏');
   } catch (error) {
     dispatch({ type: GET_FAVORITE_LIST_FAILURE });
     console.log(error);
@@ -45,7 +44,7 @@ export const addToFavorite = (id, type) => async (dispatch) => {
     dispatch({ type: ADD_TO_FAVORITE_REQUEST });
     const token = Cookie.get('token');
     const { data } = await apiAddToFavorite(id, token, type);
-
+    notify('已更新收藏');
     dispatch(getFavList(token));
   } catch (error) {
     dispatch({ type: ADD_TO_FAVORITE_FAILURE });

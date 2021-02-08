@@ -1,0 +1,17 @@
+.unifiedInvoice {
+  p {
+    font-size: 14px;
+    color: var(--primary-gray);
+  }
+  input {
+    border-radius: 4px;
+    border: 1px solid var(--border-gray);
+    padding: 10px;
+    margin: 10px 10px 10px 0;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

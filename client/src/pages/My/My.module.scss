@@ -1,5 +1,8 @@
 .myLayout {
   display: flex;
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
   .mySidebar {
     flex: 1;
   }

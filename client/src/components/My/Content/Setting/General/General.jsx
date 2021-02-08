@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import classes from './General.module.scss';
-import facebook from '../../../../../assets/images/global/facebook.svg';
 import Button from '../../../../Global/Button/Button.jsx';
 import Reminder from '../../../../Global/Reminder/Reminder.jsx';
+import LanguagePreference from './LanguagePreference/LanguagePreference.jsx';
+import ChangeProfilePicture from './ChangeProfilePicture/ChangeProflePicture.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { apiPatchMyData } from '../../../../../api/index';
 import { setUserLoggedIn } from '../../../../../store/user/userAction';
@@ -118,28 +119,8 @@ const General = () => {
         <Button text="save" />
       </span>
       <hr className={classes.hr} />
-      <div className={classes.profile}>
-        <h2>Change Profile Picture</h2>
-        <div className={classes.uploadPhoto}>
-          <img src={facebook} alt="" />
-          <div>
-            <span>Optimal Size : 600 * 600px</span>
-            <Button text="Upload Photo" />
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div className={classes.languagePreference}>
-        <h2>Language Preferences</h2>
-        <p>
-          Language: <span>English</span> / Currency: <span>New Taiwan Dollar (TWD) NT$</span>{' '}
-          <span className={classes.more}>(More)</span>
-        </p>
-        <p>
-          Click <span className={classes.here}>here</span> to change your language preferences. You
-          can also update your settings at any time in the lower right hand corner of the interface.
-        </p>
-      </div>
+      <ChangeProfilePicture />
+      <LanguagePreference />
     </div>
   );
 };

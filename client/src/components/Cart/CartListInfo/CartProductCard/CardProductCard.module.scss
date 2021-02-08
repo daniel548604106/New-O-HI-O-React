@@ -1,0 +1,77 @@
+.cardLayout {
+  margin-bottom: 15px;
+  width: 100%;
+  border: 1px solid var(--border-gray);
+  border-radius: 2px;
+
+  .clearBtn {
+    cursor: pointer;
+    color: var(--primary-gray);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+}
+
+.body {
+  padding: 10px;
+  .productInfoRow {
+    display: flex;
+    align-items: start;
+    .productImage {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+    > div {
+      flex: 1;
+      display: flex;
+
+      @media (max-width: 720px) {
+        flex-direction: column;
+        display: flex;
+      }
+
+      .productInfo {
+        display: flex;
+        margin-right: 10px;
+        flex: 3;
+        span {
+          font-size: 14px;
+          color: var(--primary-gray);
+          @media (max-width: 500px) {
+            margin-top: 5px;
+            font-size: 12px;
+          }
+        }
+        > div {
+          margin-right: 10px;
+          width: 100%;
+        }
+      }
+      .productQuantity {
+        display: flex;
+        justify-content: space-between;
+        flex: 2;
+      }
+    }
+  }
+}
+
+.quantitySelect {
+  align-self: flex-start;
+  padding: 10px;
+}

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { apiAddToFavorite } from '../../../api/index';
 import { useParams } from 'react-router-dom';
-import { addToCart } from '../../../store/cart/cartAction.jsx';
+import { addToCart } from '../../../store/cart/cartAction.js';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
     {

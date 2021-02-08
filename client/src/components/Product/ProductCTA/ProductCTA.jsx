@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { apiAddToFavorite } from '../../../api/index';
-import { addToCart } from '../../../store/cart/cartAction.jsx';
+import { addToCart } from '../../../store/cart/cartAction.js';
 import Cookie from 'js-cookie';
 const ProductCTA = ({ product }) => {
   const dispatch = useDispatch();
