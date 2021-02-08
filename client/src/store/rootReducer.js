@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { cartReducer } from './cart/cartReducer.jsx';
+import { cartReducer } from './cart/cartReducer.js';
 import { persistReducer } from 'redux-persist';
 import { productListReducer } from './product/productReducer';
 import storage from 'redux-persist/lib/storage';

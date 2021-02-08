@@ -1,0 +1,41 @@
+.donateTab {
+  .row {
+    margin-bottom: 10px;
+    .otherInput {
+      margin-left: 10px;
+      width: 200px;
+    }
+    input {
+      margin-right: 5px;
+      padding: 10px;
+      border: 1px solid var(--border-gray);
+      &::placeholder {
+        color: var(--primary-gray);
+        opacity: 0.6;
+      }
+    }
+    p {
+      font-size: 16px;
+      color: var(--primary-gray);
+    }
+  }
+  .info {
+    display: flex;
+    align-items: center;
+    input {
+      margin-top: 10px;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid var(--border-gray);
+    }
+    p {
+      font-size: 14px;
+      color: var(--primary-gray);
+    }
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

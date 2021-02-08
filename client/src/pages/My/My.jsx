@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from './My.module.scss';
 import Sidebar from '../../components/My/Sidebar/SideBar.jsx';
-import Content from '../../components/My/Content/Content.jsx';
+import Setting from './Setting/Setting.jsx';
+import Purchase from '../../components/My/Content/Purchase/Purchase.jsx';
+import Refund from '../../components/My/Content/Refund/Refund.jsx';
+import { useLocation } from 'react-router-dom';
 const My = () => {
   return (
     <div className={classes.myLayout}>
@@ -10,7 +13,9 @@ const My = () => {
         <Sidebar />
       </div>
       <div className={classes.myContent}>
-        <Content />
+        {location.pathname.includes('setting') && <Setting />}
+        {location.pathname.includes('purchase') && <Purchase />}
+        {location.pathname.includes('refund') && <Refund />}
       </div>
     </div>
   );

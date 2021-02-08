@@ -1,0 +1,73 @@
+.invoice {
+  .body {
+    border: 1px solid var(--border-gray);
+    padding: 20px 10px;
+    border-radius: 4px;
+  }
+}
+
+.title {
+  background-color: var(--primary-pink);
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border-top-right-radius: 10px;
+  display: inline-block;
+}
+
+.invoiceType {
+  border: 1px solid var(--primary-gray);
+  border-radius: 5px;
+  color: var(--primary-gray);
+  background-color: white;
+  margin-right: 10px;
+
+  &.active {
+    border: 1px solid var(--primary-pink);
+    color: var(--primary-pink);
+    background-color: white;
+  }
+}
+
+.electronicTab {
+  margin: 0 0 10px 0;
+  p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--primary-gray);
+  }
+
+  .option {
+    margin-bottom: 10px;
+    > input {
+      margin-right: 5px;
+    }
+    span {
+      color: var(--primary-gray);
+    }
+  }
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  p {
+    font-size: 14px;
+    color: var(--primary-gray);
+  }
+  input {
+    margin-top: 5px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid var(--border-gray);
+  }
+}
+
+.clarification {
+  font-size: 14px;
+  margin-top: 10px;
+  color: var(--primary-gray);
+}

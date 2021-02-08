@@ -96,16 +96,13 @@ const App = (props) => {
         <Route path={`/products/:id`}>
           <Product />
         </Route>
-        <Route path="/checkout" exact>
-          <Checkout />
-        </Route>
         <Route path="/favorite">
           <Favorite />
         </Route>
         <Route path="/search">
           <Search />
         </Route>
-        <Route path="/cart" exact>
+        <Route path="/cart/:status?">
           <Cart />
         </Route>
         <Route path="/beauty">

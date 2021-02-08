@@ -33,9 +33,11 @@ const Navbar = () => {
   useEffect(() => {
     setSearchBarOpen(false);
   }, [location]);
-  const totalCartItems = cartItems.reduce((total, cartItem) => {
-    return (total += cartItem.quantity);
-  }, 0);
+  const totalCartItems =
+    cartItems &&
+    cartItems.reduce((total, cartItem) => {
+      return (total += Number(cartItem.quantity));
+    }, 0);
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
@@ -125,11 +127,11 @@ const Navbar = () => {
               <SearchIcon />
             </IconButton>
             {isUserLoggedIn ? (
-              <div>
-                <Link to="/account">
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Link to="/my/setting">
                   <img className={classes.avatar} src={meData.picture} alt="" />
                 </Link>
-                <div>
+                <div style={{ marginLeft: '10px' }}>
                   <FavoriteBorderIcon />
                 </div>
               </div>

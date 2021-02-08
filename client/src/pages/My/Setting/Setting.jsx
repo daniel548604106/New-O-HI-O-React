@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import About from './About/About.jsx';
-import General from './General/General.jsx';
+import About from '../../../components/My/Content/Setting/About/About.jsx';
+import General from '../../../components/My/Content/Setting/General/General.jsx';
 import { useLocation } from 'react-router-dom';
-const Account = () => {
+const Setting = () => {
   const location = useLocation();
   useEffect(() => {
     console.log(location);
@@ -15,4 +15,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default Setting;

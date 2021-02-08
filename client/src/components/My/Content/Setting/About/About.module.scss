@@ -1,0 +1,16 @@
+.aboutMeForm {
+  margin-top: 30px;
+  input,
+  textarea {
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    &:focus {
+      border: var(--primary-pink);
+    }
+  }
+}
+
+hr {
+  margin: 20px 0;
+}
