@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-import { Home, Product, Search, Cart, Browse, Checkout, Favorite, My, OAuth } from './pages/index';
+import { Home, Product, Search, Cart, Browse, Shop, Favorite, My, OAuth } from './pages/index';
 import Footer from './components/Footer/Footer.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal } from './store/index/indexAction';
@@ -98,6 +98,9 @@ const App = (props) => {
         </Route>
         <Route path="/favorite">
           <Favorite />
+        </Route>
+        <Route path={`/shop/:id`}>
+          <Shop />
         </Route>
         <Route path="/search">
           <Search />

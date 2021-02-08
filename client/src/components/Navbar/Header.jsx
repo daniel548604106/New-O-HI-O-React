@@ -105,7 +105,7 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div>
-                  <Link to="/favorite/products" className={classes.favIcon}>
+                  <Link to="/favorite?tab=products" className={classes.favIcon}>
                     <FavoriteBorderIcon />
                   </Link>
                 </div>
@@ -131,9 +131,13 @@ const Navbar = () => {
                 <Link to="/my/setting">
                   <img className={classes.avatar} src={meData.picture} alt="" />
                 </Link>
-                <div style={{ marginLeft: '10px' }}>
+                <Link
+                  to="/favorite?tab=products"
+                  style={{ marginLeft: '10px' }}
+                  className={classes.favIcon}
+                >
                   <FavoriteBorderIcon />
-                </div>
+                </Link>
               </div>
             ) : (
               <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>

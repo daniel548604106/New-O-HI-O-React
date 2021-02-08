@@ -1,18 +1,14 @@
 import React from 'react';
 import classes from './CartListInfo.module.scss';
 import CartProductCard from './CartProductCard/CartProductCard.jsx';
+import Empty from '../../Global/Empty/Empty.jsx';
 import CartSummary from './CartSummary/CartSummary.jsx';
 import PropTypes from 'prop-types';
-const EmptyCart = () => {
-  return (
-    <div style={{ margin: '50px auto' }}>
-      <h1>Your Cart is Empty</h1>
-    </div>
-  );
-};
+import { useHistory } from 'react-router-dom';
+
 const CartListInfo = ({ cartItems }) => {
   return (
-    <>
+    <div className={classes.cartLayout}>
       {cartItems && cartItems.length ? (
         <>
           <div className={classes.selectAll}>
@@ -31,9 +27,9 @@ const CartListInfo = ({ cartItems }) => {
           </div>
         </>
       ) : (
-        <EmptyCart />
+        <Empty title="你的購物車裡目前沒有商品喔！" />
       )}
-    </>
+    </div>
   );
 };
 

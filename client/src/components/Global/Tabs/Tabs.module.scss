@@ -1,7 +1,8 @@
 .list {
   display: flex;
   align-items: flex-end;
-
+  width: 100%;
+  border-bottom: 1px solid var(--border-gray);
   div {
     padding: 10px 20px;
     margin-top: 20px;
@@ -14,26 +15,5 @@
       color: var(--primary-black);
       font-weight: 500;
     }
-  }
-}
-
-hr {
-  margin: 0;
-}
-
-.favorites {
-  margin-top: 20px;
-  min-height: 60vh;
-
-  .productsRow {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .shopsRow {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
