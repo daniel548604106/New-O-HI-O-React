@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Shop.module.scss';
 import Banner from '../../components/Shop/Banner/Banner.jsx';
 import ShopInfo from '../../components/Shop/ShopInfo/ShopInfo.jsx';
@@ -6,8 +6,9 @@ import Tabs from '../../components/Global/Tabs/Tabs.jsx';
 import RecommendedDesign from '../../components/Shop/RecommendedDesign/RecommendedDesign.jsx';
 import ProductList from '../../components/Shop/ProductList/ProductList.jsx';
 import Sidebar from '../../components/Shop/Sidebar/Sidebar.jsx';
-import { apiGetShopProducts } from '../../api/index';
+import { apiGetShopProducts, apiGetShopInfo } from '../../api/index';
 import { useLocation, useParams } from 'react-router-dom';
+
 const tabs = [
   {
     name: '商品',
@@ -25,20 +26,36 @@ const tabs = [
 const Shop = () => {
   const location = useLocation();
   const params = useParams();
+  const [shopInfo, setShopInfo] = useState({});
+
   useEffect(() => {
     const { data } = apiGetShopProducts(params.account);
-    console.log(data);
+    const { account } = params;
+
+    const getShopInfo = async () => {
+      try {
+        const { data } = await apiGetShopInfo(account);
+        setShopInfo(data.shop);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getShopInfo();
   }, []);
   return (
     <div>
-      SHop
-      <Banner />
-      <ShopInfo />
-      <Tabs tabs={tabs} />
-      <RecommendedDesign />
-      <div className={classes.productsRow}>
-        <Sidebar />
-        <ProductList />
+      <Banner shop={shopInfo} />
+      <div className={classes.mainContent}>
+        <ShopInfo shop={shopInfo} />
+        <Tabs tabs={tabs} />
+        <RecommendedDesign pinnedProducts={shopInfo.pinnedProducts} />
+        <div className={classes.productsRow}>
+          <Sidebar />
+          <div className={classes.productList}>
+            <ProductList products={shopInfo.products} />
+          </div>
+        </div>
       </div>
     </div>
   );

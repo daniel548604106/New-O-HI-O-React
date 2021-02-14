@@ -4,6 +4,7 @@ const User = require('../models/userModel')
 // const Account = require('../models/accountModel')
 const protect = async (req,res,next) =>{
   try{
+    console.log(req.headers)
     console.log('protected')
     // console.log(req.body, req.headers)
     let token  = ''

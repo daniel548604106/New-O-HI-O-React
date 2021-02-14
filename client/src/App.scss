@@ -8,3 +8,29 @@
 .swiper-pagination-bullet-active {
   background-color: white !important;
 }
+
+.hideHeader {
+  position: fixed;
+  bottom: 0;
+  z-index: 12;
+  cursor: pointer;
+  right: 0;
+  background-color: var(--primary-pink);
+  color: white;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  span {
+    margin-left: 5px;
+  }
+}
+
+.chatRoom {
+  position: fixed;
+  bottom: 50px;
+  width: 500px;
+  height: 500px;
+  z-index: 15;
+  right: 0;
+}

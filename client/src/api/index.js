@@ -41,9 +41,10 @@ export const apiGetFavList = getFavList;
 
 // Shop
 
-import { getHotShop, getShopProducts } from './shopRequest';
+import { getHotShop, getShopProducts, getShopInfo } from './shopRequest';
 export const apiGetShopProducts = getShopProducts;
 export const apiGetHotShop = getHotShop;
+export const apiGetShopInfo = getShopInfo;
 
 // My
 
@@ -54,3 +55,10 @@ export const apiPatchMyData = patchMyData;
 
 import { postNewOrder } from './orderRequest';
 export const apiPostNewOrder = postNewOrder;
+
+// Chat
+
+import { patchChat, getChat, getAllChats } from './chatRequest';
+export const apiPatchChat = patchChat;
+export const apiGetChat = getChat;
+export const apiGetAllChats = getAllChats;

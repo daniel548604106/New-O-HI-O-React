@@ -47,4 +47,18 @@ const getProductsFromShop = async(req,res) =>{
 }
 
 
-module.exports = { addNewShop,getHotShop ,getProductsFromShop}
+const getShopInfo = async(req,res) =>{
+  try{
+    console.log('hihihihi')
+    const { account } = req.params
+    console.log('accont',account)
+    const shop = await Shop.findOne({ account}).populate('user').populate('pinnedProducts').populate('products')
+    res.status(200).json({
+      shop
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
+
+module.exports = { addNewShop,getHotShop ,getProductsFromShop,getShopInfo}

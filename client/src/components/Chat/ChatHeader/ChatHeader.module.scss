@@ -1,0 +1,17 @@
+.chatHeader {
+  display: inline-block;
+  background-color: white;
+  width: 100%;
+  padding: 10px;
+  color: var(--primary-pink);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  right: 10px;
+}

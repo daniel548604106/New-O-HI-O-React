@@ -3,10 +3,10 @@ import classes from './ProductBanner.module.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { apiAddToFavorite } from '../../../api/index';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../../../store/cart/cartAction.js';
+import { addToFavorite } from '../../../store/index/indexAction';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
     {
@@ -20,6 +20,7 @@ const ProductBanner = ({ product, scrollToPage }) => {
   ];
   const [activeBtn, setActiveBtn] = useState(0);
   const dispatch = useDispatch();
+  const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const params = useParams();
   const addItemToCart = (product) => {
     dispatch(addToCart(product));
@@ -32,8 +33,8 @@ const ProductBanner = ({ product, scrollToPage }) => {
 
   const addToWishList = () => {
     const type = 'product';
-    const { data } = apiAddToFavorite(params.id, type);
-    console.log(data);
+    console.log('params', params);
+    dispatch(addToFavorite(params.id, type));
   };
 
   return (
@@ -49,9 +50,19 @@ const ProductBanner = ({ product, scrollToPage }) => {
           ))}
         </div>
         <div className={classes.ctaBtnRow}>
-          <button onClick={() => addToWishList()} className={classes.wishList}>
-            <FavoriteBorderIcon />
-            <p>Add To WishList</p>
+          <button onClick={() => addToWishList()}>
+            {favoriteProducts &&
+            favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
+              <div className={classes.wishListAdded}>
+                <FavoriteBorderIcon />
+                <p>Added</p>
+              </div>
+            ) : (
+              <div className={classes.wishList}>
+                <FavoriteBorderIcon />
+                <p>Add To WishList</p>
+              </div>
+            )}
           </button>
           <button onClick={() => addItemToCart(product)} className={classes.addToCart}>
             <p>Add To Cart</p>

@@ -85,11 +85,7 @@ const userSchema = new mongoose.Schema(
 // });
 
 //virtual populate
-userSchema.virtual('journeys', {
-  ref: 'Journey',
-  foreignField: 'createdBy',
-  localField: '_id',
-});
+
 
 const User = mongoose.model('User', userSchema);
 

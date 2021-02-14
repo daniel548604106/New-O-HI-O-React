@@ -21,6 +21,12 @@ const shopSchema = new mongoose.Schema({
   website:{
     type: String
   },
+  pinnedProducts:[
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Product'
+    }
+  ],
   user:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

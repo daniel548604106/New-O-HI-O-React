@@ -7,19 +7,19 @@ const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, 
   const productDescription = useRef(null);
   const evaluation = useRef(null);
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <div ref={productDescriptionRef} className="description">
         <Dropdown title="productDescription" product={product} />
       </div>
       <div className="description">
         <Dropdown title="tags" product={product} />
       </div>
-      <div ref={evaluationRef}>
+      <div ref={evaluationRef} style={{ width: '100%' }}>
         <h2>{t('evaluation')}</h2>
         <hr />
         <div className={classes.feedbackRow}>
           <div>
-            {reviews ? (
+            {reviews && reviews.length ? (
               reviews.map((review) => (
                 <div key={review._id} className={classes.feedbackRow}>
                   <img src={review.user.picture} alt="avatar" />
@@ -40,7 +40,7 @@ const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, 
                 </div>
               ))
             ) : (
-              <h1>No reviews</h1>
+              <div className={classes.noReview}>目前尚無任何評價</div>
             )}
           </div>
         </div>

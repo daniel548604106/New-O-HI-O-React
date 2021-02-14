@@ -24,7 +24,7 @@ const getDiscountedProducts = async(req,res,next) =>{
   try{
     console.log('discount')
     const products = await Product.find({"discountPrice": { $ne: null }})
-    console.log('discount',products)
+    // console.log('discount',products)
     res.status(200).json({
       products
     })
@@ -46,7 +46,7 @@ const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     console.log(id);
-    const product = await Product.findById(id).populate('publishedBy');
+    const product = await Product.findById(id).populate('publishedBy').populate('reviews');
     console.log(product);
     res.status(200).json({
       product,

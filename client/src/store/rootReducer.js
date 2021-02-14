@@ -5,6 +5,7 @@ import { productListReducer } from './product/productReducer';
 import storage from 'redux-persist/lib/storage';
 import { indexReducer } from './index/indexReducer';
 import { checkoutReducer } from './checkout/checkoutReducer';
+import chatReducer from './chat/chatReducer.js';
 import userReducer from './user/userReducer';
 const persistConfig = {
   key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 };
 
 const rootReducers = combineReducers({
+  chat: chatReducer,
   productList: productListReducer,
   global: indexReducer,
   user: userReducer,

@@ -1,0 +1,60 @@
+.searchInput {
+  padding: 10px;
+  border: none;
+  background-color: #fafafa;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.chatList {
+  padding: 5px;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.chats {
+  height: 100%;
+
+  overflow: scroll;
+}
+
+.chatCoverRow {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  > div {
+    width: 100%;
+  }
+  img {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 2px;
+    margin-right: 5px;
+  }
+
+  .shopName {
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .chatInfo {
+    font-size: 12px;
+    width: 100%;
+    display: flex;
+    color: var(--primary-gray);
+
+    justify-content: space-between;
+
+    .lastMessage {
+      width: 120px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}

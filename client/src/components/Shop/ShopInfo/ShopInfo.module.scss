@@ -1,0 +1,50 @@
+.shopLogo {
+  width: 100px;
+  height: 100px;
+}
+
+.mainShopInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  border-right: 1px solid var(--primary-gray);
+}
+.shopInfo {
+  width: 100%;
+  padding: 15px 0;
+  display: flex;
+  p {
+    font-size: 12px;
+    margin: 5px 0;
+    color: var(--primary-gray);
+  }
+}
+
+.createdAt {
+  margin-left: 5px;
+}
+
+.contact {
+  min-width: 200px;
+  margin-left: 20px;
+  .user {
+    display: flex;
+    align-items: center;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    span {
+      color: var(--primary-pink);
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+
+  .button {
+    margin: 10px 0 20px 0;
+  }
+}

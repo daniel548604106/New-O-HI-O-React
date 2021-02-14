@@ -1,11 +1,16 @@
 .feedbackRow {
+  width: 100%;
   display: flex;
   margin-top: 20px;
   justify-content: space-between;
   align-items: flex-start;
   .feedbackRow {
     display: flex;
+    width: 100%;
     margin-right: 10px;
+    div {
+      width: 100%;
+    }
 
     .name {
       color: var(--primary-gray);
@@ -34,4 +39,13 @@
 .topRow {
   display: flex;
   justify-content: space-between;
+}
+
+.noReview {
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

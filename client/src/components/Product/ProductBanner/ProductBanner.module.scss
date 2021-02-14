@@ -66,13 +66,24 @@
       margin-left: 5px;
     }
 
-    &.wishList {
+    .wishList {
       @media (max-width: 500px) {
         border: none;
       }
       color: var(--primary-black);
       border: 1px solid var(--primary-black);
       background-color: white;
+    }
+
+    .wishListAdded {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary-pink);
+      color: white;
     }
 
     &.addToCart {
