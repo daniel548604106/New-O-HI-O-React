@@ -19,11 +19,11 @@ const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) =>
   }, [activeCategory, subcategoryId]);
 
   const filter = (e) => {
-    const params = new URLSearchParams(location.search);
-    console.log(params);
+    const params = new URLSearchParams();
     console.log(JSON.parse(e.target.value));
     const query = JSON.parse(e.target.value);
-    params.append('sortby', query.name);
+    history.push(`${location.pathname}?soryby=${query.name}`);
+
     console.log(location);
   };
   return (

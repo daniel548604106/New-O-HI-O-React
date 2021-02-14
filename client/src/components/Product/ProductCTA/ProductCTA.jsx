@@ -4,20 +4,22 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { apiAddToFavorite } from '../../../api/index';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../store/cart/cartAction.js';
+import { addToFavorite } from '../../../store/index/indexAction';
 import Cookie from 'js-cookie';
 const ProductCTA = ({ product }) => {
   const dispatch = useDispatch();
   const params = useParams();
+  const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const addItemToCart = () => {
     dispatch(addToCart(product));
   };
 
   const addToWishList = () => {
-    const { data } = apiAddToFavorite(params.id);
-    console.log(data);
+    const type = 'product';
+    console.log('params', params);
+    dispatch(addToFavorite(params.id, type));
   };
   return (
     <div className={classes.productCta}>
@@ -25,12 +27,18 @@ const ProductCTA = ({ product }) => {
         Add To Cart
       </div>
       <div onClick={() => addToWishList()} className={classes.wishlist}>
-        <div>
-          <FavoriteIcon />
-          <span>Add to Wishlist</span>
-          <ChevronRightIcon />
-        </div>
-        <p>Save for future shopping</p>
+        {favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
+          <div className={classes.wishListAdded}>Saved</div>
+        ) : (
+          <>
+            <div>
+              <FavoriteIcon />
+              <span>Add to Wishlist</span>
+              <ChevronRightIcon />
+            </div>
+            <p>Save for future shopping</p>
+          </>
+        )}
       </div>
     </div>
   );

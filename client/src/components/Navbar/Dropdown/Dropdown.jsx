@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import classes from './Dropdown.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserLogout } from '../../../store/user/userAction';
-
+import { useHistory } from 'react-router-dom';
 const Dropdown = () => {
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+  const history = useHistory();
   const logout = () => {
+    history.push('/');
     dispatch(setUserLogout());
   };
   return (

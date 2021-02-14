@@ -54,8 +54,8 @@ const addToFavorite = async(req,res) =>{
       favoriteList
     })
 
-    console.log(favoriteList)
-    console.log('add Products ')
+    // console.log(favoriteList)
+    // console.log('add Products ')
   }catch(error){
     console.log(error)
   }
@@ -66,7 +66,7 @@ const getFavList = async(req,res) =>{
     console.log('get Products')
     const { _id } = req.user
     const userFavList = await Favorite.findOne({user: _id}).populate(['favoriteProducts','favoriteShops'])
-    console.log('user',userFavList)
+    // console.log('user',userFavList)
     res.status(200).json({
       userFavList
     })

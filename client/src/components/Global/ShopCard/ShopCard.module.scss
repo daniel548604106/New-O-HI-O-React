@@ -1,8 +1,9 @@
 .shopCardLayout {
-  width: 300px;
+  width: 100%;
   border: 1px solid var(--secondary-gray);
   .profileImageLayout {
     display: flex;
+    cursor: pointer;
     .mainImage {
       flex: 2;
       img {

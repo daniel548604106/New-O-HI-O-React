@@ -12,7 +12,6 @@ import ProductDescription from '../../../components/Product/ProductDescription/P
 import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDisplay.jsx';
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
-import Notification from '../../../components/Global/Notification/Notification.jsx';
 import { useTranslation } from 'react-i18next';
 const Product = () => {
   const { t, i18n } = useTranslation();
@@ -23,7 +22,6 @@ const Product = () => {
   const history = useHistory();
   const params = useParams();
   const isLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
-  const productList = useSelector((state) => state.productList);
   const [product, setProduct] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
@@ -126,7 +124,7 @@ const Product = () => {
           />
         </div>
         <div className={classes.designShopInfo}>
-          <DesignShopInfo />
+          <DesignShopInfo product={product} />
         </div>
       </div>
       <div>

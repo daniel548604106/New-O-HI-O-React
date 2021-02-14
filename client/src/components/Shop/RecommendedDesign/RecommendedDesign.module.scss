@@ -1,0 +1,21 @@
+.recommendedDesign {
+  padding: 20px 0;
+
+  .productRow {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--primary-gray);
+  margin-bottom: 10px;
+}
+
+.productImage {
+  margin-right: 10px;
+  width: 150px;
+}

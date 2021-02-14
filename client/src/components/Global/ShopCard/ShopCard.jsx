@@ -5,9 +5,10 @@ import AddIcon from '@material-ui/icons/Add';
 import DoneIcon from '@material-ui/icons/Done';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 const ShopCard = ({ shop }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
   const followShop = () => {
@@ -20,6 +21,9 @@ const ShopCard = ({ shop }) => {
     dispatch(openLoginModal());
   };
   const [followedFavoriteShop, setFollowedFavoriteShop] = useState(-1);
+  const toShop = (id) => {
+    history.push(`/shop/${id}`);
+  };
   useEffect(() => {
     if (!favoriteShops) return;
     const checkFollowedShop = () => {
@@ -34,7 +38,7 @@ const ShopCard = ({ shop }) => {
 
   return (
     <div className={classes.shopCardLayout}>
-      <div className={classes.profileImageLayout}>
+      <div onClick={() => toShop(shop.account)} className={classes.profileImageLayout}>
         <div className={classes.mainImage}>
           <img
             src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFzaGlvbnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"

@@ -1,36 +1,82 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
-import StarIcon from '@material-ui/icons/Star';
 import Stars from '../../Global/Stars/Stars.jsx';
 import googleLogo from '../../../assets/images/global/google.svg';
 import facebookLogo from '../../../assets/images/global/facebook.svg';
-const DesignShopInfo = () => {
+import PropTypes from 'prop-types';
+import DoneIcon from '@material-ui/icons/Done';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToFavorite } from '../../../store/index/indexAction';
+import { apiPatchChat } from '../../../api/index';
+import { toggleChat } from '../../../store/chat/chatAction';
+const DesignShopInfo = ({ product }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const favoriteShops = useSelector((state) => state.global.favoriteShops);
+
+  const followShop = (id) => {
+    const type = 'shop';
+    dispatch(addToFavorite(id, type));
+    console.log('follow');
+  };
+  const directToShop = (account) => {
+    history.push(`/shop/${account}`);
+  };
+  let hasShopFollowed = false;
+  const patchChat = async (id) => {
+    try {
+      dispatch(toggleChat());
+      console.log(id);
+      const { data } = await apiPatchChat(id);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className={classes.designShopRoot}>
         <h2>About Design Shop</h2>
         <div className={classes.designShopLayout}>
           <img
+            onClick={() => directToShop(product.publishedBy.account)}
             className={classes.designShopLogo}
-            src="https://images.unsplash.com/photo-1611525933351-1d340d202465?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
-            alt=""
+            src={product && product.publishedBy.logo}
+            alt="shop-logo"
           />
           <div>
-            <p>KENZO</p>
+            <p>{product && product.publishedBy.name}</p>
             <Stars />
           </div>
         </div>
-        <div className={classes.ctaBtnRow}>
-          <button className={classes.follow}>
-            <AddIcon />
-            <p>加入關注</p>
-          </button>
-          <button className={classes.contact}>
-            <p>聯絡店家</p>
-          </button>
-        </div>
-        <hr />
+        {favoriteShops && (
+          <div className={classes.ctaBtnRow}>
+            {hasShopFollowed ? (
+              <button
+                onClick={() => followShop(product.publishedBy._id)}
+                className={classes.followed}
+              >
+                <DoneIcon />
+                <p>關注中</p>
+              </button>
+            ) : (
+              <button
+                onClick={() => followShop(product.publishedBy._id)}
+                className={classes.follow}
+              >
+                <AddIcon />
+                <p>加入關注</p>
+              </button>
+            )}
+
+            <button onClick={() => patchChat(product.publishedBy.user)} className={classes.contact}>
+              <p>聯絡店家</p>
+            </button>
+          </div>
+        )}
+        <hr className={classes.separator} />
         <div className={classes.shareRow}>
           <h1 className={classes.title}>Share</h1>
           <div>
@@ -43,6 +89,10 @@ const DesignShopInfo = () => {
       </div>
     </div>
   );
+};
+
+DesignShopInfo.propTypes = {
+  product: PropTypes.object,
 };
 
 export default DesignShopInfo;

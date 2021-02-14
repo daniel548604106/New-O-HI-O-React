@@ -5,6 +5,7 @@ import Cart from './Cart/Cart.jsx';
 import Browse from './Browse/Browse.jsx';
 import Checkout from './Checkout/Checkout.jsx';
 import My from './My/My.jsx';
+import Shop from './Shop/Shop.jsx';
 import OAuth from './OAuth/OAuth.jsx';
 import Favorite from './Favorite/Favorite.jsx';
-export { Home, Product, Search, Cart, Browse, Checkout, My, OAuth, Favorite };
+export { Home, Shop, Product, Search, Cart, Browse, Checkout, My, OAuth, Favorite };

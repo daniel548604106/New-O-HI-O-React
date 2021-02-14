@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  border-bottom: 1px solid var(--border-gray);
+  div {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--primary-gray);
+    border-bottom: 4px solid transparent;
+    cursor: pointer;
+    &.active {
+      border-bottom: 4px solid var(--primary-black);
+      color: var(--primary-black);
+      font-weight: 500;
+    }
+  }
+}

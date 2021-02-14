@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   publishedBy: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',
+    ref: 'Shop',
   },
   name: {
     type: String,
@@ -42,7 +42,20 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 1,
   },
+},{
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
 });
+
+
+
+productSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id',
+  foreignField: 'product'
+})
+
 
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;

@@ -4,6 +4,7 @@ const User = require('../models/userModel')
 // const Account = require('../models/accountModel')
 const protect = async (req,res,next) =>{
   try{
+    console.log(req.headers)
     console.log('protected')
     // console.log(req.body, req.headers)
     let token  = ''
@@ -49,6 +50,16 @@ const admin = (req,res, next) =>{
   next()
 }
 
+const seller = (req,res, next) =>{
+  if(!req.user.roles.includes('seller')){
+    return res.status(403).json({
+      status: 'fail',
+      message: "User is not a valid seller"
+    })
+  }
+  next()
+}
 
 
-module.exports = { protect, admin}
+
+module.exports = { protect, admin ,seller}

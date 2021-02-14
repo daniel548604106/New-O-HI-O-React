@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import LanguageIcon from '@material-ui/icons/Language';
-import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { IconButton } from '@material-ui/core';
@@ -17,9 +16,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { setUserLogout } from '../../../store/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState('繁體中文(台灣)');
+  const history = useHistory();
   const changeLanguage = () => {
     language === 'English'
       ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
@@ -28,6 +29,7 @@ const MenuDrawer = () => {
   const dispatch = useDispatch();
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const logout = () => {
+    history.push('/');
     dispatch(setUserLogout());
   };
   const [state, setState] = React.useState({

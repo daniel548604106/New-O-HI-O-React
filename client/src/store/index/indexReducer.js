@@ -19,29 +19,31 @@ let initialState = {
 export const indexReducer = (state = initialState, action) => {
   switch (action.type) {
     case CLOSE_LOGIN_MODAL:
-      return { isLoginModalShow: false };
+      return { ...state, isLoginModalShow: false };
     case OPEN_LOGIN_MODAL:
-      return { isLoginModalShow: true };
+      return { ...state, isLoginModalShow: true };
     case ADD_TO_FAVORITE_REQUEST:
-      return { loading: true, favoriteProducts: [] };
+      return { ...state, loading: true, favoriteProducts: [] };
     case ADD_TO_FAVORITE_SUCCESS:
       return {
+        ...state,
         loading: true,
         favoriteShops: action.payload.favoriteShops,
         favoriteProducts: action.payload.favoriteProducts,
       };
     case ADD_TO_FAVORITE_FAILURE:
-      return { loading: false, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     case GET_FAVORITE_LIST_REQUEST:
-      return { loading: true, favoriteProducts: [] };
+      return { ...state, loading: true, favoriteProducts: [] };
     case GET_FAVORITE_LIST_SUCCESS:
       return {
+        ...state,
         loading: false,
         favoriteShops: action.payload.favoriteShops,
         favoriteProducts: action.payload.favoriteProducts,
       };
     case GET_FAVORITE_LIST_FAILURE:
-      return { loading: false, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     default:
       return initialState;
   }

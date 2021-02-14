@@ -19,8 +19,10 @@
 .cardRow {
   display: flex;
   overflow-x: scroll;
+  white-space: nowrap;
 
   .cards {
     margin-right: 10px;
+    width: 150px;
   }
 }

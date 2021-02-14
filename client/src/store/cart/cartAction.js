@@ -1,3 +1,4 @@
+import notify from '../../lib/notification';
 import {
   ADD_CART_ITEM,
   CLEAR_CART_ITEM,
@@ -7,6 +8,7 @@ import {
 } from '../reducerTypes';
 export const addToCart = (item) => {
   console.log('addToCart');
+  notify('已加入購物車');
   return { type: ADD_CART_ITEM, payload: item };
 };
 

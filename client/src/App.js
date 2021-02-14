@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-import { Home, Product, Search, Cart, Browse, Checkout, Favorite, My, OAuth } from './pages/index';
+import { Home, Product, Search, Cart, Browse, Shop, Favorite, My, OAuth } from './pages/index';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
+import Chat from './components/Chat/Chat.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal } from './store/index/indexAction';
 import LoginModal from './components/Login/index';
@@ -12,10 +14,16 @@ import Latest from './pages/Latest/Latest.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
-
+import { toggleChat } from './store/chat/chatAction';
 import './App.scss';
 const App = (props) => {
+  const location = useLocation();
   const dispatch = useDispatch();
+  const handleToggleChat = () => {
+    dispatch(toggleChat());
+  };
+  const showChat = useSelector((state) => state.chat.showChat);
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
   const [open, setOpen] = useState(false);
   const handleClose = (e) => {
@@ -27,6 +35,7 @@ const App = (props) => {
   };
 
   useEffect(() => {
+    console.log(location);
     const query = window.location.search;
     let userId;
     const getUserData = async () => {
@@ -58,6 +67,19 @@ const App = (props) => {
         closeOnClick
       />
       <Header />
+      {isUserLoggedIn &&
+        (showChat ? (
+          <div className="chatRoom">
+            <Chat />
+          </div>
+        ) : (
+          <>
+            <div onClick={() => handleToggleChat()} className="hideHeader">
+              <ChatBubbleOutlineIcon />
+              <span>聊聊</span>
+            </div>
+          </>
+        ))}
       {isLoginModalShow}
       <div className="loginModal">
         <Backdrop open={open} onClick={handleClose} style={{ zIndex: 11 }}>
@@ -80,7 +102,10 @@ const App = (props) => {
       <Route path="/" exact>
         <Home />
       </Route>
-      <main className="global-container">
+      <main
+        className="global-container"
+        style={{ padding: location.pathname.includes('shop') && '0px' }}
+      >
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
         </Route>
@@ -98,6 +123,9 @@ const App = (props) => {
         </Route>
         <Route path="/favorite">
           <Favorite />
+        </Route>
+        <Route path={`/shop/:account`}>
+          <Shop />
         </Route>
         <Route path="/search">
           <Search />
