@@ -6,6 +6,7 @@ import Tabs from '../../components/Global/Tabs/Tabs.jsx';
 import RecommendedDesign from '../../components/Shop/RecommendedDesign/RecommendedDesign.jsx';
 import ProductList from '../../components/Shop/ProductList/ProductList.jsx';
 import Sidebar from '../../components/Shop/Sidebar/Sidebar.jsx';
+import RefundPolicy from '../../components/Shop/RefundPolicy/RefundPolicy.jsx';
 import { apiGetShopProducts, apiGetShopInfo } from '../../api/index';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -49,12 +50,20 @@ const Shop = () => {
       <div className={classes.mainContent}>
         <ShopInfo shop={shopInfo} />
         <Tabs tabs={tabs} />
-        <RecommendedDesign pinnedProducts={shopInfo.pinnedProducts} />
-        <div className={classes.productsRow}>
-          <Sidebar />
-          <div className={classes.productList}>
-            <ProductList products={shopInfo.products} />
+
+        {location.search.includes('product') && (
+          <div className={classes.product}>
+            <RecommendedDesign pinnedProducts={shopInfo.pinnedProducts} />
+            <div className={classes.productsRow}>
+              <Sidebar />
+              <div className={classes.productList}>
+                <ProductList products={shopInfo.products} />
+              </div>
+            </div>
           </div>
+        )}
+        <div className={classes.policy}>
+          {location.search.includes('policy') && <RefundPolicy />}
         </div>
       </div>
     </div>

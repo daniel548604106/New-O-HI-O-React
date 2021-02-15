@@ -22,7 +22,7 @@ const ShopCard = ({ shop }) => {
   };
   const [followedFavoriteShop, setFollowedFavoriteShop] = useState(-1);
   const toShop = (id) => {
-    history.push(`/shop/${id}`);
+    history.push(`/shop/${id}?tab=product`);
   };
   useEffect(() => {
     if (!favoriteShops) return;

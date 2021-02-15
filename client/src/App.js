@@ -102,10 +102,7 @@ const App = (props) => {
       <Route path="/" exact>
         <Home />
       </Route>
-      <main
-        className="global-container"
-        style={{ padding: location.pathname.includes('shop') && '0px' }}
-      >
+      <main className="global-container">
         <Route path="/oauth/:type" exact>
           <OAuth props={props} />
         </Route>

@@ -1,5 +1,6 @@
 .productsRow {
   display: flex;
+  padding: 20px 0;
   .productList {
     flex: 1;
   }
@@ -7,4 +8,9 @@
 
 .mainContent {
   padding: 0 30px;
+}
+
+.policy {
+  width: 800px;
+  margin: 0 auto;
 }

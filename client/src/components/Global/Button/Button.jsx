@@ -10,12 +10,13 @@ const Button = ({ text, color, backgroundColor, iconType, border }) => {
         backgroundColor,
         display: 'flex',
         padding: '5px 10px',
+
         alignItems: 'center',
         border: border && '1px solid',
       }}
     >
       {iconType === 'add' && <AddIcon />}
-      <span>{text}</span>
+      <span style={{ margin: '0' }}>{text}</span>
     </button>
   );
 };
