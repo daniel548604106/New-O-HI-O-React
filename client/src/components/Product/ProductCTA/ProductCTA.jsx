@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './ProductCTA.module.scss';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -12,6 +12,7 @@ const ProductCTA = ({ product }) => {
   const params = useParams();
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
+  const [hasAdded, setHasAdded] = useState(false);
   const addItemToCart = () => {
     if (!isUserLoggedIn) {
       return dispatch(openLoginModal());
@@ -23,14 +24,21 @@ const ProductCTA = ({ product }) => {
     const type = 'product';
     dispatch(addToFavorite(params.id, type));
   };
+
   return (
     <div className={classes.productCta}>
       <div className={classes.addToCart} onClick={() => addItemToCart()}>
         Add To Cart
       </div>
-      <div onClick={() => addToWishList()} className={classes.wishlist}>
+      <div
+        onClick={() => addToWishList()}
+        className={`${classes.wishlist} ${
+          favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) &&
+          classes.wishListAdded
+        }`}
+      >
         {favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
-          <div className={classes.wishListAdded}>Saved</div>
+          <div>Saved</div>
         ) : (
           <>
             <div>

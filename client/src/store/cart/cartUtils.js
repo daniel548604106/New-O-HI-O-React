@@ -25,14 +25,6 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   });
 };
 
-export const getCartItemsFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('cartItems')).cartItems;
-};
-
-export const saveCartItemsToLocalStorage = (payload) => {
-  localStorage.setItem('cartItems', JSON.stringify(payload));
-};
-
 export const clearItemFromCart = (cartItems, itemToRemove) => {
   return cartItems.filter((item) => item.id !== itemToRemove.id);
 };

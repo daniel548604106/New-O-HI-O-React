@@ -8,8 +8,6 @@ import {
 import {
   addItemToCart,
   removeItemFromCart,
-  getCartItemsFromLocalStorage,
-  saveCartItemsToLocalStorage,
   clearItemFromCart,
   updateCartItemQuantity,
 } from './cartUtils';

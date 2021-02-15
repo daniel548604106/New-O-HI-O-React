@@ -50,13 +50,19 @@ const ProductBanner = ({ product, scrollToPage }) => {
           ))}
         </div>
         <div className={classes.ctaBtnRow}>
-          <button onClick={() => addToWishList()}>
+          <button
+            onClick={() => addToWishList()}
+            className={`${
+              favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) &&
+              classes.wishListAdded
+            } ${classes.ctaBtn}`}
+          >
             {favoriteProducts &&
             favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
-              <div className={classes.wishListAdded}>
+              <>
                 <FavoriteBorderIcon />
                 <p>Added</p>
-              </div>
+              </>
             ) : (
               <div className={classes.wishList}>
                 <FavoriteBorderIcon />

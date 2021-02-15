@@ -22,7 +22,7 @@
     height: 100%;
     background-color: var(--secondary-gray);
 
-    .wishListAdded {
+    &.wishListAdded {
       display: flex;
       flex-direction: column;
       align-items: center;

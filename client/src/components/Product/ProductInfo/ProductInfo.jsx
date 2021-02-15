@@ -7,7 +7,7 @@ const ProductInfo = ({ product, t }) => {
     product && (
       <div className={classes.rootInfo}>
         <div className={classes.main}>
-          <h2 className={classes.brandName}>{product.name}</h2>
+          <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
           <h1 className={classes.productName}>{product.name}</h1>
           <div className={classes.tags}>
             <div className={classes.discount}>

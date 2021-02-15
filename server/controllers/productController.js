@@ -34,7 +34,7 @@ const getDiscountedProducts = async(req,res,next) =>{
 }
 const getAllProducts = async (req, res, next) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate('publishedBy');
     res.status(200).json({
       products,
     });

@@ -5,7 +5,7 @@ import PropTypes from 'react';
 
 const Cards = ({ products, title, t }) => {
   return (
-    <div>
+    <div className={classes.cardSection}>
       <div className={classes.titleRow}>
         <h2 className={classes.title}>{t(title)}</h2>
         <span className={classes.seeMore}>{t('seeMore')}</span>

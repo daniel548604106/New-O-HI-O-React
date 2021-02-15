@@ -14,7 +14,7 @@ import { openLoginModal } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Cookie from 'js-cookie';
-
+import Button from '../Global/Button/Button.jsx';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -22,7 +22,7 @@ const Navbar = () => {
   const location = useLocation();
   const meData = useSelector((state) => state.user.currentUser);
   const cartItems = useSelector((state) => state.cart.cartItems);
-
+  const [searchInput, setSearchInput] = useState('');
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
@@ -50,6 +50,11 @@ const Navbar = () => {
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
+  };
+
+  const handleSearchInput = () => {
+    history.push(`/search?q=${searchInput}`);
+    setSearchInput('');
   };
 
   const handleMobileMenuClose = () => {
@@ -103,12 +108,23 @@ const Navbar = () => {
                 O.HI.O
               </div>
             </Link>
+            <div className={classes.search}>
+              <input
+                onChange={(e) => setSearchInput(e.target.value)}
+                type="text"
+                value={searchInput}
+                placeholder="搜尋好設計"
+              />
+              <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
+                搜尋
+              </button>
+            </div>
           </div>
           <div className={classes.sectionDesktop}>
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
-                  <img src={meData.picture} alt="" />
+                  <img src={meData && meData.picture} alt="" />
                   <div className={classes.dropdown}>
                     <Dropdown />
                   </div>
@@ -138,7 +154,7 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link to="/my/setting">
-                  <img className={classes.avatar} src={meData.picture} alt="" />
+                  <img className={classes.avatar} src={meData && meData.picture} alt="" />
                 </Link>
                 <Link
                   to="/favorite?tab=products"
