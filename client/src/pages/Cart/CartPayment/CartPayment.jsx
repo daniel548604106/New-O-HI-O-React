@@ -1,47 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './CartPayment.module.scss';
 import CardPaymentInfoCard from '../../../components/Cart/CartPaymentInfo/CartPaymentInfoCard/CartPaymentInfoCard.jsx';
 import CardPaymentOrdererInfoCard from '../../../components/Cart/CartPaymentInfo/CardPaymentOrdererInfoCard/CardPaymentOrdererInfoCard.jsx';
 import InvoiceInfoCard from '../../../components/Cart/CartPaymentInfo/InvoiceInfoCard/InvoiceInfoCard.jsx';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '../../../components/Global/Button/Button.jsx';
+import { deliveryType, paymentType } from '../../../lib/checkoutOptions';
 import { useDispatch } from 'react-redux';
+import { updateCheckoutDetail } from '../../../store/checkout/checkoutAction';
 import { updateCheckoutProgress } from '../../../store/cart/cartAction';
 import { useHistory } from 'react-router-dom';
-const deliveryType = [
-  {
-    name: '7-11取貨',
-    id: 1,
-  },
-  {
-    name: '宅配到府',
-    id: 2,
-  },
-];
-const paymentType = [
-  {
-    name: '7-11取貨付現',
-    method: 'pickup',
-    id: 1,
-  },
-  {
-    name: '信用卡',
-    method: 'credit',
-    id: 2,
-  },
-  {
-    name: 'LinePay',
-    method: 'linePay',
-    id: 3,
-  },
-  {
-    name: 'ATM 付款',
-    method: 'atm',
-    id: 3,
-  },
-];
 
 const CartPayment = () => {
+  const [checkoutDetail, setCheckoutDetail] = useState({
+    deliveryMethod: '7-11 pickup',
+    paymentMethod: '7-11 pick-&-pay',
+    personalInfo: {
+      name: '',
+      phone: '',
+      email: '',
+    },
+    invoice: {
+      type: '',
+      retrieveMethod: {
+        type: '',
+        code: '',
+      },
+      ordererFullName: '',
+      ordererEmail: '',
+    },
+  });
+
   const dispatch = useDispatch();
   const history = useHistory();
   const backToCartList = () => {
@@ -49,12 +38,12 @@ const CartPayment = () => {
     history.push('/cart');
   };
   const proceedToConfirm = () => {
-    console.log('====================================');
-    console.log();
-    console.log('====================================');
     dispatch(updateCheckoutProgress(3));
     history.push('/cart/confirm');
   };
+  useEffect(() => {
+    dispatch(updateCheckoutDetail(checkoutDetail));
+  }, [checkoutDetail]);
   return (
     <div>
       <div onClick={() => backToCartList()} className={classes.backBtn}>
@@ -62,16 +51,29 @@ const CartPayment = () => {
         Back to Cart
       </div>
       <div className={classes.card}>
-        <CardPaymentInfoCard options={deliveryType} title="選擇配送方式" />
+        <CardPaymentInfoCard
+          setCheckoutDetail={setCheckoutDetail}
+          checkoutDetail={checkoutDetail}
+          options={deliveryType}
+          title="選擇配送方式"
+        />
       </div>
       <div className={classes.card}>
-        <CardPaymentInfoCard options={paymentType} title="選擇付款方式" />
+        <CardPaymentInfoCard
+          setCheckoutDetail={setCheckoutDetail}
+          checkoutDetail={checkoutDetail}
+          options={paymentType}
+          title="選擇付款方式"
+        />
       </div>
       <div className={classes.card}>
-        <CardPaymentOrdererInfoCard />
+        <CardPaymentOrdererInfoCard
+          checkoutDetail={checkoutDetail}
+          setCheckoutDetail={setCheckoutDetail}
+        />
       </div>
       <div className={classes.card}>
-        <InvoiceInfoCard />
+        <InvoiceInfoCard checkoutDetail={checkoutDetail} setCheckoutDetail={setCheckoutDetail} />
       </div>
       <div className={classes.nextBtn}>
         <div onClick={() => proceedToConfirm()}>

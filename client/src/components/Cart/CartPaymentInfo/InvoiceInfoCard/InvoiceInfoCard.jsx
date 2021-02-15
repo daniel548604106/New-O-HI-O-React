@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import classes from './InvoiceInfoCard.module.scss';
 import UnifiedInvoiceTab from './UnifiedInvoiceTab/UnifiedInvoiceTab.jsx';
 import DonateInvoiceTab from './DonateInvoiceTab/DonateInvoiceTab.jsx';
+import { retrieveMethods } from '../../../../lib/checkoutOptions';
+import PropTypes from 'prop-types';
 const invoiceType = [
   {
     name: '電子發票',
@@ -17,22 +19,34 @@ const invoiceType = [
   },
 ];
 
-const ElectronicTab = () => {
+const ElectronicTab = ({ setCheckoutDetail, checkoutDetail }) => {
+  const [activeRetrieveMethod, setActiveRetrieveMethod] = useState(0);
+  const handleCheckoutDetail = (e, idx) => {
+    const { value, name } = e.target;
+    const { invoice } = checkoutDetail;
+    setActiveRetrieveMethod(idx);
+    setCheckoutDetail({
+      ...checkoutDetail,
+      invoice: { ...invoice, retrieveMethod: { type: name } },
+    });
+  };
   return (
     <div className={classes.electronicTab}>
       <p>領取方式</p>
       <div className={classes.option}>
-        <input type="radio" name="email" />
-        <span>電子郵件</span>
+        {retrieveMethods.map((method, idx) => (
+          <div key={method.id}>
+            <input
+              type="radio"
+              name={method.type}
+              checked={activeRetrieveMethod === idx}
+              onChange={(e) => handleCheckoutDetail(e, idx)}
+            />
+            <span>{method.name}</span>
+          </div>
+        ))}
       </div>
-      <div className={classes.option}>
-        <input type="radio" name="phoneBarcode" />
-        <span>手機載具條碼</span>
-      </div>
-      <div className={classes.option}>
-        <input type="radio" name="idBarcode" />
-        <span>自然人憑證條碼</span>
-      </div>
+
       <div className={classes.row}>
         <div>
           <p>購買人中文全名</p>
@@ -49,7 +63,7 @@ const ElectronicTab = () => {
     </div>
   );
 };
-const InvoiceInfoCard = () => {
+const InvoiceInfoCard = ({ checkoutDetail, setCheckoutDetail }) => {
   const [activeTab, setActiveTab] = useState(0);
   return (
     <div className={classes.invoice}>
@@ -66,12 +80,24 @@ const InvoiceInfoCard = () => {
             </button>
           ))}
         </ul>
-        {activeTab === 0 && <ElectronicTab />}
+        {activeTab === 0 && (
+          <ElectronicTab checkoutDetail={checkoutDetail} setCheckoutDetail={setCheckoutDetail} />
+        )}
         {activeTab === 1 && <DonateInvoiceTab />}
         {activeTab === 2 && <UnifiedInvoiceTab />}
       </div>
     </div>
   );
+};
+
+InvoiceInfoCard.propTypes = {
+  checkoutDetail: PropTypes.object,
+  setCheckoutDetail: PropTypes.func,
+};
+
+ElectronicTab.propTypes = {
+  checkoutDetail: PropTypes.object,
+  setCheckoutDetail: PropTypes.func,
 };
 
 export default InvoiceInfoCard;

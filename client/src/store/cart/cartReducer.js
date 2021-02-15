@@ -30,7 +30,6 @@ export const cartReducer = (state = initialState, action) => {
       console.log('remove');
       return { ...state, cartItems: removeItemFromCart(state.cartItems, action.payload) };
     case UPDATE_CART_ITEM_QTY:
-      console.log('update');
       return {
         ...state,
         cartItems: updateCartItemQuantity(state.cartItems, action.payload),

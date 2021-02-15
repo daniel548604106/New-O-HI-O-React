@@ -3,7 +3,6 @@ import Banner from '../../components/Home/Banner/Banner.jsx';
 import Campaign from '../../components/Home/Campaign/Campaign.jsx';
 import Shop from '../../components/Home/Shops/Shops.jsx';
 import Cards from '../../components/Home/Cards/Cards.jsx';
-import Subscription from '../../components/Home/Subscription/Subscription.jsx';
 import {
   apiGetAllProducts,
   apiGetDiscountedProducts,
@@ -99,9 +98,6 @@ const Home = () => {
         </section>
         <section>
           <Cards title="discountedItems" products={discountedProducts} t={t} />
-        </section>
-        <section style={{ width: '100%' }}>
-          <Subscription t={t} />
         </section>
       </main>
     </div>
