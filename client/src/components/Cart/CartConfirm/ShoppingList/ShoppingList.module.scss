@@ -1,0 +1,61 @@
+.title {
+  background-color: var(--primary-pink);
+  color: white;
+  padding: 5px 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.orderList {
+  width: 100%;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--primary-pink);
+}
+
+.productCard {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border-gray);
+  border-radius: 2px;
+
+  .productName {
+    background-color: var(--primary-gray);
+    padding: 5px;
+    color: white;
+  }
+  .productInfo {
+    padding: 10px;
+
+    .stockStatus {
+      color: rgb(255, 168, 7);
+    }
+    li {
+      padding: 5px 0;
+      font-size: 14px;
+    }
+
+    li + li {
+      border-top: 1px solid var(--border-gray);
+    }
+  }
+}
+
+.productSubtotal {
+  color: var(--primary-pink);
+}
+
+.totalPriceRow {
+  margin-bottom: 20px;
+  display: flex;
+  padding: 10px;
+  border-top: 5px solid var(--primary-gray);
+  background-color: var(--secondary-gray);
+  align-items: center;
+  justify-content: space-between;
+  .totalPrice {
+    span {
+      color: var(--primary-pink);
+      font-weight: 500;
+    }
+  }
+}

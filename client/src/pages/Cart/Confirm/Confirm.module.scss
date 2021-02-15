@@ -1,0 +1,20 @@
+.greeting {
+  font-size: 14px;
+  margin-bottom: 50px;
+}
+
+.user {
+  color: #178fac;
+}
+
+.btnRow {
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+
+  .submitBtn {
+    margin-left: 10px;
+  }
+}

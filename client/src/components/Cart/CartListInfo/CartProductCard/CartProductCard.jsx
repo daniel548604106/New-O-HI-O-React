@@ -36,9 +36,8 @@ const CartProductCard = ({ item, idx }) => {
         <div className={classes.productInfoRow}>
           <img className={classes.productImage} src={item.images[0]} alt="" />
           <div className={classes.productInfo}>
-            <div>
+            <div className={classes.productName}>
               <p>{item.name}</p>
-              <span>一個黑胡桃黃銅插畫 （附送 3m貼）</span>
             </div>
             <div className={classes.productQuantity}>
               <select

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Cart.module.scss';
 import CartProgressBar from '../../components/Cart/CartProgressBar/CartProgressBar.jsx';
-import CartPayment from './CartPayment/CartPayment.jsx';
+import CartPayment from './Payment/Payment.jsx';
 import CartListInfo from '../../components/Cart/CartListInfo/CartListInfo.jsx';
-import CartConfirm from './CartConfirm/CartConfirm.jsx';
+import CartConfirm from './Confirm/Confirm.jsx';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';

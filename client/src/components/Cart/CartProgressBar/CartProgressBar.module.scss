@@ -19,7 +19,7 @@
       color: var(--border-gray);
       left: 50%;
       transform: translate(-50%, -150%);
-      width: 100px;
+      min-width: 50px;
       text-align: center;
       &.activeTitle {
         color: var(--primary-pink);
