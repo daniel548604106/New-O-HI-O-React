@@ -7,7 +7,6 @@ const Tabs = ({ tabs }) => {
   const history = useHistory();
   const [activeTab, setActiveTab] = useState(0);
   const switchTab = (idx, tab) => {
-    setActiveTab(idx);
     history.push(`${location.pathname}?tab=${tab}`);
   };
   useEffect(() => {
@@ -20,7 +19,7 @@ const Tabs = ({ tabs }) => {
           <div
             key={tab.name}
             onClick={() => switchTab(idx, tab.location)}
-            className={activeTab === idx && classes.active}
+            className={location.search.includes(`${tab.location}`) && classes.active}
           >
             {tab.name}
           </div>

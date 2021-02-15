@@ -13,6 +13,8 @@ const persistConfig = {
   whitelist: ['cart', 'user', 'global', 'checkout'], // only cart will be persisted
 };
 
+import { SET_USER_LOGOUT } from './reducerTypes';
+
 const rootReducers = combineReducers({
   chat: chatReducer,
   productList: productListReducer,
@@ -22,4 +24,11 @@ const rootReducers = combineReducers({
   checkout: checkoutReducer,
 });
 
-export default persistReducer(persistConfig, rootReducers);
+const appReducer = (state, action) => {
+  // Clear all data in redux store to initial.
+  if (action.type === SET_USER_LOGOUT) state = undefined;
+
+  return rootReducers(state, action);
+};
+
+export default persistReducer(persistConfig, appReducer);

@@ -22,7 +22,7 @@ const DesignShopInfo = ({ product }) => {
     console.log('follow');
   };
   const directToShop = (account) => {
-    history.push(`/shop/${account}`);
+    history.push(`/shop/${account}?tab=product`);
   };
   let hasShopFollowed = false;
   const patchChat = async (id) => {

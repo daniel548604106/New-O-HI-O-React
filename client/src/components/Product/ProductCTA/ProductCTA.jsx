@@ -6,19 +6,21 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../../store/cart/cartAction.js';
-import { addToFavorite } from '../../../store/index/indexAction';
-import Cookie from 'js-cookie';
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
 const ProductCTA = ({ product }) => {
   const dispatch = useDispatch();
   const params = useParams();
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const addItemToCart = () => {
+    if (!isUserLoggedIn) {
+      return dispatch(openLoginModal());
+    }
     dispatch(addToCart(product));
   };
 
   const addToWishList = () => {
     const type = 'product';
-    console.log('params', params);
     dispatch(addToFavorite(params.id, type));
   };
   return (

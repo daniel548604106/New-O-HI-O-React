@@ -1,0 +1,27 @@
+.policy {
+  margin-top: 50px;
+  h2 {
+    margin-bottom: 15px;
+  }
+  p {
+    color: var(--primary-gray);
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    margin-bottom: 10px;
+
+    li {
+      list-style-type: disc;
+      color: var(--primary-gray);
+      font-size: 14px;
+      margin-left: 15px;
+    }
+  }
+}

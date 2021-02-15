@@ -45,6 +45,6 @@ export const indexReducer = (state = initialState, action) => {
     case GET_FAVORITE_LIST_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
-      return initialState;
+      return state;
   }
 };

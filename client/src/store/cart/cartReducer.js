@@ -24,34 +24,21 @@ export const cartReducer = (state = initialState, action) => {
     case UPDATE_CHECKOUT_PROGRESS:
       return { ...state, checkoutProgress: action.payload };
     case ADD_CART_ITEM:
-      console.log('add');
-      saveCartItemsToLocalStorage({
-        ...state,
-        cartItems: addItemToCart(state.cartItems, action.payload),
-      });
+      console.log('add', 'state', state, action.payload);
       return { ...state, cartItems: addItemToCart(state.cartItems, action.payload) };
     case REMOVE_CART_ITEM:
       console.log('remove');
-      saveCartItemsToLocalStorage({
-        ...state,
-        cartItems: removeItemFromCart(state.cartItems, action.payload),
-      });
       return { ...state, cartItems: removeItemFromCart(state.cartItems, action.payload) };
     case UPDATE_CART_ITEM_QTY:
       console.log('update');
-      saveCartItemsToLocalStorage({
+      return {
         ...state,
         cartItems: updateCartItemQuantity(state.cartItems, action.payload),
-      });
-      return { ...state, cartItems: updateCartItemQuantity(state.cartItems, action.payload) };
+      };
     case CLEAR_CART_ITEM:
       console.log('clear');
-      saveCartItemsToLocalStorage({
-        ...state,
-        cartItems: clearItemFromCart(state.cartItems, action.payload),
-      });
       return { ...state, cartItems: clearItemFromCart(state.cartItems, action.payload) };
     default:
-      return initialState;
+      return state;
   }
 };
