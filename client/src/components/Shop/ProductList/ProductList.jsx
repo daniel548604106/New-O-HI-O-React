@@ -3,6 +3,7 @@ import classes from './ProductList.module.scss';
 import { useLocation } from 'react-router-dom';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
+import NotesIcon from '@material-ui/icons/Notes';
 const filterTypes = [
   {
     name: '設計館推薦',
@@ -39,11 +40,19 @@ const Filter = () => {
   };
   return (
     <div>
-      <select onChange={(e) => changeFilter(e)} name="product" id="product">
+      <select
+        className={classes.filterSelect}
+        onChange={(e) => changeFilter(e)}
+        name="product"
+        id="product"
+      >
         {filterTypes.map((types) => (
-          <option key={types.id} value={types.type}>
-            {types.name}
-          </option>
+          <>
+            <NotesIcon />
+            <option key={types.id} value={types.type}>
+              {types.name}
+            </option>
+          </>
         ))}
       </select>
     </div>

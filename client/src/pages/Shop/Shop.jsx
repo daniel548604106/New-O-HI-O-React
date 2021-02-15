@@ -62,6 +62,11 @@ const Shop = () => {
             </div>
           </div>
         )}
+        {location.search.includes('story') && (
+          <div className={classes.story}>
+            <p>{shopInfo.story}</p>
+          </div>
+        )}
         <div className={classes.policy}>
           {location.search.includes('policy') && <RefundPolicy />}
         </div>

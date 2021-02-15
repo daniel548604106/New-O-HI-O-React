@@ -48,8 +48,9 @@ export const apiGetShopInfo = getShopInfo;
 
 // My
 
-import { patchMyData } from './myRequest';
+import { patchMyData, patchMyPhoto } from './myRequest';
 export const apiPatchMyData = patchMyData;
+export const apiPatchMyPhoto = patchMyPhoto;
 
 // Order
 

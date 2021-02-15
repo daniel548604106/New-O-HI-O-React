@@ -43,8 +43,7 @@ const General = () => {
   };
   const save = async () => {
     try {
-      const token = Cookie.get('token');
-      const { data } = await apiPatchMyData(userData, token);
+      const { data } = await apiPatchMyData(userData);
       dispatch(setUserLoggedIn(data.user));
       notify('更新個人資料成功！');
     } catch (error) {

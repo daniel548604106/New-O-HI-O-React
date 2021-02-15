@@ -11,4 +11,17 @@ const getUserData = async (req, res, next) => {
   }
 };
 
-module.exports = { getUserData };
+const getUserAvatar = async(req,res) =>{
+  try{
+    const {_id} = req.params
+    const user = await User.findById(_id)
+    console.log(user)
+    res.status(200).json({
+      picture: user.picture
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
+
+module.exports = { getUserData ,getUserAvatar};

@@ -26,6 +26,7 @@ const Navbar = () => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
+  const [totalCartItems, setTotalCartItems] = useState('');
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
   const isMenuOpen = Boolean(anchorEl);
@@ -33,11 +34,19 @@ const Navbar = () => {
   useEffect(() => {
     setSearchBarOpen(false);
   }, [location]);
-  const totalCartItems =
+  useEffect(() => {
     cartItems &&
-    cartItems.reduce((total, cartItem) => {
-      return (total += Number(cartItem.quantity));
-    }, 0);
+      setTotalCartItems(
+        cartItems.reduce((total, cartItem) => {
+          return (total += Number(cartItem.quantity));
+        }, 0),
+      );
+  }, [cartItems]);
+  // const totalCartItems =
+  //   cartItems &&
+  //   cartItems.reduce((total, cartItem) => {
+  //     return (total += Number(cartItem.quantity));
+  //   }, 0);
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();

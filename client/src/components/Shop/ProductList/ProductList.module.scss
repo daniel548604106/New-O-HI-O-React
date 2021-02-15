@@ -8,3 +8,10 @@
 .filter {
   margin-bottom: 10px;
 }
+
+.filterSelect {
+  border: 1px solid var(--border-gray);
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}

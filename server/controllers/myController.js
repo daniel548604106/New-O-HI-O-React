@@ -1,5 +1,5 @@
 const User = require('../models/userModel')
-
+const { upload } = require('../tools/upload')
 
 const patchMyData = async(req,res) =>{
   try{
@@ -23,5 +23,17 @@ const patchMyData = async(req,res) =>{
   
 }
 
+const patchMyPhoto = async(req,res) =>{
+  try{
+    console.log(req.body)
+    res.status(200).json({
+      data: 'success'
+    })
+    console.log('photo')
+  }catch(error){
+    console.log(error)
+  }
+}
 
-module.exports = {patchMyData}
+
+module.exports = {patchMyData,patchMyPhoto}

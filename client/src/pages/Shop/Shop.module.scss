@@ -14,3 +14,13 @@
   width: 800px;
   margin: 0 auto;
 }
+
+.story {
+  max-width: 800px;
+  width: 100%;
+  margin: 50px auto 100px;
+  p {
+    color: var(--primary-gray);
+    font-size: 16px;
+  }
+}

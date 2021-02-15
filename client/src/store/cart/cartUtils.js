@@ -13,14 +13,16 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 };
 
 export const updateCartItemQuantity = (cartItems, { id, qty }) => {
+  console.log(cartItems);
   return cartItems.map((item) => {
     return item._id === id ? { ...item, quantity: qty } : item;
   });
 };
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
-  const existingItemIdx = cartItems.indexOf(cartItemToRemove);
-  return cartItems.splice(existingItemIdx, 1);
+  return cartItems.filter((item) => {
+    return item._id !== cartItemToRemove;
+  });
 };
 
 export const getCartItemsFromLocalStorage = () => {

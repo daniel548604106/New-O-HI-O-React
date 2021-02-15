@@ -3,7 +3,7 @@ import Sidebar from '../../components/Browse/Sidebar/Sidebar.jsx';
 import MainContent from '../../components/Browse/MainContent/MainContent.jsx';
 import classes from './Browse.module.scss';
 import PropTypes from 'prop-types';
-import { menuOptions } from '../../lib/allCategories';
+import { menuOptions } from '../../lib/menuOptions';
 import { useLocation } from 'react-router-dom';
 import { apiGetAllProducts } from '../../api/index';
 const Browse = () => {
