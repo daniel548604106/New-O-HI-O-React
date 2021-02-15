@@ -29,10 +29,10 @@ export const setUserLoggedIn = () => {
 
 export const getFavList = (token) => async (dispatch) => {
   try {
-    // dispatch({ type: GET_FAVORITE_LIST_REQUEST });
+    dispatch({ type: GET_FAVORITE_LIST_REQUEST });
     const { data } = await apiGetFavList(token);
     console.log(data);
-    // dispatch({ type: GET_FAVORITE_LIST_SUCCESS, payload: data.userFavList });
+    dispatch({ type: GET_FAVORITE_LIST_SUCCESS, payload: data.userFavList });
   } catch (error) {
     dispatch({ type: GET_FAVORITE_LIST_FAILURE });
     console.log(error);
