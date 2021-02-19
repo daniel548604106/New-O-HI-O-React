@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import classes from './CartPayment.module.scss';
+import classes from './Payment.module.scss';
 import CardPaymentInfoCard from '../../../components/Cart/CartPaymentInfo/CartPaymentInfoCard/CartPaymentInfoCard.jsx';
 import CardPaymentOrdererInfoCard from '../../../components/Cart/CartPaymentInfo/CardPaymentOrdererInfoCard/CardPaymentOrdererInfoCard.jsx';
 import InvoiceInfoCard from '../../../components/Cart/CartPaymentInfo/InvoiceInfoCard/InvoiceInfoCard.jsx';
@@ -39,11 +39,10 @@ const CartPayment = () => {
   };
   const proceedToConfirm = () => {
     dispatch(updateCheckoutProgress(3));
+    dispatch(updateCheckoutDetail(checkoutDetail));
     history.push('/cart/confirm');
   };
-  useEffect(() => {
-    dispatch(updateCheckoutDetail(checkoutDetail));
-  }, [checkoutDetail]);
+
   return (
     <div>
       <div onClick={() => backToCartList()} className={classes.backBtn}>

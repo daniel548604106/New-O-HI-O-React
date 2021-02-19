@@ -18,6 +18,10 @@ const shopSchema = new mongoose.Schema({
     required: [true, 'Please give your shop an account name'],
     unique:true
   },
+  story:{
+    type: String,
+    required: [true, 'Please write something about your shop']
+  },
   website:{
     type: String
   },
@@ -43,6 +47,11 @@ shopSchema.virtual('products', {
   ref: 'Product',
   localField: '_id',
   foreignField: 'publishedBy'
+})
+shopSchema.virtual('followers', {
+  ref: 'Favorite',
+  localField: '_id',
+  foreignField: 'favoriteShops'
 })
 
 

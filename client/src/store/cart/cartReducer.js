@@ -8,8 +8,6 @@ import {
 import {
   addItemToCart,
   removeItemFromCart,
-  getCartItemsFromLocalStorage,
-  saveCartItemsToLocalStorage,
   clearItemFromCart,
   updateCartItemQuantity,
 } from './cartUtils';
@@ -27,7 +25,7 @@ export const cartReducer = (state = initialState, action) => {
       console.log('add', 'state', state, action.payload);
       return { ...state, cartItems: addItemToCart(state.cartItems, action.payload) };
     case REMOVE_CART_ITEM:
-      console.log('remove');
+      console.log('remove', state.cartItems);
       return { ...state, cartItems: removeItemFromCart(state.cartItems, action.payload) };
     case UPDATE_CART_ITEM_QTY:
       return {

@@ -21,6 +21,10 @@
   }
 
   p {
+    @media (max-width: 500px) {
+      font-size: 14px;
+    }
+    text-align: left;
     margin-left: 10px;
     font-size: 16px;
   }
@@ -31,6 +35,14 @@
   .productInfoRow {
     display: flex;
     align-items: start;
+
+    .productName {
+      text-align: left;
+      margin-bottom: 10px;
+      @media (max-width: 500px) {
+        font-size: 14px;
+      }
+    }
 
     .productImage {
       width: 80px;
@@ -75,5 +87,5 @@
 
 .quantitySelect {
   align-self: flex-start;
-  padding: 10px;
+  padding: 4px 10px;
 }

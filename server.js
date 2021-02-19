@@ -3,7 +3,6 @@ const app = express();
 const port = 3001;
 const path = require('path')
 const server = require('http').createServer(app);
-
 // server-side
 const io = require("socket.io")(server, {
   cors: {
@@ -25,6 +24,7 @@ const favoriteRoute = require('./server/routes/favoriteRoute')
 const shopRoute =  require('./server/routes/shopRoute')
 const myRoute = require('./server/routes/myRoute')
 const chatRoute = require('./server/routes/chatRoute')
+const orderRoute = require('./server/routes/orderRoute')
 
 const connectDB = require('./server/tools/db');
 
@@ -37,13 +37,14 @@ app.use('/*', bodyParser.json());
 app.use('/v1/oauth', oAuthRoute);
 app.use('/v1/products', productRoute);
 app.use('/auth', authRoute);
-app.use('/user', userRoute);
+app.use('/v1/users', userRoute);
 app.use('/v1/banners', bannerRoute)
 app.use('/v1/reviews', reviewRoute)
 app.use('/v1/favorite', favoriteRoute)
 app.use('/v1/shops',shopRoute)
 app.use('/v1/my', myRoute)
 app.use('/v1/chat', chatRoute)
+app.use('/v1/orders', orderRoute)
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });

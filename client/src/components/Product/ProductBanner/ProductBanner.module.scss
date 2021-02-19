@@ -7,6 +7,7 @@
 .bannerLayout {
   @media (max-width: 500px) {
     padding: 0;
+    width: 100vw;
   }
   display: flex;
   width: 100%;
@@ -53,14 +54,33 @@
   display: flex;
   padding: 10px;
   height: 100%;
-  button {
-    margin-left: 10px;
+  .addToCart {
+    @media (max-width: 500px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-left: 0;
+    }
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    margin-left: 15px;
+    background-color: var(--primary-black);
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: white;
+  }
+  .ctaBtn {
     cursor: pointer;
-    height: 100%;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     border-radius: 2px;
+    width: 100px;
     align-items: center;
+    background-color: white;
 
     p {
       margin-left: 5px;
@@ -75,24 +95,13 @@
       background-color: white;
     }
 
-    .wishListAdded {
+    &.wishListAdded {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 100%;
       height: 100%;
       background-color: var(--primary-pink);
-      color: white;
-    }
-
-    &.addToCart {
-      @media (max-width: 500px) {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-      background-color: var(--primary-black);
       color: white;
     }
   }

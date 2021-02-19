@@ -14,6 +14,25 @@
   }
 }
 
+.search {
+  @media (max-width: 720px) {
+    display: none;
+  }
+  display: flex;
+  margin-left: 50px;
+  align-items: center;
+  input {
+    padding: 10px;
+    border: 1px solid var(--border-gray);
+  }
+  .searchBtn {
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    background-color: var(--primary-pink);
+    color: white;
+  }
+}
+
 .sectionDesktop {
   @media (max-width: 720px) {
     display: none;

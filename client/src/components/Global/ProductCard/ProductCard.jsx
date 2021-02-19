@@ -44,14 +44,22 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.label}>New</div>
+      <div className={classes.label}>
+        <p className={classes.new}>新品</p>
+        {product.discountPrice && (
+          <p className={classes.discount}>
+            {(product.discountPrice / product.fullPrice).toFixed(1) * 10} 折
+          </p>
+        )}
+      </div>
+
       <Card
         className={classes.card}
         key={product.id}
         onClick={() => directToProduct()}
         style={{ textDecoration: 'none' }}
       >
-        <CardActionArea>
+        <div className={classes.mainPicture}>
           <CardMedia
             className={classes.media}
             image={product.images[0]}
@@ -59,13 +67,13 @@ const ProductCard = ({ product }) => {
           />
           <FavoriteIcon
             onClick={(e) => addItemToFavorite(e, product._id)}
-            className={[classes.heartIcon, addedFavorite > -1 && classes.activeHeartIcon]}
+            className={`${classes.heartIcon} ${addedFavorite > -1 && classes.activeHeartIcon}`}
           />
-        </CardActionArea>
+        </div>
         <div className={classes.cardContent}>
           <h2 className={classes.productName}>{product.name}</h2>
           <div>
-            <h2 className={classes.brandName}>Kenzo</h2>
+            <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
             <div style={{ display: 'flex', alignItems: 'flex-end' }}>
               {product.discountPrice && (
                 <p className={classes.discountPrice}>

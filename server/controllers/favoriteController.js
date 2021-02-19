@@ -48,6 +48,7 @@ const addToFavorite = async(req,res) =>{
             favoriteList.favoriteShops.splice(index,1)
             favoriteList.save()
           }
+  
           break;
     }
     res.status(200).json({
