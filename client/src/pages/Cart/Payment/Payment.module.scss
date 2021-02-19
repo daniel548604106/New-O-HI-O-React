@@ -1,4 +1,7 @@
 .backBtn {
+  @media (max-width: 500px) {
+    margin-bottom: 15px;
+  }
   cursor: pointer;
   color: var(--primary-pink);
   margin-bottom: 30px;

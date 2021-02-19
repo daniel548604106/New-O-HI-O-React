@@ -24,6 +24,7 @@ const favoriteRoute = require('./server/routes/favoriteRoute')
 const shopRoute =  require('./server/routes/shopRoute')
 const myRoute = require('./server/routes/myRoute')
 const chatRoute = require('./server/routes/chatRoute')
+const orderRoute = require('./server/routes/orderRoute')
 
 const connectDB = require('./server/tools/db');
 
@@ -43,6 +44,7 @@ app.use('/v1/favorite', favoriteRoute)
 app.use('/v1/shops',shopRoute)
 app.use('/v1/my', myRoute)
 app.use('/v1/chat', chatRoute)
+app.use('/v1/orders', orderRoute)
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import PaymentMethod from '../../../components/Cart/CartConfirm/PaymentMethod/PaymentMethod.jsx';
 import ShoppingList from '../../../components/Cart/CartConfirm/ShoppingList/ShoppingList.jsx';
 import Button from '../../../components/Global/Button/Button.jsx';
+import { apiPostNewOrder } from '../../../api/index';
 const CartConfirm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -15,8 +16,14 @@ const CartConfirm = () => {
     dispatch(updateCheckoutProgress(2));
     history.push('/cart/payment');
   };
-  const handleSubmitOrder = () => {
-    console.log('submit');
+  const handleSubmitOrder = async () => {
+    try {
+      console.log('submit');
+      const { data } = await apiPostNewOrder(checkoutDetail);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>

@@ -8,9 +8,11 @@ import { removeItemFromCart, updateCartItemQuantity } from '../../../../store/ca
 import { addItemToCheckoutList } from '../../../../store/checkout/checkoutAction';
 const CartProductCard = ({ item, idx }) => {
   const dispatch = useDispatch();
-  const addToCheckoutList = (e) => {
+  const updateCheckoutList = (e, item) => {
     e.stopPropagation();
-    dispatch(addItemToCheckoutList());
+    let { checked } = e.target;
+    checked ? console.log('addItem') : console.log('removeItem');
+    // dispatch(addItemToCheckoutList(item));
   };
   const removeItem = (e, id) => {
     e.stopPropagation();
@@ -26,7 +28,7 @@ const CartProductCard = ({ item, idx }) => {
     <div className={classes.cardLayout}>
       <div className={classes.header}>
         <div>
-          <input onClick={(e) => addToCheckoutList(e)} type="checkbox" />
+          <input onChange={(e) => updateCheckoutList(e, item)} type="checkbox" />
           <p>{item.name}</p>
         </div>
         <CloseIcon onClick={(e) => removeItem(e, item._id)} className={classes.clearBtn} />

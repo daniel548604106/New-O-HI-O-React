@@ -1,0 +1,48 @@
+.checkoutButtonLayout {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 60px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.8);
+}
+
+.checkoutButton {
+  flex: 1;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: var(--primary-pink);
+  color: white;
+}
+
+.priceInfoContainer {
+  width: 40%;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    @media (max-width: 720px) {
+      font-size: 14px;
+    }
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.totalPriceContainer,
+.discountPriceContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+.totalPriceContainer {
+  span {
+    font-weight: 500;
+  }
+}
+
+.discountPriceContainer {
+  color: var(--primary-pink);
+  font-size: 14px;
+}

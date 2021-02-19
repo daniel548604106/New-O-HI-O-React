@@ -3,6 +3,7 @@ import classes from './CartListInfo.module.scss';
 import CartProductCard from './CartProductCard/CartProductCard.jsx';
 import Empty from '../../Global/Empty/Empty.jsx';
 import CartSummary from './CartSummary/CartSummary.jsx';
+import MobileCheckoutButton from './MobileCheckoutButton/MobileCheckoutButton.jsx';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
@@ -23,6 +24,9 @@ const CartListInfo = ({ cartItems }) => {
             </div>
             <div className={classes.totalPriceContainer}>
               <CartSummary />
+            </div>
+            <div className={classes.mobileCheckoutButton}>
+              <MobileCheckoutButton />
             </div>
           </div>
         </>
