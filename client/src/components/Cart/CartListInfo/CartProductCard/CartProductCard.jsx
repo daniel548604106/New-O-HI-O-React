@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './CardProductCard.module.scss';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch } from 'react-redux';
@@ -6,18 +6,31 @@ import PropTypes from 'prop-types';
 const lodash = require('lodash');
 import { removeItemFromCart, updateCartItemQuantity } from '../../../../store/cart/cartAction';
 import { addItemToCheckoutList } from '../../../../store/checkout/checkoutAction';
-const CartProductCard = ({ item, idx }) => {
+const CartProductCard = ({ item, idx, checkoutList, setCheckoutList, isAllChecked }) => {
   const dispatch = useDispatch();
+  const [checkboxChecked, setCheckboxChecked] = useState(true);
   const updateCheckoutList = (e, item) => {
     e.stopPropagation();
-    let { checked } = e.target;
-    checked ? console.log('addItem') : console.log('removeItem');
-    // dispatch(addItemToCheckoutList(item));
+    setCheckboxChecked((checkboxChecked) => !checkboxChecked);
+    e.target.checked
+      ? setCheckoutList((prevCheckoutList) => [...prevCheckoutList, item])
+      : setCheckoutList((prevCheckoutList) =>
+          prevCheckoutList.filter((list) => list._id !== item._id),
+        );
+    console.log(checkoutList, e.target.checked);
   };
+  useEffect(() => {
+    console.log('checkoutList', checkoutList);
+    if (item && checkoutList) {
+      console.log(checkoutList[idx]);
+      console.log(checkoutList.indexOf((list) => list._id === item._id));
+      const isChecked = checkoutList.map((list) => list._id === item._id);
+      isChecked ? setCheckboxChecked(true) : setCheckboxChecked(false);
+    }
+  }, [checkoutList, item]);
+
   const removeItem = (e, id) => {
     e.stopPropagation();
-
-    console.log('remove', id);
     dispatch(removeItemFromCart(id));
   };
   const updateQuantity = (id, e) => {
@@ -26,9 +39,14 @@ const CartProductCard = ({ item, idx }) => {
   };
   return (
     <div className={classes.cardLayout}>
+      {console.log('updated')}
       <div className={classes.header}>
         <div>
-          <input onChange={(e) => updateCheckoutList(e, item)} type="checkbox" />
+          <input
+            onChange={(e) => updateCheckoutList(e, item)}
+            type="checkbox"
+            checked={checkboxChecked}
+          />
           <p>{item.name}</p>
         </div>
         <CloseIcon onClick={(e) => removeItem(e, item._id)} className={classes.clearBtn} />
@@ -66,6 +84,9 @@ const CartProductCard = ({ item, idx }) => {
 
 CartProductCard.propTypes = {
   item: PropTypes.object,
+  checkoutList: PropTypes.array,
   idx: PropTypes.number,
+  setCheckoutList: PropTypes.func,
+  isAllChecked: PropTypes.bool,
 };
 export default CartProductCard;
