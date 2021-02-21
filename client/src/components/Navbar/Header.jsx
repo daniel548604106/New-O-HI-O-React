@@ -31,22 +31,6 @@ const Navbar = () => {
   const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  useEffect(() => {
-    setSearchBarOpen(false);
-  }, [location]);
-  useEffect(() => {
-    cartItems &&
-      setTotalCartItems(
-        cartItems.reduce((total, cartItem) => {
-          return (total += Number(cartItem.quantity));
-        }, 0),
-      );
-  }, [cartItems]);
-  // const totalCartItems =
-  //   cartItems &&
-  //   cartItems.reduce((total, cartItem) => {
-  //     return (total += Number(cartItem.quantity));
-  //   }, 0);
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
@@ -70,6 +54,17 @@ const Navbar = () => {
     setSearchBarOpen(!searchBarOpen);
   };
 
+  useEffect(() => {
+    setSearchBarOpen(false);
+  }, [location]);
+  useEffect(() => {
+    console.log('updated1');
+    setTotalCartItems(
+      cartItems.reduce((total, cartItem) => {
+        return total + Number(cartItem.quantity);
+      }, 0),
+    );
+  }, [cartItems]);
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const getAllProducts = () => {
-  return axios.get('/v1/products');
+export const getAllProducts = (query) => {
+  return axios.get(`/v1/products?${query}`);
 };
 export const getDiscountedProducts = () => {
   console.log('discount');

@@ -34,9 +34,15 @@ const getDiscountedProducts = async(req,res,next) =>{
 }
 const getAllProducts = async (req, res, next) => {
   try {
-    const products = await Product.find().populate('publishedBy');
+    console.log('req',req.query)
+    const { order, page, sort } = req.query
+    const currentPage = page || 1
+    const productsQuantity = await Product.find().countDocuments()
+    const products = await Product.find().limit(20).skip((currentPage -1) * 20).sort({'fullPrice': order}).populate('publishedBy');
     res.status(200).json({
       products,
+      currentPage,
+      totalPage : Math.ceil(productsQuantity/ 20)
     });
   } catch (error) {
     console.log(error);

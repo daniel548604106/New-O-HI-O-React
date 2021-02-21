@@ -1,13 +1,22 @@
 const mongoose = require('mongoose')
 
 const orderSchema = new mongoose.Schema({
+  total:{
+    type: Number
+  },
+  subtotal:{
+    type: Number
+  },
+  discount:{
+    type: Number
+  },
   shoppingList:[
    {
     quantity: {
       type: Number
     },
     product:{
-      type: mongoose.SchemaTypes.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Product'
     }
    }
@@ -19,6 +28,10 @@ const orderSchema = new mongoose.Schema({
   deliveryMethod:{
     type: String,
     enum: ['7-11 pickup']
+  },
+  status:{
+    type: String,
+    enum: ['paid', 'processing','shipped', 'completed','canceled']
   },
   paymentMethod: {
     type: String,
@@ -58,6 +71,8 @@ const orderSchema = new mongoose.Schema({
       type: String
     }
   }
+},{
+  timestamps: true
 })
 
 

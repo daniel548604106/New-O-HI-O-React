@@ -3,6 +3,7 @@ import {
   CLEAR_CART_ITEM,
   REMOVE_CART_ITEM,
   UPDATE_CART_ITEM_QTY,
+  RESET_CART_ITEM,
   UPDATE_CHECKOUT_PROGRESS,
 } from '../reducerTypes';
 import {
@@ -35,6 +36,8 @@ export const cartReducer = (state = initialState, action) => {
     case CLEAR_CART_ITEM:
       console.log('clear');
       return { ...state, cartItems: clearItemFromCart(state.cartItems, action.payload) };
+    case RESET_CART_ITEM:
+      return initialState;
     default:
       return state;
   }

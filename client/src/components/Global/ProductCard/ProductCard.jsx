@@ -75,10 +75,9 @@ const ProductCard = ({ product }) => {
           <div>
             <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
             <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+              <span className={classes.discountPrice}>NTD</span>
               {product.discountPrice && (
-                <p className={classes.discountPrice}>
-                  <span>NTD</span> ${product.discountPrice}
-                </p>
+                <p className={classes.discountPrice}>${product.discountPrice}</p>
               )}
               <p
                 className={`

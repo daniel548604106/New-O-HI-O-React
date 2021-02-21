@@ -1,21 +1,91 @@
 .tabs {
   display: flex;
   margin-top: 20px;
+  overflow: scroll;
+  width: 100%;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
 }
 
 .tabTitle {
   font-size: 16px;
+  scroll-snap-align: start;
   font-weight: 500;
+  transition: all 0.2s;
   padding: 10px 10px;
   text-transform: capitalize;
-  border-bottom: 4px solid transparent;
+  border-bottom: 1px solid var(--border-gray);
   cursor: pointer;
-
-  &.active {
-    border-bottom: 4px solid black;
-  }
 
   span {
     padding: 0 5px 0 10px;
   }
+}
+
+.productCard {
+  margin-top: 20px;
+  border: 1px solid var(--border-gray);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.container {
+  position: relative;
+  margin-bottom: 20px;
+  > div {
+    border: 1px solid var(--border-gray);
+    display: flex;
+    padding: 10px;
+    p {
+      margin-right: 15px;
+    }
+  }
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+}
+
+.orderId {
+  font-size: 14px;
+  background-color: var(--primary-pink);
+  color: white;
+  width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
+}
+
+.time {
+  display: flex;
+  @media (max-width: 720px) {
+    flex-direction: column;
+    p {
+      margin-top: 5px;
+    }
+  }
+
+  p:first-of-type {
+    margin-right: 10px;
+  }
+}
+
+.mainInfo {
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.checkButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
