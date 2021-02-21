@@ -34,11 +34,14 @@ const getDiscountedProducts = async(req,res,next) =>{
 }
 const getAllProducts = async (req, res, next) => {
   try {
-    console.log('req',req.query)
-    const { order, page, sort } = req.query
+    const { order, page , sort } = req.query
+    let options;
+    if(sort === 'price'){
+      options = { 'fullPrice': order}
+    }
     const currentPage = page || 1
     const productsQuantity = await Product.find().countDocuments()
-    const products = await Product.find().limit(20).skip((currentPage -1) * 20).sort({'fullPrice': order}).populate('publishedBy');
+    const products = await Product.find().limit(20).skip((currentPage -1) * 20).sort(options).populate('publishedBy');
     res.status(200).json({
       products,
       currentPage,
