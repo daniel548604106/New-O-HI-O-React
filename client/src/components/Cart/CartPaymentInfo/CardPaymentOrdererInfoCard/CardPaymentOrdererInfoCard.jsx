@@ -10,7 +10,6 @@ const CardPaymentOrdererInfoCard = ({ setCheckoutDetail, checkoutDetail }) => {
       ...checkoutDetail,
       personalInfo: { ...personalInfo },
     });
-    console.log(checkoutDetail);
   };
   useEffect(() => {
     console.log(personalInfo);

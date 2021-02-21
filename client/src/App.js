@@ -127,7 +127,7 @@ const App = (props) => {
         <Route path="/search">
           <Search />
         </Route>
-        <Route path="/cart/:status?">
+        <Route path="/cart/:status?/:id?">
           <Cart />
         </Route>
         <Route path="/beauty">

@@ -1,19 +1,9 @@
 import React from 'react';
 import classes from './CartSummary.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateCheckoutProgress } from '../../../../store/cart/cartAction';
-import { useHistory } from 'react-router-dom';
-const CartSummary = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+const CartSummary = ({ proceedToCheckout, subTotalPrice, totalPrice }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const subtotal = cartItems.reduce((total, item) => {
-    return (total += (item.discountPrice || item.fullPrice) * item.quantity);
-  }, 0);
-  const proceedToCheckout = () => {
-    dispatch(updateCheckoutProgress(2));
-    history.push('/cart/payment');
-  };
 
   return (
     <div>
@@ -21,7 +11,7 @@ const CartSummary = () => {
       <div className={classes.totalBody}>
         <div className={classes.totalBodyContent}>
           <span>商品總計</span>
-          <span className={classes.price}>NTD {subtotal}</span>
+          <span className={classes.price}>NTD {subTotalPrice}</span>
         </div>
         <div className={classes.totalBodyContent}>
           <span>其他折抵</span>
@@ -33,7 +23,7 @@ const CartSummary = () => {
         <hr />
         <div className={classes.totalPriceContent}>
           <span className={classes.totalPriceTitle}>總結帳金額:</span>
-          <span className={classes.totalPrice}>NTD 4000</span>
+          <span className={classes.totalPrice}>NTD {totalPrice}</span>
         </div>
         <div onClick={() => proceedToCheckout()} className={classes.checkoutButton}>
           前往結帳
@@ -41,6 +31,12 @@ const CartSummary = () => {
       </div>
     </div>
   );
+};
+
+CartSummary.propTypes = {
+  proceedToCheckout: PropTypes.func,
+  subTotalPrice: PropTypes.number,
+  totalPrice: PropTypes.number,
 };
 
 export default CartSummary;

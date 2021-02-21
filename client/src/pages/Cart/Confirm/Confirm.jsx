@@ -7,10 +7,14 @@ import PaymentMethod from '../../../components/Cart/CartConfirm/PaymentMethod/Pa
 import ShoppingList from '../../../components/Cart/CartConfirm/ShoppingList/ShoppingList.jsx';
 import Button from '../../../components/Global/Button/Button.jsx';
 import { apiPostNewOrder } from '../../../api/index';
+import { resetCartItems } from '../../../store/cart/cartAction';
+import { resetCheckoutList } from '../../../store/checkout/checkoutAction';
 const CartConfirm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const checkoutInfo = useSelector((state) => state.checkout);
   const checkoutDetail = useSelector((state) => state.checkout.checkoutDetail);
+  const checkoutList = useSelector((state) => state.checkout.checkoutList);
   const user = useSelector((state) => state.user.currentUser);
   const backToPayment = () => {
     dispatch(updateCheckoutProgress(2));
@@ -19,7 +23,10 @@ const CartConfirm = () => {
   const handleSubmitOrder = async () => {
     try {
       console.log('submit');
-      const { data } = await apiPostNewOrder(checkoutDetail);
+      const { data } = await apiPostNewOrder(checkoutInfo);
+      history.push(`/cart/complete/${data.newOrder._id}`);
+      dispatch(resetCartItems());
+      dispatch(resetCheckoutList());
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -34,7 +41,7 @@ const CartConfirm = () => {
         </span>{' '}
         您好，請確認以下購物資訊是否正確
       </p>
-      <ShoppingList />
+      <ShoppingList checkoutList={checkoutList} />
       <PaymentMethod checkoutDetail={checkoutDetail} />
       <div className={classes.btnRow}>
         <div onClick={() => backToPayment()}>

@@ -59,13 +59,11 @@ const Navbar = () => {
   }, [location]);
   useEffect(() => {
     console.log('updated1');
-    if (cartItems.length) {
-      setTotalCartItems(
-        cartItems.reduce((total, cartItem) => {
-          return total + Number(cartItem.quantity);
-        }, 0),
-      );
-    }
+    setTotalCartItems(
+      cartItems.reduce((total, cartItem) => {
+        return total + Number(cartItem.quantity);
+      }, 0),
+    );
   }, [cartItems]);
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (

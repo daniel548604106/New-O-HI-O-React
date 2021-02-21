@@ -19,15 +19,6 @@ const CartProductCard = ({ item, idx, checkoutList, setCheckoutList, isAllChecke
         );
     console.log(checkoutList, e.target.checked);
   };
-  useEffect(() => {
-    console.log('checkoutList', checkoutList);
-    if (item && checkoutList) {
-      console.log(checkoutList[idx]);
-      console.log(checkoutList.indexOf((list) => list._id === item._id));
-      const isChecked = checkoutList.map((list) => list._id === item._id);
-      isChecked ? setCheckboxChecked(true) : setCheckboxChecked(false);
-    }
-  }, [checkoutList, item]);
 
   const removeItem = (e, id) => {
     e.stopPropagation();
@@ -47,7 +38,7 @@ const CartProductCard = ({ item, idx, checkoutList, setCheckoutList, isAllChecke
             type="checkbox"
             checked={checkboxChecked}
           />
-          <p>{item.name}</p>
+          <p>{item.publishedBy.name}</p>
         </div>
         <CloseIcon onClick={(e) => removeItem(e, item._id)} className={classes.clearBtn} />
       </div>

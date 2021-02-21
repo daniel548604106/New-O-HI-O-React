@@ -1,0 +1,21 @@
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  button {
+    margin-right: 15px;
+
+    &.active {
+      background-color: var(--primary-pink);
+      color: white;
+    }
+  }
+
+  .icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+}

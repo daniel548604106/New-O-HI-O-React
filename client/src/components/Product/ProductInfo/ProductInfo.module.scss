@@ -69,7 +69,13 @@
       color: var(--primary-gray);
       font-family: var(--secondary-font);
       span {
+        margin-left: 4px;
         color: var(--primary-black);
+        cursor: pointer;
+        font-weight: 400;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

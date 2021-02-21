@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './My.module.scss';
 import Sidebar from '../../components/My/Sidebar/SideBar.jsx';
 import Setting from './Setting/Setting.jsx';
 import Purchase from '../../components/My/Content/Purchase/Purchase.jsx';
 import Refund from '../../components/My/Content/Refund/Refund.jsx';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 const My = () => {
+  const params = useParams();
+  useEffect(() => {}, []);
   return (
     <div className={classes.myLayout}>
       <div className={classes.mySidebar}>
@@ -13,9 +15,9 @@ const My = () => {
         <Sidebar />
       </div>
       <div className={classes.myContent}>
-        {location.pathname.includes('setting') && <Setting />}
-        {location.pathname.includes('purchase') && <Purchase />}
-        {location.pathname.includes('refund') && <Refund />}
+        {params.type === 'setting' && <Setting />}
+        {params.type === 'purchase' && <Purchase />}
+        {params.type === 'refund' && <Refund />}
       </div>
     </div>
   );

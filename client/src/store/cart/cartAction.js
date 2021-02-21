@@ -3,6 +3,7 @@ import {
   ADD_CART_ITEM,
   CLEAR_CART_ITEM,
   REMOVE_CART_ITEM,
+  RESET_CART_ITEM,
   UPDATE_CART_ITEM_QTY,
   UPDATE_CHECKOUT_PROGRESS,
 } from '../reducerTypes';
@@ -29,4 +30,9 @@ export const updateCartItemQuantity = (id, qty) => {
 export const updateCheckoutProgress = (step) => {
   console.log('1', step);
   return { type: UPDATE_CHECKOUT_PROGRESS, payload: step };
+};
+
+export const resetCartItems = () => {
+  console.log('reset');
+  return { type: RESET_CART_ITEM };
 };

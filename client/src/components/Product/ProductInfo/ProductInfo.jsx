@@ -44,7 +44,10 @@ const ProductInfo = ({ product, t }) => {
             </div>
             <div className={classes.brandOrigin}>
               <p>
-                From: <span>{product && product.name}</span>
+                From:
+                <a href={product.publishedBy.website} target="_blank" rel="noreferrer">
+                  {product && (product.publishedBy.website || product.publishedBy.name)}
+                </a>
               </p>
             </div>
           </div>

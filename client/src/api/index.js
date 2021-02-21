@@ -54,9 +54,9 @@ export const apiPatchMyPhoto = patchMyPhoto;
 
 // Order
 
-import { postNewOrder } from './orderRequest';
+import { postNewOrder, getAllOrders } from './orderRequest';
 export const apiPostNewOrder = postNewOrder;
-
+export const apiGetAllOrders = getAllOrders;
 // Chat
 
 import { patchChat, getChat, getAllChats } from './chatRequest';

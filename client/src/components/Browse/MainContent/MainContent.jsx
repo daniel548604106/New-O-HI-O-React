@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import classes from './MainContent.module.scss';
 import { useLocation, useHistory } from 'react-router-dom';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
-const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) => {
+import Pagination from '../../Global/Pagination/Pagination.jsx';
+import qs from 'query-string';
+const MainContent = ({
+  activeCategory,
+  products,
+  currentPage,
+  setCurrentPage,
+  totalPage,
+  subcategoryId,
+}) => {
   const location = useLocation();
   const history = useHistory();
   const [activeSubcategory, setActiveSubcategory] = useState([]);
@@ -14,18 +23,16 @@ const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) =>
         return option.id === subcategoryId;
       });
     }
-    console.log(subcategory);
-    console.log(products);
   }, [activeCategory, subcategoryId]);
 
   const filter = (e) => {
-    const params = new URLSearchParams();
-    console.log(JSON.parse(e.target.value));
-    const query = JSON.parse(e.target.value);
-    history.push(`${location.pathname}?soryby=${query.name}`);
-
+    const value = JSON.parse(e.target.value);
+    let query = qs.parse(location.search);
+    query = { ...query, sort: value.name, order: value.order };
+    history.push(`${location.pathname}?${qs.stringify(query)}`);
     console.log(location);
   };
+
   return (
     <>
       <div className={classes.topRow}>
@@ -34,8 +41,8 @@ const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) =>
           <label htmlFor="">排序</label>
           <select onChange={(e) => filter(e)} name="sort" id="sort">
             <option value='{"name": "rank", "order": ""}'>熱門程度優先</option>
-            <option value='{"name": "price", "order": "ascending"}'>價格由高至低</option>
-            <option value='{"name": "price", "order": "descending"}'>價格由低至高</option>
+            <option value='{"name": "price", "order": "descending"}'>價格由高至低</option>
+            <option value='{"name": "price", "order": "ascending"}'>價格由低至高</option>
           </select>
         </div>
       </div>
@@ -44,15 +51,19 @@ const MainContent = ({ activeCategory, products, categoryId, subcategoryId }) =>
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
+      <Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   );
 };
 
 MainContent.propTypes = {
+  currentPage: PropTypes.number,
+  totalPage: PropTypes.number,
   categoryId: PropTypes.string,
   activeCategory: PropTypes.arrays,
   subcategoryId: PropTypes.number,
   products: PropTypes.array,
+  setCurrentPage: PropTypes.func,
 };
 
 export default MainContent;

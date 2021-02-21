@@ -93,9 +93,6 @@ const Product = () => {
 
   return (
     <div className={classes.productRoot}>
-      {/* <div className="notification">
-        <Notification title="已加入慾望清單" />
-      </div> */}
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>

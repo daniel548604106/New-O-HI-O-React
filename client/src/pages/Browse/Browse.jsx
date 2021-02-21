@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/Browse/Sidebar/Sidebar.jsx';
 import MainContent from '../../components/Browse/MainContent/MainContent.jsx';
 import classes from './Browse.module.scss';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { menuOptions } from '../../lib/menuOptions';
 import { useLocation } from 'react-router-dom';
 import { apiGetAllProducts } from '../../api/index';
+import qs from 'query-string';
 const Browse = () => {
   const location = useLocation();
+  const history = useHistory();
   const query = new URLSearchParams(location.search);
   const [categoryId, setCategoryId] = useState('');
   const [subcategoryId, setSubcategoryId] = useState('');
   const [activeCategory, setActiveCategory] = useState([]);
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   useEffect(() => {
     setCategoryId(query.get('category'));
     setSubcategoryId(Number(query.get('subcategory')));
@@ -27,22 +31,26 @@ const Browse = () => {
       setActiveCategory(category);
       console.log(category, categoryId);
     };
-
     active();
   }, [categoryId]);
   // Get Products
   useEffect(() => {
+    let query = qs.parse(location.search);
+    query = { ...query, page: currentPage };
+    history.push(`${location.pathname}?${qs.stringify(query)}`);
     const getProducts = async () => {
       try {
-        const products = await apiGetAllProducts();
+        const products = await apiGetAllProducts(qs.stringify(query));
         setProducts(products.data.products);
+        setTotalPage(products.data.totalPage);
         console.log(products);
       } catch (error) {
         console.log(error);
       }
     };
     getProducts();
-  }, []);
+    console.log(currentPage);
+  }, [currentPage, location.search]);
   return (
     <div className={classes.browseLayout}>
       <div className={classes.sideBar}>
@@ -50,7 +58,10 @@ const Browse = () => {
       </div>
       <div className={classes.mainContent}>
         <MainContent
+          currentPage={currentPage}
+          totalPage={totalPage}
           categoryId={categoryId}
+          setCurrentPage={setCurrentPage}
           activeCategory={activeCategory}
           subcategoryId={subcategoryId}
           products={products}
