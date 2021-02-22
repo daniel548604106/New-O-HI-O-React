@@ -1,7 +1,16 @@
 import React from 'react';
 import classes from './Login.module.scss';
 import PropTypes from 'prop-types';
+import { apiPostLogin } from '../../../api/index';
 const Login = ({ setLoginState }) => {
+  const handleLogin = async () => {
+    try {
+      const { data } = await apiPostLogin();
+      console.log(error);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className={classes.signupLayout}>
@@ -17,7 +26,9 @@ const Login = ({ setLoginState }) => {
         <button className={classes.forgetPassword} onClick={() => setLoginState('resetPassword')}>
           忘記密碼
         </button>
-        <button className={classes.signupButton}>註冊</button>
+        <div onClick={() => handleLogin()} className={classes.loginBtn}>
+          登入
+        </div>
         <p className={classes.login}>
           還不是會員嗎？ <span onClick={() => setLoginState('signup')}>立刻註冊新帳號</span>
         </p>

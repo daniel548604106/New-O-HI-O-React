@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+    account:{
+      type: String,
+    },
     name: {
       type: String,
     },

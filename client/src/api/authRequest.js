@@ -2,7 +2,10 @@ import axios from 'axios';
 
 //註冊
 
-export const postSignup = (data) => axios.post('/v1/auth/signup', data);
+export const postSignup = async (data) => {
+  console.log('googog');
+  return await axios.post('/v1/auth/signup', data);
+};
 
 //登入
 
