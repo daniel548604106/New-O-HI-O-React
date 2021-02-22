@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal } from './store/index/indexAction';
-import LoginModal from './components/Login/Login.jsx';
+import LoginModal from './components/Login/LoginModal.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import Latest from './pages/Latest/Latest.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
