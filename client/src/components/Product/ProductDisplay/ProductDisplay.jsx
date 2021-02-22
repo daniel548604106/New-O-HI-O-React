@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './ProductDisplay.module.scss';
+import Skeleton from 'react-loading-skeleton';
+
 const ProductDisplay = ({ product }) => {
   const [activeImage, setActiveImage] = useState(0);
   return product ? (
@@ -16,7 +18,7 @@ const ProductDisplay = ({ product }) => {
       </div>
     </div>
   ) : (
-    <div>Loading</div>
+    <Skeleton />
   );
 };
 

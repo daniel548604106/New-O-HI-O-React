@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './ProductInfo.module.scss';
 import Tags from '../../Global/Tags/Tags.jsx';
+import Skeleton from 'react-loading-skeleton';
+
 const ProductInfo = ({ product, t }) => {
   return (
     product && (
       <div className={classes.rootInfo}>
         <div className={classes.main}>
-          <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
-          <h1 className={classes.productName}>{product.name}</h1>
+          <h2 className={classes.brandName}>{product.publishedBy.name || <Skeleton />}</h2>
+          <h1 className={classes.productName}>{product.name || <Skeleton />}</h1>
           <div className={classes.tags}>
             <div className={classes.discount}>
               <Tags tag={'60%off'} highlight="true" />
