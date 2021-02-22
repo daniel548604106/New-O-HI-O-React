@@ -45,9 +45,9 @@ app.use('/v1/shops',shopRoute)
 app.use('/v1/my', myRoute)
 app.use('/v1/chat', chatRoute)
 app.use('/v1/orders', orderRoute)
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/client/build/index.html');
-// });
+app.get('/', (req, res) => {
+  res.send('Welcome to O-HI-O API');
+});
 
 //監聽 Server 連線後的所有事件，並捕捉事件 socket 執行
 io.on('connection', socket => {
