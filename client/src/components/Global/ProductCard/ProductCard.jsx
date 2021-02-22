@@ -10,6 +10,7 @@ import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
 import { useHistory } from 'react-router-dom';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
+
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const history = useHistory();
