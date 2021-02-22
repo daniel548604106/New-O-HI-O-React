@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Login.module.scss';
 import PropTypes from 'prop-types';
 import { apiPostLogin } from '../../../api/index';
+import notify from '../../../lib/notification';
+import { setUserLoggedIn } from '../../../store/user/userAction';
+import { closeLoginModal } from '../../../store/index/indexAction';
+import Cookie from 'js-cookie';
+import { useDispatch } from 'react-redux';
 const Login = ({ setLoginState }) => {
+  const dispatch = useDispatch();
+  const [account, setAccount] = useState('');
+  const [password, setPassword] = useState('');
   const handleLogin = async () => {
     try {
-      const { data } = await apiPostLogin();
-      console.log(error);
+      const { data } = await apiPostLogin({ account, password });
+      Cookie.set('me', data.user);
+      Cookie.set('token', data.token);
+      dispatch(closeLoginModal());
+      dispatch(setUserLoggedIn(data));
+
+      notify('登入成功！');
     } catch (error) {
       console.log(error);
     }
@@ -17,11 +30,19 @@ const Login = ({ setLoginState }) => {
         <h2>用 O-HI-O 帳號登入</h2>
         <div className={classes.field}>
           <label htmlFor="account">帳號</label>
-          <input className={classes.inputField} type="text" />
+          <input
+            onChange={(e) => setAccount(e.target.value)}
+            className={classes.inputField}
+            type="text"
+          />
         </div>
         <div className={classes.field}>
           <label htmlFor="password">密碼</label>
-          <input className={classes.inputField} type="password" />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            className={classes.inputField}
+            type="password"
+          />
         </div>
         <button className={classes.forgetPassword} onClick={() => setLoginState('resetPassword')}>
           忘記密碼

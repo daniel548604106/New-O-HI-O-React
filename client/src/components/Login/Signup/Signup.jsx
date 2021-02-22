@@ -5,6 +5,8 @@ import { apiPostSignup } from '../../../api/index';
 import { setUserLoggedIn } from '../../../store/user/userAction';
 import { closeLoginModal } from '../../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
+import Cookie from 'js-cookie';
+import notify from '../../../lib/notification';
 const Signup = ({ setLoginState }) => {
   const dispatch = useDispatch();
   const [account, setAccount] = useState('');
@@ -14,8 +16,11 @@ const Signup = ({ setLoginState }) => {
     try {
       const { data } = await apiPostSignup({ account, email, password });
       console.log(data);
+      Cookie.set('me', data.user);
+      Cookie.set('token', data.token);
       dispatch(closeLoginModal());
       dispatch(setUserLoggedIn(data));
+      notify('登入成功！');
     } catch (error) {
       console.log(error);
     }

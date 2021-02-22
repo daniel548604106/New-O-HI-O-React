@@ -26,4 +26,27 @@ const authSignup = async (req, res, next) => {
   }
 };
 
-module.exports = { authSignup };
+const authLogin = async(req,res,next) =>{
+  try{
+    const {account,password} = req.body
+    console.log(account,password)
+    // check if email is in db , and validate password
+    const user = await User.findOne({account})
+    console.log(user)
+    console.log('answer', await user.matchPassword(password))
+    if (user && (await user.matchPassword(password))) {
+      res.status(200).json({
+       message: 'hihi'
+      })
+      console.log('succeed')
+      return
+    } else {
+      res.status(401)
+      next( new Error("Invalid email or password"))
+    }
+  }catch(error){
+    console.log(error)
+  }
+}
+
+module.exports = { authSignup,authLogin };

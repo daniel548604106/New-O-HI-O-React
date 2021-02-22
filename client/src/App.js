@@ -99,42 +99,44 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <Route path="/" exact>
-        <Home />
-      </Route>
-      <main className="global-container">
-        <Route path="/oauth/:type" exact>
-          <OAuth props={props} />
+      <div className="mainLayout" style={{ marginTop: '60px' }}>
+        <Route path="/" exact>
+          <Home />
         </Route>
-        <Route path={`/my/:type?/:state?`}>
-          <My />
-        </Route>
-        <Route path="/browse">
-          <Browse />
-        </Route>
-        <Route path="/latest" exact>
-          <Latest />
-        </Route>
-        <Route path={`/products/:id`}>
-          <Product />
-        </Route>
-        <Route path="/favorite">
-          <Favorite />
-        </Route>
-        <Route path={`/shop/:account`}>
-          <Shop />
-        </Route>
-        <Route path="/search">
-          <Search />
-        </Route>
-        <Route path="/cart/:status?/:id?">
-          <Cart />
-        </Route>
-        <Route path="/beauty">
-          <Beauty />
-        </Route>
-      </main>
-      <Footer />
+        <main className="global-container">
+          <Route path="/oauth/:type" exact>
+            <OAuth props={props} />
+          </Route>
+          <Route path={`/my/:type?/:state?`}>
+            <My />
+          </Route>
+          <Route path="/browse">
+            <Browse />
+          </Route>
+          <Route path="/latest" exact>
+            <Latest />
+          </Route>
+          <Route path={`/products/:id`}>
+            <Product />
+          </Route>
+          <Route path="/favorite">
+            <Favorite />
+          </Route>
+          <Route path={`/shop/:account`}>
+            <Shop />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/cart/:status?/:id?">
+            <Cart />
+          </Route>
+          <Route path="/beauty">
+            <Beauty />
+          </Route>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 };

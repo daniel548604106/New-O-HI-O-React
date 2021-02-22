@@ -120,7 +120,13 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
-                  <img src={meData && meData.picture} alt="" />
+                  {meData.picture ? (
+                    <img src={meData && meData.picture} alt="profile picture" />
+                  ) : (
+                    <div>
+                      <PersonIcon />
+                    </div>
+                  )}
                   <div className={classes.dropdown}>
                     <Dropdown />
                   </div>
@@ -150,7 +156,13 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link to="/my/setting">
-                  <img className={classes.avatar} src={meData && meData.picture} alt="" />
+                  {meData.picture ? (
+                    <img src={meData && meData.picture} alt="profile picture" />
+                  ) : (
+                    <div>
+                      <PersonIcon />
+                    </div>
+                  )}
                 </Link>
                 <Link
                   to="/favorite?tab=products"

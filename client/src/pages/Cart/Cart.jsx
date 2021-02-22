@@ -29,7 +29,7 @@ const Checkout = () => {
         </div>
       )}
       {!params.status && (
-        <div>
+        <div className={classes.cartInfo}>
           <CartListInfo cartItems={cartItems} />
         </div>
       )}
