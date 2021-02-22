@@ -25,7 +25,7 @@ const SearchBar = ({ searchBarOpen }) => {
       <div style={{ display: 'flex', width: '100%' }}>
         <input
           onChange={(e) => setSearchInput(e.target.value)}
-          type="text"
+          type="search"
           value={searchInput}
           placeholder="Please type in keywords"
           className={classes.inputBox}

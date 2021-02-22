@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../../../store/cart/cartAction.js';
 import { addToFavorite } from '../../../store/index/indexAction';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
     {
@@ -64,14 +65,15 @@ const ProductBanner = ({ product, scrollToPage }) => {
                 <p>Added</p>
               </>
             ) : (
-              <div className={classes.wishList}>
+              <div className={classes.btnLayout}>
                 <FavoriteBorderIcon />
-                <p>Add To WishList</p>
+                <p>收藏商品</p>
               </div>
             )}
           </button>
-          <button onClick={() => addItemToCart(product)} className={classes.addToCart}>
-            <p>Add To Cart</p>
+          <button className={classes.btnCartLayout} onClick={() => addItemToCart(product)}>
+            <AddShoppingCartIcon />
+            <p>放入購物車</p>
           </button>
         </div>
       </div>

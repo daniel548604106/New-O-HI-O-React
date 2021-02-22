@@ -1,0 +1,22 @@
+.socialLoginLayout {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  div {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid var(--border-gray);
+    border-radius: 4px;
+
+    .lineLogo {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}

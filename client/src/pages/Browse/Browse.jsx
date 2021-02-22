@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from '../../components/Browse/Sidebar/Sidebar.jsx';
+import Sidebar from '../../components/Browse/SideBar/SideBar.jsx';
 import MainContent from '../../components/Browse/MainContent/MainContent.jsx';
 import classes from './Browse.module.scss';
 import { useHistory } from 'react-router-dom';

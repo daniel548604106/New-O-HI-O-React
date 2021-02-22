@@ -13,6 +13,7 @@ import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDi
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 import { useTranslation } from 'react-i18next';
+
 const Product = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();

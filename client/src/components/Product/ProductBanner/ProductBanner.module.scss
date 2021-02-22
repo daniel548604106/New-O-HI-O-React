@@ -52,6 +52,7 @@
     padding: 0;
   }
   display: flex;
+  align-items: center;
   padding: 10px;
   height: 100%;
   .addToCart {
@@ -66,6 +67,7 @@
     align-items: center;
     border-radius: 0;
     margin-left: 15px;
+    height: 100%;
     background-color: var(--primary-black);
     justify-content: center;
     padding: 5px 10px;
@@ -74,14 +76,8 @@
   }
   .ctaBtn {
     cursor: pointer;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
     border-radius: 2px;
-    width: 100px;
-    align-items: center;
     background-color: white;
-
     p {
       margin-left: 5px;
     }
@@ -91,6 +87,7 @@
         border: none;
       }
       color: var(--primary-black);
+      padding: 10px;
       border: 1px solid var(--primary-black);
       background-color: white;
     }
@@ -105,4 +102,31 @@
       color: white;
     }
   }
+}
+
+.btnLayout,
+.btnCartLayout {
+  display: flex;
+  align-items: center;
+  @media (max-width: 500px) {
+    border: none;
+  }
+  border: 1px solid var(--primary-black);
+  padding: 5px 10px;
+  p {
+    margin-left: 5px;
+  }
+}
+
+.btnCartLayout {
+  @media (max-width: 500px) {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  background-color: var(--primary-pink);
+  border: none;
+  color: white;
 }
