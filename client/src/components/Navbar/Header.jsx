@@ -13,6 +13,7 @@ import Dropdown from './Dropdown/Dropdown.jsx';
 import { openLoginModal } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PersonIcon from '@material-ui/icons/Person';
 import Cookie from 'js-cookie';
 import Button from '../Global/Button/Button.jsx';
 const Navbar = () => {
@@ -161,7 +162,7 @@ const Navbar = () => {
               </div>
             ) : (
               <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
-                {t('login')}
+                <PersonIcon />
               </span>
             )}
 
