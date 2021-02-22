@@ -82,7 +82,7 @@ const App = (props) => {
         ))}
       {isLoginModalShow}
       <div className="loginModal">
-        <Backdrop open={open} onClick={handleClose} style={{ zIndex: 11 }}>
+        <Backdrop open={open} onClick={handleClose} style={{ zIndex: 15 }}>
           <div
             onClick={preventProp}
             style={{
