@@ -1,6 +1,9 @@
 {
   "name": "O-HI-O-server",
   "version": "1.0.0",
+  "engines":{
+    "node": "14.15.0"
+  },
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon server.js",

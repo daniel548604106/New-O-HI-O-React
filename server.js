@@ -70,7 +70,7 @@ io.on('connection', socket => {
 if(process.env.NODE_ENV === 'production'){ // if the application is running on heroku, we then execute the following function
   app.use(express.static('client/build'));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    res.sendFile(path.resolve(__dirname + 'client','build','index.html'));
   });
 }  //static is a middleware that allows us to serve a static file, which when we run 'npm run build', it will generate a file called build
 
