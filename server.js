@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = process.env.PORT ||  3001;
 const path = require('path')
 const server = require('http').createServer(app);
 // server-side
@@ -45,9 +45,9 @@ app.use('/v1/shops',shopRoute)
 app.use('/v1/my', myRoute)
 app.use('/v1/chat', chatRoute)
 app.use('/v1/orders', orderRoute)
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/index.html');
+// });
 
 //監聽 Server 連線後的所有事件，並捕捉事件 socket 執行
 io.on('connection', socket => {
@@ -69,9 +69,9 @@ io.on('connection', socket => {
 
 if(process.env.NODE_ENV === 'production'){ // if the application is running on heroku, we then execute the following function
   app.use(express.static('./client/build'))
-  app.get('*', function(req,res){
-    res.sendFile('./client/build/.html')
-  })
+  // app.get('*', function(req,res){
+  //   res.sendFile(path.join(__dirname+'/client/build/index.html'))
+  // })
 }  //static is a middleware that allows us to serve a static file, which when we run 'npm run build', it will generate a file called build
 
 
