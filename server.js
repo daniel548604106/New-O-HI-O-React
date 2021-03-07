@@ -36,7 +36,7 @@ connectDB();
 app.use('/*', bodyParser.json());
 app.use('/v1/oauth', oAuthRoute);
 app.use('/v1/products', productRoute);
-app.use('/auth', authRoute);
+app.use('/v1/auth', authRoute);
 app.use('/v1/users', userRoute);
 app.use('/v1/banners', bannerRoute)
 app.use('/v1/reviews', reviewRoute)

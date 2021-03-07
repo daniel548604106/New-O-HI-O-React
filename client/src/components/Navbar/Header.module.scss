@@ -1,8 +1,13 @@
 .headerBar {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 13;
+  background: white;
   width: 100%;
   padding: 0 15px;
-  height: 70px;
+  height: 60px;
 
   .toolBar {
     display: flex;
@@ -41,6 +46,7 @@
   align-items: center;
   .loginBtn {
     margin-right: 20px;
+
     p {
       cursor: pointer;
       padding: 5px 10px;
@@ -55,6 +61,7 @@
     display: flex;
     align-items: center;
   }
+
   display: none;
 }
 
@@ -111,4 +118,10 @@
 
 .cart:hover {
   color: var(--primary-pink);
+}
+
+.avatarPicture {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }

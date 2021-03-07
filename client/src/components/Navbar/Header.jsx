@@ -13,6 +13,7 @@ import Dropdown from './Dropdown/Dropdown.jsx';
 import { openLoginModal } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PersonIcon from '@material-ui/icons/Person';
 import Cookie from 'js-cookie';
 import Button from '../Global/Button/Button.jsx';
 const Navbar = () => {
@@ -119,7 +120,13 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
-                  <img src={meData && meData.picture} alt="" />
+                  {meData.picture ? (
+                    <img src={meData && meData.picture} alt="profile picture" />
+                  ) : (
+                    <div>
+                      <PersonIcon />
+                    </div>
+                  )}
                   <div className={classes.dropdown}>
                     <Dropdown />
                   </div>
@@ -149,7 +156,17 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link to="/my/setting">
-                  <img className={classes.avatar} src={meData && meData.picture} alt="" />
+                  {meData.picture ? (
+                    <img
+                      className={classes.avatarPicture}
+                      src={meData && meData.picture}
+                      alt="profile picture"
+                    />
+                  ) : (
+                    <div>
+                      <PersonIcon />
+                    </div>
+                  )}
                 </Link>
                 <Link
                   to="/favorite?tab=products"
@@ -161,7 +178,7 @@ const Navbar = () => {
               </div>
             ) : (
               <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
-                {t('login')}
+                <PersonIcon />
               </span>
             )}
 

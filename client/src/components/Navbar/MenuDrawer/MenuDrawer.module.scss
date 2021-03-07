@@ -7,10 +7,62 @@
   }
 }
 
+.myListLayout {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  .list {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  .myName {
+    font-weight: 500;
+  }
+}
+
 .list {
   width: 250px;
 }
 
 .fullList {
   width: auto;
+}
+
+.optionsLayout {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid var(--border-gray);
+  justify-content: space-between;
+  align-items: center;
+  > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+.title {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-gray);
+  font-size: 14px;
+  font-weight: 500;
 }
