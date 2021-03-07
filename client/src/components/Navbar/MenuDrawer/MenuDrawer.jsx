@@ -8,6 +8,7 @@ import { IconButton } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import { Link } from 'react-router-dom';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import PersonIcon from '@material-ui/icons/Person';
 import logoutIcon from '../../../assets/images/global/logout.svg';
 import { menuOptions } from '../../../lib/menuOptions';
 import { setUserLogout } from '../../../store/user/userAction';
@@ -61,7 +62,7 @@ const MenuDrawer = () => {
       <List>
         <div className={classes.myListLayout}>
           <Link to={'/my/setting'} className={classes.list}>
-            <img src={user.picture} alt="" />
+            {user.picture ? <img src={user.picture} alt="" /> : <PersonIcon src={user.picture} />}
             <p className={classes.myName}>{user.name}</p>
           </Link>
           <Link className={classes.list} to={'/my/email'}>
