@@ -157,7 +157,11 @@ const Navbar = () => {
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link to="/my/setting">
                   {meData.picture ? (
-                    <img src={meData && meData.picture} alt="profile picture" />
+                    <img
+                      className={classes.avatarPicture}
+                      src={meData && meData.picture}
+                      alt="profile picture"
+                    />
                   ) : (
                     <div>
                       <PersonIcon />
