@@ -29,7 +29,9 @@ const MenuDrawer = () => {
   const [user, setUser] = useState({});
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   useEffect(() => {
-    setUser(JSON.parse(Cookie.get('me')));
+    if (Cookie.get('me')) {
+      setUser(JSON.parse(Cookie.get('me')));
+    }
   }, []);
   const logout = () => {
     history.push('/');
