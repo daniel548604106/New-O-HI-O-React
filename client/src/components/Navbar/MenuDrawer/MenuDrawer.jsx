@@ -62,21 +62,25 @@ const MenuDrawer = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        <div className={classes.myListLayout}>
-          <Link to={'/my/setting'} className={classes.list}>
-            {user.picture ? <img src={user.picture} alt="" /> : <PersonIcon src={user.picture} />}
-            <p className={classes.myName}>{user.name}</p>
-          </Link>
-          <Link className={classes.list} to={'/my/email'}>
-            我的信箱
-          </Link>
-          <Link className={classes.list} to={'/my/notification'}>
-            通知中心
-          </Link>
-          <Link className={classes.list} to={'/my/purchase/unpaid'}>
-            購買訂單
-          </Link>
-        </div>
+        {isUserLoggedIn ? (
+          <div className={classes.myListLayout}>
+            <Link to={'/my/setting'} className={classes.list}>
+              {user.picture ? <img src={user.picture} alt="" /> : <PersonIcon src={user.picture} />}
+              <p className={classes.myName}>{user.name}</p>
+            </Link>
+            <Link className={classes.list} to={'/my/email'}>
+              我的信箱
+            </Link>
+            <Link className={classes.list} to={'/my/notification'}>
+              通知中心
+            </Link>
+            <Link className={classes.list} to={'/my/purchase/unpaid'}>
+              購買訂單
+            </Link>
+          </div>
+        ) : (
+          <div className={classes.myListLayout}>登入 / 註冊</div>
+        )}
         <div className={classes.title}>
           <p>所有分類</p>
         </div>
