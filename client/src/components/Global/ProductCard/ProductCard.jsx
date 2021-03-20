@@ -10,6 +10,17 @@ import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
 import { useHistory } from 'react-router-dom';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
+import Skeleton from 'react-loading-skeleton';
+
+const ProductCardLoading = () => {
+  return (
+    <>
+      <Skeleton height={150} width={150} />
+      <Skeleton height={10} width={100} style={{ marginTop: '10px' }} />
+      <Skeleton height={10} width={100} />
+    </>
+  );
+};
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -53,48 +64,51 @@ const ProductCard = ({ product }) => {
           </p>
         )}
       </div>
-
-      <Card
-        className={classes.card}
-        key={product.id}
-        onClick={() => directToProduct()}
-        style={{ textDecoration: 'none' }}
-      >
-        <div className={classes.mainPicture}>
-          <CardMedia
-            className={classes.media}
-            image={product.images[0]}
-            title="Contemplative Reptile"
-          />
-          <FavoriteIcon
-            onClick={(e) => addItemToFavorite(e, product._id)}
-            className={`${classes.heartIcon} ${addedFavorite > -1 && classes.activeHeartIcon}`}
-          />
-        </div>
-        <div className={classes.cardContent}>
-          <h2 className={classes.productName}>{product.name}</h2>
-          <div>
-            <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
-            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-              <span className={classes.discountPrice}>NTD</span>
-              {product.discountPrice && (
-                <p className={classes.discountPrice}>${product.discountPrice}</p>
-              )}
-              <p
-                className={`
-                  ${classes.originalPrice} 
-                  ${!product.discountPrice && classes.noDiscountPrice}
-                `}
-                style={{
-                  textDecoration: product.discountPrice ? 'line-through' : ' none',
-                }}
-              >
-                ${product.fullPrice}
-              </p>
+      {product ? (
+        <Card
+          className={classes.card}
+          key={product.id}
+          onClick={() => directToProduct()}
+          style={{ textDecoration: 'none' }}
+        >
+          <div className={classes.mainPicture}>
+            <CardMedia
+              className={classes.media}
+              image={product.images[0]}
+              title="Contemplative Reptile"
+            />
+            <FavoriteIcon
+              onClick={(e) => addItemToFavorite(e, product._id)}
+              className={`${classes.heartIcon} ${addedFavorite > -1 && classes.activeHeartIcon}`}
+            />
+          </div>
+          <div className={classes.cardContent}>
+            <h2 className={classes.productName}>{product.name}</h2>
+            <div>
+              <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
+              <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                <span className={classes.discountPrice}>NTD</span>
+                {product.discountPrice && (
+                  <p className={classes.discountPrice}>${product.discountPrice}</p>
+                )}
+                <p
+                  className={`
+                    ${classes.originalPrice} 
+                    ${!product.discountPrice && classes.noDiscountPrice}
+                  `}
+                  style={{
+                    textDecoration: product.discountPrice ? 'line-through' : ' none',
+                  }}
+                >
+                  ${product.fullPrice}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      ) : (
+        <ProductCardLoading />
+      )}
     </div>
   );
 };
