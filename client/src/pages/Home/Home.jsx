@@ -10,6 +10,7 @@ import {
   apiGetHotShop,
 } from '../../api/index';
 import classes from './Home.module.scss';
+import Skeleton from 'react-loading-skeleton';
 import { getFavList } from '../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
 import Cookie from 'js-cookie';
@@ -85,7 +86,11 @@ const Home = () => {
       <Banner banners={banners} />
       <main>
         <section>
-          <Cards title="newRelease" products={products} t={t} />
+          {products ? (
+            <Cards title="newRelease" products={products} t={t} />
+          ) : (
+            <Skeleton height={300} width={300} />
+          )}
         </section>
         <section>
           <Cards title="popularItems" products={products} t={t} />

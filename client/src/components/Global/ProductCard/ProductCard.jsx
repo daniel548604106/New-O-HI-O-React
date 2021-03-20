@@ -107,7 +107,11 @@ const ProductCard = ({ product }) => {
           </div>
         </Card>
       ) : (
-        <ProductCardLoading />
+        <>
+          <ProductCardLoading />
+          <Skeleton height={150} width={150} />
+          <Skeleton height={150} width={150} />
+        </>
       )}
     </div>
   );
