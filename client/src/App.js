@@ -90,7 +90,7 @@ const App = (props) => {
           </div>
         ) : (
           <>
-            <div onClick={() => handleToggleChat()} className="hideHeader">
+            <div onClick={() => handleToggleChat()} style={{ display: 'none' }}>
               <ChatBubbleOutlineIcon />
               <span>聊聊</span>
             </div>
@@ -103,7 +103,6 @@ const App = (props) => {
             onClick={preventProp}
             style={{
               maxWidth: '600px',
-
               borderRadius: '10px',
               zIndex: 12,
               backgroundColor: '#fff',
