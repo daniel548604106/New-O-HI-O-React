@@ -18,7 +18,11 @@ const ProductDisplay = ({ product }) => {
       </div>
     </div>
   ) : (
-    <Skeleton height={300} />
+    <>
+      <Skeleton height={300} />
+      <Skeleton height={50} width={100} style={{ marginTop: '20px' }} />
+      <Skeleton height={50} width={100} style={{ marginTop: '20px' }} />
+    </>
   );
 };
 
