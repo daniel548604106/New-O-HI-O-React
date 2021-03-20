@@ -26,9 +26,23 @@ const App = (props) => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
   const [open, setOpen] = useState(false);
+  const [hideHeader, setHideHeader] = useState(false);
   const handleClose = (e) => {
     dispatch(closeLoginModal());
   };
+
+  useEffect(() => {
+    let prevPosition = pageYOffset;
+    window.addEventListener('scroll', () => {
+      let currentPosition = pageYOffset;
+      if (prevPosition > 50 && prevPosition < currentPosition) {
+        setHideHeader(true);
+      } else {
+        setHideHeader(false);
+      }
+      prevPosition = currentPosition;
+    });
+  }, []);
 
   const preventProp = (e) => {
     e.stopPropagation();
@@ -66,7 +80,9 @@ const App = (props) => {
         newestOnTop={false}
         closeOnClick
       />
-      <Header />
+      <div className="header" style={{ top: hideHeader && '-100%' }}>
+        <Header />
+      </div>
       {isUserLoggedIn &&
         (showChat ? (
           <div className="chatRoom">
@@ -99,7 +115,7 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <div className="mainLayout" style={{ marginTop: '60px' }}>
+      <div className="mainLayout">
         <Route path="/" exact>
           <Home />
         </Route>
