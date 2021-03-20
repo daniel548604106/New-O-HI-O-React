@@ -1,13 +1,19 @@
+.logo {
+  width: 120px;
+  height: 100%;
+  margin-left: 10px;
+}
+
 .headerBar {
   display: flex;
   position: fixed;
+  flex-direction: column;
   top: 0;
   left: 0;
   z-index: 13;
   background: white;
   width: 100%;
-  padding: 0 15px;
-  height: 60px;
+  padding: 12px 15px 0;
 
   .toolBar {
     display: flex;
@@ -24,7 +30,7 @@
     display: none;
   }
   display: flex;
-  margin-left: 50px;
+  margin-left: 30px;
   align-items: center;
   input {
     padding: 10px;

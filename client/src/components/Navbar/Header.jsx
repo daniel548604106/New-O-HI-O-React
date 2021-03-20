@@ -3,6 +3,7 @@ import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
+import Logo from '../../assets/images/global/taiwzoo-logo.svg';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -99,10 +100,8 @@ const Navbar = () => {
             <div className={classes.sectionMobile}>
               <MenuDrawer />
             </div>
-            <Link to="/" className={classes.link}>
-              <div variant="h3" style={{ fontSize: '20px', marginLeft: '10px' }}>
-                O.HI.O
-              </div>
+            <Link to="/">
+              <img className={classes.logo} src={Logo} alt="logo" />
             </Link>
             <div className={classes.search}>
               <input
@@ -189,10 +188,11 @@ const Navbar = () => {
             </IconButton>
           </div>
         </div>
+        <NavMenu />
       </div>
+
       <div>{<SearchBar searchBarOpen={searchBarOpen} />}</div>
       {renderMobileMenu}
-      <NavMenu />
     </>
   );
 };

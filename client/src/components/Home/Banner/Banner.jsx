@@ -18,7 +18,7 @@ const Banner = ({ banners }) => {
     <div>
       <Swiper
         id="swiper-banner"
-        spaceBetween={10}
+        spaceBetween={0}
         slidesPerView={1}
         navigation
         autoPlay
