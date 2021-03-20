@@ -7,6 +7,8 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { IconButton } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import { Link } from 'react-router-dom';
+import { openLoginModal } from '../../../store/index/indexAction';
+
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
 import logoutIcon from '../../../assets/images/global/logout.svg';
@@ -20,19 +22,19 @@ const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState('繁體中文(台灣)');
   const history = useHistory();
+  const dispatch = useDispatch();
   const changeLanguage = () => {
     language === 'English'
       ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
       : (setLanguage('English'), i18n.changeLanguage('en'));
   };
-  const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   useEffect(() => {
     if (Cookie.get('me')) {
       setUser(JSON.parse(Cookie.get('me')));
     }
-  }, []);
+  }, [isUserLoggedIn]);
   const logout = () => {
     history.push('/');
     dispatch(setUserLogout());
@@ -43,6 +45,10 @@ const MenuDrawer = () => {
     bottom: false,
     right: false,
   });
+
+  const handleOpenLoginModal = () => {
+    dispatch(openLoginModal());
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -79,17 +85,16 @@ const MenuDrawer = () => {
             </Link>
           </div>
         ) : (
-          <div className={classes.myListLayout}>登入 / 註冊</div>
+          <div onClick={handleOpenLoginModal} className={classes.myListLayout}>
+            登入 / 註冊
+          </div>
         )}
         <div className={classes.title}>
           <p>所有分類</p>
         </div>
         {menuOptions.map((option, index) => (
           <div key={option.title} className={classes.optionsLayout}>
-            <div>
-              <img src={option.icon} alt="" />
-              <p>{option.title}</p>
-            </div>
+            <p>{option.title}</p>
             <ChevronRightIcon />
           </div>
         ))}
