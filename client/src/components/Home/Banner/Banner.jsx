@@ -30,7 +30,7 @@ const Banner = ({ banners }) => {
           <SwiperSlide key={banner.title}>
             <div
               className={classes.swiperBackground}
-              style={{ backgroundImage: `url(${banner.image})` }}
+              style={{ backgroundImage: `url(${banner.image})`, cursor: 'pointer' }}
             ></div>
           </SwiperSlide>
         ))}
