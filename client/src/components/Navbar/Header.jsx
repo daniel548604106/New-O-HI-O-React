@@ -190,8 +190,9 @@ const Navbar = () => {
         </div>
         <NavMenu />
       </div>
-
-      <div>{<SearchBar searchBarOpen={searchBarOpen} />}</div>
+      <div>
+        <SearchBar searchBarOpen={searchBarOpen} />
+      </div>
       {renderMobileMenu}
     </>
   );

@@ -15,7 +15,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 import PropTypes from 'prop-types';
 const Banner = ({ banners }) => {
   return (
-    <div>
+    <div className={classes.bannerLayout}>
       <Swiper
         id="swiper-banner"
         spaceBetween={0}

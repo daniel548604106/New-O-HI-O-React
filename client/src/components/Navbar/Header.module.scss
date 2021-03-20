@@ -6,11 +6,7 @@
 
 .headerBar {
   display: flex;
-  position: fixed;
   flex-direction: column;
-  top: 0;
-  left: 0;
-  z-index: 13;
   background: white;
   width: 100%;
   padding: 12px 15px 0;
@@ -30,15 +26,21 @@
     display: none;
   }
   display: flex;
+  border-radius: 10px;
   margin-left: 30px;
   align-items: center;
   input {
     padding: 10px;
     border: 1px solid var(--border-gray);
+    border-radius: 10px 0 0 10px;
+    transition: all 0.3s;
+    &:focus {
+      border: 1px solid var(--primary-pink);
+    }
   }
   .searchBtn {
     padding: 10px 20px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 10px 10px 0;
     background-color: var(--primary-pink);
     color: white;
   }
