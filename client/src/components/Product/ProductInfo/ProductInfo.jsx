@@ -9,8 +9,16 @@ const ProductInfo = ({ product, t }) => {
     product && (
       <div className={classes.rootInfo}>
         <div className={classes.main}>
-          <h2 className={classes.brandName}>{product.publishedBy.name || <Skeleton />}</h2>
-          <h1 className={classes.productName}>{product.name || <Skeleton />}</h1>
+          {product ? (
+            <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
+          ) : (
+            <Skeleton height={50} width={150} />
+          )}
+          {product ? (
+            <h1 className={classes.productName}>{product.name}</h1>
+          ) : (
+            <Skeleton height={100} />
+          )}
           <div className={classes.tags}>
             <div className={classes.discount}>
               <Tags tag={'60%off'} highlight="true" />

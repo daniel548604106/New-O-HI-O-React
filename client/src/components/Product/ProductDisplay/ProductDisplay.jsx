@@ -18,7 +18,7 @@ const ProductDisplay = ({ product }) => {
       </div>
     </div>
   ) : (
-    <Skeleton height={100} />
+    <Skeleton height={300} />
   );
 };
 
