@@ -119,7 +119,7 @@ const App = (props) => {
           <Home />
         </Route>
         <main className="global-container">
-          <Route path="/oauth/:type" exact>
+          <Route path={`/oauth/:type`}>
             <OAuth props={props} />
           </Route>
           <Route path={`/my/:type?/:state?`}>
