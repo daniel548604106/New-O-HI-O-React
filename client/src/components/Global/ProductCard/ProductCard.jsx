@@ -72,10 +72,11 @@ const ProductCard = ({ product }) => {
           style={{ textDecoration: 'none' }}
         >
           <div className={classes.mainPicture}>
-            <CardMedia
+            <img
               className={classes.media}
-              image={product.images[0]}
-              title="Contemplative Reptile"
+              loading="lazy"
+              src={product.images[0]}
+              alt={product.name}
             />
             <FavoriteIcon
               onClick={(e) => addItemToFavorite(e, product._id)}
