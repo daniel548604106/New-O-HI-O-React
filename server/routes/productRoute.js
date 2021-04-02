@@ -6,7 +6,7 @@ const {
   getProduct,
   getCollectionProducts,
   getDiscountedProducts,
-  addNewProduct
+  addNewProduct,
 } = require('../controllers/productController');
 router.route('/').get(getAllProducts).post(protect, seller, addNewProduct)
 router.route('/discount').get(getDiscountedProducts)
