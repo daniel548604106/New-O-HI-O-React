@@ -63,3 +63,9 @@ import { patchChat, getChat, getAllChats } from './chatRequest';
 export const apiPatchChat = patchChat;
 export const apiGetChat = getChat;
 export const apiGetAllChats = getAllChats;
+
+// Search
+
+import { getSearchedProducts } from './searchRequest';
+
+export const apiGetSearchedProducts = getSearchedProducts;

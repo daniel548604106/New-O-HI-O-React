@@ -32,6 +32,15 @@ const getDiscountedProducts = async(req,res,next) =>{
     console.log(error)
   }
 }
+
+const getSearchedProducts = async(req,res ) =>{
+  try{
+    console.log("hiihi")
+    res.status(200).message('Success')
+  }catch(error){
+    console.log(error)
+  }
+}
 const getAllProducts = async (req, res, next) => {
   try {
     const { order, page , sort } = req.query
@@ -77,4 +86,4 @@ const getCollectionProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { addNewProduct, getAllProducts, getProduct, getCollectionProducts,getDiscountedProducts };
+module.exports = { addNewProduct, getAllProducts, getSearchedProducts,getProduct, getCollectionProducts,getDiscountedProducts };

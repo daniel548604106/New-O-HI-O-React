@@ -25,6 +25,7 @@ const shopRoute =  require('./server/routes/shopRoute')
 const myRoute = require('./server/routes/myRoute')
 const chatRoute = require('./server/routes/chatRoute')
 const orderRoute = require('./server/routes/orderRoute')
+const searchRoute = require('./server/routes/searchRoute')
 
 const connectDB = require('./server/tools/db');
 
@@ -45,7 +46,7 @@ app.use('/v1/shops',shopRoute)
 app.use('/v1/my', myRoute)
 app.use('/v1/chat', chatRoute)
 app.use('/v1/orders', orderRoute)
-
+app.use('/v1/search', searchRoute)
 //監聽 Server 連線後的所有事件，並捕捉事件 socket 執行
 io.on('connection', socket => {
   //經過連線後在 console 中印出訊息

@@ -9,7 +9,6 @@ export const postSignup = async (data) => {
 //登入
 
 export const postLogin = (data) => {
-  console.log('googog');
   return axios.post('/v1/auth/login', data);
 };
 

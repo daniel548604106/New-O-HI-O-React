@@ -49,6 +49,8 @@ const productSchema = new mongoose.Schema({
 });
 
 
+productSchema.index({name: 'text',description: 'text'});
+
 
 productSchema.virtual('reviews', {
   ref: 'Review',
