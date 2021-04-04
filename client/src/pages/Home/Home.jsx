@@ -15,6 +15,7 @@ import { getFavList } from '../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
+import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [hotShops, setHotShops] = useState([]);
@@ -83,6 +84,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <div>
+      <HelmetTitle />
       <Banner banners={banners} />
       <main>
         <section>
