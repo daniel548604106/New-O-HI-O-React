@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import Cookie from 'js-cookie';
-import CardMedia from '@material-ui/core/CardMedia';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'react';
@@ -65,7 +62,7 @@ const ProductCard = ({ product }) => {
         )}
       </div>
       {product ? (
-        <Card
+        <div
           className={classes.card}
           key={product.id}
           onClick={() => directToProduct()}
@@ -106,7 +103,7 @@ const ProductCard = ({ product }) => {
               </div>
             </div>
           </div>
-        </Card>
+        </div>
       ) : (
         <>
           <ProductCardLoading />

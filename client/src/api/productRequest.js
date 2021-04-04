@@ -4,7 +4,6 @@ export const getAllProducts = (query) => {
   return axios.get(`/v1/products?${query}`);
 };
 export const getDiscountedProducts = () => {
-  console.log('discount');
   return axios.get('/v1/products/discount');
 };
 export const getProduct = (id) => {

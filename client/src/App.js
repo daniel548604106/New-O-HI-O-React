@@ -49,7 +49,6 @@ const App = (props) => {
   };
 
   useEffect(() => {
-    console.log(location);
     const query = window.location.search;
     let userId;
     const getUserData = async () => {
