@@ -12,6 +12,7 @@ const HelmetTitle = ({ title, description, image }) => {
         <title>{title ? `${title} | TaiWZoo` : defaultTitle}</title>
         <meta name="description" content={description ? description : defaultDescription} />
         <meta name="keywords" content="TaiWZoo 買設計 文創 客製化 禮物" />
+        <meta property="og:title" content={title ? `${title} | TaiWZoo` : defaultTitle} />
         <meta property="og:type" content="website" />
         <meta property="og:description" content={description ? description : defaultDescription} />
         <meta property="og:url" content="https://www.pinkoi.com/browse" />
