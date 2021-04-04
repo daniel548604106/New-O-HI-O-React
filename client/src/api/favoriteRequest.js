@@ -13,7 +13,6 @@ export const addToFavorite = async (id, token, type) => {
 };
 
 export const getFavList = async (token) => {
-  console.log('get Products');
   return await axios.get('/v1/favorite', {
     headers: {
       Authorization: `Bearer ${token}`,

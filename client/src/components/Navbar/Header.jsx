@@ -60,7 +60,6 @@ const Navbar = () => {
     setSearchBarOpen(false);
   }, [location]);
   useEffect(() => {
-    console.log('updated1');
     setTotalCartItems(
       cartItems.reduce((total, cartItem) => {
         return total + Number(cartItem.quantity);

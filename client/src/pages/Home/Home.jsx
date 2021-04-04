@@ -31,7 +31,6 @@ const Home = () => {
 
   const getBanners = async () => {
     const { data } = await apiGetBanners();
-    console.log('banners', data);
     setBanners(data.banners);
   };
 
@@ -50,7 +49,6 @@ const Home = () => {
     try {
       const { data } = await apiGetAllProducts();
       setProducts(data.products);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +58,6 @@ const Home = () => {
   const getDiscountedProducts = async () => {
     try {
       const { data } = await apiGetDiscountedProducts();
-      console.log('discounted', data);
       setDiscountedProducts(data.products);
     } catch (error) {
       console.log(error);
