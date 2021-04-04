@@ -13,6 +13,7 @@ import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDi
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 import { useTranslation } from 'react-i18next';
+import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
 
 const Product = () => {
   const { t, i18n } = useTranslation();
@@ -94,6 +95,11 @@ const Product = () => {
 
   return (
     <div className={classes.productRoot}>
+      <HelmetTitle
+        title={product.name}
+        description={product.description}
+        image={product && product.images[0]}
+      />
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
