@@ -17,6 +17,7 @@ const HelmetTitle = ({ title, description, image }) => {
         <meta property="og:description" content={description ? description : defaultDescription} />
         <meta property="og:url" content="https://www.pinkoi.com/browse" />
         <meta property="og:image" content={image ? image : defaultImage} />
+        <meta property="fb:app_id" content="4937468222991458" />
       </Helmet>
     </div>
   );
