@@ -85,7 +85,8 @@ const oAuth = async (req, res, next) => {
 
     // 3) Check if user exists in  DB
     const user = await User.findOne({ email });
-    console.log(user);
+    user.picture = picture
+    await user.save()
 
     if (!user) {
       const newUser = await User.create({

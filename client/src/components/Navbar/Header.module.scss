@@ -65,6 +65,20 @@
       border: 1px solid black;
     }
   }
+
+  .openShop {
+    margin-right: 20px;
+    font-size: 13px;
+    color: #eb7f82;
+    border: 1px dashed #eb7f82;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      color: #189fac;
+      border: 1px solid #189fac;
+    }
+  }
 }
 
 .sectionMobile {

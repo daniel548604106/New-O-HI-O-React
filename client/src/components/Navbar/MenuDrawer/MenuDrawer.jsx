@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import classes from './MenuDrawer.module.scss';
 import clsx from 'clsx';
-import LanguageIcon from '@material-ui/icons/Language';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { IconButton } from '@material-ui/core';
-import List from '@material-ui/core/List';
 import { Link } from 'react-router-dom';
 import { openLoginModal } from '../../../store/index/indexAction';
-
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PersonIcon from '@material-ui/icons/Person';
-import logoutIcon from '../../../assets/images/global/logout.svg';
-import { menuOptions } from '../../../lib/menuOptions';
-import { setUserLogout } from '../../../store/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import EmailIcon from '@material-ui/icons/Email';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import About from './About/About.jsx';
+import Picks from './Picks/Picks.jsx';
+import Categories from './Categories/Categories.jsx';
+import Inspiration from './Inspiration/Inspiration.jsx';
 import Cookie from 'js-cookie';
 const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState('繁體中文(台灣)');
   const history = useHistory();
   const dispatch = useDispatch();
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['TaiWZoo 選物', '購物零感', '所有分類', '關於 TaiWZoo'];
   const changeLanguage = () => {
     language === 'English'
       ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
@@ -35,10 +36,7 @@ const MenuDrawer = () => {
       setUser(JSON.parse(Cookie.get('me')));
     }
   }, [isUserLoggedIn]);
-  const logout = () => {
-    history.push('/');
-    dispatch(setUserLogout());
-  };
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -54,68 +52,74 @@ const MenuDrawer = () => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
   };
 
+  const Tabs = () => (
+    <div className={classes.tabsLayout}>
+      {tabs.map((tab, index) => (
+        <span
+          className={activeTab === index && classes.active}
+          key={tab}
+          onClick={() => setActiveTab(index)}
+        >
+          {tab}
+        </span>
+      ))}
+    </div>
+  );
+
+  const CtaBtn = () => (
+    <div className={classes.ctaBtn}>
+      {isUserLoggedIn ? (
+        <div className={classes.myListLayout}>
+          <Link className={classes.list} to={'/my/email'}>
+            <EmailIcon />
+            <p>我的信箱</p>
+          </Link>
+          <Link className={classes.list} to={'/my/notification'}>
+            <NotificationsIcon />
+            <p>通知中心</p>
+          </Link>
+          <Link className={classes.list} to={'/my/purchase/unpaid'}>
+            <ListAltIcon />
+            <p>購買訂單</p>
+          </Link>
+          <Link to={'/my/setting'} className={classes.list}>
+            {user.picture ? <img src={user.picture} alt="" /> : <PersonIcon src={user.picture} />}
+          </Link>
+        </div>
+      ) : (
+        <div onClick={handleOpenLoginModal} className={classes.loginBtn}>
+          登入 / 註冊
+        </div>
+      )}
+    </div>
+  );
+
   const list = (anchor) => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
+      className={clsx(
+        classes.list,
+        {
+          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        },
+        classes.menuLayout,
+      )}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {isUserLoggedIn ? (
-          <div className={classes.myListLayout}>
-            <Link to={'/my/setting'} className={classes.list}>
-              {user.picture ? <img src={user.picture} alt="" /> : <PersonIcon src={user.picture} />}
-              <p className={classes.myName}>{user.name}</p>
-            </Link>
-            <Link className={classes.list} to={'/my/email'}>
-              我的信箱
-            </Link>
-            <Link className={classes.list} to={'/my/notification'}>
-              通知中心
-            </Link>
-            <Link className={classes.list} to={'/my/purchase/unpaid'}>
-              購買訂單
-            </Link>
-          </div>
-        ) : (
-          <div onClick={handleOpenLoginModal} className={classes.myListLayout}>
-            登入 / 註冊
-          </div>
-        )}
-        <div className={classes.title}>
-          <p>所有分類</p>
-        </div>
-        {menuOptions.map((option, index) => (
-          <div key={option.title} className={classes.optionsLayout}>
-            <p>{option.title}</p>
-            <ChevronRightIcon />
-          </div>
-        ))}
-        <div className={classes.title}>
-          <p>探索更多</p>
-        </div>
-      </List>
-      <List>
-        <div className={classes.langaugeSelector}>
-          <LanguageIcon />
-          <p onClick={() => changeLanguage()}>{language}</p>
-        </div>
-        {isUserLoggedIn && (
-          <div className={classes.optionsLayout} button onClick={logout}>
-            <div>
-              <img src={logoutIcon} alt="" />
-              <p>登出</p>
-            </div>
-          </div>
-        )}
-      </List>
+      <div className={classes.mainLayout}>
+        <Tabs />
+        {activeTab === 0 && <Picks />}
+        {activeTab === 1 && <Inspiration />}
+        {activeTab === 2 && <Categories />}
+        {activeTab === 3 && <About />}
+      </div>
+      <div>
+        <CtaBtn />
+      </div>
     </div>
   );
 
