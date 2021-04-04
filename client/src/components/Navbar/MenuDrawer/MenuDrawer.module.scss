@@ -27,13 +27,14 @@
   border-top: 2px solid var(--secondary-gray);
   .list {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 5px;
     font-size: 12px;
     &:last-child {
-      background-color: var(--primary-black);
+      background-color: black;
     }
   }
   img {
@@ -45,10 +46,6 @@
   }
 }
 
-.list {
-  width: 80vw;
-}
-
 .fullList {
   width: auto;
 }
@@ -57,6 +54,9 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 80vw;
+  max-width: 400px;
+  background-color: white;
 
   .tabsLayout {
     display: flex;

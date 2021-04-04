@@ -10,6 +10,11 @@ const About = () => {
   const [language, setLanguage] = useState('繁體中文(台灣)');
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const dispatch = useDispatch();
+  const changeLanguage = () => {
+    language === 'English'
+      ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
+      : (setLanguage('English'), i18n.changeLanguage('en'));
+  };
   const logout = () => {
     dispatch(setUserLogout());
   };
@@ -51,7 +56,12 @@ const About = () => {
           {option.name}
         </Link>
       ))}
-      <Link to="/application" className={classes.openShop}>
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        to="/application"
+        className={classes.openShop}
+      >
         我想在 TaiWZoo 上開店
         <ChevronRightIcon />
       </Link>

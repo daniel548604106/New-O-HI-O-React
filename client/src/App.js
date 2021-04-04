@@ -7,7 +7,7 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeLoginModal } from './store/index/indexAction';
+import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
 import LoginModal from './components/Login/LoginModal.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import Latest from './pages/Latest/Latest.jsx';
@@ -16,6 +16,7 @@ import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
 import { toggleChat } from './store/chat/chatAction';
+import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
 import './App.scss';
 const App = (props) => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const App = (props) => {
   const handleToggleChat = () => {
     dispatch(toggleChat());
   };
+  const isMenuDrawerOpen = useSelector((state) => state.global.isMenuDrawerOpen);
   const showChat = useSelector((state) => state.chat.showChat);
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
@@ -67,6 +69,9 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
+    dispatch(closeMenuDrawer());
+  }, [location]);
+  useEffect(() => {
     setOpen(isLoginModalShow);
   }, [isLoginModalShow]);
 
@@ -79,6 +84,12 @@ const App = (props) => {
         newestOnTop={false}
         closeOnClick
       />
+      {isMenuDrawerOpen && (
+        <div onClick={() => dispatch(closeMenuDrawer())} className="menuDrawer">
+          <MenuDrawer />
+        </div>
+      )}
+
       <div className="header" style={{ top: hideHeader && '-100%' }}>
         <Header />
       </div>

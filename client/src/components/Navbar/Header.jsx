@@ -8,10 +8,10 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import MenuDrawer from './MenuDrawer/MenuDrawer.jsx';
 import Dropdown from './Dropdown/Dropdown.jsx';
-import { openLoginModal } from '../../store/index/indexAction';
+import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PersonIcon from '@material-ui/icons/Person';
@@ -96,8 +96,10 @@ const Navbar = () => {
       <div className={classes.headerBar}>
         <div className={classes.toolBar}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div className={classes.sectionMobile}>
-              <MenuDrawer />
+            <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
+              <IconButton style={{ margin: '0', padding: 0 }}>
+                <MenuIcon />
+              </IconButton>
             </div>
             <Link to="/">
               <img className={classes.logo} src={Logo} alt="logo" />
@@ -118,6 +120,14 @@ const Navbar = () => {
             </div>
           </div>
           <div className={classes.sectionDesktop}>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              to="/application"
+              className={classes.openShop}
+            >
+              我想在 TaiWZoo 上開店
+            </Link>
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
@@ -140,9 +150,6 @@ const Navbar = () => {
               </div>
             ) : (
               <>
-                <Link to="/application" className={classes.openShop}>
-                  我想在 TaiWZoo 上開店
-                </Link>
                 <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
                   <p style={{ fontSize: '14px' }}>{t('login')}</p>
                 </div>

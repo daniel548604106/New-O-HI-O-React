@@ -7,6 +7,8 @@ import {
   GET_FAVORITE_LIST_FAILURE,
   GET_FAVORITE_LIST_SUCCESS,
   GET_FAVORITE_LIST_REQUEST,
+  OPEN_MENU_DRAWER,
+  CLOSE_MENU_DRAWER,
 } from '../reducerTypes';
 
 let initialState = {
@@ -14,6 +16,7 @@ let initialState = {
   loading: false,
   favoriteProducts: [],
   favoriteShops: [],
+  isMenuDrawerOpen: false,
 };
 
 export const indexReducer = (state = initialState, action) => {
@@ -30,6 +33,16 @@ export const indexReducer = (state = initialState, action) => {
         loading: true,
         favoriteShops: action.payload.favoriteShops,
         favoriteProducts: action.payload.favoriteProducts,
+      };
+    case OPEN_MENU_DRAWER:
+      return {
+        ...state,
+        isMenuDrawerOpen: true,
+      };
+    case CLOSE_MENU_DRAWER:
+      return {
+        ...state,
+        isMenuDrawerOpen: false,
       };
     case ADD_TO_FAVORITE_FAILURE:
       return { ...state, loading: false, error: action.payload };
