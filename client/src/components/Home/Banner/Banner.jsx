@@ -9,6 +9,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+import Skeleton from 'react-loading-skeleton';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 

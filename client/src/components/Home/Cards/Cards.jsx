@@ -3,7 +3,7 @@ import classes from './Cards.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'react';
 import Skeleton from 'react-loading-skeleton';
-
+import ProductCardLoading from '../../Global/SkeletonLoading/ProductCardLoading.jsx';
 const Cards = ({ products, title, t }) => {
   return (
     <div className={classes.cardSection}>
@@ -11,7 +11,7 @@ const Cards = ({ products, title, t }) => {
         <h2 className={classes.title}>{t(title)}</h2>
         <span className={classes.seeMore}>{t('seeMore')}</span>
       </div>
-      {products ? (
+      {products.length ? (
         <div className={classes.cardRow}>
           {products.map((product) => (
             <div key={product._id} className={classes.cards}>
@@ -20,7 +20,7 @@ const Cards = ({ products, title, t }) => {
           ))}
         </div>
       ) : (
-        <Skeleton height={300} width={300} />
+        <ProductCardLoading />
       )}
     </div>
   );
