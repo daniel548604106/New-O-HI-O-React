@@ -4,6 +4,7 @@ import classes from './MainContent.module.scss';
 import { useLocation, useHistory } from 'react-router-dom';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import Pagination from '../../Global/Pagination/Pagination.jsx';
+import Loader from '../../Global/Loader/Loader.jsx';
 import qs from 'query-string';
 const MainContent = ({
   activeCategory,
@@ -46,11 +47,15 @@ const MainContent = ({
           </select>
         </div>
       </div>
-      <div className={classes.products}>
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+      {products.length ? (
+        <div className={classes.products}>
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <Loader />
+      )}
       <Pagination totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   );

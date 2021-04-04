@@ -2,6 +2,15 @@
   "proxy": "http://localhost:3001",
   "name": "react-shoe-ecommerce",
   "version": "0.1.0",
+  "babel": {
+    "env": {
+      "production": {
+        "plugins": [
+          "transform-remove-console"
+        ]
+      }
+    }
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
@@ -13,6 +22,7 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.17.0",

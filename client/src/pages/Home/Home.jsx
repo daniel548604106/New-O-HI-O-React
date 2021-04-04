@@ -12,11 +12,14 @@ import {
 import classes from './Home.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import { getFavList } from '../../store/index/indexAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
+import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
+import ProductCardLoading from '../../components/Global/SkeletonLoading/ProductCardLoading.jsx';
 const Home = () => {
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);
   const [hotShops, setHotShops] = useState([]);
   const [banners, setBanners] = useState([]);
@@ -85,21 +88,19 @@ const Home = () => {
   return (
     <div>
       <HelmetTitle />
-      <Banner banners={banners} />
+      {products.length ? <Banner banners={banners} /> : <BannerLoading />}
       <main>
         <section>
-          {products ? (
-            <Cards title="newRelease" products={products} t={t} />
-          ) : (
-            <Skeleton height={300} width={300} />
-          )}
+          <Cards title="newRelease" products={products} t={t} />
         </section>
         <section>
           <Cards title="popularItems" products={products} t={t} />
         </section>
-        <div className={classes.campaign}>
-          <Campaign products={products} t={t} />
-        </div>
+        {!isUserLoggedIn && (
+          <div className={classes.campaign}>
+            <Campaign products={products} t={t} />
+          </div>
+        )}
         <section>
           <Shop t={t} shops={hotShops} />
         </section>
