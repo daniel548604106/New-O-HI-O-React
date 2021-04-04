@@ -11,6 +11,7 @@ import { closeLoginModal } from './store/index/indexAction';
 import LoginModal from './components/Login/LoginModal.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import Latest from './pages/Latest/Latest.jsx';
+import Application from './pages/Application/Application.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
@@ -54,7 +55,6 @@ const App = (props) => {
     const getUserData = async () => {
       try {
         const { data } = await apiGetUserData(userId);
-        console.log('res', data);
         dispatch(setUserLoggedIn(data.user));
       } catch (error) {
         console.log(error);
@@ -149,6 +149,9 @@ const App = (props) => {
             <Beauty />
           </Route>
         </main>
+        <Route path="/application">
+          <Application />
+        </Route>
         <Footer />
       </div>
     </Router>

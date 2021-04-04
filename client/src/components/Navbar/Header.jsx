@@ -106,6 +106,9 @@ const Navbar = () => {
               <input
                 onChange={(e) => setSearchInput(e.target.value)}
                 type="text"
+                onKeyDown={(e) =>
+                  searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
+                }
                 value={searchInput}
                 placeholder="搜尋好設計"
               />
@@ -136,9 +139,14 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
-                <p style={{ fontSize: '14px' }}>{t('login')}</p>
-              </div>
+              <>
+                <Link to="/application" className={classes.openShop}>
+                  我想在 TaiWZoo 上開店
+                </Link>
+                <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
+                  <p style={{ fontSize: '14px' }}>{t('login')}</p>
+                </div>
+              </>
             )}
 
             <div>
