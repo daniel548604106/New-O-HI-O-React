@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import classes from './MenuDrawer.module.scss';
-import clsx from 'clsx';
-import MenuIcon from '@material-ui/icons/Menu';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { openLoginModal } from '../../../store/index/indexAction';
 import PersonIcon from '@material-ui/icons/Person';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import EmailIcon from '@material-ui/icons/Email';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -20,15 +15,9 @@ import Inspiration from './Inspiration/Inspiration.jsx';
 import Cookie from 'js-cookie';
 const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
-  const history = useHistory();
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
   const tabs = ['TaiWZoo 選物', '購物零感', '所有分類', '關於 TaiWZoo'];
-  const changeLanguage = () => {
-    language === 'English'
-      ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
-      : (setLanguage('English'), i18n.changeLanguage('en'));
-  };
   const [user, setUser] = useState({});
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   useEffect(() => {
@@ -37,22 +26,8 @@ const MenuDrawer = () => {
     }
   }, [isUserLoggedIn]);
 
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
   const handleOpenLoginModal = () => {
     dispatch(openLoginModal());
-  };
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setState({ ...state, [anchor]: open });
   };
 
   const Tabs = () => (
@@ -97,21 +72,12 @@ const MenuDrawer = () => {
     </div>
   );
 
-  const list = (anchor) => (
-    <div
-      className={clsx(
-        classes.list,
-        {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        },
-        classes.menuLayout,
-      )}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <div className={classes.mainLayout}>
+  return (
+    <div className={classes.menuLayout}>
+      <div onClick={(e) => e.stopPropagation()}>
         <Tabs />
+      </div>
+      <div className={classes.mainLayout}>
         {activeTab === 0 && <Picks />}
         {activeTab === 1 && <Inspiration />}
         {activeTab === 2 && <Categories />}
@@ -120,26 +86,6 @@ const MenuDrawer = () => {
       <div>
         <CtaBtn />
       </div>
-    </div>
-  );
-
-  return (
-    <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <IconButton onClick={toggleDrawer(anchor, true)} style={{ margin: '0', padding: 0 }}>
-            <MenuIcon />
-          </IconButton>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
     </div>
   );
 };

@@ -10,6 +10,8 @@ import {
   GET_FAVORITE_LIST_REQUEST,
   GET_FAVORITE_LIST_SUCCESS,
   GET_FAVORITE_LIST_FAILURE,
+  OPEN_MENU_DRAWER,
+  CLOSE_MENU_DRAWER,
 } from '../reducerTypes';
 
 import Cookie from 'js-cookie';
@@ -25,6 +27,17 @@ export const closeLoginModal = () => {
 
 export const setUserLoggedIn = () => {
   return { type: SET_USER_LOGIN };
+};
+
+export const openMenuDrawer = () => {
+  return {
+    type: OPEN_MENU_DRAWER,
+  };
+};
+export const closeMenuDrawer = () => {
+  return {
+    type: CLOSE_MENU_DRAWER,
+  };
 };
 
 export const getFavList = (token) => async (dispatch) => {
