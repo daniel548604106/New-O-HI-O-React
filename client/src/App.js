@@ -17,6 +17,7 @@ import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
 import { toggleChat } from './store/chat/chatAction';
 import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
+import { initGA, PageView } from '../src/lib/googleAnalytics';
 import './App.scss';
 const App = (props) => {
   const location = useLocation();
@@ -50,6 +51,11 @@ const App = (props) => {
   const preventProp = (e) => {
     e.stopPropagation();
   };
+
+  useEffect(() => {
+    initGA();
+    PageView();
+  }, []);
 
   useEffect(() => {
     const query = window.location.search;
