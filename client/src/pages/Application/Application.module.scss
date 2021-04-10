@@ -5,10 +5,16 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    padding: 50px 15px;
-    max-width: 800px;
+    @media (max-width: 500px) {
+      padding: 30px 15px;
+    }
+    padding: 50px 10px;
+    max-width: 1000px;
     margin: 0 auto;
     h2 {
+      @media (max-width: 500px) {
+        font-size: 20px;
+      }
       margin-bottom: 20px;
       font-size: 26px;
     }
