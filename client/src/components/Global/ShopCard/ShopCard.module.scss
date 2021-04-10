@@ -1,5 +1,5 @@
 .shopCardLayout {
-  width: 100%;
+  overflow: auto;
   border: 1px solid var(--secondary-gray);
   .profileImageLayout {
     display: flex;
