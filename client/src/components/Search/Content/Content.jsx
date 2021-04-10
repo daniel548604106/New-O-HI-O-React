@@ -12,7 +12,7 @@ const Content = ({ searchedProducts, searchInput }) => {
   };
   return (
     <>
-      {searchedProducts ? (
+      {searchedProducts.length ? (
         <div className={classes.topRow}>
           <p>找到 {searchedProducts.length} 件 商品</p>
           <div className={classes.sort}>
@@ -34,6 +34,8 @@ const Content = ({ searchedProducts, searchInput }) => {
           <p className={classes.noResult}>
             找不到與 <span>{searchInput}</span> 有關的結果
           </p>
+          <pre>{searchedProducts}</pre>
+
           <div onClick={() => history.goBack()}>
             <Button text="返回上一頁" />
           </div>

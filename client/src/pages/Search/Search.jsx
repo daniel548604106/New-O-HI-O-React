@@ -14,21 +14,23 @@ const Search = () => {
     const getSearchedProducts = async (text) => {
       try {
         const { data } = await apiGetSearchedProducts(text);
-        console.log(data.result);
-        // setSearchedProducts(data.result);
+        console.log('1', data.result);
+        setSearchedProducts(data.result);
+        console.log('hi', searchedProducts);
       } catch (error) {
         console.log(error);
       }
     };
     getSearchedProducts(searchInput);
-  }, [searchInput]);
+  }, [search]);
+
   return (
     <div className={classes.search}>
       <div className={classes.sidebar}>
         <Sidebar />
       </div>
       <div className={classes.content}>
-        <Content products={searchedProducts} searchInput={searchInput} />
+        <Content searchedProducts={searchedProducts} searchInput={searchInput} />
       </div>
     </div>
   );

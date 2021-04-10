@@ -88,10 +88,10 @@ const Home = () => {
       {products.length ? <Banner banners={banners} /> : <BannerLoading />}
       <main>
         <section>
-          <Cards title="newRelease" products={products} t={t} />
+          <Cards title="editorPicks" showMore={false} products={products} t={t} />
         </section>
         <section>
-          <Cards title="popularItems" products={products} t={t} />
+          <Cards title="popularItems" link="/browse" products={products} t={t} />
         </section>
         {!isUserLoggedIn && (
           <div className={classes.campaign}>
@@ -102,7 +102,12 @@ const Home = () => {
           <Shop t={t} shops={hotShops} />
         </section>
         <section>
-          <Cards title="discountedItems" products={discountedProducts} t={t} />
+          <Cards
+            title="discountedItems"
+            link="/search?type=discount"
+            products={discountedProducts}
+            t={t}
+          />
         </section>
       </main>
     </div>
