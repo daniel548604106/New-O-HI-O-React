@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from '../../../assets/images/global/taiwzoo-logo-application.svg';
+import Logo from '../../../assets/images/global/O.HI.O-logo-application.svg';
 import Button from '../../../components/Global/Button/Button.jsx';
 import classes from './Header.module.scss';
 const Header = () => {
@@ -18,9 +18,6 @@ const Header = () => {
       name: '合作模式及收費',
     },
     {
-      name: '已加入品牌',
-    },
-    {
       name: '常見問答',
     },
   ];
@@ -28,23 +25,25 @@ const Header = () => {
     <>
       <div className={classes.headerLayout}>
         <div>
-          <img src={Logo} alt="taiwzoo logo" />
-          <h2>我要開 TaiWZoo 館</h2>
+          <img src={Logo} alt="O.HI.O logo" />
+          <h2>我要開 O.HI.O 館</h2>
         </div>
         <div>
           <Button text="立即申請開館" backgroundColor="#178fac" />
         </div>
       </div>
       <div className={classes.tabsLayout}>
-        {tabs.map((tab, index) => (
-          <a
-            onClick={() => setActiveTab(index)}
-            key={tab.name}
-            className={index === activeTab && classes.active}
-          >
-            {tab.name}
-          </a>
-        ))}
+        <div>
+          {tabs.map((tab, index) => (
+            <a
+              onClick={() => setActiveTab(index)}
+              key={tab.name}
+              className={index === activeTab && classes.active}
+            >
+              {tab.name}
+            </a>
+          ))}
+        </div>
       </div>
     </>
   );
