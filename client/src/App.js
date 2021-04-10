@@ -1,8 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-import { Home, Product, Search, Cart, Browse, Shop, Favorite, My, OAuth } from './pages/index';
+
+const Product = React.lazy(() => import('./pages/Products/_Product/_Product.jsx'));
+const Cart = React.lazy(() => import('./pages/Cart/Cart.jsx'));
+const Search = React.lazy(() => import('./pages/Search/Search.jsx'));
+const Favorite = React.lazy(() => import('./pages/Favorite/Favorite.jsx'));
+const Shop = React.lazy(() => import('./pages/Shop/Shop.jsx'));
+const Browse = React.lazy(() => import('./pages/Browse/Browse.jsx'));
+const My = React.lazy(() => import('./pages/My/My.jsx'));
+const Home = React.lazy(() => import('./pages/Home/Home.jsx'));
+const OAuth = React.lazy(() => import('./pages/OAuth/OAuth.jsx'));
+const Application = React.lazy(() => import('./pages/Application/Application.jsx'));
+const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
+
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -10,8 +22,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
 import LoginModal from './components/Login/LoginModal.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
-import Latest from './pages/Latest/Latest.jsx';
-import Application from './pages/Application/Application.jsx';
 import { setUserLoggedIn } from './store/user/userAction';
 import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
@@ -136,47 +146,49 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <div className={!hideMainHeader && 'mainLayout'}>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <main className={!hideMainHeader && 'global-container'}>
-          <Route path={`/oauth/:type`}>
-            <OAuth props={props} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className={!hideMainHeader && 'mainLayout'}>
+          <Route path="/" exact>
+            <Home />
           </Route>
-          <Route path={`/my/:type?/:state?`}>
-            <My />
+          <main className={!hideMainHeader && 'global-container'}>
+            <Route path={`/oauth/:type`}>
+              <OAuth props={props} />
+            </Route>
+            <Route path={`/my/:type?/:state?`}>
+              <My />
+            </Route>
+            <Route path="/browse">
+              <Browse />
+            </Route>
+            <Route path="/latest" exact>
+              <Latest />
+            </Route>
+            <Route path={`/products/:id`}>
+              <Product />
+            </Route>
+            <Route path="/favorite">
+              <Favorite />
+            </Route>
+            <Route path={`/shop/:account`}>
+              <Shop />
+            </Route>
+            <Route path="/search">
+              <Search />
+            </Route>
+            <Route path="/cart/:status?/:id?">
+              <Cart />
+            </Route>
+            <Route path="/beauty">
+              <Beauty />
+            </Route>
+          </main>
+          <Route path="/application">
+            <Application />
           </Route>
-          <Route path="/browse">
-            <Browse />
-          </Route>
-          <Route path="/latest" exact>
-            <Latest />
-          </Route>
-          <Route path={`/products/:id`}>
-            <Product />
-          </Route>
-          <Route path="/favorite">
-            <Favorite />
-          </Route>
-          <Route path={`/shop/:account`}>
-            <Shop />
-          </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
-          <Route path="/cart/:status?/:id?">
-            <Cart />
-          </Route>
-          <Route path="/beauty">
-            <Beauty />
-          </Route>
-        </main>
-        <Route path="/application">
-          <Application />
-        </Route>
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </Suspense>
     </Router>
   );
 };
