@@ -26,7 +26,7 @@ const Header = () => {
       <div className={classes.headerLayout}>
         <div>
           <img src={Logo} alt="O.HI.O logo" />
-          <h2>我要開 O.HI.O 館</h2>
+          {window.innerWidth > 500 && <h2>我要開 O.HI.O 館</h2>}
         </div>
         <div>
           <Button text="立即申請開館" backgroundColor="#178fac" />
