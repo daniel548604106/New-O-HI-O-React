@@ -2,23 +2,32 @@
   @media (max-width: 720px) {
     display: none;
   }
-  background-color: #000000;
-  padding: 50px 15px 100px 15px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--secondary-gray);
+  padding: 30px;
   margin-top: 50px;
+  img {
+    width: 150px;
+  }
+  p {
+    margin: 5px 0;
+  }
 }
 
-.right {
-  text-align: right;
-  .langaugeSelector {
-    display: flex;
-    margin-top: 10px;
-    color: white;
-    cursor: pointer;
-    p {
-      margin-left: 5px;
-    }
-    &:hover {
-      text-decoration: underline;
-    }
+.langaugeSelector {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  p {
+    margin-left: 5px;
   }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.copyRight {
+  font-size: 14px;
 }
