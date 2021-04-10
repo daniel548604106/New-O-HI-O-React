@@ -1,0 +1,19 @@
+.faq {
+  h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #178fac;
+  }
+  .question {
+    padding: 15px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+  }
+
+  p {
+    text-align: left;
+    padding: 15px;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+}

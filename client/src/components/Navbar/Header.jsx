@@ -3,7 +3,7 @@ import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
-import Logo from '../../assets/images/global/taiwzoo-logo.svg';
+import Logo from '../../assets/images/global/O.HI.O-logo.svg';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -126,7 +126,7 @@ const Navbar = () => {
               to="/application"
               className={classes.openShop}
             >
-              我想在 TaiWZoo 上開店
+              我想在 O.HI.O 上開店
             </Link>
             {isUserLoggedIn ? (
               <div className={classes.tabs}>

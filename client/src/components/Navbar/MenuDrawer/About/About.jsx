@@ -50,7 +50,7 @@ const About = () => {
           {option.name}
         </Link>
       ))}
-      <Title title="About TaiWZoo" />
+      <Title title="About O.HI.O" />
       {aboutOptions.map((option) => (
         <Link to={option.route} className={classes.option} key={option.name}>
           {option.name}
@@ -62,7 +62,7 @@ const About = () => {
         to="/application"
         className={classes.openShop}
       >
-        我想在 TaiWZoo 上開店
+        我想在 O.HI.O 上開店
         <ChevronRightIcon />
       </Link>
       <div className={classes.language}>

@@ -17,7 +17,7 @@ const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['TaiWZoo 選物', '購物零感', '所有分類', '關於 TaiWZoo'];
+  const tabs = ['O.HI.O 選物', '購物零感', '所有分類', '關於 O.HI.O'];
   const [user, setUser] = useState({});
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   useEffect(() => {

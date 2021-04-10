@@ -25,6 +25,7 @@ const App = (props) => {
   const handleToggleChat = () => {
     dispatch(toggleChat());
   };
+  const [hideMainHeader, setHideMainHeader] = useState(false);
   const isMenuDrawerOpen = useSelector((state) => state.global.isMenuDrawerOpen);
   const showChat = useSelector((state) => state.chat.showChat);
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
@@ -34,6 +35,10 @@ const App = (props) => {
   const handleClose = (e) => {
     dispatch(closeLoginModal());
   };
+
+  useEffect(() => {
+    location.pathname.includes('application') ? setHideMainHeader(true) : setHideMainHeader(false);
+  }, [location]);
 
   useEffect(() => {
     let prevPosition = pageYOffset;
@@ -95,10 +100,12 @@ const App = (props) => {
           <MenuDrawer />
         </div>
       )}
+      {!hideMainHeader && (
+        <div className="header" style={{ top: hideHeader && '-100%' }}>
+          <Header />
+        </div>
+      )}
 
-      <div className="header" style={{ top: hideHeader && '-100%' }}>
-        <Header />
-      </div>
       {isUserLoggedIn &&
         (showChat ? (
           <div className="chatRoom">
@@ -112,7 +119,6 @@ const App = (props) => {
             </div>
           </>
         ))}
-      {isLoginModalShow}
       <div className="loginModal">
         <Backdrop open={open} onClick={handleClose} style={{ zIndex: 15 }}>
           <div
@@ -130,11 +136,11 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <div className="mainLayout">
+      <div className={!hideMainHeader && 'mainLayout'}>
         <Route path="/" exact>
           <Home />
         </Route>
-        <main className="global-container">
+        <main className={!hideMainHeader && 'global-container'}>
           <Route path={`/oauth/:type`}>
             <OAuth props={props} />
           </Route>
