@@ -41,7 +41,9 @@ const OAuth = () => {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '90vh' }}>
+    <div
+      style={{ position: 'fixed', top: 0, left: 0, width: '100vw', zIndex: 16, minHeight: '60vh' }}
+    >
       <Loader />
     </div>
   );

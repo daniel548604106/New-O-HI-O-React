@@ -3,19 +3,19 @@ import classes from './Advantage.module.scss';
 const Advantage = () => {
   const items = [
     {
-      img: 'https://cdn04.pinkoi.com/O.HI.O.site/event/store-intro/why_3.svg',
+      img: 'https://cdn04.pinkoi.com/pinkoi.site/event/store-intro/why_3.svg',
       title: '商品退貨率',
       highLight: '低於 3%',
       text: '核心客群黏著度高，對設計品牌具有極高認同度和忠誠度',
     },
     {
-      img: 'https://cdn04.pinkoi.com/O.HI.O.site/event/store-intro/why_5.svg',
+      img: 'https://cdn04.pinkoi.com/pinkoi.site/event/store-intro/why_5.svg',
       title: '跨境訂單佔比',
       highLight: '30%+',
       text: '販售至全球 10 個國家，跨境銷售環境成熟，助品牌快速佈局國際市場',
     },
     {
-      img: 'https://cdn04.pinkoi.com/O.HI.O.site/event/store-intro/why_6.svg',
+      img: 'https://cdn04.pinkoi.com/pinkoi.site/event/store-intro/why_6.svg',
       title: '深入亞洲',
       highLight: '5 大市場',
       text: '專業團隊深耕台灣、港澳、中國大陸、日本、泰國市場',
