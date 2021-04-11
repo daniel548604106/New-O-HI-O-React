@@ -9,6 +9,11 @@
   background-color: white !important;
 }
 
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-prev {
+  display: none !important;
+}
 .menuDrawer {
   position: fixed;
   top: 0;

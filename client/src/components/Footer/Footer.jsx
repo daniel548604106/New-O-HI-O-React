@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import classes from './Footer.module.scss';
 const Footer = () => {
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState('繁體中文(台灣)');
+  const [language, setLanguage] = useState('English');
   const changeLanguage = () => {
     language === 'English'
-      ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('tw'))
-      : (setLanguage('English'), i18n.changeLanguage('en'));
+      ? (setLanguage('繁體中文(台灣)'), i18n.changeLanguage('en'))
+      : (setLanguage('English'), i18n.changeLanguage('tw'));
   };
   return (
     <div className={classes.footerLayout}>
