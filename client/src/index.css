@@ -6,10 +6,5 @@
 
 html {
   min-height: -webkit-fill-available;
-  /*WebKit-based browsers will ignore this*/
-  height: -moz-available;
-  /*Mozilla-based browsers will ignore this.*/
-  height: -webkit-fill-available;
-  /*For WebKit-based browsers, Edge not support this*/
-  height: fill-available;
+  max-height: -webkit-fill-available;
 }
