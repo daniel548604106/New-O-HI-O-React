@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import Header from './components/Navbar/Header.jsx';
-
+import Loader from './components/Global/Loader/Loader.jsx';
 const Product = React.lazy(() => import('./pages/Products/_Product/_Product.jsx'));
 const Cart = React.lazy(() => import('./pages/Cart/Cart.jsx'));
 const Search = React.lazy(() => import('./pages/Search/Search.jsx'));
@@ -147,7 +147,7 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <div className={!hideMainHeader && 'mainLayout'}>
           <Route path="/" exact>
             <Home />
