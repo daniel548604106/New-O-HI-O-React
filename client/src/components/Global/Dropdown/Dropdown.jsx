@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { useTranslation } from 'react-i18next';
 const Dropdown = ({ title, product }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['general']);
   const [showMore, setShowMore] = useState(false);
   const [hideDropdown, setHideDropdown] = useState(false);
   return (

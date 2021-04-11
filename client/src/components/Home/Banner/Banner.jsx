@@ -1,50 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Banner.module.scss';
+import { Swiper, SwiperSlide, loop } from 'swiper/react';
+import SwipeableViews from 'react-swipeable-views';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
+
 import PropTypes from 'prop-types';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 const Banner = ({ banners }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const incrementSlide = () => {
-    setActiveSlide((prevActiveSlide) => {
-      prevActiveSlide += 1;
-    });
-  };
-  const decrementSlide = () => {
-    setActiveSlide((prevActiveSlide) => {
-      prevActiveSlide -= 1;
-      console.log(activeSlide);
-    });
-  };
   return (
     <div className={classes.bannerLayout}>
-      {banners.map((banner) => (
-        <div className={classes.bannerRow} key={banner.title}>
-          <div
-            className={classes.swiperBackground}
-            style={{ backgroundImage: `url(${banner.image})`, cursor: 'pointer' }}
-          ></div>
-        </div>
-      ))}
-
-      <div className={classes.paginationRow}>
-        {banners.map((banner, index) => (
-          <div
-            key={banner.title}
-            className={`${classes.dots} ${activeSlide === index && classes.active}`}
-          ></div>
+      <Swiper
+        id="swiper-banner"
+        spaceBetween={0}
+        slidesPerView={1}
+        navigation
+        loop
+        autoPlay
+        pagination={{ clickable: true }}
+      >
+        {banners.map((banner) => (
+          <SwiperSlide key={banner.title}>
+            <div
+              className={classes.swiperBackground}
+              style={{ backgroundImage: `url(${banner.image})`, cursor: 'pointer' }}
+            ></div>
+          </SwiperSlide>
         ))}
-      </div>
-      {window.innerWidth > 800 && (
-        <div className={classes.paginationBtn}>
-          <div onClick={() => decrementSlide()}>
-            <ChevronLeftIcon style={{ fill: 'white', cursor: 'pointer' }} fontSize="large" />
-          </div>
-          <div onClick={() => incrementSlide()}>
-            <ChevronRightIcon style={{ fill: 'white', cursor: 'pointer' }} fontSize="large" />
-          </div>
-        </div>
-      )}
+      </Swiper>
     </div>
   );
 };
