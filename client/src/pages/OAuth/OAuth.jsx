@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { apiPostOauthLogin } from '../../api/index';
-import PropTypes from 'prop-types';
 import Loader from '../../components/Global/Loader/Loader.jsx';
 import Cookie from 'js-cookie';
 import { setUserLoggedIn } from '../../store/user/userAction';
@@ -41,7 +40,7 @@ const OAuth = () => {
   }, []);
 
   return (
-    <div style={{ width: '100vw', height: '90vh' }}>
+    <div style={{ width: '100vw', zIndex: 16, minHeight: '60vh' }}>
       <Loader />
     </div>
   );
