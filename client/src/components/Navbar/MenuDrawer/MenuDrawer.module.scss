@@ -52,8 +52,8 @@
 
 .menuLayout {
   /*WebKit-based browsers will ignore this*/
-  height: 100vh;
-  max-height: -webkit-fill-available;
+  height: -webkit-fill-available;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   width: 80vw;
