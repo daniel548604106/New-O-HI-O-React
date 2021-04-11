@@ -5,6 +5,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import Pagination from '../../Global/Pagination/Pagination.jsx';
 import Loader from '../../Global/Loader/Loader.jsx';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import qs from 'query-string';
 const MainContent = ({
   activeCategory,
@@ -13,6 +14,7 @@ const MainContent = ({
   setCurrentPage,
   totalPage,
   subcategoryId,
+  setFilterShow,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -37,10 +39,19 @@ const MainContent = ({
   return (
     <>
       <div className={classes.topRow}>
-        <div>{activeCategory ? <h2>{activeCategory.title}</h2> : <h2>今日熱門商品</h2>}</div>
+        {window.innerWidth > 500 ? (
+          <div>{activeCategory ? <h2>{activeCategory.title}</h2> : <h2>今日熱門商品</h2>}</div>
+        ) : (
+          <a onClick={() => setFilterShow(true)} className={classes.filterBtn}>
+            <FilterListIcon />
+            <span>篩選商品</span>
+          </a>
+        )}
         <div className={classes.filter}>
-          <label htmlFor="">排序</label>
           <select onChange={(e) => filter(e)} name="sort" id="sort">
+            <option value="sort" selected disabled>
+              排序
+            </option>
             <option value='{"name": "rank", "order": ""}'>熱門程度優先</option>
             <option value='{"name": "price", "order": "descending"}'>價格由高至低</option>
             <option value='{"name": "price", "order": "ascending"}'>價格由低至高</option>
@@ -69,6 +80,7 @@ MainContent.propTypes = {
   subcategoryId: PropTypes.number,
   products: PropTypes.array,
   setCurrentPage: PropTypes.func,
+  setFilterShow: PropTypes.func,
 };
 
 export default MainContent;
