@@ -14,10 +14,26 @@
     margin-right: 5px;
     font-size: 14px;
   }
+  select {
+    padding: 10px;
+  }
 }
 
 .products {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.filterBtn {
+  background: white;
+  display: flex;
+  padding: 5px;
+  font-size: 14px;
+  align-items: center;
+  border: 1px solid #b1b1b1;
+  border-radius: 4px;
+  span {
+    margin-left: 5px;
+  }
 }

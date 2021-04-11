@@ -1,9 +1,27 @@
 .browseLayout {
   display: flex;
   padding: 15px 0;
+  position: relative;
   min-height: 80vh;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+  .filterLayout {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 15;
+
+    transition: all 0.3s ease-in-out;
+    &.active {
+      transform: translateX(-100%);
+    }
+  }
 
   .sideBar {
+    @media (max-width: 500px) {
+      display: none;
+    }
     flex: 1;
     position: sticky;
     top: 50px;
