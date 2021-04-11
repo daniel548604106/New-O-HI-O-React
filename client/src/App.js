@@ -14,6 +14,7 @@ const Home = React.lazy(() => import('./pages/Home/Home.jsx'));
 const OAuth = React.lazy(() => import('./pages/OAuth/OAuth.jsx'));
 const Application = React.lazy(() => import('./pages/Application/Application.jsx'));
 const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
+const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
 
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
@@ -150,6 +151,9 @@ const App = (props) => {
         <div className={!hideMainHeader && 'mainLayout'}>
           <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="/policy:type?">
+            <Policy />
           </Route>
           <main className={!hideMainHeader && 'global-container'}>
             <Route path={`/oauth/:type`}>

@@ -1,7 +1,7 @@
 import { SET_USER_LOGIN, SET_USER_LOGOUT } from '../reducerTypes';
 
 const initialState = {
-  currentUser: {},
+  currentUser: null,
   isUserLoggedIn: false,
 };
 

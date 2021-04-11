@@ -25,11 +25,11 @@ const About = () => {
     },
     {
       name: 'Terms & Policies',
-      route: 'policies?type=terms',
+      route: 'policy?type=terms',
     },
     {
       name: 'Returns Policy',
-      route: 'policies?type=returns',
+      route: 'policy?type=returns',
     },
   ];
   const aboutOptions = [

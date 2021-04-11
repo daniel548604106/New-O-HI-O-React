@@ -15,6 +15,7 @@ import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PersonIcon from '@material-ui/icons/Person';
+import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
 import Cookie from 'js-cookie';
 import Button from '../Global/Button/Button.jsx';
 const Navbar = () => {
@@ -131,8 +132,8 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
-                  {meData.picture ? (
-                    <img src={meData && meData.picture} alt="profile picture" />
+                  {meData ? (
+                    <img src={meData ? meData.picture : DefaultImage} alt="profile picture" />
                   ) : (
                     <div>
                       <PersonIcon />
@@ -169,7 +170,7 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link to="/my/setting">
-                  {meData.picture ? (
+                  {meData ? (
                     <img
                       className={classes.avatarPicture}
                       src={meData && meData.picture}
