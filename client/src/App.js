@@ -81,57 +81,57 @@ const App = (props) => {
   }, [isLoginModalShow]);
 
   return (
-    <Router history={history}>
-      <ToastContainer
-        autoClose={3000}
-        hideProgressBar={true}
-        pauseOnHover
-        newestOnTop={false}
-        closeOnClick
-      />
-      {isMenuDrawerOpen && (
-        <div onClick={() => dispatch(closeMenuDrawer())} className="menuDrawer">
-          <MenuDrawer />
-        </div>
-      )}
-      {!hideMainHeader && (
-        <div className="header" style={{ top: hideHeader && '-100%' }}>
-          <Header />
-        </div>
-      )}
+    <Suspense fallback={<Loader />}>
+      <Router history={history}>
+        <ToastContainer
+          autoClose={3000}
+          hideProgressBar={true}
+          pauseOnHover
+          newestOnTop={false}
+          closeOnClick
+        />
+        {isMenuDrawerOpen && (
+          <div onClick={() => dispatch(closeMenuDrawer())} className="menuDrawer">
+            <MenuDrawer />
+          </div>
+        )}
+        {!hideMainHeader && (
+          <div className="header" style={{ top: hideHeader && '-100%' }}>
+            <Header />
+          </div>
+        )}
 
-      {isUserLoggedIn &&
-        (showChat ? (
-          <div className="chatRoom">
-            <Chat />
-          </div>
-        ) : (
-          <>
-            <div onClick={() => handleToggleChat()} style={{ display: 'none' }}>
-              <ChatBubbleOutlineIcon />
-              <span>聊聊</span>
+        {isUserLoggedIn &&
+          (showChat ? (
+            <div className="chatRoom">
+              <Chat />
             </div>
-          </>
-        ))}
-      <div className="loginModal">
-        <Backdrop open={open} onClick={handleClose} style={{ zIndex: 15 }}>
-          <div
-            onClick={preventProp}
-            style={{
-              maxWidth: '600px',
-              borderRadius: '10px',
-              zIndex: 12,
-              backgroundColor: '#fff',
-            }}
-          >
-            <form noValidate autoComplete="off">
-              <LoginModal />
-            </form>
-          </div>
-        </Backdrop>
-      </div>
-      <Switch>
-        <Suspense fallback={<Loader />}>
+          ) : (
+            <>
+              <div onClick={() => handleToggleChat()} style={{ display: 'none' }}>
+                <ChatBubbleOutlineIcon />
+                <span>聊聊</span>
+              </div>
+            </>
+          ))}
+        <div className="loginModal">
+          <Backdrop open={open} onClick={handleClose} style={{ zIndex: 15 }}>
+            <div
+              onClick={preventProp}
+              style={{
+                maxWidth: '600px',
+                borderRadius: '10px',
+                zIndex: 12,
+                backgroundColor: '#fff',
+              }}
+            >
+              <form noValidate autoComplete="off">
+                <LoginModal />
+              </form>
+            </div>
+          </Backdrop>
+        </div>
+        <Switch>
           <Route path={`/topic/:topic`}>
             <Topic />
           </Route>
@@ -180,12 +180,12 @@ const App = (props) => {
             <Route path="/application">
               <Application />
             </Route>
-            <Route path="*" component={ErrorPage} />
+            {/* <Route component={ErrorPage} /> */}
             <Footer />
           </div>
-        </Suspense>
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </Suspense>
   );
 };
 
