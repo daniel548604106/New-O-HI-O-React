@@ -15,7 +15,9 @@ const DesignShopInfo = ({ product }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
-
+  useEffect(() => {
+    console.log(product.publishedBy);
+  }, []);
   const followShop = (id) => {
     const type = 'shop';
     dispatch(addToFavorite(id, type));
@@ -38,7 +40,7 @@ const DesignShopInfo = ({ product }) => {
   return (
     <div>
       <div className={classes.designShopRoot}>
-        <h2 className={classes.title}>About Design Shop</h2>
+        <h2 className={classes.title}>關於設計館</h2>
         <div className={classes.designShopLayout}>
           <img
             onClick={() => directToShop(product.publishedBy.account)}
@@ -76,6 +78,11 @@ const DesignShopInfo = ({ product }) => {
             </button>
           </div>
         )}
+        <div className={classes.productPreview}>
+          {/* {product.images.map((image) => (
+            <img key={image} src={image} alt={product.name} />
+          ))} */}
+        </div>
         <hr className={classes.separator} />
         <div className={classes.shareRow}>
           <h1 className={classes.title}>Share</h1>

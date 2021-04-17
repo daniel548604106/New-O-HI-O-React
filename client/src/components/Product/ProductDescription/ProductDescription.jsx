@@ -12,7 +12,7 @@ const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, 
         <Dropdown title="商品介紹" product={product} />
       </div>
       <div ref={evaluationRef} style={{ width: '100%' }}>
-        <h2>{t('evaluation')}</h2>
+        <h2 className={classes.title}>{t('evaluation')}</h2>
         <hr />
         <div className={classes.feedbackRow}>
           <div>

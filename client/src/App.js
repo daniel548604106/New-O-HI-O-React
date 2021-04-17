@@ -155,6 +155,9 @@ const App = (props) => {
           <Route path="/policy:type?">
             <Policy />
           </Route>
+          <Route path={`/products/:id`}>
+            <Product />
+          </Route>
           <main className={!hideMainHeader && 'global-container'}>
             <Route path={`/oauth/:type`}>
               <OAuth props={props} />
@@ -168,9 +171,7 @@ const App = (props) => {
             <Route path="/latest" exact>
               <Latest />
             </Route>
-            <Route path={`/products/:id`}>
-              <Product />
-            </Route>
+
             <Route path="/favorite">
               <Favorite />
             </Route>
