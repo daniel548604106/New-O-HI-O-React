@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
+import { Menu, MenuItem, Badge } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
@@ -16,14 +16,12 @@ import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PersonIcon from '@material-ui/icons/Person';
 import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
-import Cookie from 'js-cookie';
-import Button from '../Global/Button/Button.jsx';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const location = useLocation();
-  const meData = useSelector((state) => state.user.currentUser);
+  const currentUser = JSON.parse(localStorage.getItem('user'));
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [searchInput, setSearchInput] = useState('');
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
@@ -67,30 +65,6 @@ const Navbar = () => {
       }, 0),
     );
   }, [cartItems]);
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
     <>
@@ -98,13 +72,9 @@ const Navbar = () => {
         <div className={classes.toolBar}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
-              <IconButton style={{ margin: '0', padding: 0 }}>
-                <MenuIcon />
-              </IconButton>
+              <MenuIcon />
             </div>
-            <Link to="/">
-              <img className={classes.logo} src={Logo} alt="logo" />
-            </Link>
+            <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
             <div className={classes.search}>
               <input
                 onChange={(e) => setSearchInput(e.target.value)}
@@ -132,12 +102,13 @@ const Navbar = () => {
             {isUserLoggedIn ? (
               <div className={classes.tabs}>
                 <div className={classes.avatar}>
-                  {meData ? (
-                    <img src={meData ? meData.picture : DefaultImage} alt="profile picture" />
+                  {currentUser ? (
+                    <img
+                      src={currentUser ? currentUser.picture : DefaultImage}
+                      alt="profile picture"
+                    />
                   ) : (
-                    <div>
-                      <PersonIcon />
-                    </div>
+                    <PersonIcon />
                   )}
                   <div className={classes.dropdown}>
                     <Dropdown />
@@ -156,51 +127,37 @@ const Navbar = () => {
                 </div>
               </>
             )}
-
-            <div>
-              <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
-                <ShoppingBasketIcon className={classes.cart} style={{ color: 'black' }} />
-              </Badge>
-            </div>
+            <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
+              <ShoppingBasketIcon className={classes.cart} style={{ color: 'black' }} />
+            </Badge>
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton onClick={(e) => toggleSearchBar(e)}>
-              <SearchIcon />
-            </IconButton>
+            <SearchIcon className={classes.searchIcon} onClick={(e) => toggleSearchBar(e)} />
             {isUserLoggedIn ? (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Link to="/my/setting">
-                  {meData ? (
-                    <img
-                      className={classes.avatarPicture}
-                      src={meData && meData.picture}
-                      alt="profile picture"
-                    />
-                  ) : (
-                    <div>
-                      <PersonIcon />
-                    </div>
-                  )}
-                </Link>
-                <Link
-                  to="/favorite?tab=products"
-                  style={{ marginLeft: '10px' }}
+              <>
+                {currentUser ? (
+                  <img
+                    onClick={() => history.push('/my/setting')}
+                    className={classes.avatarPicture}
+                    src={currentUser && currentUser.picture}
+                    alt="profile picture"
+                  />
+                ) : (
+                  <PersonIcon />
+                )}
+                <FavoriteBorderIcon
+                  onClick={() => history.push('/favorite?tab=products')}
                   className={classes.favIcon}
-                >
-                  <FavoriteBorderIcon />
-                </Link>
-              </div>
+                />
+              </>
             ) : (
               <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
                 <PersonIcon />
               </span>
             )}
-
-            <IconButton>
-              <Badge badgeContent={totalCartItems} color="secondary" onClick={() => toCart()}>
-                <ShoppingBasketIcon style={{ color: 'black' }} />
-              </Badge>
-            </IconButton>
+            <Badge onClick={() => toCart()} badgeContent={totalCartItems} color="secondary">
+              <ShoppingBasketIcon />
+            </Badge>
           </div>
         </div>
         <NavMenu />
@@ -208,7 +165,6 @@ const Navbar = () => {
       <div>
         <SearchBar searchBarOpen={searchBarOpen} />
       </div>
-      {renderMobileMenu}
     </>
   );
 };

@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Sidebar.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+
 const SideBar = () => {
+  const location = useLocation();
+  const mySettingOptions = [
+    {
+      name: '帳號設定',
+      route: '/my/setting',
+    },
+    {
+      name: '購買訂單',
+      route: '/my/purchase/unpaid',
+    },
+    {
+      name: '退款申請',
+      route: '/my/refund/processing',
+    },
+    {
+      name: '我的信箱',
+      route: '/my/mail',
+    },
+  ];
+  useEffect(() => {
+    console.log(location.pathname);
+  }, []);
   return (
     <div className={classes.mySidebarLayout}>
       <ul>
-        <li>
-          <Link to={`/my/setting`}>帳號設定</Link>
-          <div className={classes.options}>
-            <Link to={`my/setting`}>General Setting</Link>
-            <Link to={`my/setting?p=about`}>About Me</Link>
-          </div>
-        </li>
-        <li>
-          <Link to={`/my/purchase/unpaid`}>購買訂單</Link>
-        </li>
-        <li>
-          <Link to={`/my/refund/processing`}>退款申請</Link>
-        </li>
-        <li>我的信箱</li>
+        {mySettingOptions.map((option) => (
+          <li key={option.name}>
+            <Link
+              to={option.route}
+              className={location.pathname.includes(option.route) && classes.active}
+            >
+              {option.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

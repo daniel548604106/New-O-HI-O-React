@@ -8,6 +8,7 @@ import {
   apiGetDiscountedProducts,
   apiGetBanners,
   apiGetHotShop,
+  apiGetRecommendedProducts,
 } from '../../api/index';
 import classes from './Home.module.scss';
 import Skeleton from 'react-loading-skeleton';
@@ -24,6 +25,7 @@ const Home = () => {
   const [hotShops, setHotShops] = useState([]);
   const [banners, setBanners] = useState([]);
   const [discountedProducts, setDiscountedProducts] = useState([]);
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -54,6 +56,15 @@ const Home = () => {
     }
   };
 
+  const getRecommendedProducts = async () => {
+    try {
+      const { data } = await apiGetRecommendedProducts();
+      setRecommendedProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //取得精選優惠
   const getDiscountedProducts = async () => {
     try {
@@ -69,6 +80,7 @@ const Home = () => {
     getAllProducts();
     getHotShop();
     getDiscountedProducts();
+    getRecommendedProducts();
   }, []);
 
   useEffect(() => {
@@ -108,6 +120,9 @@ const Home = () => {
             products={discountedProducts}
             t={t}
           />
+        </section>
+        <section>
+          <Cards title="recommendedItems" showMore={false} products={recommendedProducts} t={t} />
         </section>
       </main>
     </div>

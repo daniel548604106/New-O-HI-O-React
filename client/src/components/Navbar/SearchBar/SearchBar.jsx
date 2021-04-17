@@ -27,7 +27,7 @@ const SearchBar = ({ searchBarOpen }) => {
           onChange={(e) => setSearchInput(e.target.value)}
           type="search"
           value={searchInput}
-          placeholder="Please type in keywords"
+          placeholder="請輸入關鍵字"
           className={classes.inputBox}
         />
         <span className={classes.searchBtn} onClick={() => search()}>

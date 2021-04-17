@@ -1,4 +1,8 @@
 .logo {
+  @media (max-width: 500px) {
+    max-width: 80px;
+  }
+  cursor: pointer;
   width: 100px;
   height: 100%;
   margin-left: 10px;
@@ -11,7 +15,7 @@
   width: 100%;
   padding: 10px 15px 0;
   @media (max-width: 500px) {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 
   .toolBar {
@@ -85,17 +89,24 @@
   @media (max-width: 720px) {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
-
+  max-width: 140px;
+  padding: 10px 0;
   display: none;
+  .searchMobile {
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+    position: relative;
+  }
 }
 
 .tabs {
   display: flex;
   align-items: center;
-  .favIcon {
-    cursor: pointer;
-  }
+
   > div {
     display: flex;
     justify-content: center;
@@ -112,6 +123,7 @@
   }
   .favIcon {
     display: flex;
+    cursor: pointer;
     align-items: center;
   }
 

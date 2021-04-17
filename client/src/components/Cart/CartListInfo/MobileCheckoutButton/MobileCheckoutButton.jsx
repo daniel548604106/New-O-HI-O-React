@@ -15,7 +15,7 @@ const MobileCheckoutButton = ({ proceedToCheckout, totalPrice }) => {
       <div className={classes.priceInfoContainer}>
         <div className={classes.discountPriceContainer}>
           <h2>折扣金額:</h2>
-          <span>-$ 720</span>
+          <span>0</span>
         </div>
         <div className={classes.totalPriceContainer}>
           <h2>總結帳金額:</h2>
