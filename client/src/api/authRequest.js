@@ -14,7 +14,10 @@ export const postLogin = (data) => {
 
 // 社群登入
 
-export const postOAuthLogin = (data) => axios.post('/v1/oauth/login', data);
+export const postOAuthLogin = (data) => {
+  console.log(data);
+  return axios.post('/v1/oauth/login', data);
+};
 
 // 登出
 export const postLogout = (token) =>

@@ -78,6 +78,7 @@ const oAuth = async (req, res, next) => {
         picture = verified_data.picture;
         console.log('data', line_res.data);
         console.log('verified', verified.data);
+        console.log('picture',verified.data.picture)
         break;
     }
     console.log('email', email);
@@ -85,7 +86,9 @@ const oAuth = async (req, res, next) => {
 
     // 3) Check if user exists in  DB
     const user = await User.findOne({ email });
-    user.picture = picture
+    if(user) {
+      user.picture = picture
+    }
 
     if (!user) {
       const newUser = await User.create({
