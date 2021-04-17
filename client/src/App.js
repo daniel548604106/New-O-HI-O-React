@@ -16,6 +16,7 @@ const Application = React.lazy(() => import('./pages/Application/Application.jsx
 const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
 const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
 const About = React.lazy(() => import('./pages/About/About.jsx'));
+const Topic = React.lazy(() => import('./pages/Topic/Topic.jsx'));
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -148,6 +149,9 @@ const App = (props) => {
         </Backdrop>
       </div>
       <Suspense fallback={<Loader />}>
+        <Route path={`/topic/:topic`}>
+          <Topic />
+        </Route>
         <div className={!hideMainHeader && 'mainLayout'}>
           <Route path="/" exact>
             <Home />

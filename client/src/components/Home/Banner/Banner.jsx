@@ -7,11 +7,13 @@ import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+import { useHistory } from 'react-router-dom';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 import PropTypes from 'prop-types';
 const Banner = ({ banners }) => {
+  const history = useHistory();
   return (
     <div className={classes.bannerLayout}>
       <Swiper
@@ -24,8 +26,9 @@ const Banner = ({ banners }) => {
         pagination={{ clickable: true }}
       >
         {banners.map((banner) => (
-          <SwiperSlide key={banner.title}>
+          <SwiperSlide key={banner.topic}>
             <div
+              onClick={() => history.push(`/topic/${banner.topic}`)}
               className={classes.swiperBackground}
               style={{ backgroundImage: `url(${banner.image})`, cursor: 'pointer' }}
             ></div>
