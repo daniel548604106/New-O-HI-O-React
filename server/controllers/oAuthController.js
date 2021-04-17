@@ -5,10 +5,8 @@ const User = require('../models/userModel');
 const generateToken = require('../tools/generateToken');
 const oAuth = async (req, res, next) => {
   try {
-    
     const { type, code } = req.body;
     let email, name, picture, id;
-
     // Facebook
     const facebook_url = `https://graph.facebook.com/v9.0/oauth/access_token?`;
     const facebook_query = {
@@ -55,12 +53,14 @@ const oAuth = async (req, res, next) => {
         console.log('email', email, name, picture);
         break;
       case 'google':
+        console.log('gogosd',console.log(qs.stringify(google_query)))
         const google_res = await axios.post(google_url, `${qs.stringify(google_query)}`, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-        console.log(google_res.data);
+        console.log('google',google_res.data);
+        break;
       case 'line':
         const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         const line_res = await axios.post(line_url, line_query, config);

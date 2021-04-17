@@ -32,7 +32,7 @@ const Cards = ({ products, title, t, link, showMore }) => {
 };
 
 Cards.propTypes = {
-  products: PropTypes.Array,
+  products: PropTypes.array,
   t: PropTypes.func,
   title: PropTypes.string,
   link: PropTypes.string,

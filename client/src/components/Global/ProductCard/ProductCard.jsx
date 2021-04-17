@@ -114,7 +114,6 @@ const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.Array,
-  collection: PropTypes.String,
 };
 
 export default ProductCard;
