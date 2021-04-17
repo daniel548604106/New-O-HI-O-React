@@ -5,21 +5,21 @@ import { apiPostOauthLogin } from '../../api/index';
 import Loader from '../../components/Global/Loader/Loader.jsx';
 import Cookie from 'js-cookie';
 import { setUserLoggedIn } from '../../store/user/userAction';
+import qs from 'query-string';
 const OAuth = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const params = useParams();
   const location = useLocation();
   useEffect(() => {
+    console.log('here', qs.parse(location.search));
+  }, [location]);
+  useEffect(() => {
     const type = params.type;
     if (!location.search) {
       window.location.href = '/';
     }
-    let code = location.search.split('=')[1];
-    // For Line
-    if (code.split('&')) {
-      code = code.split('&')[0];
-    }
+    const code = qs.parse(location.search).code;
     console.log(type, code);
     console.log('location', location);
     const postOauthLogin = async () => {
