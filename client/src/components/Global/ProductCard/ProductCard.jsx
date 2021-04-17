@@ -57,7 +57,10 @@ const ProductCard = ({ product }) => {
         <p className={classes.new}>新品</p>
         {product.discountPrice && (
           <p className={classes.discount}>
-            {(product.discountPrice / product.fullPrice).toFixed(1) * 10} 折
+            {product.discountPrice / product.fullPrice > 0.1
+              ? Math.floor((product.discountPrice / product.fullPrice) * 10)
+              : Math.ceil((product.discountPrice / product.fullPrice) * 10)}
+            折
           </p>
         )}
       </div>

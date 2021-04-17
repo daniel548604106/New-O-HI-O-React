@@ -15,7 +15,7 @@ const Search = () => {
       try {
         const { data } = await apiGetSearchedProducts(text);
         console.log('1', data.result);
-        setSearchedProducts(data.result);
+        // setSearchedProducts(data.result);
         console.log('hi', searchedProducts);
       } catch (error) {
         console.log(error);
