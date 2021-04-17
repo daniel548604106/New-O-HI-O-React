@@ -25,7 +25,7 @@ const About = () => {
     },
     {
       name: 'Terms & Policies',
-      route: 'policy?type=terms',
+      route: 'policy?type=privacy',
     },
     {
       name: 'Returns Policy',

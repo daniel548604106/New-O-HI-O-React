@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import classes from './ProductInfo.module.scss';
 import Tags from '../../Global/Tags/Tags.jsx';
 import Skeleton from 'react-loading-skeleton';
+import { discount } from '../../../lib/tools';
 
 const ProductInfo = ({ product, t }) => {
   return (
     product && (
       <div className={classes.rootInfo}>
-        <div className={classes.main}>
+        <>
           {product ? (
-            <h2 className={classes.brandName}>{product.publishedBy.name}</h2>
+            <p className={classes.brandName}>{product.publishedBy.name}</p>
           ) : (
             <Skeleton height={50} width={150} />
           )}
@@ -19,30 +20,6 @@ const ProductInfo = ({ product, t }) => {
           ) : (
             <Skeleton height={100} />
           )}
-          <div className={classes.tags}>
-            <div className={classes.discount}>
-              <Tags tag={'60%off'} highlight="true" />
-            </div>
-            <div className={classes.service}>
-              <Tags tag={'Free Shipping'} />
-            </div>
-          </div>
-          <hr />
-          <div className={classes.options}>
-            <div className={classes.option}>
-              <h2>Color</h2>
-              <p>MultiColor</p>
-            </div>
-            <div className={classes.option}>
-              <h2>Gender</h2>
-              <p>Women</p>
-            </div>
-            <div className={classes.option}>
-              <h2>Status</h2>
-              <p>In Stock</p>
-            </div>
-          </div>
-          <hr />
           <div className={classes.priceRow}>
             <div className={classes.price}>
               {product.discountPrice && (
@@ -61,7 +38,19 @@ const ProductInfo = ({ product, t }) => {
               </p>
             </div>
           </div>
-        </div>
+          <div className={classes.tags}>
+            {product.discountPrice && (
+              <div className={classes.discount}>
+                <span className={classes.discountPercentage}>{discount(product)}</span>
+                <span className={classes.amountSaved}>
+                  省下 ${product.fullPrice - product.discountPrice}
+                </span>
+              </div>
+            )}
+          </div>
+
+          <hr className={classes.hr} />
+        </>
       </div>
     )
   );

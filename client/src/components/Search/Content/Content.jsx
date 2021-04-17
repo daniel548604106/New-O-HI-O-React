@@ -17,7 +17,6 @@ const Content = ({ searchedProducts, searchInput }) => {
           <p>找到 {searchedProducts.length} 件 商品</p>
           <div className={classes.sort}>
             <span>排序</span>
-            <pre>{searchedProducts}</pre>
             <select value={selectedValue} name="sort" id="sort">
               <option value="popularity">最熱門選項</option>
               <option value="high-low">價格由高到低</option>

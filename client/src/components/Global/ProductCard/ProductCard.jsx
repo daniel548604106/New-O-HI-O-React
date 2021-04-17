@@ -7,6 +7,7 @@ import PropTypes from 'react';
 import classes from './ProductCard.module.scss';
 import { useHistory } from 'react-router-dom';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
+import { discount } from '../../../lib/tools';
 import Skeleton from 'react-loading-skeleton';
 
 const ProductCardLoading = () => {
@@ -55,14 +56,7 @@ const ProductCard = ({ product }) => {
     <div className={classes.root}>
       <div className={classes.label}>
         <p className={classes.new}>新品</p>
-        {product.discountPrice && (
-          <p className={classes.discount}>
-            {product.discountPrice / product.fullPrice > 0.1
-              ? Math.floor((product.discountPrice / product.fullPrice) * 10)
-              : Math.ceil((product.discountPrice / product.fullPrice) * 10)}
-            折
-          </p>
-        )}
+        {product.discountPrice && <p className={classes.discount}>{discount(product)}</p>}
       </div>
       {product ? (
         <div

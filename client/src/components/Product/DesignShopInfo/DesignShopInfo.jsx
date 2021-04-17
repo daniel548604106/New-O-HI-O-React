@@ -38,7 +38,7 @@ const DesignShopInfo = ({ product }) => {
   return (
     <div>
       <div className={classes.designShopRoot}>
-        <h2>About Design Shop</h2>
+        <h2 className={classes.title}>About Design Shop</h2>
         <div className={classes.designShopLayout}>
           <img
             onClick={() => directToShop(product.publishedBy.account)}
