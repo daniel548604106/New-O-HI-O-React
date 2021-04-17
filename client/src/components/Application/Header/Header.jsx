@@ -1,24 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../../../assets/images/global/O.HI.O-logo-application.svg';
 import Button from '../../../components/Global/Button/Button.jsx';
 import classes from './Header.module.scss';
+import { useLocation } from 'react-router-dom';
 const Header = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const location = useLocation();
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
+  const handleClickNavItem = (ref) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const tabs = [
     {
       name: '擁有設計館的好處',
+      title: 'advantage',
     },
     {
       name: '合作品牌見證',
+      title: 'cooperation',
     },
     {
       name: '可販售商品類別',
+      title: 'availableproducts',
     },
     {
       name: '合作模式及收費',
+      title: 'cta',
     },
     {
       name: '常見問答',
+      title: 'faq',
     },
   ];
   return (
@@ -30,19 +45,6 @@ const Header = () => {
         </div>
         <div>
           <Button text="立即申請開館" backgroundColor="#178fac" />
-        </div>
-      </div>
-      <div className={classes.tabsLayout}>
-        <div>
-          {tabs.map((tab, index) => (
-            <a
-              onClick={() => setActiveTab(index)}
-              key={tab.name}
-              className={index === activeTab && classes.active}
-            >
-              {tab.name}
-            </a>
-          ))}
         </div>
       </div>
     </>
