@@ -12,7 +12,6 @@ const ProductCTA = ({ product }) => {
   const params = useParams();
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
-  const [hasAdded, setHasAdded] = useState(false);
   const addItemToCart = () => {
     if (!isUserLoggedIn) {
       return dispatch(openLoginModal());
@@ -28,28 +27,30 @@ const ProductCTA = ({ product }) => {
   return (
     <div className={classes.productCta}>
       <div className={classes.addToCart} onClick={() => addItemToCart()}>
-        Add To Cart
+        加入購物車
       </div>
-      <div
-        onClick={() => addToWishList()}
-        className={`${classes.wishlist} ${
-          favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) &&
-          classes.wishListAdded
-        }`}
-      >
-        {favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
-          <div>Saved</div>
-        ) : (
-          <>
-            <div>
-              <FavoriteIcon />
-              <span>Add to Wishlist</span>
-              <ChevronRightIcon />
-            </div>
-            <p>Save for future shopping</p>
-          </>
-        )}
-      </div>
+      {window.innerWidth > 500 && (
+        <div
+          onClick={() => addToWishList()}
+          className={`${classes.wishlist} ${
+            favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) &&
+            classes.wishListAdded
+          }`}
+        >
+          {favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
+            <div>Saved</div>
+          ) : (
+            <>
+              <div>
+                <FavoriteIcon />
+                <span>Add to Wishlist</span>
+                <ChevronRightIcon />
+              </div>
+              <p>Save for future shopping</p>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

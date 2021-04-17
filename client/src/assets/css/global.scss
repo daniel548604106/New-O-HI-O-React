@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 :root {
   --primary-black: #252628;
   --primary-gray: #929292;
@@ -50,12 +49,13 @@ a {
   margin: 0 auto;
   max-width: 1200px;
   @media (max-width: 500px) {
-    padding: 15px 15px;
+    padding: 0;
   }
   padding: 30px 15px;
 }
 
 body {
+  font-family: 'Montserrat', sans-serif;
   * {
     &::-webkit-scrollbar {
       width: 0;

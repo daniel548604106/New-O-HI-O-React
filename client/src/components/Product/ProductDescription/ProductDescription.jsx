@@ -9,10 +9,7 @@ const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, 
   return (
     <div style={{ width: '100%' }}>
       <div ref={productDescriptionRef} className="description">
-        <Dropdown title="productDescription" product={product} />
-      </div>
-      <div className="description">
-        <Dropdown title="tags" product={product} />
+        <Dropdown title="商品介紹" product={product} />
       </div>
       <div ref={evaluationRef} style={{ width: '100%' }}>
         <h2>{t('evaluation')}</h2>

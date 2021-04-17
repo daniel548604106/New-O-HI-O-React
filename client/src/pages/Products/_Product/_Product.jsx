@@ -104,20 +104,20 @@ const Product = () => {
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <div ref={topDisplay} className={classes.productDisplay}>
+        <section ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
-        </div>
-        <div className={classes.productMainInfo}>
+        </section>
+        <section className={classes.productMainInfo}>
           <div className={classes.info}>
             <ProductInfo t={t} product={product} />
           </div>
           <div className={classes.cta}>
             <ProductCTA product={product} />
           </div>
-        </div>
+        </section>
       </div>
       <div className={classes.containerLayout}>
-        <div className={classes.productDescription}>
+        <section className={classes.productDescription}>
           <ProductDescription
             t={t}
             productDescriptionRef={productDescription}
@@ -126,14 +126,14 @@ const Product = () => {
             product={product}
             reviews={reviews}
           />
-        </div>
-        <div className={classes.designShopInfo}>
+        </section>
+        <section className={classes.designShopInfo}>
           <DesignShopInfo product={product} />
-        </div>
+        </section>
       </div>
-      <div>
+      <section>
         <ProductRecommendation products={recommendedProducts} />
-      </div>
+      </section>
     </div>
   );
 };
