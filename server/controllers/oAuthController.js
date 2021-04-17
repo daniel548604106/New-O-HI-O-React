@@ -3,6 +3,7 @@ const qs = require('query-string');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const generateToken = require('../tools/generateToken');
+const jwtDecode = require('jwt-decode')
 const oAuth = async (req, res, next) => {
   try {
     const { type, code } = req.body;
@@ -59,7 +60,15 @@ const oAuth = async (req, res, next) => {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-        console.log('google',google_res.data);
+        console.log(google_res)
+        const google_userInfo = jwtDecode(google_res.data.id_token);
+        console.log(google_userInfo)
+        email = google_userInfo.email;
+        name = google_userInfo.name;
+        picture = google_userInfo.picture;
+       
+
+        
         break;
       case 'line':
         const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };

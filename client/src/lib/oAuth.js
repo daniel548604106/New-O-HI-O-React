@@ -19,6 +19,7 @@ export const config = {
   google: {
     scope: 'email profile',
     response_type: 'code',
+    access_type: 'offline',
     redirect_uri: process.env.REACT_APP_GOOGLE_URI,
     client_id: process.env.REACT_APP_GOOGLE_ID,
   },
