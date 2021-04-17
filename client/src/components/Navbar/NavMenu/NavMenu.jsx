@@ -13,11 +13,10 @@ const NavMenu = () => {
     <div className={classes.navMenuLayout}>
       <div className={classes.navMenu}>
         {menuOptions.map((option, idx) => (
-          <>
+          <div key={option.id}>
             <h1
               style={{ color: idx === 0 && '#eb7f82', cursor: idx === 0 ? 'auto' : 'pointer' }}
               onClick={() => proceedToBrowse(option.id)}
-              key={option.id}
               className={classes.title}
             >
               {option.title}
@@ -29,7 +28,7 @@ const NavMenu = () => {
                 ))}
               </ul>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </div>

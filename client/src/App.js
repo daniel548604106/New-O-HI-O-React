@@ -17,6 +17,7 @@ const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
 const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
 const About = React.lazy(() => import('./pages/About/About.jsx'));
 const Topic = React.lazy(() => import('./pages/Topic/Topic.jsx'));
+import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -24,8 +25,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
 import LoginModal from './components/Login/LoginModal.jsx';
 import Beauty from './pages/Collection/Beauty/Beauty.jsx';
-import { setUserLoggedIn } from './store/user/userAction';
-import { apiGetUserData } from './api/index';
 import { ToastContainer } from 'react-toastify';
 import { toggleChat } from './store/chat/chatAction';
 import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
@@ -72,23 +71,6 @@ const App = (props) => {
   useEffect(() => {
     initGA();
     PageView();
-  }, []);
-
-  useEffect(() => {
-    const query = window.location.search;
-    let userId;
-    const getUserData = async () => {
-      try {
-        const { data } = await apiGetUserData(userId);
-        dispatch(setUserLoggedIn(data.user));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (query) {
-      userId = query.split('=')[1];
-      getUserData();
-    }
   }, []);
 
   useEffect(() => {
@@ -148,58 +130,61 @@ const App = (props) => {
           </div>
         </Backdrop>
       </div>
-      <Suspense fallback={<Loader />}>
-        <Route path={`/topic/:topic`}>
-          <Topic />
-        </Route>
-        <div className={!hideMainHeader && 'mainLayout'}>
-          <Route path="/" exact>
-            <Home />
+      <Switch>
+        <Suspense fallback={<Loader />}>
+          <Route path={`/topic/:topic`}>
+            <Topic />
           </Route>
-          <Route path="/policy:type?">
-            <Policy />
-          </Route>
-          <Route path={`/products/:id`}>
-            <Product />
-          </Route>
-          <main className={!hideMainHeader && 'global-container'}>
-            <Route path={`/oauth/:type`}>
-              <OAuth props={props} />
+          <div className={!hideMainHeader && 'mainLayout'}>
+            <Route path="/" exact>
+              <Home />
             </Route>
-            <Route path={`/my/:type?/:state?`}>
-              <My />
+            <Route path="/policy:type?">
+              <Policy />
             </Route>
-            <Route path="/about">
-              <About />
+            <Route path={`/products/:id`}>
+              <Product />
             </Route>
-            <Route path="/browse">
-              <Browse />
+            <main className={!hideMainHeader && 'global-container'}>
+              <Route path={`/oauth/:type`}>
+                <OAuth props={props} />
+              </Route>
+              <Route path={`/my/:type?/:state?`}>
+                <My />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/browse">
+                <Browse />
+              </Route>
+              <Route path="/latest" exact>
+                <Latest />
+              </Route>
+              <Route path="/favorite">
+                <Favorite />
+              </Route>
+              <Route path={`/shop/:account`}>
+                <Shop />
+              </Route>
+              <Route path="/search">
+                <Search />
+              </Route>
+              <Route path="/cart/:status?/:id?">
+                <Cart />
+              </Route>
+              <Route path="/beauty">
+                <Beauty />
+              </Route>
+            </main>
+            <Route path="/application">
+              <Application />
             </Route>
-            <Route path="/latest" exact>
-              <Latest />
-            </Route>
-            <Route path="/favorite">
-              <Favorite />
-            </Route>
-            <Route path={`/shop/:account`}>
-              <Shop />
-            </Route>
-            <Route path="/search">
-              <Search />
-            </Route>
-            <Route path="/cart/:status?/:id?">
-              <Cart />
-            </Route>
-            <Route path="/beauty">
-              <Beauty />
-            </Route>
-          </main>
-          <Route path="/application">
-            <Application />
-          </Route>
-          <Footer />
-        </div>
-      </Suspense>
+            <Route path="*" component={ErrorPage} />
+            <Footer />
+          </div>
+        </Suspense>
+      </Switch>
     </Router>
   );
 };
