@@ -83,7 +83,7 @@ const Home = () => {
     fetchFavProducts();
   }, [dispatch]);
   return (
-    <div>
+    <div className={classes.home}>
       <HelmetTitle />
       {products.length ? <Banner banners={banners} /> : <BannerLoading />}
       <main>

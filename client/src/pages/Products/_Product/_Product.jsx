@@ -104,9 +104,9 @@ const Product = () => {
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <section ref={topDisplay} className={classes.productDisplay}>
+        <div ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
-        </section>
+        </div>
         <section className={classes.productMainInfo}>
           <div className={classes.info}>
             <ProductInfo t={t} product={product} />
