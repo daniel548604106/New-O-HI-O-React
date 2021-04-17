@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openLoginModal } from '../../../store/index/indexAction';
 import { useHistory, useParams } from 'react-router-dom';
 import { listProducts } from '../../../store/product/productAction';
-import { apiGetProduct, apiGetAllProducts, apiGetReviews } from '../../../api/index';
+import {
+  apiGetProduct,
+  apiGetReviews,
+  apiGetShopInfo,
+  apiGetRecommendedProducts,
+} from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
@@ -25,6 +30,7 @@ const Product = () => {
   const params = useParams();
   const isLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [product, setProduct] = useState('');
+  const [shopInfo, setShopInfo] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
   const [reviews, setReviews] = useState([]);
@@ -77,11 +83,23 @@ const Product = () => {
     getProduct();
   }, []);
 
+  useEffect(() => {
+    const getShopInfo = async () => {
+      try {
+        const { data } = await apiGetShopInfo(product.publishedBy.account);
+        console.log('shopIfo', data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getShopInfo();
+  }, [product]);
+
   // Fetch Recommended Products
   useEffect(() => {
     const getRecommendedProducts = async () => {
-      const { data } = await apiGetAllProducts();
-      console.log('recommended =>', data);
+      const { data } = await apiGetRecommendedProducts();
+      console.log('rec', data);
       setRecommendedProducts(data.products);
     };
     getRecommendedProducts();
@@ -128,7 +146,7 @@ const Product = () => {
           />
         </section>
         <section className={classes.designShopInfo}>
-          <DesignShopInfo product={product} />
+          <DesignShopInfo product={product} shopInfo={shopInfo} />
         </section>
       </div>
       <section>

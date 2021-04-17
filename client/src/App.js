@@ -15,7 +15,7 @@ const OAuth = React.lazy(() => import('./pages/OAuth/OAuth.jsx'));
 const Application = React.lazy(() => import('./pages/Application/Application.jsx'));
 const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
 const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
-
+const About = React.lazy(() => import('./pages/About/About.jsx'));
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -165,13 +165,15 @@ const App = (props) => {
             <Route path={`/my/:type?/:state?`}>
               <My />
             </Route>
+            <Route path="/about">
+              <About />
+            </Route>
             <Route path="/browse">
               <Browse />
             </Route>
             <Route path="/latest" exact>
               <Latest />
             </Route>
-
             <Route path="/favorite">
               <Favorite />
             </Route>

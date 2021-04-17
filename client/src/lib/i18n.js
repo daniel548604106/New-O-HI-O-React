@@ -17,6 +17,7 @@ const resources = {
       productDescription: 'Product Description',
       tags: 'Tags',
       evaluation: 'Evaluation',
+      recommendedItems: 'Recommended For You',
     },
   },
   tw: {
@@ -34,6 +35,7 @@ const resources = {
       productDescription: '商品介紹',
       tags: '商品標籤',
       evaluation: '購買評價',
+      recommendedItems: '專屬推薦',
     },
   },
 };

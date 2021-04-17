@@ -1,0 +1,30 @@
+.about {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  min-height: 50vh;
+  margin: 0 auto;
+
+  .logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .bgImage {
+    width: 100%;
+    padding-top: 40%;
+    margin-bottom: 20px;
+    background-image: url('https://images.unsplash.com/photo-1579986736295-338a3a637862?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80');
+    background-size: cover;
+    background-position: center;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+}

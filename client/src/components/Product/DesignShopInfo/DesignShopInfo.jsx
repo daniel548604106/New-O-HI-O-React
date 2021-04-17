@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../store/index/indexAction';
 import { apiPatchChat } from '../../../api/index';
 import { toggleChat } from '../../../store/chat/chatAction';
-const DesignShopInfo = ({ product }) => {
+const DesignShopInfo = ({ product, shopInfo }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
   useEffect(() => {
-    console.log(product.publishedBy);
+    console.log(product.publishedBy, shopInfo);
   }, []);
   const followShop = (id) => {
     const type = 'shop';
@@ -79,9 +79,13 @@ const DesignShopInfo = ({ product }) => {
           </div>
         )}
         <div className={classes.productPreview}>
-          {/* {product.images.map((image) => (
-            <img key={image} src={image} alt={product.name} />
-          ))} */}
+          {shopInfo &&
+            shopInfo.products.map((product) => (
+              <>
+                <img key={product.name} src={product.images[0]} alt={product.name} />
+                <p>{product.name}</p>
+              </>
+            ))}
         </div>
         <hr className={classes.separator} />
         <div className={classes.shareRow}>
@@ -100,6 +104,7 @@ const DesignShopInfo = ({ product }) => {
 
 DesignShopInfo.propTypes = {
   product: PropTypes.object,
+  shopInfo: PropTypes.object,
 };
 
 export default DesignShopInfo;

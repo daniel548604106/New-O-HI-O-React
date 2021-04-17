@@ -15,7 +15,7 @@ const CartSummary = ({ proceedToCheckout, subTotalPrice, totalPrice }) => {
         </div>
         <div className={classes.totalBodyContent}>
           <span>其他折抵</span>
-          <span className={classes.price}>-NTD 144</span>
+          <span className={classes.price}>0</span>
         </div>
         <div className={classes.totalBodyContent}>
           <span>首購優惠</span>

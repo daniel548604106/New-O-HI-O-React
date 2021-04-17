@@ -48,7 +48,7 @@ const CartListInfo = ({ cartItems }) => {
     history.push('/cart/payment');
   };
   useEffect(() => {
-    setTotalPrice(subTotalPrice - 40);
+    setTotalPrice(subTotalPrice);
   }, [subTotalPrice]);
 
   useEffect(() => {
