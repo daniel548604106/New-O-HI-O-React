@@ -68,29 +68,29 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={classes.headerBar}>
-        <div className={classes.toolBar}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
-              <MenuIcon />
-            </div>
-            <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
-            <div className={classes.search}>
-              <input
-                onChange={(e) => setSearchInput(e.target.value)}
-                type="text"
-                onKeyDown={(e) =>
-                  searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
-                }
-                value={searchInput}
-                placeholder="搜尋好設計"
-              />
-              <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
-                搜尋
-              </button>
-            </div>
+      <header>
+        <div>
+          <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
+            <MenuIcon />
           </div>
-          <div className={classes.sectionDesktop}>
+          <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
+          <div className={classes.search}>
+            <input
+              onChange={(e) => setSearchInput(e.target.value)}
+              type="text"
+              onKeyDown={(e) =>
+                searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
+              }
+              value={searchInput}
+              placeholder="搜尋好設計"
+            />
+            <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
+              搜尋
+            </button>
+          </div>
+        </div>
+        <ul className={classes.sectionDesktop}>
+          <li>
             <Link
               target="_blank"
               rel="noopener noreferrer"
@@ -99,69 +99,83 @@ const Navbar = () => {
             >
               我想在 O.HI.O 上開店
             </Link>
-            {isUserLoggedIn ? (
-              <div className={classes.tabs}>
-                <div className={classes.avatar}>
-                  {currentUser ? (
-                    <img
-                      src={currentUser ? currentUser.picture : DefaultImage}
-                      alt="profile picture"
-                    />
-                  ) : (
-                    <PersonIcon />
-                  )}
-                  <div className={classes.dropdown}>
-                    <Dropdown />
-                  </div>
-                </div>
-                <div>
-                  <Link to="/favorite?tab=products" className={classes.favIcon}>
-                    <FavoriteBorderIcon />
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
-                  <p style={{ fontSize: '14px' }}>{t('login')}</p>
-                </div>
-              </>
-            )}
-            <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
-              <ShoppingBasketIcon className={classes.cart} style={{ color: 'black' }} />
-            </Badge>
-          </div>
-          <div className={classes.sectionMobile}>
-            <SearchIcon className={classes.searchIcon} onClick={(e) => toggleSearchBar(e)} />
-            {isUserLoggedIn ? (
-              <>
+          </li>
+          {isUserLoggedIn ? (
+            <>
+              <li className={classes.avatar}>
                 {currentUser ? (
                   <img
-                    onClick={() => history.push('/my/setting')}
-                    className={classes.avatarPicture}
-                    src={currentUser && currentUser.picture}
+                    src={currentUser ? currentUser.picture : DefaultImage}
                     alt="profile picture"
                   />
                 ) : (
                   <PersonIcon />
                 )}
+                <div className={classes.dropdown}>
+                  <Dropdown />
+                </div>
+              </li>
+              <li>
+                <Link to="/favorite?tab=products" className={classes.favIcon}>
+                  <FavoriteBorderIcon />
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
+                <a style={{ fontSize: '14px' }}>{t('login')}</a>
+              </li>
+            </>
+          )}
+          <li onClick={() => toCart()}>
+            <Badge badgeContent={totalCartItems} color="secondary" component={Link}>
+              <ShoppingBasketIcon className={classes.cart} />
+            </Badge>
+          </li>
+        </ul>
+        <ul className={classes.sectionMobile}>
+          <SearchIcon className={classes.searchIcon} onClick={(e) => toggleSearchBar(e)} />
+          {isUserLoggedIn ? (
+            <>
+              {currentUser ? (
+                <li>
+                  <a href="#">
+                    <img
+                      onClick={() => history.push('/my/setting')}
+                      className={classes.avatar}
+                      src={currentUser && currentUser.picture}
+                      alt="profile picture"
+                    />
+                  </a>
+                </li>
+              ) : (
+                <li>
+                  <PersonIcon />
+                </li>
+              )}
+              <li>
                 <FavoriteBorderIcon
                   onClick={() => history.push('/favorite?tab=products')}
                   className={classes.favIcon}
                 />
-              </>
-            ) : (
-              <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
+              </li>
+            </>
+          ) : (
+            <li onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
+              <a href="#">
                 <PersonIcon />
-              </span>
-            )}
+              </a>
+            </li>
+          )}
+          <li>
             <Badge onClick={() => toCart()} badgeContent={totalCartItems} color="secondary">
               <ShoppingBasketIcon />
             </Badge>
-          </div>
-        </div>
-        <NavMenu />
-      </div>
+          </li>
+        </ul>
+      </header>
+      <NavMenu />
       <div>
         <SearchBar searchBarOpen={searchBarOpen} />
       </div>
