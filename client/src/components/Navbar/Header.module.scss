@@ -2,6 +2,9 @@ header {
   background: white;
 
   nav {
+    @media (max-width: 800px) {
+      padding: 0 10px;
+    }
     padding: 20px 15px;
     display: flex;
     justify-content: space-between;
@@ -17,7 +20,7 @@ header {
       }
     }
     .logo {
-      @media (max-width: 500px) {
+      @media (max-width: 800px) {
         max-width: 80px;
         margin-left: 10px;
       }
@@ -26,9 +29,6 @@ header {
       height: 100%;
     }
   }
-  @media (max-width: 500px) {
-    padding: 0 10px;
-  }
 }
 
 .search {
@@ -36,21 +36,23 @@ header {
     display: none;
   }
   display: flex;
-  border-radius: 10px;
   margin-left: 30px;
+
   align-items: center;
   input {
-    padding: 10px;
+    width: 200px;
+    padding: 6px 15px;
+    font-size: 14px;
     border: 1px solid var(--border-gray);
-    border-radius: 10px 0 0 10px;
     transition: all 0.3s;
     &:focus {
       border: 1px solid var(--primary-pink);
     }
   }
   .searchBtn {
-    padding: 10px 20px;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0px;
+    padding: 6px 15px;
+    font-size: 14px;
     background-color: var(--primary-pink);
     color: white;
   }
