@@ -13,27 +13,23 @@ const Dropdown = () => {
     dispatch(setUserLogout());
   };
   return (
-    <div>
-      <div className={classes.dropdownLayout}>
-        <ul className={classes.userMenuTabs}>
-          <li>
-            <Link to={'/my/setting'}>帳戶設定</Link>
-          </li>
-          <li>
-            <Link to={'/my/email'}>我的信箱</Link>
-          </li>
-          <li>
-            <Link to={'/my/notification'}>通知中心</Link>
-          </li>
-          <li>
-            <Link to={'/my/purchase/unpaid'}>購買訂單</Link>
-          </li>
-          <li onClick={() => logout()} className="logout">
-            登出
-          </li>
-        </ul>
-      </div>
-    </div>
+    <ul className={classes.userMenuTabs}>
+      <li>
+        <Link to={'/my/setting'}>帳戶設定</Link>
+      </li>
+      <li>
+        <Link to={'/my/email'}>我的信箱</Link>
+      </li>
+      <li>
+        <Link to={'/my/notification'}>通知中心</Link>
+      </li>
+      <li>
+        <Link to={'/my/purchase/unpaid'}>購買訂單</Link>
+      </li>
+      <li onClick={() => logout()} className="logout">
+        <a href="#">登出</a>
+      </li>
+    </ul>
   );
 };
 
