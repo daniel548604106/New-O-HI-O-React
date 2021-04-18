@@ -1,28 +1,33 @@
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: white;
-  padding: 10px 15px;
+
+  nav {
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    > div,
+    > ul {
+      display: flex;
+      align-items: center;
+      > li {
+        margin-left: 10px;
+      }
+    }
+    .logo {
+      @media (max-width: 500px) {
+        max-width: 80px;
+        margin-left: 10px;
+      }
+      cursor: pointer;
+      width: 100px;
+      height: 100%;
+    }
+  }
   @media (max-width: 500px) {
     padding: 0 10px;
-  }
-  > div,
-  > ul {
-    display: flex;
-    align-items: center;
-    > li {
-      margin-left: 10px;
-    }
-  }
-  .logo {
-    @media (max-width: 500px) {
-      max-width: 80px;
-      margin-left: 10px;
-    }
-    cursor: pointer;
-    width: 100px;
-    height: 100%;
   }
 }
 

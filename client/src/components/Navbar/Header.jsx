@@ -67,8 +67,8 @@ const Navbar = () => {
   }, [cartItems]);
 
   return (
-    <>
-      <header>
+    <header>
+      <nav>
         <div>
           <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
             <MenuIcon />
@@ -140,14 +140,12 @@ const Navbar = () => {
             <>
               {currentUser ? (
                 <li>
-                  <a href="#">
-                    <img
-                      onClick={() => history.push('/my/setting')}
-                      className={classes.avatar}
-                      src={currentUser && currentUser.picture}
-                      alt="profile picture"
-                    />
-                  </a>
+                  <img
+                    onClick={() => history.push('/my/setting')}
+                    className={classes.avatar}
+                    src={currentUser && currentUser.picture}
+                    alt="profile picture"
+                  />
                 </li>
               ) : (
                 <li>
@@ -174,12 +172,12 @@ const Navbar = () => {
             </Badge>
           </li>
         </ul>
-      </header>
+      </nav>
       <NavMenu />
       <div>
         <SearchBar searchBarOpen={searchBarOpen} />
       </div>
-    </>
+    </header>
   );
 };
 
