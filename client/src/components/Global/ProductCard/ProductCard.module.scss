@@ -12,7 +12,10 @@
 }
 
 .media {
-  height: 150px;
+  height: 170px;
+  @media (max-width: 500px) {
+    height: 150px;
+  }
   width: 100%;
 }
 
