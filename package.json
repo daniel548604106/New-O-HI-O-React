@@ -6,9 +6,11 @@
   },
   "scripts": {
     "client": "cd client && npm start",
+    "admin": "cd admin && npm start",
     "server": "nodemon server.js",
     "build": "cd client && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" ",
+    "dev-admin": "concurrently --kill-others-on-fail \"npm run server\" \"npm run admin\" ",
     "start": "node server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },

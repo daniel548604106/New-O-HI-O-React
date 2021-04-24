@@ -1,6 +1,5 @@
 header {
   background: white;
-
   nav {
     @media (max-width: 800px) {
       padding: 0 10px;
@@ -41,7 +40,8 @@ header {
   align-items: center;
   input {
     width: 200px;
-    padding: 6px 15px;
+    border-radius: 2px 0 0 2px;
+    padding: 10px 15px;
     font-size: 14px;
     border: 1px solid var(--border-gray);
     transition: all 0.3s;
@@ -50,8 +50,9 @@ header {
     }
   }
   .searchBtn {
-    border-radius: 0px;
-    padding: 6px 15px;
+    border-radius: 0px 2px 2px 0px;
+    padding: 10px 15px;
+    border: 0;
     font-size: 14px;
     background-color: var(--primary-pink);
     color: white;
