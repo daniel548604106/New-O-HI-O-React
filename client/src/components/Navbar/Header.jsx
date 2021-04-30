@@ -135,7 +135,10 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className={classes.sectionMobile}>
-          <SearchIcon className={classes.searchIcon} onClick={(e) => toggleSearchBar(e)} />
+          <div className={classes.searchMobile} onClick={(e) => toggleSearchBar(e)}>
+            <input type="text" placeholder="探索好設計" />
+            <SearchIcon className={classes.searchIcon} />
+          </div>
           {isUserLoggedIn ? (
             <>
               {currentUser ? (

@@ -17,10 +17,16 @@
 .menuDrawer {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -100%;
   z-index: 15;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 0.3s ease;
+  transition-delay: background-color 0.3s;
+  transition: all 0.3s;
+  &.active {
+    transform: translate(100%, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }
 
 .header {

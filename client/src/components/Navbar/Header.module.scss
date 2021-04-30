@@ -30,6 +30,27 @@ header {
   }
 }
 
+.searchMobile {
+  position: relative;
+  margin: 0 5px 0 10px;
+  input {
+    padding: 10px 5px 10px 25px;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    background-color: #fafafa;
+    color: #f0f0f0;
+  }
+  .searchIcon {
+    color: #dbd9d9;
+    position: absolute;
+    top: 50%;
+    transform: translate(3px, -50%);
+    left: 0;
+  }
+}
+
 .search {
   @media (max-width: 720px) {
     display: none;
