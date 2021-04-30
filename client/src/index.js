@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store/store';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from './App';
 
@@ -35,6 +36,8 @@ if (rootElement.hasChildNodes()) {
     rootElement,
   );
 }
+
+serviceWorkerRegistration.register();
 
 // ReactDOM.render(
 //   <Provider store={store}>
