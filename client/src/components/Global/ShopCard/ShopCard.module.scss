@@ -1,6 +1,9 @@
 .shopCardLayout {
   overflow: auto;
   border: 1px solid var(--secondary-gray);
+  &:hover {
+    opacity: 0.7;
+  }
   .profileImageLayout {
     display: flex;
     cursor: pointer;
