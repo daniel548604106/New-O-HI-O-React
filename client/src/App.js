@@ -90,11 +90,14 @@ const App = (props) => {
           newestOnTop={false}
           closeOnClick
         />
-        {isMenuDrawerOpen && (
-          <div onClick={() => dispatch(closeMenuDrawer())} className="menuDrawer">
-            <MenuDrawer />
-          </div>
-        )}
+
+        <div
+          onClick={() => dispatch(closeMenuDrawer())}
+          className={`menuDrawer ${isMenuDrawerOpen && 'active'}`}
+        >
+          <MenuDrawer />
+        </div>
+
         {!hideMainHeader && (
           <div className="header" style={{ top: hideHeader && '-100%' }}>
             <Header />
