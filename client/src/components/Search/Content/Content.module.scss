@@ -39,6 +39,16 @@
   }
 }
 
+.searched {
+  margin-top: 30px;
+}
+
+.products {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
 .adImage {
   width: 100%;
   max-width: 600px;

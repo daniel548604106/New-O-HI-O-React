@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Cookie from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PropTypes from 'react';
+import PropTypes from 'prop-types';
 import classes from './ProductCard.module.scss';
 import { useHistory } from 'react-router-dom';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
@@ -113,7 +113,7 @@ const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: PropTypes.Array,
+  product: PropTypes.object,
 };
 
 export default ProductCard;

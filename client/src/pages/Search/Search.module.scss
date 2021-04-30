@@ -1,6 +1,7 @@
 .search {
   display: flex;
   min-height: 70vh;
+  padding: 20px 0;
   .sidebar {
     @media (max-width: 500px) {
       display: none;

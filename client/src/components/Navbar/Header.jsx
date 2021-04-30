@@ -129,7 +129,7 @@ const Navbar = () => {
             </>
           )}
           <li onClick={() => toCart()}>
-            <Badge badgeContent={totalCartItems} color="secondary" component={Link}>
+            <Badge badgeContent={totalCartItems} color="secondary">
               <ShoppingBasketIcon className={classes.cart} />
             </Badge>
           </li>

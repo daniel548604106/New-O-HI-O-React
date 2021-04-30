@@ -93,13 +93,13 @@ const App = (props) => {
 
         <div
           onClick={() => dispatch(closeMenuDrawer())}
-          className={`menuDrawer ${isMenuDrawerOpen && 'active'}`}
+          className={`menuDrawer ${isMenuDrawerOpen ? 'active' : ''}`}
         >
           <MenuDrawer />
         </div>
 
         {!hideMainHeader && (
-          <div className="header" style={{ top: hideHeader && '-100%' }}>
+          <div className="header" style={{ top: hideHeader ? '-100%' : '' }}>
             <Header />
           </div>
         )}
@@ -138,7 +138,10 @@ const App = (props) => {
           <Route path={`/topic/:topic`}>
             <Topic />
           </Route>
-          <div className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}>
+          <div
+            style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
+            className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
+          >
             <Route path="/" exact>
               <Home />
             </Route>
