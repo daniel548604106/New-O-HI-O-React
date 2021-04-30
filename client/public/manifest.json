@@ -8,16 +8,19 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo.png",
+      "src": "maskable_icon.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo.png",
+      "src": "maskable_icon.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
+  "description": "O.HI.O 設計品牌衣著服飾每日上架，海內外最新設計師品牌每日上架，精選商品免運天天有，首購即享特殊優惠，尋找獨特日常穿搭就在 O.HI.O 。",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
