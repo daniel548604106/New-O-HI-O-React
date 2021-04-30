@@ -54,4 +54,8 @@
   @media (max-width: 500px) {
     margin-top: 50px;
   }
+
+  &.hasModal {
+    overflow: hidden;
+  }
 }

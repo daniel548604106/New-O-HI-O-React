@@ -138,7 +138,7 @@ const App = (props) => {
           <Route path={`/topic/:topic`}>
             <Topic />
           </Route>
-          <div className={!hideMainHeader && 'mainLayout'}>
+          <div className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}>
             <Route path="/" exact>
               <Home />
             </Route>
