@@ -34,7 +34,7 @@ const MenuDrawer = () => {
     <div className={classes.tabsLayout}>
       {tabs.map((tab, index) => (
         <span
-          className={activeTab === index && classes.active}
+          className={activeTab === index ? classes.active : ''}
           key={tab}
           onClick={() => setActiveTab(index)}
         >

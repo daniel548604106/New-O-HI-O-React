@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import { IconButton } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import classes from './SearchBar.module.scss';

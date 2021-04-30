@@ -1,8 +1,7 @@
 import React from 'react';
 import classes from './Cards.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
-import PropTypes from 'react';
-import Skeleton from 'react-loading-skeleton';
+import PropTypes from 'prop-types';
 import ProductCardLoading from '../../Global/SkeletonLoading/ProductCardLoading.jsx';
 import { Link } from 'react-router-dom';
 const Cards = ({ products, title, t, link, showMore }) => {
