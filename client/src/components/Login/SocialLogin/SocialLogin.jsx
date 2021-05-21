@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './SocialLogin.module.scss';
 import { useDispatch } from 'react-redux';
 import qs from 'query-string';
-import { Button } from '@material-ui/core';
 
 import LineIcon from '../../../assets/images/global/LINE_APP.png';
 import { redirectUri, config } from '../../../lib/oAuth';
@@ -13,9 +12,7 @@ const SocialLogin = () => {
     const uri = redirectUri(provider);
     const query = qs.stringify(config[provider]);
     window.location = `${uri}${query}`;
-    console.log(uri, query);
     dispatch(closeLoginModal());
-    console.log(uri);
   };
   return (
     <div className={classes.socialLoginLayout}>

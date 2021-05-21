@@ -40,7 +40,6 @@ header {
     width: 100%;
     border: none;
     background-color: #fafafa;
-    color: #f0f0f0;
   }
   .searchIcon {
     color: #dbd9d9;
@@ -116,6 +115,10 @@ header {
 .favIcon:hover,
 .cart:hover {
   color: var(--primary-pink);
+}
+
+.cart {
+  cursor: pointer;
 }
 
 .avatar {

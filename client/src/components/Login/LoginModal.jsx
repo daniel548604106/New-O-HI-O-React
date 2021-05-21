@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import Signup from './Signup/Signup.jsx';
 import Login from './Login/Login.jsx';
 import ResetPassword from './ResetPassword/ResetPassword.jsx';
-import { redirectUri, config } from '../../lib/oAuth';
-import qs from 'query-string';
 import CloseIcon from '@material-ui/icons/Close';
 import { closeLoginModal } from '../../store/index/indexAction';
 import SocialLogin from './SocialLogin/SocialLogin.jsx';

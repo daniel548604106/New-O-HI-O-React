@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Favorite.module.scss';
-import { useHistory, useLocation } from 'react-router-dom';
-import { apiGetFavList } from '../../api/index';
+import { useLocation } from 'react-router-dom';
 import ProductCard from '../../components/Global/ProductCard/ProductCard.jsx';
 import { useSelector } from 'react-redux';
 import ShopCard from '../../components/Global/ShopCard/ShopCard.jsx';
 import Tabs from '../../components/Global/Tabs/Tabs.jsx';
 import Empty from '../../components/Global/Empty/Empty.jsx';
 const Favorite = () => {
-  const history = useHistory();
   const location = useLocation();
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
@@ -27,7 +25,6 @@ const Favorite = () => {
 
   useEffect(() => {
     location.search.includes('products') ? setShowProducts(true) : setShowProducts(false);
-    console.log(location);
   }, [location, favoriteProducts]);
   return (
     <div>

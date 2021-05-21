@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './ProductInfo.module.scss';
-import Tags from '../../Global/Tags/Tags.jsx';
 import Skeleton from 'react-loading-skeleton';
 import { discount } from '../../../lib/tools';
 

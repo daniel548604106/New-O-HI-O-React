@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classes from './Tabs.module.scss';
 import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
 const Tabs = ({ tabs }) => {
   const location = useLocation();
   const history = useHistory();
-  const [activeTab, setActiveTab] = useState(0);
   const switchTab = (idx, tab) => {
     history.push(`${location.pathname}?tab=${tab}`);
   };
-  useEffect(() => {
-    console.log(location);
-  }, []);
+
   return (
     <div>
       <div className={classes.list}>

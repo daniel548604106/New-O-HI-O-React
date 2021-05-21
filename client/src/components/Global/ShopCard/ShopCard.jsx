@@ -13,7 +13,6 @@ const ShopCard = ({ shop }) => {
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
   const followShop = () => {
     if (isUserLoggedIn) {
-      console.log(isUserLoggedIn);
       const type = 'shop';
       dispatch(addToFavorite(shop._id, type));
       return;
@@ -31,7 +30,6 @@ const ShopCard = ({ shop }) => {
         return item._id;
       });
       setFollowedFavoriteShop(shopIds.indexOf(shop._id));
-      console.log(favoriteShops);
     };
     checkFollowedShop();
   }, [shop, favoriteShops]);

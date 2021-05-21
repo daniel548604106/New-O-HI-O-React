@@ -21,7 +21,7 @@ const Login = ({ setLoginState }) => {
 
       notify('登入成功！');
     } catch (error) {
-      console.log(error);
+      notify('登入失敗！請重新再登入一次');
     }
   };
   return (

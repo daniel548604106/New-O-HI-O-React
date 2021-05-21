@@ -11,10 +11,6 @@ const CardPaymentOrdererInfoCard = ({ setCheckoutDetail, checkoutDetail }) => {
       personalInfo: { ...personalInfo },
     });
   };
-  useEffect(() => {
-    console.log(personalInfo);
-  }, []);
-
   if (checkoutDetail && personalInfo) {
     return (
       <>

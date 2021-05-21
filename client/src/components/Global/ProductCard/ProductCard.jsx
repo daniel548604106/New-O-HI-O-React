@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Cookie from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'prop-types';
@@ -28,14 +26,12 @@ const ProductCard = ({ product }) => {
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const directToProduct = () => {
     history.push(`/products/${product._id}`);
-    console.log('clicked');
   };
   const addItemToFavorite = (e, id) => {
     e.stopPropagation();
     if (isUserLoggedIn) {
       const type = 'product';
       dispatch(addToFavorite(id, type));
-      console.log('favorite');
       return;
     }
     dispatch(openLoginModal());
@@ -50,7 +46,7 @@ const ProductCard = ({ product }) => {
       setAddedFavorite(productIds.indexOf(product._id));
     };
     searchFavorite();
-  }, [favoriteProducts]);
+  }, [favoriteProducts, product._id]);
 
   return (
     <div className={classes.root}>

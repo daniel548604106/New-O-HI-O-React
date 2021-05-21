@@ -11,7 +11,6 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import About from './About/About.jsx';
 import Picks from './Picks/Picks.jsx';
 import Categories from './Categories/Categories.jsx';
-import Inspiration from './Inspiration/Inspiration.jsx';
 import Cookie from 'js-cookie';
 const MenuDrawer = () => {
   const { t, i18n } = useTranslation();

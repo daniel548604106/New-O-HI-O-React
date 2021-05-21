@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
-import classes from './Signup.module.scss';
+import classes from './SignUp.module.scss';
 import PropTypes from 'prop-types';
-import { apiPostSignup } from '../../../api/index';
 import { setUserLoggedIn } from '../../../store/user/userAction';
 import { closeLoginModal } from '../../../store/index/indexAction';
 import { useDispatch } from 'react-redux';
 import Cookie from 'js-cookie';
 import notify from '../../../lib/notification';
-const Signup = ({ setLoginState }) => {
+const SignUp = ({ setLoginState }) => {
   const dispatch = useDispatch();
   const [account, setAccount] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSignup = async () => {
+  const handleSignUp = async () => {
     try {
-      const { data } = await apiPostSignup({ account, email, password });
-      console.log(data);
+      const { data } = await apiPost({ account, email, password });
       Cookie.set('me', data.user);
       Cookie.set('token', data.token);
       dispatch(closeLoginModal());
       dispatch(setUserLoggedIn(data));
       notify('登入成功！');
     } catch (error) {
-      console.log(error);
+      notify('登入失敗！請重新再試一次');
     }
   };
   return (
@@ -61,7 +59,7 @@ const Signup = ({ setLoginState }) => {
         <span className={classes.highlight}>資料使用政策與使用條款</span>，同意使用 O-HI-O
         所提供的服務並訂閱電子報。
       </p>
-      <div onClick={() => handleSignup()} className={classes.signupButton}>
+      <div onClick={() => handleSignUp()} className={classes.signupButton}>
         註冊
       </div>
       <p className={classes.login}>
@@ -74,8 +72,8 @@ const Signup = ({ setLoginState }) => {
   );
 };
 
-Signup.propTypes = {
+SignUp.propTypes = {
   setLoginState: PropTypes.func,
 };
 
-export default Signup;
+export default SignUp;

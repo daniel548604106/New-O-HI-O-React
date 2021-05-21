@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Dropdown from '../../Global/Dropdown/Dropdown.jsx';
 import PropTypes from 'prop-types';
 import Stars from '../../Global/Stars/Stars.jsx';
 import classes from './ProductDescription.module.scss';
 const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, reviews }) => {
-  const productDescription = useRef(null);
-  const evaluation = useRef(null);
   return (
     <div style={{ width: '100%' }}>
       <div ref={productDescriptionRef} className="description">

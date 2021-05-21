@@ -9,6 +9,7 @@ import Button from '../../../components/Global/Button/Button.jsx';
 import { apiPostNewOrder } from '../../../api/index';
 import { resetCartItems } from '../../../store/cart/cartAction';
 import { resetCheckoutList } from '../../../store/checkout/checkoutAction';
+import notify from '../../../lib/notification';
 const CartConfirm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,14 +23,12 @@ const CartConfirm = () => {
   };
   const handleSubmitOrder = async () => {
     try {
-      console.log('submit');
       const { data } = await apiPostNewOrder(checkoutInfo);
       history.push(`/cart/complete/${data.newOrder._id}`);
       dispatch(resetCartItems());
       dispatch(resetCheckoutList());
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉！交易失敗！請重新再試一次');
     }
   };
   return (

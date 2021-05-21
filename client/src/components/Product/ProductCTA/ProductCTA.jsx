@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classes from './ProductCTA.module.scss';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

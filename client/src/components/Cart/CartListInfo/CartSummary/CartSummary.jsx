@@ -1,10 +1,7 @@
 import React from 'react';
 import classes from './CartSummary.module.scss';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 const CartSummary = ({ proceedToCheckout, subTotalPrice, totalPrice }) => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-
   return (
     <div>
       <div className={classes.totalHeader}>訂單摘要</div>

@@ -62,9 +62,7 @@ const Application = () => {
     setActiveTab(title);
     ref.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
   };
-  useEffect(() => {
-    console.log(location);
-  }, [location, location.hash]);
+
   return (
     <div className={classes.applicationLayout}>
       <Header />

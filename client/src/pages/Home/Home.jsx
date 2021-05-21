@@ -11,14 +11,13 @@ import {
   apiGetRecommendedProducts,
 } from '../../api/index';
 import classes from './Home.module.scss';
-import Skeleton from 'react-loading-skeleton';
 import { getFavList } from '../../store/index/indexAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
 import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
-import ProductCardLoading from '../../components/Global/SkeletonLoading/ProductCardLoading.jsx';
+import notify from '../../lib/notification.js';
 const Home = () => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);
@@ -41,7 +40,7 @@ const Home = () => {
       const { data } = await apiGetHotShop();
       setHotShops(data.shop);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉！系統異常，取得熱門商店失敗');
     }
   };
 
@@ -52,7 +51,7 @@ const Home = () => {
       const { data } = await apiGetAllProducts();
       setProducts(data.products);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉，取得商品失敗');
     }
   };
 
@@ -61,7 +60,7 @@ const Home = () => {
       const { data } = await apiGetRecommendedProducts();
       setRecommendedProducts(data.products);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉，取得推薦商品失敗！');
     }
   };
 
@@ -71,7 +70,7 @@ const Home = () => {
       const { data } = await apiGetDiscountedProducts();
       setDiscountedProducts(data.products);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉，取得優惠商品失敗！');
     }
   };
 
@@ -89,11 +88,13 @@ const Home = () => {
         const token = Cookie.get('token');
         dispatch(getFavList(token));
       } catch (error) {
-        console.log(error);
+        notify('很抱歉，取得關注的商品失敗！');
       }
     };
-    fetchFavProducts();
-  }, [dispatch]);
+    if (isUserLoggedIn) {
+      fetchFavProducts();
+    }
+  }, [dispatch, isUserLoggedIn]);
   return (
     <div className={classes.home}>
       <HelmetTitle />

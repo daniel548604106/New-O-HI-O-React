@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Policy.module.scss';
 import Privacy from '../../components/Policy/Privacy/Privacy.jsx';
 import Service from '../../components/Policy/Service/Service.jsx';
@@ -10,9 +10,7 @@ import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 const Policy = () => {
   const history = useHistory();
-  const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (idx, type) => {
-    setActiveTab(idx);
     const query = qs.parse(location.search);
     query.type = type;
     location.search = qs.stringify(query);

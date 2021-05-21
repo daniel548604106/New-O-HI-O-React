@@ -3,6 +3,8 @@ import classes from './Purchase.module.scss';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
 import { apiGetAllOrders } from '../../../../api/index';
 import Button from '../../../Global/Button/Button.jsx';
+import notify from '../../../../lib/notification';
+
 const Purchase = () => {
   const location = useLocation();
   const params = useParams();
@@ -42,7 +44,6 @@ const Purchase = () => {
   };
 
   useEffect(() => {
-    console.log(params.state);
     const color = () => {
       switch (params.state) {
         case 'unpaid':
@@ -65,12 +66,10 @@ const Purchase = () => {
       try {
         const { data } = await apiGetAllOrders();
         setOrders(data.orders);
-        console.log(data);
       } catch (error) {
-        console.log(error);
+        notify('很抱歉！好像找不到你的訂單！');
       }
     };
-    console.log(location);
     getOrders();
   }, []);
 
@@ -95,51 +94,52 @@ const Purchase = () => {
       </ul>
       <hr />
       <div>
-        {orders.map((order) => (
-          <div key={order._id} className={classes.container}>
-            <div className={classes.orderId}>
-              <p>
-                訂單編號: <span>{order._id}</span>
-              </p>
-              <div className={classes.time}>
+        {orders.length > 0 &&
+          orders.map((order) => (
+            <div key={order._id} className={classes.container}>
+              <div className={classes.orderId}>
                 <p>
-                  訂單成立時間： <span>{order.createdAt}</span>
+                  訂單編號: <span>{order._id}</span>
                 </p>
-                <p>
-                  付款完成時間： <span></span>
-                </p>
-              </div>
-            </div>
-            <div>
-              <img
-                className={classes.productImage}
-                src={order.shoppingList[0].product.images[0]}
-                alt=""
-              />
-              <div className={classes.mainInfo}>
-                <div>
-                  <p>付款方式</p>
-                  <p>{order.paymentMethod}</p>
-                </div>
-                <div>
-                  <p>訂單金額</p>
-                  <p>{order.total}</p>
-                </div>
-                <div>
-                  <p>商品數量</p>
+                <div className={classes.time}>
                   <p>
-                    {order.shoppingList.reduce((total, current) => {
-                      return total + current.quantity;
-                    }, 0)}
+                    訂單成立時間： <span>{order.createdAt}</span>
+                  </p>
+                  <p>
+                    付款完成時間： <span></span>
                   </p>
                 </div>
               </div>
-              <div className={classes.checkButton} onClick={() => checkOrderDetail(order._id)}>
-                <Button text="查看訂單詳細內容" />
+              <div>
+                <img
+                  className={classes.productImage}
+                  src={order.shoppingList[0].product.images[0]}
+                  alt=""
+                />
+                <div className={classes.mainInfo}>
+                  <div>
+                    <p>付款方式</p>
+                    <p>{order.paymentMethod}</p>
+                  </div>
+                  <div>
+                    <p>訂單金額</p>
+                    <p>{order.total}</p>
+                  </div>
+                  <div>
+                    <p>商品數量</p>
+                    <p>
+                      {order.shoppingList.reduce((total, current) => {
+                        return total + current.quantity;
+                      }, 0)}
+                    </p>
+                  </div>
+                </div>
+                <div className={classes.checkButton} onClick={() => checkOrderDetail(order._id)}>
+                  <Button text="查看訂單詳細內容" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

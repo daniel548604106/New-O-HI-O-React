@@ -1,14 +1,12 @@
 import React from 'react';
 import classes from './MobileCheckoutButton.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateCheckoutProgress } from '../../../../store/cart/cartAction';
+// import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 const MobileCheckoutButton = ({ proceedToCheckout, totalPrice }) => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const subtotal = cartItems.reduce((total, item) => {
-    return (total += (item.discountPrice || item.fullPrice) * item.quantity);
-  }, 0);
+  // const cartItems = useSelector((state) => state.cart.cartItems);
+  // const subtotal = cartItems.reduce((total, item) => {
+  //   return (total += (item.discountPrice || item.fullPrice) * item.quantity);
+  // }, 0);
 
   return (
     <div className={classes.checkoutButtonLayout}>

@@ -9,7 +9,6 @@ const Latest = () => {
   useEffect(() => {
     const getAllProducts = async () => {
       const { data } = await apiGetAllProducts();
-      console.log(data);
       setProducts(data.products);
     };
     getAllProducts();

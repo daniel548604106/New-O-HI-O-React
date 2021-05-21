@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classes from './MainContent.module.scss';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -18,9 +18,8 @@ const MainContent = ({
 }) => {
   const location = useLocation();
   const history = useHistory();
-  const [activeSubcategory, setActiveSubcategory] = useState([]);
+  // const [activeSubcategory, setActiveSubcategory] = useState([]);
   useEffect(() => {
-    let subcategory;
     if (activeCategory && subcategoryId) {
       subcategory = activeCategory.category.find((option) => {
         return option.id === subcategoryId;
@@ -33,7 +32,6 @@ const MainContent = ({
     let query = qs.parse(location.search);
     query = { ...query, sort: value.name, order: value.order };
     history.push(`${location.pathname}?${qs.stringify(query)}`);
-    console.log(location);
   };
 
   return (
