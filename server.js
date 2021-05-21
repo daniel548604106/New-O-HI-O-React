@@ -3,7 +3,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 const path = require('path')
 const server = require('http').createServer(app);
-// server-side
+const React = require('react')
+const ReactDOMServer = require('react-dom/server')
+
+
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -32,6 +36,26 @@ const connectDB = require('./server/tools/db');
 // Basic requirements and setup
 require('dotenv').config();
 connectDB();
+
+
+// server-side
+
+app.get('/', (req, res) => {
+  const app = ReactDOMServer.renderToString(<App />);
+
+  const indexFile = path.resolve('./client/build/index.html');
+  fs.readFile(indexFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Something went wrong:', err);
+      return res.status(500).send('Oops, better luck next time!');
+    }
+
+    return res.send(
+      data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+    );
+  });
+});
+
 
 // Route
 app.use('/*', bodyParser.json());
