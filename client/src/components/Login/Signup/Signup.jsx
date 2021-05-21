@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classes from './SignUp.module.scss';
+import classes from './Signup.module.scss';
 import PropTypes from 'prop-types';
 import { setUserLoggedIn } from '../../../store/user/userAction';
 import { closeLoginModal } from '../../../store/index/indexAction';
