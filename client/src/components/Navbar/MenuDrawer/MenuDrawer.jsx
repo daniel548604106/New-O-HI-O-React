@@ -9,7 +9,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import EmailIcon from '@material-ui/icons/Email';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import About from './About/About.jsx';
-import Picks from './Picks/Picks.jsx';
 import Categories from './Categories/Categories.jsx';
 import Cookie from 'js-cookie';
 const MenuDrawer = () => {
@@ -77,7 +76,6 @@ const MenuDrawer = () => {
         <Tabs />
       </div>
       <div className={classes.mainLayout}>
-        {activeTab === 0 && <Picks />}
         {activeTab === 1 && <Categories />}
         {activeTab === 2 && <About />}
       </div>
