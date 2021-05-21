@@ -3,7 +3,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 const path = require('path')
 const server = require('http').createServer(app);
-// server-side
+const React = require('react')
+const ReactDOMServer = require('react-dom/server')
+// const App = require('../client/index.js')
+
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -14,24 +18,44 @@ const io = require("socket.io")(server, {
 
 
 const bodyParser = require('body-parser');
-const authRoute = require('./server/routes/authRoute');
-const userRoute = require('./server/routes/userRoute');
-const oAuthRoute = require('./server/routes/oAuthRoute');
-const productRoute = require('./server/routes/productRoute');
-const bannerRoute = require('./server/routes/bannerRoute');
-const reviewRoute = require('./server/routes/reviewRoute')
-const favoriteRoute = require('./server/routes/favoriteRoute')
-const shopRoute =  require('./server/routes/shopRoute')
-const myRoute = require('./server/routes/myRoute')
-const chatRoute = require('./server/routes/chatRoute')
-const orderRoute = require('./server/routes/orderRoute')
-const searchRoute = require('./server/routes/searchRoute')
+const authRoute = require('./routes/authRoute');
+const userRoute = require('./routes/userRoute');
+const oAuthRoute = require('./routes/oAuthRoute');
+const productRoute = require('./routes/productRoute');
+const bannerRoute = require('./routes/bannerRoute');
+const reviewRoute = require('./routes/reviewRoute')
+const favoriteRoute = require('./routes/favoriteRoute')
+const shopRoute =  require('./routes/shopRoute')
+const myRoute = require('./routes/myRoute')
+const chatRoute = require('./routes/chatRoute')
+const orderRoute = require('./routes/orderRoute')
+const searchRoute = require('./routes/searchRoute')
 
-const connectDB = require('./server/tools/db');
+const connectDB = require('./tools/db');
 
 // Basic requirements and setup
 require('dotenv').config();
 connectDB();
+
+
+// server-side
+
+// app.get('/', (req, res) => {
+//   const app = ReactDOMServer.renderToString(<App />);
+
+//   const indexFile = path.resolve('./client/build/index.html');
+//   fs.readFile(indexFile, 'utf8', (err, data) => {
+//     if (err) {
+//       console.error('Something went wrong:', err);
+//       return res.status(500).send('Oops, better luck next time!');
+//     }
+
+//     return res.send(
+//       data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+//     );
+//   });
+// });
+
 
 // Route
 app.use('/*', bodyParser.json());
