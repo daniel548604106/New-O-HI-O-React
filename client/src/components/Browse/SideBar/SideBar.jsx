@@ -13,14 +13,10 @@ const Sidebar = ({ categoryId }) => {
         return option.id === +categoryId;
       });
       setActiveCategory(category);
-      console.log(category, categoryId);
     };
     active();
   }, [categoryId]);
 
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
   return (
     <div className={classes.browseCategories}>
       {window.innerWidth > 500 && <h2 className={classes.title}>商品分類</h2>}

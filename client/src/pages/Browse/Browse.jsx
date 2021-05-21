@@ -8,6 +8,7 @@ import { menuOptions } from '../../lib/menuOptions';
 import { useLocation } from 'react-router-dom';
 import { apiGetAllProducts } from '../../api/index';
 import qs from 'query-string';
+import notify from '../../lib/notification.js';
 const Browse = () => {
   const location = useLocation();
   const history = useHistory();
@@ -22,7 +23,6 @@ const Browse = () => {
   useEffect(() => {
     setCategoryId(query.get('category'));
     setSubcategoryId(Number(query.get('subcategory')));
-    console.log(location.search, query.get('category'));
   }, [query]);
 
   useEffect(() => {
@@ -31,7 +31,6 @@ const Browse = () => {
         return option.id === +categoryId;
       });
       setActiveCategory(category);
-      console.log(category, categoryId);
     };
     active();
   }, [categoryId]);
@@ -45,13 +44,11 @@ const Browse = () => {
         const products = await apiGetAllProducts(qs.stringify(query));
         setProducts(products.data.products);
         setTotalPage(products.data.totalPage);
-        console.log(products);
       } catch (error) {
-        console.log(error);
+        notify('系統異常！取得資料失敗');
       }
     };
     getProducts();
-    console.log(currentPage);
   }, [currentPage, location.search]);
   return (
     <div className={classes.browseLayout}>

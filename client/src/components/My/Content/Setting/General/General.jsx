@@ -7,7 +7,6 @@ import ChangeProfilePicture from './ChangeProfilePicture/ChangeProflePicture.jsx
 import { useSelector, useDispatch } from 'react-redux';
 import { apiPatchMyData } from '../../../../../api/index';
 import { setUserLoggedIn } from '../../../../../store/user/userAction';
-import Cookie from 'js-cookie';
 const _ = require('lodash');
 import notify from '../../../../../lib/notification';
 const General = () => {
@@ -28,7 +27,6 @@ const General = () => {
       gender,
       birthday,
     });
-    console.log(userData);
   }, [user]);
 
   const yearSelection = _.range(1950, 2020);

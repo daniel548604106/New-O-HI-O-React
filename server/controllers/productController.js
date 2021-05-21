@@ -5,14 +5,12 @@ const addNewProduct = async(req,res,next) =>{
   try{ 
     const { ...all } = req.body
     const id = req.user._id
-    console.log(all,id)
     const shop = await Shop.findOne({ user: id})
     const shopId = shop._id
     const newProduct = await Product.create({
       ...all,
       publishedBy: shopId
     })
-    console.log(newProduct)
     res.status(200).json({
       newProduct
     })

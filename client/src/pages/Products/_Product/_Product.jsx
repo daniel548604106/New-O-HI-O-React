@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { openLoginModal } from '../../../store/index/indexAction';
-import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { listProducts } from '../../../store/product/productAction';
-import {
-  apiGetProduct,
-  apiGetReviews,
-  apiGetShopInfo,
-  apiGetRecommendedProducts,
-} from '../../../api/index';
+import { apiGetProduct, apiGetReviews, apiGetRecommendedProducts } from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
@@ -26,20 +20,13 @@ const Product = () => {
   const topDisplay = useRef(null);
   const productDescription = createRef();
   const evaluation = createRef();
-  const history = useHistory();
   const params = useParams();
-  const isLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [product, setProduct] = useState('');
-  const [shopInfo, setShopInfo] = useState('');
+  const [shopInfo] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const checkout = () => {
-    if (isLoggedIn) {
-      return dispatch(openLoginModal());
-    }
-    history.push('/checkout');
-  };
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
@@ -53,53 +40,31 @@ const Product = () => {
         setShowBanner(false);
       }
     });
-    return () => {
-      window.removeEventListener('scroll', () => {
-        if (window.pageYOffset > 400) {
-          console.log('hihihi');
-        }
-      });
-    };
   }, []);
   // Fetch Reviews
 
   useEffect(() => {
     const getReviews = async () => {
       const { data } = await apiGetReviews(params.id);
-      console.log('reviews=>', data);
       setReviews(data.reviews);
     };
     getReviews();
-  }, []);
+  }, [params.id]);
 
   // Fetch Product
 
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await apiGetProduct(params.id);
-      console.log(data.product);
       setProduct(data.product);
     };
     getProduct();
-  }, []);
-
-  useEffect(() => {
-    const getShopInfo = async () => {
-      try {
-        const { data } = await apiGetShopInfo(product.publishedBy.account);
-        console.log('shopIfo', data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getShopInfo();
-  }, [product]);
+  }, [params.id]);
 
   // Fetch Recommended Products
   useEffect(() => {
     const getRecommendedProducts = async () => {
       const { data } = await apiGetRecommendedProducts();
-      console.log('rec', data);
       setRecommendedProducts(data.products);
     };
     getRecommendedProducts();

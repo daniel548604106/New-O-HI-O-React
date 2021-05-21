@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classes from './Content.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
 import Button from '../../Global/Button/Button.jsx';
-import { useHistory, browseHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 const Content = ({ searchedProducts, searchInput }) => {
   const history = useHistory();
   const [selectedValue, setSelectedValue] = useState('popularity');
   const directTo = (page) => {
     history.push(page);
   };
-  useEffect(() => {
-    console.log('searcj', searchedProducts);
-  }, [searchedProducts]);
   return (
     <>
       {searchedProducts.length ? (

@@ -14,7 +14,6 @@ const ChatRoom = ({ chat }) => {
   const user = useSelector((state) => state.user.currentUser);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [recipient, setRecipient] = useState({});
   const time = new Date();
   const ENDPOINT = 'http://localhost:3001';
   const sendMessage = async (e) => {
@@ -26,15 +25,12 @@ const ChatRoom = ({ chat }) => {
 
   useEffect(() => {
     socket = io(ENDPOINT, connectionOptions);
-    console.log(chat);
     if (chat) {
       // const recipient = chat.participants.find((participant) => participant._id !== userId);
       // setRecipient(recipient);
-      console.log('chat', chat);
       socket.emit('join', { roomId: chat });
     }
 
-    console.log(socket);
     return () => {
       // socket.emit('disconnect');
       // turn the chat person offline
@@ -44,13 +40,9 @@ const ChatRoom = ({ chat }) => {
 
   useEffect(() => {
     socket.on('message', (data) => {
-      console.log(data);
-      console.log('prev', messages);
-      // console.log(data);
       setMessages((prevMessages) => [...prevMessages, data]);
-      console.log(messages);
     });
-  }, [socket]);
+  }, [messages]);
   return (
     <div className={classes.chat}>
       <div className={classes.chatRoomHeader}>{chat && chat._id}</div>

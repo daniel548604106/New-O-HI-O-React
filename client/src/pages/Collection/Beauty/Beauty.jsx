@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Route } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import ProductCard from '../../../components/Global/ProductCard/ProductCard.jsx';
 import { apiGetCollectionProducts } from '../../../api/index';
 const Beauty = () => {
-  const location = useLocation();
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const getAllProducts = async () => {
       const { data } = await apiGetCollectionProducts('beauty');
-      console.log(data);
       setProducts(data.products);
     };
     getAllProducts();

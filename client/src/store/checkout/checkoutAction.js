@@ -11,7 +11,6 @@ export const addItemToCheckoutList = (checkoutList) => {
 };
 
 export const updateCheckoutDetail = (checkoutDetail) => {
-  console.log('updated');
   return { type: UPDATE_CHECKOUT_DETAIL, payload: checkoutDetail };
 };
 

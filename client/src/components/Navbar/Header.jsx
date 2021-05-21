@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, MenuItem, Badge } from '@material-ui/core';
+import { Badge } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
 import Logo from '../../assets/images/global/O.HI.O-logo.svg';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
@@ -25,13 +24,8 @@ const Navbar = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [searchInput, setSearchInput] = useState('');
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState('');
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
@@ -42,18 +36,14 @@ const Navbar = () => {
     setSearchInput('');
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleOpenLoginModal = () => {
     dispatch(openLoginModal());
   };
 
-  const toggleSearchBar = (e) => {
-    e.stopPropagation();
-    setSearchBarOpen(!searchBarOpen);
-  };
+  // const toggleSearchBar = (e) => {
+  //   e.stopPropagation();
+  //   setSearchBarOpen(!searchBarOpen);
+  // };
 
   useEffect(() => {
     setSearchBarOpen(false);
@@ -135,8 +125,8 @@ const Navbar = () => {
           </li>
         </ul>
         <ul className={classes.sectionMobile}>
-          <div className={classes.searchMobile} onClick={(e) => toggleSearchBar(e)}>
-            <input type="text" placeholder="探索好設計" />
+          <div className={classes.searchMobile}>
+            <input type="search" placeholder="探索好設計" />
             <SearchIcon className={classes.searchIcon} />
           </div>
           {isUserLoggedIn ? (

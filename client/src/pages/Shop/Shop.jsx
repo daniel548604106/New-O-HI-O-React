@@ -7,8 +7,9 @@ import RecommendedDesign from '../../components/Shop/RecommendedDesign/Recommend
 import ProductList from '../../components/Shop/ProductList/ProductList.jsx';
 import Sidebar from '../../components/Shop/Sidebar/Sidebar.jsx';
 import RefundPolicy from '../../components/Shop/RefundPolicy/RefundPolicy.jsx';
-import { apiGetShopProducts, apiGetShopInfo } from '../../api/index';
+import { apiGetShopInfo } from '../../api/index';
 import { useLocation, useParams } from 'react-router-dom';
+import notify from '../../lib/notification';
 
 const tabs = [
   {
@@ -30,20 +31,17 @@ const Shop = () => {
   const [shopInfo, setShopInfo] = useState({});
 
   useEffect(() => {
-    const { data } = apiGetShopProducts(params.account);
     const { account } = params;
-
     const getShopInfo = async () => {
       try {
         const { data } = await apiGetShopInfo(account);
         setShopInfo(data.shop);
-        console.log(data);
       } catch (error) {
-        console.log(error);
+        notify('取得店家資訊失敗');
       }
     };
     getShopInfo();
-  }, []);
+  }, [params]);
   return (
     <div>
       <Banner shop={shopInfo} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Banner.module.scss';
-import { Swiper, SwiperSlide, loop } from 'swiper/react';
-import SwipeableViews from 'react-swipeable-views';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';

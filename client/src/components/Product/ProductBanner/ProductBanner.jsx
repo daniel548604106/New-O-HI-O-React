@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import classes from './ProductBanner.module.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -34,7 +33,6 @@ const ProductBanner = ({ product, scrollToPage }) => {
 
   const addToWishList = () => {
     const type = 'product';
-    console.log('params', params);
     dispatch(addToFavorite(params.id, type));
   };
 

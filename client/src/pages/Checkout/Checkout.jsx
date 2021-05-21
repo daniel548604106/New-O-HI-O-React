@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Checkout.scss';
 import PropTypes from 'prop-types';
 import { Divider } from '@material-ui/core';
@@ -61,10 +61,6 @@ const Card = () => (
 );
 
 const Checkout = () => {
-  const [amount, setAmount] = useState(1);
-  const handleAmountChange = (e) => {
-    console.log(e);
-  };
   return (
     <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '30px' }}>
       <h1 className="title">Checkout</h1>

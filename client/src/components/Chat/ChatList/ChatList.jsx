@@ -8,13 +8,12 @@ const ChatCover = ({ chat }) => {
   const [recipient, setRecipient] = useState({});
 
   useEffect(() => {
-    console.log(userId);
     const recipientChat = chat.participants.filter((participant) => {
       return participant._id !== userId;
     });
-    console.log(recipientChat);
+
     setRecipient(recipientChat[0]);
-  }, [chat]);
+  }, [chat, userId]);
   return (
     <div className={classes.chatCoverRow}>
       <img

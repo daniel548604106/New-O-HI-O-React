@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './Sidebar.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -22,9 +22,7 @@ const SideBar = () => {
       route: '/my/mail',
     },
   ];
-  useEffect(() => {
-    console.log(location.pathname);
-  }, []);
+
   return (
     <div className={classes.mySidebarLayout}>
       <ul>
@@ -32,7 +30,7 @@ const SideBar = () => {
           <li key={option.name}>
             <Link
               to={option.route}
-              className={location.pathname.includes(option.route) && classes.active}
+              className={location.pathname.includes(option.route) ? classes.active : ''}
             >
               {option.name}
             </Link>

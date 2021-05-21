@@ -17,7 +17,6 @@ const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
 const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
 const About = React.lazy(() => import('./pages/About/About.jsx'));
 const Topic = React.lazy(() => import('./pages/Topic/Topic.jsx'));
-import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -135,60 +134,61 @@ const App = (props) => {
           </Backdrop>
         </div>
         <Switch>
-          <Route path={`/topic/:topic`}>
-            <Topic />
-          </Route>
-          <div
-            style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
-            className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
-          >
-            <Route path="/" exact>
-              <Home />
+          <>
+            <Route path={`/topic/:topic`}>
+              <Topic />
             </Route>
-            <Route path="/policy:type?">
-              <Policy />
-            </Route>
-            <Route path={`/products/:id`}>
-              <Product />
-            </Route>
-            <main className={!hideMainHeader && 'global-container'}>
-              <Route path={`/oauth/:type`}>
-                <OAuth props={props} />
+            <div
+              style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
+              className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
+            >
+              <Route path="/" exact>
+                <Home />
               </Route>
-              <Route path={`/my/:type?/:state?`}>
-                <My />
+              <Route path="/policy:type?">
+                <Policy />
               </Route>
-              <Route path="/about">
-                <About />
+              <Route path={`/products/:id`}>
+                <Product />
               </Route>
-              <Route path="/browse">
-                <Browse />
+              <main className={!hideMainHeader && 'global-container'}>
+                <Route path={`/oauth/:type`}>
+                  <OAuth props={props} />
+                </Route>
+                <Route path={`/my/:type?/:state?`}>
+                  <My />
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                <Route path="/browse">
+                  <Browse />
+                </Route>
+                <Route path="/latest" exact>
+                  <Latest />
+                </Route>
+                <Route path="/favorite">
+                  <Favorite />
+                </Route>
+                <Route path={`/shop/:account`}>
+                  <Shop />
+                </Route>
+                <Route path="/search">
+                  <Search />
+                </Route>
+                <Route path="/cart/:status?/:id?">
+                  <Cart />
+                </Route>
+                <Route path="/beauty">
+                  <Beauty />
+                </Route>
+              </main>
+              <Route path="/application">
+                <Application />
               </Route>
-              <Route path="/latest" exact>
-                <Latest />
-              </Route>
-              <Route path="/favorite">
-                <Favorite />
-              </Route>
-              <Route path={`/shop/:account`}>
-                <Shop />
-              </Route>
-              <Route path="/search">
-                <Search />
-              </Route>
-              <Route path="/cart/:status?/:id?">
-                <Cart />
-              </Route>
-              <Route path="/beauty">
-                <Beauty />
-              </Route>
-            </main>
-            <Route path="/application">
-              <Application />
-            </Route>
-            {/* <Route component={ErrorPage} /> */}
-            <Footer />
-          </div>
+              <Footer />
+            </div>
+          </>
         </Switch>
       </Router>
     </Suspense>

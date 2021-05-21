@@ -5,6 +5,5 @@ export const setActiveChat = (index) => {
 };
 
 export const toggleChat = () => {
-  console.log('clicked');
   return { type: TOGGLE_CHAT };
 };

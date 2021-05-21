@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
 import Stars from '../../Global/Stars/Stars.jsx';
@@ -9,19 +9,16 @@ import DoneIcon from '@material-ui/icons/Done';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../store/index/indexAction';
-import { apiPatchChat } from '../../../api/index';
 import { toggleChat } from '../../../store/chat/chatAction';
+import notify from '../../../lib/notification';
 const DesignShopInfo = ({ product, shopInfo }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
-  useEffect(() => {
-    console.log(product.publishedBy, shopInfo);
-  }, []);
+
   const followShop = (id) => {
     const type = 'shop';
     dispatch(addToFavorite(id, type));
-    console.log('follow');
   };
   const directToShop = (account) => {
     history.push(`/shop/${account}?tab=product`);
@@ -30,11 +27,8 @@ const DesignShopInfo = ({ product, shopInfo }) => {
   const patchChat = async (id) => {
     try {
       dispatch(toggleChat());
-      console.log(id);
-      const { data } = await apiPatchChat(id);
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉修改失敗');
     }
   };
   return (

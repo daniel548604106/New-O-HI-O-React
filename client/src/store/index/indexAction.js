@@ -2,9 +2,6 @@ import {
   SET_USER_LOGIN,
   CLOSE_LOGIN_MODAL,
   OPEN_LOGIN_MODAL,
-  GET_FAV_PRODUCT_REQUEST,
-  GET_FAV_PRODUCT_SUCCESS,
-  GET_FAV_PRODUCT_FAILURE,
   ADD_TO_FAVORITE_REQUEST,
   ADD_TO_FAVORITE_FAILURE,
   GET_FAVORITE_LIST_REQUEST,
@@ -44,24 +41,20 @@ export const getFavList = (token) => async (dispatch) => {
   try {
     dispatch({ type: GET_FAVORITE_LIST_REQUEST });
     const { data } = await apiGetFavList(token);
-    console.log(data);
     dispatch({ type: GET_FAVORITE_LIST_SUCCESS, payload: data.userFavList });
   } catch (error) {
     dispatch({ type: GET_FAVORITE_LIST_FAILURE });
-    console.log(error);
   }
 };
 
 export const addToFavorite = (id, type) => async (dispatch) => {
   try {
-    console.log('hihihi');
     dispatch({ type: ADD_TO_FAVORITE_REQUEST });
     const token = Cookie.get('token');
-    const { data } = await apiAddToFavorite(id, token, type);
+    await apiAddToFavorite(id, token, type);
     notify('已更新收藏');
     dispatch(getFavList(token));
   } catch (error) {
     dispatch({ type: ADD_TO_FAVORITE_FAILURE });
-    console.log(error);
   }
 };
