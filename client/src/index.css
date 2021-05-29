@@ -8,3 +8,8 @@ html {
   min-height: -webkit-fill-available;
   height: -webkit-fill-available;
 }
+
+button {
+  outline: none;
+  border: none;
+}

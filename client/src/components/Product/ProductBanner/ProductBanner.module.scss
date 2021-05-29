@@ -104,6 +104,15 @@
   }
 }
 
+.btnLayout {
+  @media (max-width: 500px) {
+    border: none;
+    margin-right: 0;
+  }
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
 .btnLayout,
 .btnCartLayout {
   display: flex;
@@ -112,7 +121,6 @@
     border: none;
     border-radius: none;
   }
-  border: 1px solid var(--primary-black);
   padding: 5px 10px;
   p {
     margin-left: 5px;

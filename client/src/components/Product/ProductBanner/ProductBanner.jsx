@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../../../store/cart/cartAction.js';
-import { addToFavorite } from '../../../store/index/indexAction';
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
@@ -22,6 +23,7 @@ const ProductBanner = ({ product, scrollToPage }) => {
   const dispatch = useDispatch();
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
   const params = useParams();
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const addItemToCart = (product) => {
     dispatch(addToCart(product));
   };
@@ -32,6 +34,9 @@ const ProductBanner = ({ product, scrollToPage }) => {
   };
 
   const addToWishList = () => {
+    if (!isUserLoggedIn) {
+      dispatch(openLoginModal());
+    }
     const type = 'product';
     dispatch(addToFavorite(params.id, type));
   };

@@ -14,8 +14,6 @@ import Cookie from 'js-cookie';
 const MenuDrawer = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['O.HI.O 選物', '所有分類', '關於 O.HI.O'];
   const [user, setUser] = useState({});
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   useEffect(() => {
@@ -27,20 +25,6 @@ const MenuDrawer = () => {
   const handleOpenLoginModal = () => {
     dispatch(openLoginModal());
   };
-
-  const Tabs = () => (
-    <div className={classes.tabsLayout}>
-      {tabs.map((tab, index) => (
-        <span
-          className={activeTab === index ? classes.active : ''}
-          key={tab}
-          onClick={() => setActiveTab(index)}
-        >
-          {tab}
-        </span>
-      ))}
-    </div>
-  );
 
   const CtaBtn = () => (
     <div className={classes.ctaBtn}>
@@ -73,11 +57,15 @@ const MenuDrawer = () => {
   return (
     <div className={classes.menuLayout}>
       <div onClick={(e) => e.stopPropagation()}>
-        <Tabs />
+        <div className={classes.tabsLayout}>
+          <span className={classes.active}>關於 O.HI.O</span>
+        </div>
+      </div>
+      <div>
+        <Categories />
       </div>
       <div className={classes.mainLayout}>
-        {activeTab === 1 && <Categories />}
-        {activeTab === 2 && <About />}
+        <About />
       </div>
       <div>
         <CtaBtn />
