@@ -56,11 +56,6 @@ const MenuDrawer = () => {
 
   return (
     <div className={classes.menuLayout}>
-      <div onClick={(e) => e.stopPropagation()}>
-        <div className={classes.tabsLayout}>
-          <span className={classes.active}>關於 O.HI.O</span>
-        </div>
-      </div>
       <div>
         <CtaBtn />
       </div>

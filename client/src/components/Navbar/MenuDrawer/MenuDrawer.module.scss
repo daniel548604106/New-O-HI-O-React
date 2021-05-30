@@ -88,12 +88,12 @@
   width: 100%;
 
   .loginBtn {
-    background-color: #eb7f82;
-    width: 100%;
+    color: #eb7f82;
+    margin: 10px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     padding: 10px;
-    color: white;
+    border: 1px solid var(--primary-pink);
   }
 }
