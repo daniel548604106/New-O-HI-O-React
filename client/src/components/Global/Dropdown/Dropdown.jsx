@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Dropdown.module.scss';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import Tags from '../Tags/Tags.jsx';
@@ -9,6 +9,7 @@ const Dropdown = ({ title, product }) => {
   const { t } = useTranslation(['general']);
   const [showMore, setShowMore] = useState(false);
   const [hideDropdown, setHideDropdown] = useState(false);
+
   return (
     <div>
       <div className={classes.dropdownRoot}>
@@ -27,9 +28,12 @@ const Dropdown = ({ title, product }) => {
               </div>
             ) : (
               <div className={classes.description}>
-                <p style={{ height: showMore ? '100%' : '300px' }}>{product.description}</p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  style={{ height: showMore ? '100%' : '300px' }}
+                ></div>
                 {
-                  <div onClick={() => setShowMore(!showMore)}>
+                  <div className={classes.dropDown} onClick={() => setShowMore(!showMore)}>
                     <span>{showMore ? '收起內容' : '展開內容'}</span>
                     <ArrowDropDownIcon style={{ transform: showMore && 'rotate(180deg)' }} />
                   </div>
