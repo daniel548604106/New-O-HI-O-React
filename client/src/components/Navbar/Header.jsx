@@ -73,7 +73,7 @@ const Navbar = () => {
                 searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
               }
               value={searchInput}
-              placeholder="搜尋好設計"
+              placeholder="探索好設計"
             />
             <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
               搜尋
