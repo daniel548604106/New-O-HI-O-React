@@ -2,6 +2,15 @@
   "proxy": "http://localhost:3001",
   "name": "react-shoe-ecommerce",
   "version": "0.1.0",
+  "babel": {
+    "env": {
+      "production": {
+        "plugins": [
+          "transform-remove-console"
+        ]
+      }
+    }
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
@@ -11,10 +20,17 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
+    "aos": "^2.3.4",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.0.23",
@@ -24,13 +40,18 @@
     "mongoose": "^5.11.12",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
     "query-string": "^6.13.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-ga": "^3.3.0",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.5",
+    "react-loading-skeleton": "^2.1.1",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-snap": "^1.23.0",
     "react-stripe-checkout": "^2.6.3",
     "react-swipeable-views": "^0.13.9",
     "react-thunk": "^1.0.0",
@@ -76,5 +97,11 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1"
+  },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
   }
 }

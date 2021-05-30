@@ -1,9 +1,8 @@
 import React from 'react';
 import classes from './Refund.module.scss';
-import { useLocation, useHistory, useParams } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 const Refund = () => {
   const location = useLocation();
-  const params = useParams();
   const history = useHistory();
   const refundStates = [
     {

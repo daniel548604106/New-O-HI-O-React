@@ -1,17 +1,16 @@
+const { db } = require('../models/productModel');
 const Product = require('../models/productModel');
 const Shop = require('../models/shopModel')
 const addNewProduct = async(req,res,next) =>{
   try{ 
     const { ...all } = req.body
     const id = req.user._id
-    console.log(all,id)
     const shop = await Shop.findOne({ user: id})
     const shopId = shop._id
     const newProduct = await Product.create({
       ...all,
       publishedBy: shopId
     })
-    console.log(newProduct)
     res.status(200).json({
       newProduct
     })
@@ -28,6 +27,15 @@ const getDiscountedProducts = async(req,res,next) =>{
     res.status(200).json({
       products
     })
+  }catch(error){
+    console.log(error)
+  }
+}
+
+const getSearchedProducts = async(req,res ) =>{
+  try{
+    console.log("hiihi")
+    res.status(200).message('Success')
   }catch(error){
     console.log(error)
   }
@@ -55,7 +63,7 @@ const getProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     console.log(id);
-    const product = await Product.findById(id).populate('publishedBy').populate('reviews');
+    const product = await Product.findById(id).populate('publishedBy').populate('reviews')
     console.log(product);
     res.status(200).json({
       product,
@@ -65,6 +73,16 @@ const getProduct = async (req, res, next) => {
   }
 };
 
+const getRecommendedProducts = async(req,res ) =>{
+  try{
+    const products = await Product.aggregate([{$sample: {size: 10}}])
+    res.status(200).json({
+      products
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
 const getCollectionProducts = async (req, res, next) => {
   try {
     const { collection } = req.params;
@@ -77,4 +95,4 @@ const getCollectionProducts = async (req, res, next) => {
   }
 };
 
-module.exports = { addNewProduct, getAllProducts, getProduct, getCollectionProducts,getDiscountedProducts };
+module.exports = { addNewProduct,getRecommendedProducts, getAllProducts, getSearchedProducts,getProduct, getCollectionProducts,getDiscountedProducts };

@@ -84,3 +84,34 @@ export const menuOptions = [
     id: 7,
   },
 ];
+
+export const priceOptions = [
+  {
+    title: 'NT$ 300 以下',
+    id: 'below 300',
+  },
+  {
+    title: 'NT$ 300 - 500',
+    id: '300-500',
+  },
+  {
+    title: 'NT$ 500 - 1,000',
+    id: '500-1000',
+  },
+  {
+    title: 'NT$ 1,000 - 2,000',
+    id: '1000-2000',
+  },
+  {
+    title: 'NT$ 2,000 - 2,500',
+    id: '2000-2500',
+  },
+  {
+    title: 'NT$ 2,500 - 5,000',
+    id: '2500-5000',
+  },
+  {
+    title: 'NT$ 5,000 以上',
+    id: 'above 5000',
+  },
+];

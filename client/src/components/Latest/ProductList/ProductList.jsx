@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './ProductList.module.scss';
 import MobileFilter from '../MobileFilter/MobileFilter.jsx';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import Tags from '../../Global/Tags/Tags.jsx';
 import PropTypes from 'prop-types';
 const ProductList = ({ products }) => {
-  const [tags, setTags] = useState(['women', 'all']);
-
   return (
     <div>
       <div className={styles.container}>

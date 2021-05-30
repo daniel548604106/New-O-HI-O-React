@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './PaymentMethod.module.scss';
 import PropTypes from 'prop-types';
 const PaymentMethod = ({ checkoutDetail }) => {
-  const { personalInfo, deliveryMethod, paymentMethod, invoice } = checkoutDetail;
+  const { personalInfo, deliveryMethod, paymentMethod } = checkoutDetail;
   if (checkoutDetail && personalInfo) {
     return (
       <>

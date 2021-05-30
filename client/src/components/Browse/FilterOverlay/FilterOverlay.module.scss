@@ -1,0 +1,46 @@
+.filterOverlay {
+  height: 100vh;
+  width: 100vw;
+  background: white;
+
+  .header {
+    display: flex;
+    width: 100%;
+    padding: 10px 5px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--primary-gray);
+    .back {
+      color: var(--primary-gray);
+      display: flex;
+      align-items: center;
+    }
+    .reselect {
+      color: #178fac;
+    }
+  }
+
+  .body {
+    padding: 10px;
+    .title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .filterTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px;
+      background: var(--secondary-gray);
+      margin-bottom: 5px;
+    }
+
+    .expand {
+      transition: all 0.2s ease-in-out;
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

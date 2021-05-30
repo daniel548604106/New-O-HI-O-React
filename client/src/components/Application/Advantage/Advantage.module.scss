@@ -1,0 +1,14 @@
+.cardLayout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  > div {
+    img {
+      width: 100%;
+    }
+    padding: 30px 10px;
+    h1 {
+      margin: 10px 0;
+      color: #178fac;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import classes from './Chat.module.scss';
 import ChatHeader from './ChatHeader/ChatHeader.jsx';
 import ChatRoom from './ChatRoom/ChatRoom.jsx';
 import ChatList from './ChatList/ChatList.jsx';
-import { apiGetChat, apiGetAllChats } from '../../api/index';
+import { apiGetAllChats } from '../../api/index';
 import { useSelector } from 'react-redux';
 const Chat = () => {
   const activeChatIndex = useSelector((state) => state.chat.activeChat);
@@ -13,14 +13,12 @@ const Chat = () => {
   useEffect(() => {
     const getAllChats = async () => {
       const { data } = await apiGetAllChats();
-      console.log(data);
       setChats(data.chats);
     };
     getAllChats();
   }, []);
   useEffect(() => {
     setActiveChat(chats[activeChatIndex]);
-    console.log(activeChat);
   }, [activeChatIndex, chats]);
 
   return (

@@ -9,7 +9,6 @@ const chatReducer = (state = initialState, action) => {
     case SET_ACTIVE_CHAT:
       return { ...state, activeChat: action.payload };
     case TOGGLE_CHAT:
-      console.log('i don');
       return { ...state, showChat: !state.showChat };
     default:
       return initialState;

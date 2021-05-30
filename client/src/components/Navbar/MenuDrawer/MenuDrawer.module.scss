@@ -1,16 +1,99 @@
-.langaugeSelector {
+.languageSelector {
   display: flex;
   align-items: center;
   padding: 10px;
   p {
     margin-left: 5px;
+    font-size: 13px;
   }
 }
 
-.list {
-  width: 250px;
+.openShop {
+  font-size: 13px;
+  margin-bottom: 0px;
+  color: white;
+  background-color: #eb7f82;
+  padding: 8px 10px;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    color: #189fac;
+    border: 1px solid #189fac;
+  }
+}
+
+.myListLayout {
+  display: flex;
+  border-top: 2px solid var(--secondary-gray);
+  .list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 12px;
+    &:last-child {
+      background-color: black;
+    }
+  }
+  img {
+    width: 30px;
+    margin-bottom: 2px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+  }
 }
 
 .fullList {
   width: auto;
+}
+
+.menuLayout {
+  /*WebKit-based browsers will ignore this*/
+  height: -webkit-fill-available;
+  height: 100vh;
+  padding: 0 0 100px 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 400px;
+  background-color: white;
+
+  .tabsLayout {
+    display: flex;
+    overflow: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    span {
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary-gray);
+      &.active {
+        border-bottom: 3px solid var(--primary-pink);
+        color: var(--primary-pink);
+      }
+    }
+  }
+
+  .mainLayout {
+    flex: 1;
+  }
+}
+
+.ctaBtn {
+  width: 100%;
+
+  .loginBtn {
+    background-color: #eb7f82;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+  }
 }

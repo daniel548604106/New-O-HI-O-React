@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './Button.module.scss';
 import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 const Button = ({ text, color, backgroundColor, iconType, border }) => {

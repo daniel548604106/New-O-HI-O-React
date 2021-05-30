@@ -8,17 +8,22 @@ import {
   apiGetDiscountedProducts,
   apiGetBanners,
   apiGetHotShop,
+  apiGetRecommendedProducts,
 } from '../../api/index';
 import classes from './Home.module.scss';
 import { getFavList } from '../../store/index/indexAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
+import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
+import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
 const Home = () => {
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);
   const [hotShops, setHotShops] = useState([]);
   const [banners, setBanners] = useState([]);
   const [discountedProducts, setDiscountedProducts] = useState([]);
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
 
@@ -26,7 +31,6 @@ const Home = () => {
 
   const getBanners = async () => {
     const { data } = await apiGetBanners();
-    console.log('banners', data);
     setBanners(data.banners);
   };
 
@@ -35,7 +39,7 @@ const Home = () => {
       const { data } = await apiGetHotShop();
       setHotShops(data.shop);
     } catch (error) {
-      console.log(error);
+      console.log('很抱歉！系統異常，取得熱門商店失敗');
     }
   };
 
@@ -45,9 +49,17 @@ const Home = () => {
     try {
       const { data } = await apiGetAllProducts();
       setProducts(data.products);
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      console.log('很抱歉，取得商品失敗');
+    }
+  };
+
+  const getRecommendedProducts = async () => {
+    try {
+      const { data } = await apiGetRecommendedProducts();
+      setRecommendedProducts(data.products);
+    } catch (error) {
+      console.log('很抱歉，取得推薦商品失敗！');
     }
   };
 
@@ -55,10 +67,9 @@ const Home = () => {
   const getDiscountedProducts = async () => {
     try {
       const { data } = await apiGetDiscountedProducts();
-      console.log('discounted', data);
       setDiscountedProducts(data.products);
     } catch (error) {
-      console.log(error);
+      console.log('很抱歉，取得優惠商品失敗！');
     }
   };
 
@@ -67,6 +78,7 @@ const Home = () => {
     getAllProducts();
     getHotShop();
     getDiscountedProducts();
+    getRecommendedProducts();
   }, []);
 
   useEffect(() => {
@@ -75,29 +87,42 @@ const Home = () => {
         const token = Cookie.get('token');
         dispatch(getFavList(token));
       } catch (error) {
-        console.log(error);
+        console.log('很抱歉，取得關注的商品失敗！');
       }
     };
-    fetchFavProducts();
-  }, [dispatch]);
+    if (isUserLoggedIn) {
+      fetchFavProducts();
+    }
+  }, [dispatch, isUserLoggedIn]);
   return (
-    <div>
-      <Banner banners={banners} />
+    <div className={classes.home}>
+      <HelmetTitle />
+      {products.length ? <Banner banners={banners} /> : <BannerLoading />}
       <main>
         <section>
-          <Cards title="newRelease" products={products} t={t} />
+          <Cards title="editorPicks" showMore={false} products={products} t={t} />
         </section>
         <section>
-          <Cards title="popularItems" products={products} t={t} />
+          <Cards title="popularItems" link="/browse" products={products} t={t} />
         </section>
-        <div className={classes.campaign}>
-          <Campaign products={products} t={t} />
-        </div>
+        {/* {!isUserLoggedIn && (
+          <div className={classes.campaign}>
+            <Campaign products={products} t={t} />
+          </div>
+        )} */}
         <section>
           <Shop t={t} shops={hotShops} />
         </section>
         <section>
-          <Cards title="discountedItems" products={discountedProducts} t={t} />
+          <Cards
+            title="discountedItems"
+            link="/search?type=discount"
+            products={discountedProducts}
+            t={t}
+          />
+        </section>
+        <section>
+          <Cards title="recommendedItems" showMore={false} products={recommendedProducts} t={t} />
         </section>
       </main>
     </div>

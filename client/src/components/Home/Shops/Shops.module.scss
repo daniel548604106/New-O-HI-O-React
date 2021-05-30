@@ -10,11 +10,13 @@
 
 .shops {
   display: flex;
-  overflow-x: scroll;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   white-space: nowrap;
 
   .shop {
     margin-right: 20px;
     width: 300px;
+    min-width: 250px;
   }
 }

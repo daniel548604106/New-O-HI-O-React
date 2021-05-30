@@ -1,5 +1,15 @@
 const Shop = require('../models/shopModel')
 
+const getShops = async(req, res ) =>{
+  try{
+    const shops = await Shop.find()
+    res.status(200).json({
+      shops
+    })
+  }catch(error){
+    console.log(error)
+  }
+}
 
 const addNewShop = async(req,res) =>{
   try{
@@ -61,4 +71,4 @@ const getShopInfo = async(req,res) =>{
   }
 }
 
-module.exports = { addNewShop,getHotShop ,getProductsFromShop,getShopInfo}
+module.exports = { addNewShop,getShops,getHotShop ,getProductsFromShop,getShopInfo}

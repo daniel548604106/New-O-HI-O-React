@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { authFacebook } = require('../controllers/authController');
+const { authSignup ,authLogin} = require('../controllers/authController');
 
-router.route('/facebook').get(authFacebook);
-
+router.route('/signup').post(authSignup);
+router.route('/login').post(authLogin)
 module.exports = router;

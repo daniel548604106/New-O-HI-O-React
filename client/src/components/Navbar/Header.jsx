@@ -1,36 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, MenuItem, Badge, IconButton } from '@material-ui/core';
+import { Badge } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
 import classes from './Header.module.scss';
+import Logo from '../../assets/images/global/O.HI.O-logo.svg';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu';
+import { ShoppingCartIcon } from '@heroicons/react/outline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import MenuDrawer from './MenuDrawer/MenuDrawer.jsx';
 import Dropdown from './Dropdown/Dropdown.jsx';
-import { openLoginModal } from '../../store/index/indexAction';
+import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import Cookie from 'js-cookie';
-import Button from '../Global/Button/Button.jsx';
+import PersonIcon from '@material-ui/icons/Person';
+import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const location = useLocation();
-  const meData = useSelector((state) => state.user.currentUser);
+  const currentUser = JSON.parse(localStorage.getItem('user'));
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [searchInput, setSearchInput] = useState('');
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
-  const [anchorEl, setAnchorEl] = useState(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
   const [totalCartItems, setTotalCartItems] = useState('');
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const isLoginModalShow = useSelector((state) => state.isLoginModalShow);
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const toCart = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
@@ -41,142 +37,142 @@ const Navbar = () => {
     setSearchInput('');
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleOpenLoginModal = () => {
     dispatch(openLoginModal());
   };
 
-  const toggleSearchBar = (e) => {
-    e.stopPropagation();
-    setSearchBarOpen(!searchBarOpen);
-  };
+  // const toggleSearchBar = (e) => {
+  //   e.stopPropagation();
+  //   setSearchBarOpen(!searchBarOpen);
+  // };
 
   useEffect(() => {
     setSearchBarOpen(false);
   }, [location]);
   useEffect(() => {
-    console.log('updated1');
     setTotalCartItems(
       cartItems.reduce((total, cartItem) => {
         return total + Number(cartItem.quantity);
       }, 0),
     );
   }, [cartItems]);
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
 
   return (
-    <>
-      <div className={classes.headerBar}>
-        <div className={classes.toolBar}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div className={classes.sectionMobile}>
-              <MenuDrawer />
-            </div>
-            <Link to="/" className={classes.link}>
-              <div variant="h3" style={{ fontSize: '20px', marginLeft: '10px' }}>
-                O.HI.O
-              </div>
-            </Link>
-            <div className={classes.search}>
-              <input
-                onChange={(e) => setSearchInput(e.target.value)}
-                type="text"
-                value={searchInput}
-                placeholder="搜尋好設計"
-              />
-              <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
-                搜尋
-              </button>
-            </div>
+    <header>
+      <nav>
+        <div>
+          <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
+            <MenuIcon />
           </div>
-          <div className={classes.sectionDesktop}>
-            {isUserLoggedIn ? (
-              <div className={classes.tabs}>
-                <div className={classes.avatar}>
-                  <img src={meData && meData.picture} alt="" />
-                  <div className={classes.dropdown}>
-                    <Dropdown />
-                  </div>
-                </div>
-                <div>
-                  <Link to="/favorite?tab=products" className={classes.favIcon}>
-                    <FavoriteBorderIcon />
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <div className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
-                <p style={{ fontSize: '14px' }}>{t('login')}</p>
-              </div>
-            )}
-
-            <div>
-              <Badge badgeContent={totalCartItems} color="secondary" component={Link} to="/cart">
-                <ShoppingBasketIcon className={classes.cart} style={{ color: 'black' }} />
-              </Badge>
-            </div>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton onClick={(e) => toggleSearchBar(e)}>
-              <SearchIcon />
-            </IconButton>
-            {isUserLoggedIn ? (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Link to="/my/setting">
-                  <img className={classes.avatar} src={meData && meData.picture} alt="" />
-                </Link>
-                <Link
-                  to="/favorite?tab=products"
-                  style={{ marginLeft: '10px' }}
-                  className={classes.favIcon}
-                >
-                  <FavoriteBorderIcon />
-                </Link>
-              </div>
-            ) : (
-              <span onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
-                {t('login')}
-              </span>
-            )}
-
-            <IconButton>
-              <Badge badgeContent={totalCartItems} color="secondary" onClick={() => toCart()}>
-                <ShoppingBasketIcon style={{ color: 'black' }} />
-              </Badge>
-            </IconButton>
+          <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
+          <div className={classes.search}>
+            <input
+              onChange={(e) => setSearchInput(e.target.value)}
+              type="text"
+              onKeyDown={(e) =>
+                searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
+              }
+              value={searchInput}
+              placeholder="搜尋好設計"
+            />
+            <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
+              搜尋
+            </button>
           </div>
         </div>
-      </div>
-      <div>{<SearchBar searchBarOpen={searchBarOpen} />}</div>
-      {renderMobileMenu}
+        <ul className={classes.sectionDesktop}>
+          <li>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              to="/application"
+              className={classes.openShop}
+            >
+              我想在 O.HI.O 上開店
+            </Link>
+          </li>
+          {isUserLoggedIn ? (
+            <>
+              <li className={classes.avatar}>
+                {currentUser ? (
+                  <img
+                    src={currentUser ? currentUser.picture : DefaultImage}
+                    alt="profile picture"
+                  />
+                ) : (
+                  <PersonIcon />
+                )}
+                <div className={classes.dropdown}>
+                  <Dropdown />
+                </div>
+              </li>
+              <li>
+                <Link to="/favorite?tab=products" className={classes.favIcon}>
+                  <FavoriteBorderIcon />
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className={classes.loginBtn} onClick={() => handleOpenLoginModal()}>
+                <a style={{ fontSize: '14px' }}>{t('login')}</a>
+              </li>
+            </>
+          )}
+          <li onClick={() => toCart()}>
+            <Badge badgeContent={totalCartItems} color="secondary">
+              <ShoppingBasketIcon className={classes.cart} />
+              <ShoppingCartIcon />
+            </Badge>
+          </li>
+        </ul>
+        <ul className={classes.sectionMobile}>
+          <div className={classes.searchMobile}>
+            <input type="search" placeholder="探索好設計" />
+            <SearchIcon className={classes.searchIcon} />
+          </div>
+          {isUserLoggedIn ? (
+            <>
+              {currentUser ? (
+                <li>
+                  <img
+                    onClick={() => history.push('/my/setting')}
+                    className={classes.avatar}
+                    src={currentUser && currentUser.picture}
+                    alt="profile picture"
+                  />
+                </li>
+              ) : (
+                <li>
+                  <PersonIcon />
+                </li>
+              )}
+              <li>
+                <FavoriteBorderIcon
+                  onClick={() => history.push('/favorite?tab=products')}
+                  className={classes.favIcon}
+                />
+              </li>
+            </>
+          ) : (
+            <li onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
+              <a href="#">
+                <PersonIcon />
+              </a>
+            </li>
+          )}
+          <li>
+            <Badge onClick={() => toCart()} badgeContent={totalCartItems} color="secondary">
+              <ShoppingBasketIcon />
+            </Badge>
+          </li>
+        </ul>
+      </nav>
       <NavMenu />
-    </>
+      <div>
+        <SearchBar searchBarOpen={searchBarOpen} />
+      </div>
+    </header>
   );
 };
 

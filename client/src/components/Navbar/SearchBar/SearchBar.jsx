@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
-import { IconButton } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import classes from './SearchBar.module.scss';
@@ -25,9 +24,9 @@ const SearchBar = ({ searchBarOpen }) => {
       <div style={{ display: 'flex', width: '100%' }}>
         <input
           onChange={(e) => setSearchInput(e.target.value)}
-          type="text"
+          type="search"
           value={searchInput}
-          placeholder="Please type in keywords"
+          placeholder="請輸入關鍵字"
           className={classes.inputBox}
         />
         <span className={classes.searchBtn} onClick={() => search()}>

@@ -12,11 +12,13 @@ export const apiPostLogout = postLogout;
 // 產品
 import {
   getAllProducts,
+  getRecommendedProducts,
   getProduct,
   getCollectionProducts,
   getDiscountedProducts,
 } from './productRequest';
 export const apiGetAllProducts = getAllProducts;
+export const apiGetRecommendedProducts = getRecommendedProducts;
 export const apiGetProduct = getProduct;
 export const apiGetCollectionProducts = getCollectionProducts;
 export const apiGetDiscountedProducts = getDiscountedProducts;
@@ -63,3 +65,9 @@ import { patchChat, getChat, getAllChats } from './chatRequest';
 export const apiPatchChat = patchChat;
 export const apiGetChat = getChat;
 export const apiGetAllChats = getAllChats;
+
+// Search
+
+import { getSearchedProducts } from './searchRequest';
+
+export const apiGetSearchedProducts = getSearchedProducts;

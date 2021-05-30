@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { openLoginModal } from '../../../store/index/indexAction';
-import { useHistory, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { listProducts } from '../../../store/product/productAction';
-import { apiGetProduct, apiGetAllProducts, apiGetReviews } from '../../../api/index';
+import { apiGetProduct, apiGetReviews, apiGetRecommendedProducts } from '../../../api/index';
 import classes from './_Product.module.scss';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
@@ -13,25 +12,21 @@ import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDi
 import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 import { useTranslation } from 'react-i18next';
+import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
+
 const Product = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const topDisplay = useRef(null);
   const productDescription = createRef();
   const evaluation = createRef();
-  const history = useHistory();
   const params = useParams();
-  const isLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [product, setProduct] = useState('');
+  const [shopInfo] = useState('');
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [showBanner, setShowBanner] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const checkout = () => {
-    if (isLoggedIn) {
-      return dispatch(openLoginModal());
-    }
-    history.push('/checkout');
-  };
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
@@ -45,41 +40,31 @@ const Product = () => {
         setShowBanner(false);
       }
     });
-    return () => {
-      window.removeEventListener('scroll', () => {
-        if (window.pageYOffset > 400) {
-          console.log('hihihi');
-        }
-      });
-    };
   }, []);
   // Fetch Reviews
 
   useEffect(() => {
     const getReviews = async () => {
       const { data } = await apiGetReviews(params.id);
-      console.log('reviews=>', data);
       setReviews(data.reviews);
     };
     getReviews();
-  }, []);
+  }, [params.id]);
 
   // Fetch Product
 
   useEffect(() => {
     const getProduct = async () => {
       const { data } = await apiGetProduct(params.id);
-      console.log(data.product);
       setProduct(data.product);
     };
     getProduct();
-  }, []);
+  }, [params.id]);
 
   // Fetch Recommended Products
   useEffect(() => {
     const getRecommendedProducts = async () => {
-      const { data } = await apiGetAllProducts();
-      console.log('recommended =>', data);
+      const { data } = await apiGetRecommendedProducts();
       setRecommendedProducts(data.products);
     };
     getRecommendedProducts();
@@ -93,6 +78,11 @@ const Product = () => {
 
   return (
     <div className={classes.productRoot}>
+      <HelmetTitle
+        title={product.name}
+        description={product.description}
+        image={product && product.images[0]}
+      />
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
@@ -100,17 +90,17 @@ const Product = () => {
         <div ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
         </div>
-        <div className={classes.productMainInfo}>
+        <section className={classes.productMainInfo}>
           <div className={classes.info}>
             <ProductInfo t={t} product={product} />
           </div>
           <div className={classes.cta}>
             <ProductCTA product={product} />
           </div>
-        </div>
+        </section>
       </div>
       <div className={classes.containerLayout}>
-        <div className={classes.productDescription}>
+        <section className={classes.productDescription}>
           <ProductDescription
             t={t}
             productDescriptionRef={productDescription}
@@ -119,14 +109,14 @@ const Product = () => {
             product={product}
             reviews={reviews}
           />
-        </div>
-        <div className={classes.designShopInfo}>
-          <DesignShopInfo product={product} />
-        </div>
+        </section>
+        <section className={classes.designShopInfo}>
+          <DesignShopInfo product={product} shopInfo={shopInfo} />
+        </section>
       </div>
-      <div>
+      <section>
         <ProductRecommendation products={recommendedProducts} />
-      </div>
+      </section>
     </div>
   );
 };

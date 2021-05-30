@@ -13,12 +13,10 @@ const Stars = ({ score }) => {
         starArr.push(1);
       }
       if (isNaN(decimal) || decimal === undefined || 0) return;
-      console.log(score, integer, decimal);
       starArr.push(+`0.${decimal}`);
-      console.log(starArr);
     };
     count();
-  }, []);
+  }, [score, starArr]);
   return (
     <div className={classes.starRow}>
       {starArr.map((star, idx) => (

@@ -1,10 +1,7 @@
 import React from 'react';
 import classes from './CartSummary.module.scss';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 const CartSummary = ({ proceedToCheckout, subTotalPrice, totalPrice }) => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
-
   return (
     <div>
       <div className={classes.totalHeader}>訂單摘要</div>
@@ -15,7 +12,7 @@ const CartSummary = ({ proceedToCheckout, subTotalPrice, totalPrice }) => {
         </div>
         <div className={classes.totalBodyContent}>
           <span>其他折抵</span>
-          <span className={classes.price}>-NTD 144</span>
+          <span className={classes.price}>0</span>
         </div>
         <div className={classes.totalBodyContent}>
           <span>首購優惠</span>

@@ -9,21 +9,34 @@
   background-color: white !important;
 }
 
-.hideHeader {
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-prev {
+  display: none !important;
+}
+.menuDrawer {
   position: fixed;
-  bottom: 0;
-  z-index: 12;
-  cursor: pointer;
-  right: 0;
-  background-color: var(--primary-pink);
-  color: white;
-  padding: 5px 10px;
-  display: flex;
-  align-items: center;
-  border-radius: 2px;
-  span {
-    margin-left: 5px;
+  top: 0;
+  left: -100%;
+  z-index: 15;
+  width: 100vw;
+  transition: background-color 0.3s ease;
+  transition-delay: background-color 0.3s;
+  transition: all 0.3s;
+  &.active {
+    transform: translate(100%, 0);
+    background-color: rgba(0, 0, 0, 0.6);
   }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 13;
+  width: 100%;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
 }
 
 .chatRoom {
@@ -33,4 +46,16 @@
   height: 500px;
   z-index: 15;
   right: 0;
+}
+
+.mainLayout {
+  height: calc(100vh - 100px);
+  margin-top: 100px;
+  @media (max-width: 500px) {
+    margin-top: 50px;
+  }
+
+  &.hasModal {
+    position: fixed;
+  }
 }

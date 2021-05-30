@@ -3,12 +3,11 @@ const qs = require('query-string');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const generateToken = require('../tools/generateToken');
+const jwtDecode = require('jwt-decode')
 const oAuth = async (req, res, next) => {
   try {
-    
     const { type, code } = req.body;
     let email, name, picture, id;
-
     // Facebook
     const facebook_url = `https://graph.facebook.com/v9.0/oauth/access_token?`;
     const facebook_query = {
@@ -55,12 +54,22 @@ const oAuth = async (req, res, next) => {
         console.log('email', email, name, picture);
         break;
       case 'google':
+        console.log('gogosd',console.log(qs.stringify(google_query)))
         const google_res = await axios.post(google_url, `${qs.stringify(google_query)}`, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-        console.log(google_res.data);
+        console.log(google_res)
+        const google_userInfo = jwtDecode(google_res.data.id_token);
+        console.log(google_userInfo)
+        email = google_userInfo.email;
+        name = google_userInfo.name;
+        picture = google_userInfo.picture;
+       
+
+        
+        break;
       case 'line':
         const config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
         const line_res = await axios.post(line_url, line_query, config);
@@ -78,6 +87,7 @@ const oAuth = async (req, res, next) => {
         picture = verified_data.picture;
         console.log('data', line_res.data);
         console.log('verified', verified.data);
+        console.log('picture',verified.data.picture)
         break;
     }
     console.log('email', email);
@@ -85,7 +95,9 @@ const oAuth = async (req, res, next) => {
 
     // 3) Check if user exists in  DB
     const user = await User.findOne({ email });
-    console.log(user);
+    if(user) {
+      user.picture = picture
+    }
 
     if (!user) {
       const newUser = await User.create({

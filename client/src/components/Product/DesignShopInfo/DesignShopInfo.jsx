@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
 import Stars from '../../Global/Stars/Stars.jsx';
@@ -9,9 +9,9 @@ import DoneIcon from '@material-ui/icons/Done';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite } from '../../../store/index/indexAction';
-import { apiPatchChat } from '../../../api/index';
 import { toggleChat } from '../../../store/chat/chatAction';
-const DesignShopInfo = ({ product }) => {
+import notify from '../../../lib/notification';
+const DesignShopInfo = ({ product, shopInfo }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const favoriteShops = useSelector((state) => state.global.favoriteShops);
@@ -19,7 +19,6 @@ const DesignShopInfo = ({ product }) => {
   const followShop = (id) => {
     const type = 'shop';
     dispatch(addToFavorite(id, type));
-    console.log('follow');
   };
   const directToShop = (account) => {
     history.push(`/shop/${account}?tab=product`);
@@ -28,17 +27,14 @@ const DesignShopInfo = ({ product }) => {
   const patchChat = async (id) => {
     try {
       dispatch(toggleChat());
-      console.log(id);
-      const { data } = await apiPatchChat(id);
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      notify('很抱歉修改失敗');
     }
   };
   return (
     <div>
       <div className={classes.designShopRoot}>
-        <h2>About Design Shop</h2>
+        <h2 className={classes.title}>關於設計館</h2>
         <div className={classes.designShopLayout}>
           <img
             onClick={() => directToShop(product.publishedBy.account)}
@@ -76,6 +72,15 @@ const DesignShopInfo = ({ product }) => {
             </button>
           </div>
         )}
+        <div className={classes.productPreview}>
+          {shopInfo &&
+            shopInfo.products.map((product) => (
+              <>
+                <img key={product.name} src={product.images[0]} alt={product.name} />
+                <p>{product.name}</p>
+              </>
+            ))}
+        </div>
         <hr className={classes.separator} />
         <div className={classes.shareRow}>
           <h1 className={classes.title}>Share</h1>
@@ -93,6 +98,7 @@ const DesignShopInfo = ({ product }) => {
 
 DesignShopInfo.propTypes = {
   product: PropTypes.object,
+  shopInfo: PropTypes.object,
 };
 
 export default DesignShopInfo;

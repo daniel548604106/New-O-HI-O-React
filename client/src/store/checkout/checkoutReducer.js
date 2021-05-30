@@ -5,7 +5,6 @@ import {
   UPDATE_SUBTOTAL,
   UPDATE_TOTAL,
 } from '../reducerTypes';
-import { addItemToCheckoutList } from './checkoutUtils';
 const initialState = {
   checkoutList: [],
   checkoutDetail: {},
@@ -17,7 +16,6 @@ const initialState = {
 export const checkoutReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM_TO_CHECKOUT_LIST:
-      console.log('add', 'state', state, action.payload);
       return { ...state, checkoutList: action.payload };
     case UPDATE_SUBTOTAL:
       return { ...state, subtotal: action.payload };

@@ -4,13 +4,12 @@ const token = Cookie.get('token');
 export const postNewOrder = (data) => {
   return axios.post('/v1/orders', data, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   });
 };
 
 export const getAllOrders = (data) => {
-  console.log('get get');
   return axios.get('/v1/orders', {
     headers: {
       Authorization: `Bearer ${token}`,

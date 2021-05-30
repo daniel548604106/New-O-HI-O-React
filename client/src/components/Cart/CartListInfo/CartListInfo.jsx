@@ -21,9 +21,8 @@ const CartListInfo = ({ cartItems }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('checked', checkoutList);
     checkoutList.length === cartItems.length ? setIsAllChecked(true) : setIsAllChecked(false);
-  }, [checkoutList]);
+  }, [checkoutList, cartItems.length]);
   useEffect(() => {
     setCheckoutList(cartItems);
   }, [cartItems]);
@@ -31,16 +30,13 @@ const CartListInfo = ({ cartItems }) => {
   const toggleCheckAll = async (e) => {
     if (isAllChecked) {
       setCheckoutList([]);
-      console.log('changed');
     } else {
       setCheckoutList(cartItems);
-      console.log('change');
     }
     setIsAllChecked((prev) => !prev);
   };
 
   const proceedToCheckout = () => {
-    console.log('clicked from com');
     dispatch(updateCheckoutProgress(2));
     dispatch(addItemToCheckoutList(checkoutList));
     dispatch(updateSubtotal(subTotalPrice));
@@ -48,11 +44,10 @@ const CartListInfo = ({ cartItems }) => {
     history.push('/cart/payment');
   };
   useEffect(() => {
-    setTotalPrice(subTotalPrice - 40);
+    setTotalPrice(subTotalPrice);
   }, [subTotalPrice]);
 
   useEffect(() => {
-    console.log('price', checkoutList);
     setSubTotalPrice(
       checkoutList.reduce((prev, current) => {
         return prev + Number(current.quantity) * (current.discountPrice || current.fullPrice);

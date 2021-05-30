@@ -1,0 +1,22 @@
+.faq {
+  h1 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #178fac;
+  }
+  .question {
+    padding: 15px;
+    background-color: #fafafa;
+    cursor: pointer;
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--primary-gray);
+    }
+  }
+
+  p {
+    text-align: left;
+    padding: 30px 15px;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+}

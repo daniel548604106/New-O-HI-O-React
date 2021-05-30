@@ -14,6 +14,7 @@
 
     .name {
       color: var(--primary-gray);
+      width: 200px;
       span {
         color: var(--primary-pink);
         cursor: pointer;
@@ -48,4 +49,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  @media (max-width: 500px) {
+    font-size: 18px;
+  }
 }

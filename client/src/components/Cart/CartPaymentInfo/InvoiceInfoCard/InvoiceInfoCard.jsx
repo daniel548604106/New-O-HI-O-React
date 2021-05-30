@@ -22,7 +22,7 @@ const invoiceType = [
 const ElectronicTab = ({ setCheckoutDetail, checkoutDetail }) => {
   const [activeRetrieveMethod, setActiveRetrieveMethod] = useState(0);
   const handleCheckoutDetail = (e, idx) => {
-    const { value, name } = e.target;
+    const { name } = e.target;
     const { invoice } = checkoutDetail;
     setActiveRetrieveMethod(idx);
     setCheckoutDetail({

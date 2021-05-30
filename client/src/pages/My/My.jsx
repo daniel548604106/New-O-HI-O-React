@@ -11,7 +11,6 @@ const My = () => {
   return (
     <div className={classes.myLayout}>
       <div className={classes.mySidebar}>
-        <h2>我的 O-HI-O</h2>
         <Sidebar />
       </div>
       <div className={classes.myContent}>

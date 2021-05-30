@@ -1,0 +1,61 @@
+.signupLayout {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px 0;
+}
+.field {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  text-align: left;
+  label {
+    margin-bottom: 2px;
+  }
+  .inputField {
+    border: 1px solid var(--border-gray);
+    margin-bottom: 5px;
+    padding: 10px;
+    color: var(--primary-black);
+  }
+  span {
+    font-size: 13px;
+    color: gray;
+  }
+}
+
+.policy {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 20px;
+  .highlight {
+    color: var(--primary-pink);
+    cursor: pointer;
+  }
+}
+.signupButton {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: var(--primary-pink);
+  color: white;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.login {
+  font-size: 14px;
+  font-weight: 400;
+  span {
+    color: var(--primary-pink);
+    cursor: pointer;
+  }
+}
+
+.prevPage {
+  color: var(--primary-pink);
+  font-size: 14px;
+  margin-top: 20px;
+  cursor: pointer;
+  background: white;
+}

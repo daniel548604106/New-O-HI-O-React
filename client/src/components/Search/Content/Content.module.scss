@@ -11,3 +11,51 @@
     }
   }
 }
+
+.notFound {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .noResult {
+    margin-bottom: 10px;
+    color: slategrey;
+    span {
+      color: black;
+    }
+  }
+
+  .alternatives {
+    margin-top: 20px;
+    font-size: 14px;
+    span {
+      color: #178fac;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+  }
+}
+
+.searched {
+  margin-top: 30px;
+}
+
+.products {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.adImage {
+  width: 100%;
+  max-width: 600px;
+  background-image: url('https://photo.airspaceonline.com/photo/banner/0329_DRESS_27.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 180px;
+  cursor: pointer;
+  margin-top: 50px;
+}

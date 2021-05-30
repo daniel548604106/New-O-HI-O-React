@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import classes from './ChangeProfilePicture.module.scss';
 import { apiPatchMyPhoto } from '../../../../../../api/index';
 import { useSelector } from 'react-redux';
-
+import notify from '../../../../../../lib/notification';
 const ChangeProflePicture = () => {
   const [uploadPicture, setUploadPicture] = useState('');
   const user = useSelector((state) => state.user.currentUser);
   const handleUpload = (e) => {
-    console.log('e', e);
     const image = e.target.files[0];
     const reader = new FileReader();
-    console.log('image=>', image);
+
     reader.onload = (e) => {
       //啟用 reader 讀取 image 資料
       setUploadPicture(e.target.result);
@@ -21,14 +20,14 @@ const ChangeProflePicture = () => {
   useEffect(() => {
     const patchMyPhoto = async () => {
       try {
-        const { data } = await apiPatchMyPhoto(uploadPicture);
-        console.log(data);
+        await apiPatchMyPhoto(uploadPicture);
       } catch (error) {
-        console.log(error);
+        notify('很抱歉！修改失敗！請重新再試一次');
       }
     };
-    console.log('picture', uploadPicture);
-    patchMyPhoto();
+    if (uploadPicture) {
+      patchMyPhoto();
+    }
   }, [uploadPicture]);
   return (
     <>

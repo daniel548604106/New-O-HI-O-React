@@ -13,17 +13,13 @@ const Sidebar = ({ categoryId }) => {
         return option.id === +categoryId;
       });
       setActiveCategory(category);
-      console.log(category, categoryId);
     };
     active();
   }, [categoryId]);
 
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
   return (
-    <div>
-      <h2 className={classes.title}>商品分類</h2>
+    <div className={classes.browseCategories}>
+      {window.innerWidth > 500 && <h2 className={classes.title}>商品分類</h2>}
       {categoryId ? (
         <>
           <Link to={`/browse`} className={classes.back}>
@@ -43,13 +39,15 @@ const Sidebar = ({ categoryId }) => {
           </div>
         </>
       ) : (
-        menuOptions.map((option) => (
-          <>
-            <Link to={`/browse?category=${option.id}`} key={option.id}>
-              <p className={classes.options}>{option.title}</p>
-            </Link>
-          </>
-        ))
+        <div className={classes.categories}>
+          {menuOptions.map((option) => (
+            <>
+              <Link to={`/browse?category=${option.id}`} key={option.id}>
+                <p className={classes.options}>{option.title}</p>
+              </Link>
+            </>
+          ))}
+        </div>
       )}
     </div>
   );

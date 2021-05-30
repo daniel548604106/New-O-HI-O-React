@@ -9,7 +9,7 @@ const Complete = () => {
   useEffect(() => {
     const { id } = location;
     setOrderId(id);
-  }, []);
+  }, [location]);
   return (
     <div className={classes.completeLayout}>
       <h2>感謝您的訂購， 我們將會盡快為您送達商品!</h2>
