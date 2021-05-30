@@ -62,13 +62,13 @@ const MenuDrawer = () => {
         </div>
       </div>
       <div>
+        <CtaBtn />
+      </div>
+      <div>
         <Categories />
       </div>
       <div className={classes.mainLayout}>
         <About />
-      </div>
-      <div>
-        <CtaBtn />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
+import { ShoppingCartIcon } from '@heroicons/react/outline';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import Dropdown from './Dropdown/Dropdown.jsx';
 import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
@@ -121,6 +122,7 @@ const Navbar = () => {
           <li onClick={() => toCart()}>
             <Badge badgeContent={totalCartItems} color="secondary">
               <ShoppingBasketIcon className={classes.cart} />
+              <ShoppingCartIcon />
             </Badge>
           </li>
         </ul>
