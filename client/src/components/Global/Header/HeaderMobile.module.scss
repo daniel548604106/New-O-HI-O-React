@@ -16,8 +16,6 @@ header {
       align-items: center;
       > li {
         margin-left: 10px;
-        display: flex;
-        align-items: center;
       }
     }
     .logo {
@@ -44,13 +42,11 @@ header {
     background-color: #fafafa;
   }
   .searchIcon {
-    stroke: #dbd9d9;
+    color: #dbd9d9;
     position: absolute;
     top: 50%;
-    width: 15px;
-    height: 15px;
     transform: translate(3px, -50%);
-    left: 5px;
+    left: 0;
   }
 }
 
@@ -146,17 +142,4 @@ header {
     width: 30px;
     height: 30px;
   }
-}
-
-.icon {
-  stroke: var(--primary-black);
-}
-
-.icon:hover {
-  color: var(--primary-pink);
-}
-
-.heartIcon {
-  cursor: pointer;
-  margin-left: 10px;
 }

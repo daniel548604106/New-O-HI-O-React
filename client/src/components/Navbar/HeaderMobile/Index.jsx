@@ -6,16 +6,17 @@ import classes from './Header.module.scss';
 import Logo from '../../assets/images/global/O.HI.O-logo.svg';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as ShoppingBag } from '../../assets/images/global/Icon/Outline/shopping-bag.svg';
-import { ReactComponent as User } from '../../assets/images/global/Icon/Outline/user.svg';
-import { ReactComponent as Search } from '../../assets/images/global/Icon/Outline/search.svg';
-import { ReactComponent as Menu } from '../../assets/images/global/Icon/Outline/menu-alt-2.svg';
-import { ReactComponent as Heart } from '../../assets/images/global/Icon/Outline/heart.svg';
+import SearchIcon from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu';
+import { ShoppingCartIcon } from '@heroicons/react/outline';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import Dropdown from './Dropdown/Dropdown.jsx';
 import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
 import SearchBar from './SearchBar/SearchBar.jsx';
-import Dropdown from './Dropdown/Dropdown.jsx';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PersonIcon from '@material-ui/icons/Person';
 import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
-const Navbar = () => {
+const Index = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const history = useHistory();
@@ -61,7 +62,7 @@ const Navbar = () => {
       <nav>
         <div>
           <div onClick={() => dispatch(openMenuDrawer())} className={classes.sectionMobile}>
-            <Menu className={classes.icon} />
+            <MenuIcon />
           </div>
           <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
           <div className={classes.search}>
@@ -99,16 +100,17 @@ const Navbar = () => {
                     alt="profile picture"
                   />
                 ) : (
-                  <User />
+                  <PersonIcon />
                 )}
                 <div className={classes.dropdown}>
                   <Dropdown />
                 </div>
               </li>
-              <Heart
-                className={`${classes.heartIcon} ${classes.icon}`}
-                onClick={() => history.push('/favorite?tab=products')}
-              />
+              <li>
+                <Link to="/favorite?tab=products" className={classes.favIcon}>
+                  <FavoriteBorderIcon />
+                </Link>
+              </li>
             </>
           ) : (
             <>
@@ -119,14 +121,15 @@ const Navbar = () => {
           )}
           <li onClick={() => toCart()}>
             <Badge badgeContent={totalCartItems} color="secondary">
-              <ShoppingBag className={`${classes.cart} ${classes.icon}`} />
+              <ShoppingBasketIcon className={classes.cart} />
+              <ShoppingCartIcon />
             </Badge>
           </li>
         </ul>
         <ul className={classes.sectionMobile}>
           <div className={classes.searchMobile}>
             <input type="search" placeholder="探索好設計" />
-            <Search className={`${classes.searchIcon} ${classes.icon}`} />
+            <SearchIcon className={classes.searchIcon} />
           </div>
           {isUserLoggedIn ? (
             <>
@@ -141,26 +144,26 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li>
-                  <User />
+                  <PersonIcon />
                 </li>
               )}
               <li>
-                <Heart
+                <FavoriteBorderIcon
                   onClick={() => history.push('/favorite?tab=products')}
-                  className={`${classes.favIcon} ${classes.icon}`}
+                  className={classes.favIcon}
                 />
               </li>
             </>
           ) : (
             <li onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
               <a href="#">
-                <User className={classes.icon} />
+                <PersonIcon />
               </a>
             </li>
           )}
           <li>
             <Badge onClick={() => toCart()} badgeContent={totalCartItems} color="secondary">
-              <ShoppingBag className={classes.icon} />
+              <ShoppingBasketIcon />
             </Badge>
           </li>
         </ul>
@@ -173,4 +176,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Index;
