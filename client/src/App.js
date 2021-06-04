@@ -140,7 +140,7 @@ const App = (props) => {
             </Route>
             <div
               style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
-              className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
+              className={`${'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
             >
               <Route path="/" exact>
                 <Home />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classes from './MainContent.module.scss';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -18,6 +18,38 @@ const MainContent = ({
 }) => {
   const location = useLocation();
   const history = useHistory();
+  //Lazy Load Image using Intersection Observer API
+  const [imageObserver, setImageObserver] = useState(null);
+  const createObserver = (inViewCallback = noop, newOptions = {}) => {
+    const defaultOptions = {
+      root: null,
+      rootMargin: '30px',
+      threshold: 0,
+    };
+    return new IntersectionObserver(inViewCallback, { ...defaultOptions, newOptions });
+  };
+  const onImageInView = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const imageSrc = element.getAttribute('data-src');
+
+        element.removeAttribute('data-src');
+        element.setAttribute('src', imageSrc);
+
+        observer.unobserve(element);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const imageObserver = createObserver(onImageInView);
+    setImageObserver(imageObserver);
+
+    return () => {
+      imageObserver.disconnect();
+    };
+  }, []);
   // const [activeSubcategory, setActiveSubcategory] = useState([]);
   useEffect(() => {
     if (activeCategory && subcategoryId) {
@@ -59,7 +91,7 @@ const MainContent = ({
       {products.length ? (
         <div className={classes.products}>
           {products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard key={product._id} product={product} observer={imageObserver} />
           ))}
         </div>
       ) : (
