@@ -50,11 +50,13 @@ const ShopInfo = ({ shop }) => {
           </div>
           <div className={classes.contact}>
             <div className={classes.user}>
-              <img src={user.picture} alt="" />
-              <span>{user.name}</span>
-            </div>
-            <div className={classes.button}>
-              <Button text="聯絡設計師" backgroundColor="#fff" color="black" border="true" />
+              <div>
+                <img src={user.picture} alt="" />
+                <span>{user.name}</span>
+              </div>
+              <div className={classes.button}>
+                <Button text="聯絡設計師" backgroundColor="#fff" color="black" border="true" />
+              </div>
             </div>
             <div className="">
               <p>回應率</p>

@@ -14,8 +14,8 @@ const SideBar = () => {
       route: '/my/purchase/unpaid',
     },
     {
-      name: '退款申請',
-      route: '/my/refund/processing',
+      name: '通知中心',
+      route: '/my/notification',
     },
     {
       name: '我的信箱',

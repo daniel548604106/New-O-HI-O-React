@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './ProductList.module.scss';
 import { useLocation } from 'react-router-dom';
-import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
+import ProductCard from './ProductCard.jsx';
 import PropTypes from 'prop-types';
 import NotesIcon from '@material-ui/icons/Notes';
 const filterTypes = [
@@ -33,11 +33,8 @@ const filterTypes = [
     id: 5,
   },
 ];
+
 const Filter = () => {
-  const location = useLocation();
-  const changeFilter = (e) => {
-    location.search = `sortby=${e.target.value}`;
-  };
   return (
     <div>
       <select
