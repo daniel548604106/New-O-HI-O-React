@@ -51,13 +51,13 @@ const MainContent = ({
     };
   }, []);
   // const [activeSubcategory, setActiveSubcategory] = useState([]);
-  useEffect(() => {
-    if (activeCategory && subcategoryId) {
-      subcategory = activeCategory.category.find((option) => {
-        return option.id === subcategoryId;
-      });
-    }
-  }, [activeCategory, subcategoryId]);
+  // useEffect(() => {
+  //   if (activeCategory && subcategoryId) {
+  //     subcategory = activeCategory.category.find((option) => {
+  //       return option.id === subcategoryId;
+  //     });
+  //   }
+  // }, [activeCategory, subcategoryId]);
 
   const filter = (e) => {
     const value = JSON.parse(e.target.value);

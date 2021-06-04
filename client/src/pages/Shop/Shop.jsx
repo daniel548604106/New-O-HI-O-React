@@ -44,7 +44,6 @@ const Shop = () => {
   }, [params]);
   return (
     <div>
-      <Banner shop={shopInfo} />
       <div className={classes.mainContent}>
         <ShopInfo shop={shopInfo} />
         <Tabs tabs={tabs} />
@@ -53,7 +52,9 @@ const Shop = () => {
           <div className={classes.product}>
             <RecommendedDesign pinnedProducts={shopInfo.pinnedProducts} />
             <div className={classes.productsRow}>
-              <Sidebar />
+              <div className={classes.sidebar}>
+                <Sidebar />
+              </div>
               <div className={classes.productList}>
                 <ProductList products={shopInfo.products} />
               </div>

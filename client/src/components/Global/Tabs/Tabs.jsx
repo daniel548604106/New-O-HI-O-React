@@ -10,18 +10,16 @@ const Tabs = ({ tabs }) => {
   };
 
   return (
-    <div>
-      <div className={classes.list}>
-        {tabs.map((tab, idx) => (
-          <div
-            key={tab.name}
-            onClick={() => switchTab(idx, tab.location)}
-            className={location.search.includes(`${tab.location}`) && classes.active}
-          >
-            {tab.name}
-          </div>
-        ))}
-      </div>
+    <div className={classes.list}>
+      {tabs.map((tab, idx) => (
+        <div
+          key={tab.name}
+          onClick={() => switchTab(idx, tab.location)}
+          className={location.search.includes(`${tab.location}`) && classes.active}
+        >
+          {tab.name}
+        </div>
+      ))}
     </div>
   );
 };

@@ -5,6 +5,10 @@
   }
   .mySidebar {
     flex: 1;
+    @media (max-width: 720px) {
+      margin-right: 0;
+    }
+    margin-right: 50px;
   }
   .myContent {
     flex: 4;

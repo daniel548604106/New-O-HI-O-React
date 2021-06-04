@@ -7,8 +7,24 @@ export const menuOptions = [
         id: 1,
       },
       {
-        name: '生活飾品',
+        name: '香氛',
         id: 2,
+      },
+      {
+        name: '擺飾',
+        id: 3,
+      },
+      {
+        name: '生活收納',
+        id: 4,
+      },
+      {
+        name: '居家織品',
+        id: 5,
+      },
+      {
+        name: '家用電器/用品',
+        id: 6,
       },
     ],
     id: 2,
@@ -17,12 +33,29 @@ export const menuOptions = [
     title: '配件飾品',
     category: [
       {
-        name: '斜背包',
+        name: '戒指',
         id: 1,
       },
       {
-        name: '肩背包',
+        name: '耳環',
         id: 2,
+      },
+
+      {
+        name: '眼鏡/太陽眼鏡',
+        id: 3,
+      },
+      {
+        name: '帽子',
+        id: 4,
+      },
+      {
+        name: '手錶',
+        id: 5,
+      },
+      {
+        name: '口罩',
+        id: 6,
       },
     ],
     id: 3,
@@ -31,57 +64,127 @@ export const menuOptions = [
     title: '包包提袋',
     category: [
       {
-        name: '家具',
+        name: '側背包/斜背包',
         id: 1,
       },
       {
-        name: '生活飾品',
+        name: '後背包/書包',
         id: 2,
+      },
+      {
+        name: '手提包',
+        id: 3,
+      },
+      {
+        name: '錢包/零錢包',
+        id: 4,
+      },
+      {
+        name: '收納包/行李箱',
+        id: 5,
+      },
+      {
+        name: '電腦包/公事包',
+        id: 6,
       },
     ],
     id: 4,
   },
   {
-    title: '衣著良品',
+    title: '鞋履襪品',
     category: [
       {
-        name: '家具',
+        name: '男女襪類',
         id: 1,
       },
       {
-        name: '生活飾品',
+        name: '女鞋',
         id: 2,
+      },
+      {
+        name: '男鞋',
+        id: 3,
+      },
+      {
+        name: '雨鞋',
+        id: 4,
+      },
+      {
+        name: '涼鞋/拖鞋',
+        id: 5,
       },
     ],
     id: 5,
   },
   {
-    title: '文具卡片',
+    title: '衣著良品',
     category: [
       {
-        name: '家具',
+        name: '女上衣',
         id: 1,
       },
       {
-        name: '生活飾品',
+        name: '女下身',
         id: 2,
+      },
+      {
+        name: '女外套',
+        id: 3,
+      },
+      {
+        name: '男上衣',
+        id: 4,
+      },
+      {
+        name: '男下身',
+        id: 5,
+      },
+      {
+        name: '男外套',
+        id: 6,
       },
     ],
     id: 6,
   },
   {
-    title: '品味美食',
+    title: '美妝保養',
     category: [
       {
-        name: '家具',
+        name: '保養用品',
         id: 1,
       },
       {
-        name: '生活飾品',
+        name: '清潔用品',
         id: 2,
+      },
+      {
+        name: '美妝周邊',
+        id: 3,
+      },
+      {
+        name: '個人護理',
+        id: 4,
       },
     ],
     id: 7,
+  },
+  {
+    title: '廚房餐桌',
+    category: [
+      {
+        name: '杯/壺具',
+        id: 1,
+      },
+      {
+        name: '餐具',
+        id: 2,
+      },
+      {
+        name: '料理工具/周邊',
+        id: 3,
+      },
+    ],
+    id: 8,
   },
 ];
 

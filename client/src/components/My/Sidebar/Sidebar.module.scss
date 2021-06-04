@@ -6,6 +6,7 @@
     @media (max-width: 800px) {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       overflow: auto;
       white-space: nowrap;
     }
