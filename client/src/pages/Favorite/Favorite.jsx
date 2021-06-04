@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Favorite.module.scss';
 import { useLocation } from 'react-router-dom';
-import ProductCard from '../../components/Global/ProductCard/ProductCard.jsx';
+import FavoriteCard from '../../components/Favorite/FavoriteCard.jsx';
 import { useSelector } from 'react-redux';
 import ShopCard from '../../components/Global/ShopCard/ShopCard.jsx';
 import Tabs from '../../components/Global/Tabs/Tabs.jsx';
@@ -36,7 +36,9 @@ const Favorite = () => {
         {showProducts ? (
           <div className={favoriteProducts && favoriteProducts.length && classes.productsRow}>
             {favoriteProducts && favoriteProducts.length ? (
-              favoriteProducts.map((product) => <ProductCard key={product._id} product={product} />)
+              favoriteProducts.map((product) => (
+                <FavoriteCard key={product._id} product={product} />
+              ))
             ) : (
               <Empty title="你的慾望清單目前是空的喔！" />
             )}
