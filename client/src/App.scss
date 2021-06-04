@@ -50,8 +50,9 @@
 
 .mainLayout {
   height: calc(100vh - 100px);
-  margin-top: 100px;
-  @media (max-width: 500px) {
+  margin-top: 130px;
+
+  @media (max-width: 700px) {
     margin-top: 50px;
   }
 
