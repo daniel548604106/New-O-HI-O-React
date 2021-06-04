@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'prop-types';
@@ -18,12 +18,15 @@ const ProductCardLoading = () => {
   );
 };
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, observer }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const imageEl = useRef(null);
+
   const [addedFavorite, setAddedFavorite] = useState(-1);
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const favoriteProducts = useSelector((state) => state.global.favoriteProducts);
+
   const directToProduct = () => {
     history.push(`/products/${product._id}`);
   };
@@ -36,6 +39,19 @@ const ProductCard = ({ product }) => {
     }
     dispatch(openLoginModal());
   };
+
+  //Image Lazy Load with Observer
+  useEffect(() => {
+    const { current } = imageEl;
+
+    if (observer !== null) {
+      observer.observe(current);
+    }
+
+    return () => {
+      observer.unobserve(current);
+    };
+  }, [observer]);
 
   useEffect(() => {
     if (!favoriteProducts) return;
@@ -65,7 +81,8 @@ const ProductCard = ({ product }) => {
             <img
               className={classes.media}
               loading="lazy"
-              src={product.images[0]}
+              ref={imageEl}
+              data-src={product.images[0]}
               alt={product.name}
             />
             <FavoriteIcon
@@ -110,6 +127,7 @@ const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object,
+  observer: PropTypes.func,
 };
 
 export default ProductCard;
