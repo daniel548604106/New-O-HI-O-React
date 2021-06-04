@@ -151,7 +151,7 @@ const App = (props) => {
               <Route path={`/products/:id`}>
                 <Product />
               </Route>
-              <main className={!hideMainHeader && 'global-container'}>
+              <main className={!hideMainHeader && 'main-container'}>
                 <Route path={`/oauth/:type`}>
                   <OAuth props={props} />
                 </Route>

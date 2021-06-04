@@ -59,18 +59,16 @@ const ProductBanner = ({ product, scrollToPage }) => {
             className={`${
               favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) &&
               classes.wishListAdded
-            } ${classes.ctaBtn}`}
+            } ${classes.ctaBtn} ${classes.addToFavoriteBtn}`}
           >
             {favoriteProducts &&
             favoriteProducts.find((favoriteProduct) => favoriteProduct._id === product._id) ? (
               <div className={classes.addedBtnLayout}>
                 <FavoriteBorderIcon />
-                <p>已加入收藏</p>
               </div>
             ) : (
               <div className={classes.btnLayout}>
                 <FavoriteBorderIcon />
-                <p>收藏商品</p>
               </div>
             )}
           </button>

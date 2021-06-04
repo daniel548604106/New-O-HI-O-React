@@ -51,6 +51,7 @@
     width: 100%;
     padding: 0;
   }
+  width: 300px;
   display: flex;
   align-items: center;
   padding: 10px;
@@ -143,4 +144,11 @@
 
 .btnCartLayout {
   background-color: black;
+  flex: 2;
+}
+
+.addToFavoriteBtn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
