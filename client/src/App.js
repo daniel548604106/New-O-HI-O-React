@@ -17,6 +17,7 @@ const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
 const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
 const About = React.lazy(() => import('./pages/About/About.jsx'));
 const Topic = React.lazy(() => import('./pages/Topic/Topic.jsx'));
+import ScrollToTop from './components/Global/ScrollToTop/ScrollToTop.jsx';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
 import Chat from './components/Chat/Chat.jsx';
@@ -133,6 +134,7 @@ const App = (props) => {
             </div>
           </Backdrop>
         </div>
+        <ScrollToTop />
         <Switch>
           <>
             <Route path={`/topic/:topic`}>
@@ -140,7 +142,7 @@ const App = (props) => {
             </Route>
             <div
               style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
-              className={`${'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
+              className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
             >
               <Route path="/" exact>
                 <Home />
