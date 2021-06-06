@@ -56,6 +56,30 @@ connectDB();
 //   });
 // });
 
+// Middleware
+
+// let setCache = function (req, res, next) {
+//   // here you can define period in second, this one is 5 minutes
+//   const period = 60 * 5 
+
+//   // you only want to cache for GET requests
+//   if (req.method == 'GET') {
+//     res.set('Cache-control', `public, max-age=${period}`)
+//   } else {
+//     // for the other requests set strict no caching parameters
+//     res.set('Cache-control', `no-store`)
+//   }
+
+//   // remember to call next() to pass on the request
+//   next()
+// }
+
+// // now call the new middleware function in your app
+
+// app.use(setCache)
+
+
+
 
 // Route
 app.use('/*', bodyParser.json());
@@ -88,8 +112,15 @@ io.on('connection', socket => {
 })
 
 
+const options = {
+  etag: true,
+  lastModified: false,
+  maxAge: 0
+}
+
+
 if(process.env.NODE_ENV === 'production'){ // if the application is running on heroku, we then execute the following function
-  app.use(express.static(path.join(__dirname, '/../client/build')));
+  app.use(express.static(path.join(__dirname, '/../client/build')),options);
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname ,'..','client','build','index.html'));
   });
