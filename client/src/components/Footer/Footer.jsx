@@ -16,7 +16,7 @@ const Footer = () => {
     <div className={classes.footerLayout}>
       <img src={Logo} alt="logo" />
       <p>Design the way you are.</p>
-      <div className={classes.langaugeSelector}>
+      <div className={classes.languageSelector}>
         <LanguageIcon />
         <p onClick={() => changeLanguage()}>{language}</p>
       </div>
