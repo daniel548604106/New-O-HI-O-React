@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Content.module.scss';
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
@@ -10,31 +10,48 @@ const Content = ({ searchedProducts, searchInput }) => {
   const directTo = (page) => {
     history.push(page);
   };
+  const [imageObserver, setImageObserver] = useState(null);
+  const createObserver = (inViewCallback = noop, newOptions = {}) => {
+    const defaultOptions = {
+      root: null,
+      rootMargin: '30px',
+      threshold: 0,
+    };
+    return new IntersectionObserver(inViewCallback, { ...defaultOptions, newOptions });
+  };
+  const onImageInView = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const imageSrc = element.getAttribute('data-src');
+
+        element.removeAttribute('data-src');
+        element.setAttribute('src', imageSrc);
+
+        observer.unobserve(element);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const imageObserver = createObserver(onImageInView);
+    setImageObserver(imageObserver);
+
+    return () => {
+      imageObserver.disconnect();
+    };
+  }, []);
   return (
     <>
-      {searchedProducts.length ? (
+      {searchedProducts.length > 0 ? (
         <div>
           <div className={classes.topRow}>
             <p>找到 {searchedProducts.length} 件 商品</p>
-            <div className={classes.sort}>
-              <span>排序</span>
-              <select
-                onChange={(e) => setSelectedValue(e.target.value)}
-                value={selectedValue}
-                name="sort"
-                id="sort"
-              >
-                <option value="popularity">最熱門選項</option>
-                <option value="high-low">價格由高到低</option>
-                <option value="low-high">價格由低到高</option>
-                <option value="latest">最新上架</option>
-              </select>
-            </div>
           </div>
           <div className={classes.searched}>
             {searchedProducts.map((product) => (
               <div key={product._id} className={classes.products}>
-                <ProductCard product={product} />
+                <ProductCard product={product} observer={imageObserver} />
               </div>
             ))}
           </div>
