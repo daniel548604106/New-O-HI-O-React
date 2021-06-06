@@ -32,25 +32,27 @@ const Navbar = () => {
   };
 
   const handleSearchInput = (e) => {
-    if (e.key === 'Enter') {
-      history.push(`/search?q=${searchInput}`);
-    }
-    history.push(`/search?q=${searchInput}`);
+    e.preventDefault();
+    history.push(`/search?keyword=${searchInput}`);
     setSearchInput('');
+  };
+
+  const handleMobileSearchInput = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      history.push(`/search?keyword=${searchInput}`);
+      setSearchInput('');
+    }
   };
 
   const handleOpenLoginModal = () => {
     dispatch(openLoginModal());
   };
 
-  // const toggleSearchBar = (e) => {
-  //   e.stopPropagation();
-  //   setSearchBarOpen(!searchBarOpen);
-  // };
-
   useEffect(() => {
     setSearchBarOpen(false);
   }, [location]);
+
   useEffect(() => {
     setTotalCartItems(
       cartItems.reduce((total, cartItem) => {
@@ -132,7 +134,9 @@ const Navbar = () => {
           <div className={classes.searchMobile}>
             <form action="">
               <input
-                onKeyDown={(e) => handleSearchInput(e)}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                onKeyDown={(e) => handleMobileSearchInput(e)}
                 type="search"
                 placeholder="探索好設計"
               />

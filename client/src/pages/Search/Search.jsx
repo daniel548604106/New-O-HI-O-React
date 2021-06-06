@@ -7,7 +7,7 @@ import notify from '../../lib/notification';
 const Search = () => {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-  const searchInput = query.get('q');
+  const searchInput = query.get('keyword');
   const [searchedProducts, setSearchedProducts] = useState([]);
   useEffect(() => {
     const getSearchedProducts = async (text) => {
@@ -19,12 +19,12 @@ const Search = () => {
       }
     };
     getSearchedProducts(searchInput);
-  }, [search, searchInput]);
+  }, [searchInput]);
 
   return (
     <div className={classes.search}>
       <div className={classes.content}>
-        <Content searchedProducts={searchedProducts} searchInput={searchInput} />
+        <Content searchedProducts={searchedProducts} />
       </div>
     </div>
   );
