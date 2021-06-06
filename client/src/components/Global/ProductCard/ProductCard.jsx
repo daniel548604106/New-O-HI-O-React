@@ -127,7 +127,7 @@ const ProductCard = ({ product, observer }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object,
-  observer: PropTypes.func,
+  observer: PropTypes.object,
 };
 
 export default ProductCard;

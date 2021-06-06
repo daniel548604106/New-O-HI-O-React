@@ -31,7 +31,10 @@ const Navbar = () => {
     isUserLoggedIn ? history.push('/cart') : handleOpenLoginModal();
   };
 
-  const handleSearchInput = () => {
+  const handleSearchInput = (e) => {
+    if (e.key === 'Enter') {
+      history.push(`/search?q=${searchInput}`);
+    }
     history.push(`/search?q=${searchInput}`);
     setSearchInput('');
   };
@@ -65,15 +68,17 @@ const Navbar = () => {
           </div>
           <img onClick={() => history.push('/')} className={classes.logo} src={Logo} alt="logo" />
           <div className={classes.search}>
-            <input
-              onChange={(e) => setSearchInput(e.target.value)}
-              type="text"
-              onKeyDown={(e) =>
-                searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
-              }
-              value={searchInput}
-              placeholder="探索好設計"
-            />
+            <form action="">
+              <input
+                onChange={(e) => setSearchInput(e.target.value)}
+                type="text"
+                onKeyDown={(e) =>
+                  searchInput.length > 0 && e.key === 'Enter' ? handleSearchInput() : ''
+                }
+                value={searchInput}
+                placeholder="探索好設計"
+              />
+            </form>
             <button onClick={() => handleSearchInput()} className={classes.searchBtn}>
               搜尋
             </button>
@@ -125,8 +130,14 @@ const Navbar = () => {
         </ul>
         <ul className={classes.sectionMobile}>
           <div className={classes.searchMobile}>
-            <input type="search" placeholder="探索好設計" />
-            <Search className={`${classes.searchIcon} ${classes.icon}`} />
+            <form action="">
+              <input
+                onKeyDown={(e) => handleSearchInput(e)}
+                type="search"
+                placeholder="探索好設計"
+              />
+              <Search className={`${classes.searchIcon} ${classes.icon}`} />
+            </form>
           </div>
           {isUserLoggedIn ? (
             <>
@@ -153,9 +164,7 @@ const Navbar = () => {
             </>
           ) : (
             <li onClick={() => handleOpenLoginModal()} className={classes.loginBtn}>
-              <a href="#">
-                <User className={classes.icon} />
-              </a>
+              <User className={classes.icon} />
             </li>
           )}
           <li>
