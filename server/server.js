@@ -112,15 +112,11 @@ io.on('connection', socket => {
 })
 
 
-const options = {
-  etag: true,
-  lastModified: false,
-  maxAge: 0
-}
+
 
 
 if(process.env.NODE_ENV === 'production'){ // if the application is running on heroku, we then execute the following function
-  app.use(express.static(path.join(__dirname, '/../client/build')),options);
+  app.use(express.static(path.join(__dirname, '/../client/build')));
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname ,'..','client','build','index.html'));
   });
