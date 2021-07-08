@@ -37,7 +37,7 @@ if (rootElement.hasChildNodes()) {
   );
 }
 
-serviceWorkerRegistration.register();
+// serviceWorkerRegistration.register();
 
 // ReactDOM.render(
 //   <Provider store={store}>
