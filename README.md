@@ -4,8 +4,8 @@
 
 ![截圖 2021-07-08 下午5 51 16](https://user-images.githubusercontent.com/61279365/124902119-3ac73180-e015-11eb-9979-1c77f20aead8.png)
 
+![截圖 2021-07-08 下午10 27 06](https://user-images.githubusercontent.com/61279365/124939428-acb27180-e03b-11eb-8cc6-bd2d5696480e.png)
 
-![截圖 2021-07-08 下午10 25 58](https://user-images.githubusercontent.com/61279365/124939232-87256800-e03b-11eb-8d93-59e1daf2a32b.png)
 
 
 **Tech Stack**
