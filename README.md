@@ -4,7 +4,8 @@
 
 ![截圖 2021-07-08 下午5 51 16](https://user-images.githubusercontent.com/61279365/124902119-3ac73180-e015-11eb-9979-1c77f20aead8.png)
 
-O.HI.O 設計品牌衣著服飾每日上架，海內外最新設計師品牌每日上架，精選商品免運天天有，首購即享特殊優惠，尋找獨特日常穿搭就在 O.HI.O 。
+
+![截圖 2021-07-08 下午10 25 58](https://user-images.githubusercontent.com/61279365/124939232-87256800-e03b-11eb-8d93-59e1daf2a32b.png)
 
 
 **Tech Stack**
