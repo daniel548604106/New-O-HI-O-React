@@ -11,12 +11,15 @@ import {
   apiGetRecommendedProducts,
 } from '../../api/index';
 import classes from './Home.module.scss';
+import { useParams } from 'react-router-dom';
 import { getFavList } from '../../store/index/indexAction';
 import { useDispatch, useSelector } from 'react-redux';
+import Product from '../Products/_Product/_Product.jsx';
 import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
 import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
+import { AnimatePresence, motion } from 'framer-motion';
 const Home = () => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);
@@ -26,6 +29,7 @@ const Home = () => {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
+  let { id } = useParams();
 
   // 取得 Banners
 
@@ -98,12 +102,27 @@ const Home = () => {
     <div className={classes.home}>
       <HelmetTitle />
       {products.length ? <Banner banners={banners} /> : <BannerLoading />}
+      <AnimatePresence exitBeforeEnter>
+        {id && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2, delay: 0.15 }}
+            style={{ pointerEvents: 'auto' }}
+            className={classes.productLayout}
+          >
+            <Product id={id} key="item" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <main>
         <section>
-          <Cards title="editorPicks" showMore={false} products={products} t={t} />
+          <Cards id={id} title="editorPicks" showMore={false} products={products} t={t} />
         </section>
         <section>
-          <Cards title="popularItems" link="/browse" products={products} t={t} />
+          <Cards id={id} title="popularItems" link="/browse" products={products} t={t} />
         </section>
         {/* {!isUserLoggedIn && (
           <div className={classes.campaign}>
@@ -115,6 +134,7 @@ const Home = () => {
         </section>
         <section>
           <Cards
+            id={id}
             title="discountedItems"
             link="/search?type=discount"
             products={discountedProducts}
@@ -122,7 +142,13 @@ const Home = () => {
           />
         </section>
         <section>
-          <Cards title="recommendedItems" showMore={false} products={recommendedProducts} t={t} />
+          <Cards
+            id={id}
+            title="recommendedItems"
+            showMore={false}
+            products={recommendedProducts}
+            t={t}
+          />
         </section>
       </main>
     </div>
