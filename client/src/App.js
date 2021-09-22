@@ -144,15 +144,15 @@ const App = (props) => {
               style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
               className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
             >
-              <Route path="/" exact>
+              <Route path={[`/products/:id`, '/']} exact>
                 <Home />
               </Route>
               <Route path="/policy:type?">
                 <Policy />
               </Route>
-              <Route path={`/products/:id`}>
+              {/* <Route path={`/products/:id`}>
                 <Product />
-              </Route>
+              </Route> */}
               <main className={!hideMainHeader && 'main-container'}>
                 <Route path={`/oauth/:type`}>
                   <OAuth props={props} />

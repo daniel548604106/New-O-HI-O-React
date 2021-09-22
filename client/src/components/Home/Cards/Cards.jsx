@@ -4,7 +4,7 @@ import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
 import ProductCardLoading from '../../Global/SkeletonLoading/ProductCardLoading.jsx';
 import { Link } from 'react-router-dom';
-const Cards = ({ products, title, t, link, showMore }) => {
+const Cards = ({ products, title, t, link, id, showMore }) => {
   //Lazy Load Image using Intersection Observer API
   const [imageObserver, setImageObserver] = useState(null);
   const createObserver = (inViewCallback = noop, newOptions = {}) => {
@@ -51,7 +51,7 @@ const Cards = ({ products, title, t, link, showMore }) => {
         <div className={classes.cardRow}>
           {products.map((product) => (
             <div key={product._id} className={classes.cards}>
-              <ProductCard observer={imageObserver} product={product} />
+              <ProductCard id={id} observer={imageObserver} product={product} />
             </div>
           ))}
         </div>
@@ -67,6 +67,7 @@ Cards.propTypes = {
   t: PropTypes.func,
   title: PropTypes.string,
   link: PropTypes.string,
+  id: PropTypes.string,
   showMore: PropTypes.bool,
 };
 
