@@ -20,10 +20,16 @@
     height: 150px;
   }
   width: 100%;
+  background-color: #fafafa;
 }
 
 .mainPicture {
   position: relative;
+  height: 170px;
+  @media (max-width: 500px) {
+    height: 150px;
+  }
+  background-color: #fafafa;
   .heartIcon {
     position: absolute;
     bottom: 10px;
