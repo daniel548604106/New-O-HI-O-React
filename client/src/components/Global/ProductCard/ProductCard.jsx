@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction.js';
 import { discount } from '../../../lib/tools';
 import Skeleton from 'react-loading-skeleton';
-
+import { motion } from 'framer-motion';
 const ProductCardLoading = () => {
   return (
     <>
@@ -18,7 +18,7 @@ const ProductCardLoading = () => {
   );
 };
 
-const ProductCard = ({ product, observer }) => {
+const ProductCard = ({ product, observer, id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const imageEl = useRef(null);
@@ -71,7 +71,8 @@ const ProductCard = ({ product, observer }) => {
         {product.discountPrice && <p className={classes.discount}>{discount(product)}</p>}
       </div>
       {product ? (
-        <div
+        <motion.div
+          layoutId={`card-container-${id}`}
           className={classes.card}
           key={product.id}
           onClick={() => directToProduct()}
@@ -113,7 +114,7 @@ const ProductCard = ({ product, observer }) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       ) : (
         <>
           <ProductCardLoading />
@@ -127,6 +128,7 @@ const ProductCard = ({ product, observer }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.object,
+  id: PropTypes.string,
   observer: PropTypes.object,
 };
 

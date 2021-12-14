@@ -13,8 +13,10 @@ import ProductBanner from '../../../components/Product/ProductBanner/ProductBann
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
-
-const Product = () => {
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+const Product = ({ id }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const topDisplay = useRef(null);
@@ -83,13 +85,23 @@ const Product = () => {
         description={product.description}
         image={product && product.images[0]}
       />
+      <Link
+        to="/"
+        style={{ position: 'fixed', zIndex: '100', top: '10px', left: '10px', color: 'white' }}
+      >
+        x
+      </Link>
       <div className={showBanner ? classes.showBanner : classes.hideBanner}>
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <div ref={topDisplay} className={classes.productDisplay}>
+        <motion.div
+          layoutId={`card-container-${id}`}
+          ref={topDisplay}
+          className={classes.productDisplay}
+        >
           <ProductDisplay product={product} />
-        </div>
+        </motion.div>
         <section className={classes.productMainInfo}>
           <div className={classes.info}>
             <ProductInfo t={t} product={product} />
@@ -122,3 +134,7 @@ const Product = () => {
 };
 
 export default Product;
+
+Product.propTypes = {
+  id: PropTypes.string,
+};
