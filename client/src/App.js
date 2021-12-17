@@ -2,19 +2,26 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
 import allRoutes from './routes/allRoutes.js';
-import Header from './components/Navbar/Header.jsx';
-import Loader from './components/Global/Loader/Loader.jsx';
-import ScrollToTop from './components/Global/ScrollToTop/ScrollToTop.jsx';
+
+// Icon
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import Footer from './components/Footer/Footer.jsx';
-import Chat from './components/Chat/Chat.jsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
-import LoginModal from './components/Login/LoginModal.jsx';
-import { ToastContainer } from 'react-toastify';
-import { toggleChat } from './store/chat/chatAction';
+
+// Component
+import Loader from './components/Global/Loader/Loader.jsx';
+import Header from './components/Navbar/Header.jsx';
 import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import ScrollToTop from './components/Global/ScrollToTop/ScrollToTop.jsx';
+import Chat from './components/Chat/Chat.jsx';
+import LoginModal from './components/Login/LoginModal.jsx';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleChat } from './store/chat/chatAction';
+import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
+import { ToastContainer } from 'react-toastify';
 import { initGA, PageView } from '../src/lib/googleAnalytics';
+
 import './App.scss';
 const App = (props) => {
   const location = useLocation();
@@ -27,8 +34,8 @@ const App = (props) => {
   const showChat = useSelector((state) => state.chat.showChat);
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
-  const [open, setOpen] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
+
   const handleClose = (e) => {
     dispatch(closeLoginModal());
   };
@@ -50,22 +57,10 @@ const App = (props) => {
     });
   }, []);
 
-  const preventProp = (e) => {
-    e.stopPropagation();
-  };
-
   useEffect(() => {
     initGA();
     PageView();
   }, []);
-
-  useEffect(() => {
-    dispatch(closeMenuDrawer());
-  }, [dispatch, location]);
-
-  useEffect(() => {
-    setOpen(isLoginModalShow);
-  }, [isLoginModalShow]);
 
   return (
     <Suspense fallback={<Loader />}>
@@ -105,9 +100,9 @@ const App = (props) => {
             </>
           ))}
         <div className="loginModal">
-          <Backdrop open={open} onClick={handleClose} style={{ zIndex: 15 }}>
+          <Backdrop open={isLoginModalShow} onClick={handleClose} style={{ zIndex: 15 }}>
             <div
-              onClick={preventProp}
+              onClick={(e) => e.stopPropagation()}
               style={{
                 maxWidth: '600px',
                 borderRadius: '10px',
