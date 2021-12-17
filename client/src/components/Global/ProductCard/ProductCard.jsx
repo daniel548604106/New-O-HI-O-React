@@ -71,7 +71,6 @@ const ProductCard = ({ product, observer, id }) => {
       </div>
       {product ? (
         <div
-          layoutId={`card-container-${id}`}
           className={classes.card}
           key={product.id}
           onClick={() => directToProduct()}

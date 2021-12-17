@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classes from './MenuDrawer.module.scss';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { openLoginModal } from '../../../store/index/indexAction';
 import PersonIcon from '@material-ui/icons/Person';
@@ -11,7 +12,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import About from './About/About.jsx';
 import Categories from './Categories/Categories.jsx';
 import Cookie from 'js-cookie';
-const MenuDrawer = () => {
+const MenuDrawer = ({ onClick = () => {} }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
@@ -27,7 +28,7 @@ const MenuDrawer = () => {
   };
 
   const CtaBtn = () => (
-    <div className={classes.ctaBtn}>
+    <div onClick={onClick} className={classes.ctaBtn}>
       {isUserLoggedIn ? (
         <div className={classes.myListLayout}>
           <Link className={classes.list} to={'/my/email'}>
@@ -67,6 +68,10 @@ const MenuDrawer = () => {
       </div>
     </div>
   );
+};
+
+MenuDrawer.propTypes = {
+  onClick: PropTypes.func,
 };
 
 export default MenuDrawer;

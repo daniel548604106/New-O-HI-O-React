@@ -94,7 +94,7 @@ const Product = ({ id }) => {
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <div layoutId={`card-container-${id}`} ref={topDisplay} className={classes.productDisplay}>
+        <div ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
         </div>
         <section className={classes.productMainInfo}>

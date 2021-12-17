@@ -25,14 +25,7 @@ const Banner = ({ banners }) => {
         pagination={{ clickable: true }}
       >
         {banners.map((banner) => (
-          <SwiperSlide key={banner.topic}>
-            {/* <img
-              onClick={() => history.push(`/topic/${banner.topic}`)}
-              data-src={banner.image}
-              img={banner.image}
-              className={classes.swiperBackground}
-              alt={banner.name}
-            /> */}
+          <SwiperSlide key={banner.image}>
             <div
               onClick={() => history.push(`/topic/${banner.topic}`)}
               className={classes.swiperBackground}

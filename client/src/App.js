@@ -11,7 +11,6 @@ import Loader from './components/Global/Loader/Loader.jsx';
 import Header from './components/Navbar/Header.jsx';
 import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import ScrollToTop from './components/Global/ScrollToTop/ScrollToTop.jsx';
 import Chat from './components/Chat/Chat.jsx';
 import LoginModal from './components/Login/LoginModal.jsx';
 
@@ -23,26 +22,27 @@ import { ToastContainer } from 'react-toastify';
 import { initGA, PageView } from '../src/lib/googleAnalytics';
 
 import './App.scss';
+
 const App = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const showChat = useSelector((state) => state.chat.showChat);
+  const isMenuDrawerOpen = useSelector((state) => state.global.isMenuDrawerOpen);
+  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
+  const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
+
+  const hideMainHeader = location.pathname.includes('application');
+
+  const [hideHeader, setHideHeader] = useState(false);
+
   const handleToggleChat = () => {
     dispatch(toggleChat());
   };
-  const [hideMainHeader, setHideMainHeader] = useState(false);
-  const isMenuDrawerOpen = useSelector((state) => state.global.isMenuDrawerOpen);
-  const showChat = useSelector((state) => state.chat.showChat);
-  const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
-  const isLoginModalShow = useSelector((state) => state.global.isLoginModalShow);
-  const [hideHeader, setHideHeader] = useState(false);
 
   const handleClose = (e) => {
     dispatch(closeLoginModal());
   };
-
-  useEffect(() => {
-    location.pathname.includes('application') ? setHideMainHeader(true) : setHideMainHeader(false);
-  }, [location]);
 
   useEffect(() => {
     let prevPosition = pageYOffset;
@@ -72,19 +72,15 @@ const App = (props) => {
           newestOnTop={false}
           closeOnClick
         />
-
-        <div
-          onClick={() => dispatch(closeMenuDrawer())}
-          className={`menuDrawer ${isMenuDrawerOpen ? 'active' : ''}`}
-        >
-          <MenuDrawer />
+        <div className={`menuDrawer ${isMenuDrawerOpen ? 'active' : ''}`}>
+          <MenuDrawer onClick={() => dispatch(closeMenuDrawer())} />
         </div>
-
-        {!hideMainHeader && (
-          <div className="header" style={{ top: hideHeader ? '-100%' : '' }}>
-            <Header />
-          </div>
-        )}
+        <div
+          className="header"
+          style={{ top: hideHeader ? '-100%' : '', display: hideMainHeader ? 'hidden' : 'block' }}
+        >
+          <Header />
+        </div>
 
         {isUserLoggedIn &&
           (showChat ? (
@@ -116,13 +112,10 @@ const App = (props) => {
             </div>
           </Backdrop>
         </div>
-        <ScrollToTop />
         <Switch>
-          <>
-            {allRoutes.map(({ component, exact, path }) => (
-              <Route key={path} path={path} component={component} exact={exact} />
-            ))}
-          </>
+          {allRoutes.map(({ component, exact, path }) => (
+            <Route key={path} path={path} component={component} exact={exact} />
+          ))}
         </Switch>
         <Footer />
       </Router>
