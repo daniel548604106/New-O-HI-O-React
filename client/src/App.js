@@ -1,22 +1,9 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { Backdrop } from '@material-ui/core';
+import allRoutes from './routes/allRoutes.js';
 import Header from './components/Navbar/Header.jsx';
 import Loader from './components/Global/Loader/Loader.jsx';
-const Product = React.lazy(() => import('./pages/Products/_Product/_Product.jsx'));
-const Cart = React.lazy(() => import('./pages/Cart/Cart.jsx'));
-const Search = React.lazy(() => import('./pages/Search/Search.jsx'));
-const Favorite = React.lazy(() => import('./pages/Favorite/Favorite.jsx'));
-const Shop = React.lazy(() => import('./pages/Shop/Shop.jsx'));
-const Browse = React.lazy(() => import('./pages/Browse/Browse.jsx'));
-const My = React.lazy(() => import('./pages/My/My.jsx'));
-const Home = React.lazy(() => import('./pages/Home/Home.jsx'));
-const OAuth = React.lazy(() => import('./pages/OAuth/OAuth.jsx'));
-const Application = React.lazy(() => import('./pages/Application/Application.jsx'));
-const Latest = React.lazy(() => import('./pages/Latest/Latest.jsx'));
-const Policy = React.lazy(() => import('./pages/Policy/Policy.jsx'));
-const About = React.lazy(() => import('./pages/About/About.jsx'));
-const Topic = React.lazy(() => import('./pages/Topic/Topic.jsx'));
 import ScrollToTop from './components/Global/ScrollToTop/ScrollToTop.jsx';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import Footer from './components/Footer/Footer.jsx';
@@ -24,7 +11,6 @@ import Chat from './components/Chat/Chat.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal, closeMenuDrawer } from './store/index/indexAction';
 import LoginModal from './components/Login/LoginModal.jsx';
-import Beauty from './pages/Collection/Beauty/Beauty.jsx';
 import { ToastContainer } from 'react-toastify';
 import { toggleChat } from './store/chat/chatAction';
 import MenuDrawer from './components/Navbar/MenuDrawer/MenuDrawer.jsx';
@@ -75,7 +61,8 @@ const App = (props) => {
 
   useEffect(() => {
     dispatch(closeMenuDrawer());
-  }, [location]);
+  }, [dispatch, location]);
+
   useEffect(() => {
     setOpen(isLoginModalShow);
   }, [isLoginModalShow]);
@@ -137,61 +124,12 @@ const App = (props) => {
         <ScrollToTop />
         <Switch>
           <>
-            <Route path={`/topic/:topic`}>
-              <Topic />
-            </Route>
-            <div
-              style={{ top: isMenuDrawerOpen && `-${window.scrollY}px` }}
-              className={`${!hideMainHeader && 'mainLayout'} ${isMenuDrawerOpen && 'hasModal'}`}
-            >
-              <Route path={[`/products/:id`, '/']} exact>
-                <Home />
-              </Route>
-              <Route path="/policy:type?">
-                <Policy />
-              </Route>
-              {/* <Route path={`/products/:id`}>
-                <Product />
-              </Route> */}
-              <main className={!hideMainHeader && 'main-container'}>
-                <Route path={`/oauth/:type`}>
-                  <OAuth props={props} />
-                </Route>
-                <Route path={`/my/:type?/:state?`}>
-                  <My />
-                </Route>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/browse">
-                  <Browse />
-                </Route>
-                <Route path="/latest" exact>
-                  <Latest />
-                </Route>
-                <Route path="/favorite">
-                  <Favorite />
-                </Route>
-                <Route path={`/shop/:account`}>
-                  <Shop />
-                </Route>
-                <Route path="/search">
-                  <Search />
-                </Route>
-                <Route path="/cart/:status?/:id?">
-                  <Cart />
-                </Route>
-                <Route path="/beauty">
-                  <Beauty />
-                </Route>
-              </main>
-              <Route path="/application">
-                <Application />
-              </Route>
-              <Footer />
-            </div>
+            {allRoutes.map(({ component, exact, path }) => (
+              <Route key={path} path={path} component={component} exact={exact} />
+            ))}
           </>
         </Switch>
+        <Footer />
       </Router>
     </Suspense>
   );

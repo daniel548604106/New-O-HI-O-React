@@ -13,7 +13,6 @@ import ProductBanner from '../../../components/Product/ProductBanner/ProductBann
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 const Product = ({ id }) => {
@@ -95,13 +94,9 @@ const Product = ({ id }) => {
         <ProductBanner product={product} scrollToPage={scrollToPage} />
       </div>
       <div className={classes.containerLayout}>
-        <motion.div
-          layoutId={`card-container-${id}`}
-          ref={topDisplay}
-          className={classes.productDisplay}
-        >
+        <div layoutId={`card-container-${id}`} ref={topDisplay} className={classes.productDisplay}>
           <ProductDisplay product={product} />
-        </motion.div>
+        </div>
         <section className={classes.productMainInfo}>
           <div className={classes.info}>
             <ProductInfo t={t} product={product} />

@@ -19,7 +19,6 @@ import Cookie from 'js-cookie';
 import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
 import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
-import { AnimatePresence, motion } from 'framer-motion';
 const Home = () => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);
@@ -102,20 +101,18 @@ const Home = () => {
     <div className={classes.home}>
       <HelmetTitle />
       {products.length ? <Banner banners={banners} /> : <BannerLoading />}
-      <AnimatePresence exitBeforeEnter>
-        {id && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.15 } }}
-            transition={{ duration: 0.2, delay: 0.15 }}
-            style={{ pointerEvents: 'auto' }}
-            className={classes.productLayout}
-          >
-            <Product id={id} key="item" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {id && (
+        <div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.15 } }}
+          transition={{ duration: 0.2, delay: 0.15 }}
+          style={{ pointerEvents: 'auto' }}
+          className={classes.productLayout}
+        >
+          <Product id={id} key="item" />
+        </div>
+      )}
 
       <main>
         <section>
