@@ -1,15 +1,16 @@
 import React from 'react';
-import classes from './Confirm.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateCheckoutProgress } from '../../../store/cart/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import { apiPostNewOrder } from '../../../api/index';
 import PaymentMethod from '../../../components/Cart/CartConfirm/PaymentMethod/PaymentMethod.jsx';
 import ShoppingList from '../../../components/Cart/CartConfirm/ShoppingList/ShoppingList.jsx';
 import Button from '../../../components/Global/Button/Button.jsx';
-import { apiPostNewOrder } from '../../../api/index';
+import notify from '../../../lib/notification';
+import { updateCheckoutProgress } from '../../../store/cart/cartAction';
 import { resetCartItems } from '../../../store/cart/cartAction';
 import { resetCheckoutList } from '../../../store/checkout/checkoutAction';
-import notify from '../../../lib/notification';
+import classes from './Confirm.module.scss';
 const CartConfirm = () => {
   const dispatch = useDispatch();
   const history = useHistory();

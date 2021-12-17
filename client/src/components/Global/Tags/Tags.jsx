@@ -1,7 +1,8 @@
-import React from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
-import classes from './Tags.module.scss';
 import propTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Tags.module.scss';
 const Tags = ({ tag, clearBtn, highlight, uppercase }) => {
   return (
     <span className={classes.tagsContainer}>

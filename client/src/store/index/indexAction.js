@@ -1,19 +1,19 @@
+import Cookie from 'js-cookie';
+
+import { apiAddToFavorite, apiGetFavList } from '../../api/index';
+import notify from '../../lib/notification';
 import {
-  SET_USER_LOGIN,
-  CLOSE_LOGIN_MODAL,
-  OPEN_LOGIN_MODAL,
-  ADD_TO_FAVORITE_REQUEST,
   ADD_TO_FAVORITE_FAILURE,
+  ADD_TO_FAVORITE_REQUEST,
+  CLOSE_LOGIN_MODAL,
+  CLOSE_MENU_DRAWER,
+  GET_FAVORITE_LIST_FAILURE,
   GET_FAVORITE_LIST_REQUEST,
   GET_FAVORITE_LIST_SUCCESS,
-  GET_FAVORITE_LIST_FAILURE,
+  OPEN_LOGIN_MODAL,
   OPEN_MENU_DRAWER,
-  CLOSE_MENU_DRAWER,
+  SET_USER_LOGIN,
 } from '../reducerTypes';
-
-import Cookie from 'js-cookie';
-import notify from '../../lib/notification';
-import { apiAddToFavorite, apiGetFavList } from '../../api/index';
 
 export const openLoginModal = () => {
   return { type: OPEN_LOGIN_MODAL };

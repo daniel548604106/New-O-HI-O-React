@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import classes from './Search.module.scss';
-import Content from '../../components/Search/Content/Content.jsx';
 import { useLocation } from 'react-router-dom';
+
 import { apiGetSearchedProducts } from '../../api/index';
+import Content from '../../components/Search/Content/Content.jsx';
 import notify from '../../lib/notification';
+import classes from './Search.module.scss';
+
 const Search = () => {
   const { search } = useLocation();
   const query = new URLSearchParams(search);

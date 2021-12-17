@@ -1,7 +1,8 @@
-import React from 'react';
-import classes from './Tabs.module.scss';
 import PropTypes from 'prop-types';
-import { useLocation, useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+
+import classes from './Tabs.module.scss';
 const Tabs = ({ tabs }) => {
   const location = useLocation();
   const history = useHistory();

@@ -1,7 +1,8 @@
-import React from 'react';
-import classes from './RecommendedDesign.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
+import classes from './RecommendedDesign.module.scss';
 const RecommendedDesign = ({ pinnedProducts }) => {
   return (
     <>

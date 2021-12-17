@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Dropdown.module.scss';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import Tags from '../Tags/Tags.jsx';
-import PropTypes from 'prop-types';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import Tags from '../Tags/Tags.jsx';
+import classes from './Dropdown.module.scss';
+
 const Dropdown = ({ title, product }) => {
   const { t } = useTranslation(['general']);
   const [showMore, setShowMore] = useState(false);

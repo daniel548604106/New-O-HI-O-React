@@ -1,10 +1,11 @@
-import React from 'react';
-import classes from './ShopInfo.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { formatDate } from '../../../lib/tools';
-import Button from '../../Global/Button/Button.jsx';
-import { useSelector, useDispatch } from 'react-redux';
 import { addToFavorite } from '../../../store/index/indexAction';
+import Button from '../../Global/Button/Button.jsx';
+import classes from './ShopInfo.module.scss';
 const ShopInfo = ({ shop }) => {
   const { user } = shop;
   const dispatch = useDispatch();

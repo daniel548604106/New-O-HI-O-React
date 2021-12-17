@@ -1,22 +1,24 @@
-import React, { useState, useEffect, useRef, createRef } from 'react';
+import PropTypes from 'prop-types';
+import React, { createRef, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { listProducts } from '../../../store/product/productAction';
-import { apiGetProduct, apiGetReviews, apiGetRecommendedProducts } from '../../../api/index';
-import classes from './_Product.module.scss';
+import { Link } from 'react-router-dom';
+
+import { apiGetProduct, apiGetRecommendedProducts, apiGetReviews } from '../../../api/index';
+import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
 import DesignShopInfo from '../../../components/Product/DesignShopInfo/DesignShopInfo.jsx';
+import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
 import ProductCTA from '../../../components/Product/ProductCTA/ProductCTA.jsx';
-import ProductInfo from '../../../components/Product/ProductInfo/ProductInfo.jsx';
 import ProductDescription from '../../../components/Product/ProductDescription/ProductDescription.jsx';
 import ProductDisplay from '../../../components/Product/ProductDisplay/ProductDisplay.jsx';
-import ProductBanner from '../../../components/Product/ProductBanner/ProductBanner.jsx';
+import ProductInfo from '../../../components/Product/ProductInfo/ProductInfo.jsx';
 import ProductRecommendation from '../../../components/Product/ProductRecommendation/ProductRecommendation.jsx';
-import { useTranslation } from 'react-i18next';
-import HelmetTitle from '../../../components/Global/HelmetTitle/HelmetTitle.jsx';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { listProducts } from '../../../store/product/productAction';
+import classes from './_Product.module.scss';
+
 const Product = ({ id }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const topDisplay = useRef(null);
   const productDescription = createRef();

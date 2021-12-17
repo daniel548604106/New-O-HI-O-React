@@ -1,7 +1,8 @@
-import React from 'react';
-import classes from './MobileCheckoutButton.module.scss';
 // import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './MobileCheckoutButton.module.scss';
 const MobileCheckoutButton = ({ proceedToCheckout, totalPrice }) => {
   // const cartItems = useSelector((state) => state.cart.cartItems);
   // const subtotal = cartItems.reduce((total, item) => {

@@ -1,6 +1,7 @@
-import React from 'react';
-import classes from './Subscription.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Subscription.module.scss';
 const Subscription = ({ t }) => {
   return (
     <div className={classes.subscriptionLayout}>

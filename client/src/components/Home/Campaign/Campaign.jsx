@@ -1,6 +1,7 @@
-import React from 'react';
-import classes from './Campaign.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Campaign.module.scss';
 const Campaign = ({ t }) => {
   return (
     <div className={classes.campaignLayout}>

@@ -1,16 +1,18 @@
-import React from 'react';
-import classes from './DesignShopInfo.module.scss';
 import AddIcon from '@material-ui/icons/Add';
-import Stars from '../../Global/Stars/Stars.jsx';
-import googleLogo from '../../../assets/images/global/google.svg';
-import facebookLogo from '../../../assets/images/global/facebook.svg';
-import PropTypes from 'prop-types';
 import DoneIcon from '@material-ui/icons/Done';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorite } from '../../../store/index/indexAction';
-import { toggleChat } from '../../../store/chat/chatAction';
+import { useHistory } from 'react-router-dom';
+
+import facebookLogo from '../../../assets/images/global/facebook.svg';
+import googleLogo from '../../../assets/images/global/google.svg';
 import notify from '../../../lib/notification';
+import { toggleChat } from '../../../store/chat/chatAction';
+import { addToFavorite } from '../../../store/index/indexAction';
+import Stars from '../../Global/Stars/Stars.jsx';
+import classes from './DesignShopInfo.module.scss';
+
 const DesignShopInfo = ({ product, shopInfo }) => {
   const history = useHistory();
   const dispatch = useDispatch();

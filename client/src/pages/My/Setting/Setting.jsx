@@ -1,7 +1,8 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+
 import About from '../../../components/My/Content/Setting/About/About.jsx';
 import General from '../../../components/My/Content/Setting/General/General.jsx';
-import { useLocation } from 'react-router-dom';
 const Setting = () => {
   const location = useLocation();
 

@@ -1,6 +1,7 @@
-import React from 'react';
-import Dropdown from '../../Global/Dropdown/Dropdown.jsx';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import Dropdown from '../../Global/Dropdown/Dropdown.jsx';
 import Stars from '../../Global/Stars/Stars.jsx';
 import classes from './ProductDescription.module.scss';
 const ProductDescription = ({ product, evaluationRef, productDescriptionRef, t, reviews }) => {

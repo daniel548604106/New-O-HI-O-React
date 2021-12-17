@@ -1,5 +1,7 @@
 import React from 'react';
+
 import Card from './Card/Card.jsx';
+
 const AvailableProducts = () => {
   return (
     <div>

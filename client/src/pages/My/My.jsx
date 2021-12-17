@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import classes from './My.module.scss';
-import Sidebar from '../../components/My/Sidebar/SideBar.jsx';
-import Setting from './Setting/Setting.jsx';
+import { useParams } from 'react-router-dom';
+
 import Purchase from '../../components/My/Content/Purchase/Purchase.jsx';
 import Refund from '../../components/My/Content/Refund/Refund.jsx';
-import { useParams } from 'react-router-dom';
+import Sidebar from '../../components/My/Sidebar/SideBar.jsx';
+import classes from './My.module.scss';
+import Setting from './Setting/Setting.jsx';
 const My = () => {
   const params = useParams();
   useEffect(() => {}, []);

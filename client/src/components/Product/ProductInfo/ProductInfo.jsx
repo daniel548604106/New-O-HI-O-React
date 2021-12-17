@@ -1,8 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import classes from './ProductInfo.module.scss';
+import React from 'react';
 import Skeleton from 'react-loading-skeleton';
+
 import { discount } from '../../../lib/tools';
+import classes from './ProductInfo.module.scss';
 
 const ProductInfo = ({ product, t }) => {
   return (

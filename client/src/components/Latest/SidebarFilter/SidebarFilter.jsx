@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import styles from './SidebarFilter.module.scss';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import React, { useState } from 'react';
+
+import styles from './SidebarFilter.module.scss';
 const selections = [
   {
     title: 'category',

@@ -1,11 +1,12 @@
-import React from 'react';
-import classes from './SocialLogin.module.scss';
-import { useDispatch } from 'react-redux';
 import qs from 'query-string';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import LineIcon from '../../../assets/images/global/LINE_APP.png';
-import { redirectUri, config } from '../../../lib/oAuth';
+import { config, redirectUri } from '../../../lib/oAuth';
 import { closeLoginModal } from '../../../store/index/indexAction';
+import classes from './SocialLogin.module.scss';
+
 const SocialLogin = () => {
   const dispatch = useDispatch();
   const oAuthLogin = (provider) => {

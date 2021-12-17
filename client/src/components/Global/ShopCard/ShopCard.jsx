@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import classes from './ShopCard.module.scss';
-import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import DoneIcon from '@material-ui/icons/Done';
-import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+import classes from './ShopCard.module.scss';
 const ShopCard = ({ shop }) => {
   const dispatch = useDispatch();
   const history = useHistory();

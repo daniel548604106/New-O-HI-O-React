@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import classes from './Dropdown.module.scss';
 import { useDispatch } from 'react-redux';
-import { setUserLogout } from '../../../store/user/userAction';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+
+import { setUserLogout } from '../../../store/user/userAction';
+import classes from './Dropdown.module.scss';
 const Dropdown = () => {
   const dispatch = useDispatch();
   const history = useHistory();

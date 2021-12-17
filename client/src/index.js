@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import './lib/i18n';
 import './assets/css/global.scss';
-import { BrowserRouter } from 'react-router-dom';
+
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './store/store';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { persistor, store } from './store/store';
 
 const rootElement = document.getElementById('root');
 

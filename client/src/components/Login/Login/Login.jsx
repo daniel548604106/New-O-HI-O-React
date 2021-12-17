@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import classes from './Login.module.scss';
+import Cookie from 'js-cookie';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { apiPostLogin } from '../../../api/index';
 import notify from '../../../lib/notification';
-import { setUserLoggedIn } from '../../../store/user/userAction';
 import { closeLoginModal } from '../../../store/index/indexAction';
-import Cookie from 'js-cookie';
-import { useDispatch } from 'react-redux';
+import { setUserLoggedIn } from '../../../store/user/userAction';
+import classes from './Login.module.scss';
 const Login = ({ setLoginState }) => {
   const dispatch = useDispatch();
   const [account, setAccount] = useState('');

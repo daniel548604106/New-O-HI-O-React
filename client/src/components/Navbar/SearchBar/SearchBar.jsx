@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import classes from './SearchBar.module.scss';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 const SearchBar = ({ searchBarOpen }) => {
   const [searchInput, setSearchInput] = useState('');
   const history = useHistory();

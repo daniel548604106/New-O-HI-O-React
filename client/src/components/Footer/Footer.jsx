@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
 import LanguageIcon from '@material-ui/icons/Language';
-import Logo from '../../assets/images/global/O.HI.O-footer.svg';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Logo from '../../assets/images/global/O.HI.O-footer.svg';
 import classes from './Footer.module.scss';
+
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const [language, setLanguage] = useState('English');

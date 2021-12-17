@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import classes from './General.module.scss';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { apiPatchMyData } from '../../../../../api/index';
+import notify from '../../../../../lib/notification';
+import { setUserLoggedIn } from '../../../../../store/user/userAction';
 import Button from '../../../../Global/Button/Button.jsx';
 import Reminder from '../../../../Global/Reminder/Reminder.jsx';
-import LanguagePreference from './LanguagePreference/LanguagePreference.jsx';
 import ChangeProfilePicture from './ChangeProfilePicture/ChangeProflePicture.jsx';
-import { useSelector, useDispatch } from 'react-redux';
-import { apiPatchMyData } from '../../../../../api/index';
-import { setUserLoggedIn } from '../../../../../store/user/userAction';
+import classes from './General.module.scss';
+import LanguagePreference from './LanguagePreference/LanguagePreference.jsx';
 const _ = require('lodash');
-import notify from '../../../../../lib/notification';
 const General = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);

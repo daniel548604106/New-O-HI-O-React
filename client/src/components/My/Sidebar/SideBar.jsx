@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from './Sidebar.module.scss';
 import { Link, useLocation } from 'react-router-dom';
+
+import classes from './Sidebar.module.scss';
 
 const SideBar = () => {
   const location = useLocation();

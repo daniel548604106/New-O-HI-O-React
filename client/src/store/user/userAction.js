@@ -1,5 +1,6 @@
-import { SET_USER_LOGIN, SET_USER_LOGOUT } from '../reducerTypes';
 import Cookie from 'js-cookie';
+
+import { SET_USER_LOGIN, SET_USER_LOGOUT } from '../reducerTypes';
 
 export const setUserLoggedIn = (user) => {
   localStorage.setItem('user', JSON.stringify(user));

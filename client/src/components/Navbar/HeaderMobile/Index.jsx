@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Badge } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
-import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
-import classes from './Header.module.scss';
-import Logo from '../../assets/images/global/O.HI.O-logo.svg';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import SearchIcon from '@material-ui/icons/Search';
-import MenuIcon from '@material-ui/icons/Menu';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import Dropdown from './Dropdown/Dropdown.jsx';
-import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
-import SearchBar from './SearchBar/SearchBar.jsx';
+import { Badge } from '@material-ui/core';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import SearchIcon from '@material-ui/icons/Search';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
 import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
+import Logo from '../../assets/images/global/O.HI.O-logo.svg';
+import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
+import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
+import Dropdown from './Dropdown/Dropdown.jsx';
+import classes from './Header.module.scss';
+import SearchBar from './SearchBar/SearchBar.jsx';
 const Index = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();

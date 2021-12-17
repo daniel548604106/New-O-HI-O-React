@@ -1,6 +1,7 @@
 import React from 'react';
-import classes from './CartProgressBar.module.scss';
 import { useSelector } from 'react-redux';
+
+import classes from './CartProgressBar.module.scss';
 const CartProgressBar = () => {
   const progress = useSelector((state) => state.cart.checkoutProgress);
   return (

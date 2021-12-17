@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import classes from './MainContent.module.scss';
-import { useLocation, useHistory } from 'react-router-dom';
-import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
-import Pagination from '../../Global/Pagination/Pagination.jsx';
-import Loader from '../../Global/Loader/Loader.jsx';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import PropTypes from 'prop-types';
 import qs from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+
+import Loader from '../../Global/Loader/Loader.jsx';
+import Pagination from '../../Global/Pagination/Pagination.jsx';
+import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
+import classes from './MainContent.module.scss';
 const MainContent = ({
   activeCategory,
   products,

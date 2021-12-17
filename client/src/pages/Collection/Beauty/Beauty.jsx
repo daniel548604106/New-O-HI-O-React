@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { Grid } from '@material-ui/core';
-import ProductCard from '../../../components/Global/ProductCard/ProductCard.jsx';
+import React, { useEffect, useState } from 'react';
+
 import { apiGetCollectionProducts } from '../../../api/index';
+import ProductCard from '../../../components/Global/ProductCard/ProductCard.jsx';
 const Beauty = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {

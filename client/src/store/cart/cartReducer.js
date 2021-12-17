@@ -2,14 +2,14 @@ import {
   ADD_CART_ITEM,
   CLEAR_CART_ITEM,
   REMOVE_CART_ITEM,
-  UPDATE_CART_ITEM_QTY,
   RESET_CART_ITEM,
+  UPDATE_CART_ITEM_QTY,
   UPDATE_CHECKOUT_PROGRESS,
 } from '../reducerTypes';
 import {
   addItemToCart,
-  removeItemFromCart,
   clearItemFromCart,
+  removeItemFromCart,
   updateCartItemQuantity,
 } from './cartUtils';
 

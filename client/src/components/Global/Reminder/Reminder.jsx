@@ -1,6 +1,7 @@
-import React from 'react';
-import classes from './Reminder.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Reminder.module.scss';
 const Reminder = ({ title, text }) => {
   return (
     <div className={classes.reminder}>

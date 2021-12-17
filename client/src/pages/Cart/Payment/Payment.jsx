@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import classes from './Payment.module.scss';
-import CardPaymentInfoCard from '../../../components/Cart/CartPaymentInfo/CartPaymentInfoCard/CartPaymentInfoCard.jsx';
-import CardPaymentOrdererInfoCard from '../../../components/Cart/CartPaymentInfo/CardPaymentOrdererInfoCard/CardPaymentOrdererInfoCard.jsx';
-import InvoiceInfoCard from '../../../components/Cart/CartPaymentInfo/InvoiceInfoCard/InvoiceInfoCard.jsx';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import CardPaymentOrdererInfoCard from '../../../components/Cart/CartPaymentInfo/CardPaymentOrdererInfoCard/CardPaymentOrdererInfoCard.jsx';
+import CardPaymentInfoCard from '../../../components/Cart/CartPaymentInfo/CartPaymentInfoCard/CartPaymentInfoCard.jsx';
+import InvoiceInfoCard from '../../../components/Cart/CartPaymentInfo/InvoiceInfoCard/InvoiceInfoCard.jsx';
 import Button from '../../../components/Global/Button/Button.jsx';
 import { deliveryType, paymentType } from '../../../lib/checkoutOptions';
-import { useDispatch } from 'react-redux';
-import { updateCheckoutDetail } from '../../../store/checkout/checkoutAction';
 import { updateCheckoutProgress } from '../../../store/cart/cartAction';
-import { useHistory } from 'react-router-dom';
+import { updateCheckoutDetail } from '../../../store/checkout/checkoutAction';
+import classes from './Payment.module.scss';
 
 const CartPayment = () => {
   const [checkoutDetail, setCheckoutDetail] = useState({

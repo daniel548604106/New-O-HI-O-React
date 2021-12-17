@@ -1,7 +1,9 @@
-import React from 'react';
 import './Checkout.scss';
-import PropTypes from 'prop-types';
+
 import { Divider } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import StripeButton from '../../components/StripeButton/StripeButton.jsx';
 const TotalInfo = ({ total }) => (
   <div className="card-total">

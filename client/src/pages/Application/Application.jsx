@@ -1,15 +1,17 @@
+import 'aos/dist/aos.css';
+
+import AOS from 'aos';
 import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import Advantage from '../../components/Application/Advantage/Advantage.jsx';
+import AvailableProducts from '../../components/Application/AvailableProducts/AvailableProducts.jsx';
+import Cooperation from '../../components/Application/Cooperation/Cooperation.jsx';
+import CTA from '../../components/Application/CTA/CTA.jsx';
+import FAQ from '../../components/Application/FAQ/FAQ.jsx';
 import Header from '../../components/Application/Header/Header.jsx';
 import Hero from '../../components/Application/Hero/Hero.jsx';
-import Advantage from '../../components/Application/Advantage/Advantage.jsx';
-import Cooperation from '../../components/Application/Cooperation/Cooperation.jsx';
-import AvailableProducts from '../../components/Application/AvailableProducts/AvailableProducts.jsx';
-import FAQ from '../../components/Application/FAQ/FAQ.jsx';
-import CTA from '../../components/Application/CTA/CTA.jsx';
 import classes from './Application.module.scss';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useLocation } from 'react-router-dom';
 
 const Application = () => {
   const [activeTab, setActiveTab] = useState('advantage');

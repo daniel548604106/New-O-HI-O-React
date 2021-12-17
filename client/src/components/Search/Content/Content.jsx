@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Content.module.scss';
-import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
-import Button from '../../Global/Button/Button.jsx';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import Button from '../../Global/Button/Button.jsx';
+import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
+import classes from './Content.module.scss';
 const Content = ({ searchedProducts, searchInput }) => {
   const history = useHistory();
   const [selectedValue, setSelectedValue] = useState('popularity');

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Cards.module.scss';
-import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import PropTypes from 'prop-types';
-import ProductCardLoading from '../../Global/SkeletonLoading/ProductCardLoading.jsx';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
+import ProductCardLoading from '../../Global/SkeletonLoading/ProductCardLoading.jsx';
+import classes from './Cards.module.scss';
 const Cards = ({ products, title, t, link, id, showMore }) => {
   //Lazy Load Image using Intersection Observer API
   const [imageObserver, setImageObserver] = useState(null);

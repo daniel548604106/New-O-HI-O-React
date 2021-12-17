@@ -1,6 +1,7 @@
-import React from 'react';
-import classes from './Banner.module.scss';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Banner.module.scss';
 const Banner = ({ shop }) => {
   return (
     <div

@@ -1,11 +1,12 @@
+import Cookie from 'js-cookie';
+import qs from 'query-string';
 import React, { useEffect } from 'react';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
+
 import { apiPostOauthLogin } from '../../api/index';
 import Loader from '../../components/Global/Loader/Loader.jsx';
-import Cookie from 'js-cookie';
 import { setUserLoggedIn } from '../../store/user/userAction';
-import qs from 'query-string';
 const OAuth = () => {
   const history = useHistory();
   const dispatch = useDispatch();

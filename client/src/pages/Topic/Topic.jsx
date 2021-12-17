@@ -1,10 +1,9 @@
 import React from 'react';
-import classes from './Topic.module.scss';
-// import { useLocation } from 'react-router-dom';
-import Hero from '../../components/Topic/Hero/Hero.jsx';
-const Topic = () => {
-  // const location = useLocation();
 
+import Hero from '../../components/Topic/Hero/Hero.jsx';
+import classes from './Topic.module.scss';
+
+const Topic = () => {
   return (
     <div className={classes.topicContainer}>
       <Hero />

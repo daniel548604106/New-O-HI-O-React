@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import classes from './CartPaymentInfoCard.module.scss';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+
+import classes from './CartPaymentInfoCard.module.scss';
 const CartPaymentInfoCard = ({ options, title, setCheckoutDetail, checkoutDetail }) => {
   const [activeCheckbox, setActiveCheckbox] = useState(0);
   const handleCheckoutDetail = (idx) => {

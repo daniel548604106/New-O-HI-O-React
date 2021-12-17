@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+
 import ShopCard from '../../Global/ShopCard/ShopCard.jsx';
 import classes from './Shops.module.scss';
-import PropTypes from 'prop-types';
 const Shops = ({ t, shops }) => {
   return (
     <div className={classes.shopCardLayout}>

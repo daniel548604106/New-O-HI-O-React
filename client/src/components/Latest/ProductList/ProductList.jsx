@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import styles from './ProductList.module.scss';
-import MobileFilter from '../MobileFilter/MobileFilter.jsx';
+
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import Tags from '../../Global/Tags/Tags.jsx';
-import PropTypes from 'prop-types';
+import MobileFilter from '../MobileFilter/MobileFilter.jsx';
+import styles from './ProductList.module.scss';
 const ProductList = ({ products }) => {
   return (
     <div>

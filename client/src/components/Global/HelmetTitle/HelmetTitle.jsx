@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import PropTypes from 'prop-types';
 const HelmetTitle = ({ title, description, image }) => {
   const defaultTitle = 'O.HI.O | 亞洲領先設計購物網站 | Design the way you are';
   const defaultDescription =

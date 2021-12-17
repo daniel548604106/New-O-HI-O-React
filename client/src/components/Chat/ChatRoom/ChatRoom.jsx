@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import classes from './ChatRoom.module.scss';
-import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import io from 'socket.io-client';
+
+import classes from './ChatRoom.module.scss';
 let socket;
 const connectionOptions = {
   'force new connection': true,

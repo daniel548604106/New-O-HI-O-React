@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import classes from './ProductBanner.module.scss';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
 import { addToCart } from '../../../store/cart/cartAction.js';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+import classes from './ProductBanner.module.scss';
 
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const ProductBanner = ({ product, scrollToPage }) => {
   const scrollBtns = [
     {

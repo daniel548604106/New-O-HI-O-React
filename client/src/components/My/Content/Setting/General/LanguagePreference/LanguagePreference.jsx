@@ -1,4 +1,5 @@
 import React from 'react';
+
 import classes from './LanguagePreference.module.scss';
 const LanguagePreference = () => {
   return (

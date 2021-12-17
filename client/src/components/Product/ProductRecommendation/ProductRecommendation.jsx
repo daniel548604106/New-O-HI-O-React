@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
 import ProductCard from '../../Global/ProductCard/ProductCard.jsx';
 import classes from './ProductRecommendation.module.scss';
-import PropTypes from 'prop-types';
 const ProductRecommendation = ({ products }) => {
   const [imageObserver, setImageObserver] = useState(null);
   const createObserver = (inViewCallback = noop, newOptions = {}) => {

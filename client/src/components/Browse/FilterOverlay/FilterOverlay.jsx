@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import classes from './FilterOverlay.module.scss';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+
 import { menuOptions, priceOptions } from '../../../lib/menuOptions';
+import classes from './FilterOverlay.module.scss';
 const FilterOverlay = ({ setFilterShow }) => {
   const [activeFilter, setActiveFilter] = useState(-1);
   const handleActiveFilter = (idx) => {

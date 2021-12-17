@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import classes from './ChatList.module.scss';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { setActiveChat } from '../../../store/chat/chatAction';
+import classes from './ChatList.module.scss';
 const ChatCover = ({ chat }) => {
   const userId = useSelector((state) => state.user.currentUser._id);
   const [recipient, setRecipient] = useState({});

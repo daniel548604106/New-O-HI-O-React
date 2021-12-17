@@ -1,12 +1,14 @@
-import React from 'react';
-import classes from './ProductCTA.module.scss';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import { addToCart } from '../../../store/cart/cartAction.js';
 import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+import classes from './ProductCTA.module.scss';
+
 const ProductCTA = ({ product }) => {
   const dispatch = useDispatch();
   const params = useParams();

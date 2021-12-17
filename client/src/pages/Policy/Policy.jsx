@@ -1,13 +1,14 @@
+import qs from 'query-string';
 import React from 'react';
-import classes from './Policy.module.scss';
-import Privacy from '../../components/Policy/Privacy/Privacy.jsx';
-import Service from '../../components/Policy/Service/Service.jsx';
+import { useHistory, useLocation } from 'react-router';
+
+import Disclaimer from '../../components/Policy/Disclaimer/Disclaimer.jsx';
 import IntellectualProperty from '../../components/Policy/IntellectualProperty/IntellectualProperty.jsx';
+import Privacy from '../../components/Policy/Privacy/Privacy.jsx';
 import Return from '../../components/Policy/Return/Return.jsx';
 import Selling from '../../components/Policy/Selling/Selling.jsx';
-import Disclaimer from '../../components/Policy/Disclaimer/Disclaimer.jsx';
-import { useHistory, useLocation } from 'react-router';
-import qs from 'query-string';
+import Service from '../../components/Policy/Service/Service.jsx';
+import classes from './Policy.module.scss';
 const Policy = () => {
   const history = useHistory();
   const handleTabChange = (idx, type) => {

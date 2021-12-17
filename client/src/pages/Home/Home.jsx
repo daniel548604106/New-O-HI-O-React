@@ -1,24 +1,25 @@
+import Cookie from 'js-cookie';
 import React, { useEffect, useState } from 'react';
-import Banner from '../../components/Home/Banner/Banner.jsx';
-import Campaign from '../../components/Home/Campaign/Campaign.jsx';
-import Shop from '../../components/Home/Shops/Shops.jsx';
-import Cards from '../../components/Home/Cards/Cards.jsx';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import {
   apiGetAllProducts,
-  apiGetDiscountedProducts,
   apiGetBanners,
+  apiGetDiscountedProducts,
   apiGetHotShop,
   apiGetRecommendedProducts,
 } from '../../api/index';
-import classes from './Home.module.scss';
-import { useParams } from 'react-router-dom';
-import { getFavList } from '../../store/index/indexAction';
-import { useDispatch, useSelector } from 'react-redux';
-import Product from '../Products/_Product/_Product.jsx';
-import Cookie from 'js-cookie';
-import { useTranslation } from 'react-i18next';
 import HelmetTitle from '../../components/Global/HelmetTitle/HelmetTitle.jsx';
 import BannerLoading from '../../components/Global/SkeletonLoading/BannerLoading.jsx';
+import Banner from '../../components/Home/Banner/Banner.jsx';
+import Cards from '../../components/Home/Cards/Cards.jsx';
+import Shop from '../../components/Home/Shops/Shops.jsx';
+import { getFavList } from '../../store/index/indexAction';
+import Product from '../Products/_Product/_Product.jsx';
+import classes from './Home.module.scss';
+
 const Home = () => {
   const isUserLoggedIn = useSelector((state) => state.user.isUserLoggedIn);
   const [products, setProducts] = useState([]);

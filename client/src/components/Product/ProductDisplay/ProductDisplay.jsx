@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import classes from './ProductDisplay.module.scss';
-import Skeleton from 'react-loading-skeleton';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
-import { ReactComponent as FavoriteIcon } from '../../../assets/images/global/heart.svg';
+
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
 import { useParams } from 'react-router';
+import SwiperCore, { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { ReactComponent as FavoriteIcon } from '../../../assets/images/global/heart.svg';
+import { addToFavorite, openLoginModal } from '../../../store/index/indexAction';
+import classes from './ProductDisplay.module.scss';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 

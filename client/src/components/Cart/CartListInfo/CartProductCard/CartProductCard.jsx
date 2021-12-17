@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import classes from './CardProductCard.module.scss';
 import CloseIcon from '@material-ui/icons/Close';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-const lodash = require('lodash');
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { removeItemFromCart, updateCartItemQuantity } from '../../../../store/cart/cartAction';
+import classes from './CardProductCard.module.scss';
+const lodash = require('lodash');
 const CartProductCard = ({ item, idx, checkoutList, setCheckoutList, isAllChecked }) => {
   const dispatch = useDispatch();
   const [checkboxChecked, setCheckboxChecked] = useState(true);

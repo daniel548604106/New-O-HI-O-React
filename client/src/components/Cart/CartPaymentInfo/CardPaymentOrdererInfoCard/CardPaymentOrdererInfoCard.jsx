@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import classes from './CardPaymentOrdererInfoCard.module.scss';
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+
+import classes from './CardPaymentOrdererInfoCard.module.scss';
 const CardPaymentOrdererInfoCard = ({ setCheckoutDetail, checkoutDetail }) => {
   const { personalInfo } = checkoutDetail;
   const handleCheckoutDetail = (e) => {

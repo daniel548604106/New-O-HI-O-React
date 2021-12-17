@@ -1,12 +1,13 @@
 import React from 'react';
-import classes from './Cart.module.scss';
-import CartProgressBar from '../../components/Cart/CartProgressBar/CartProgressBar.jsx';
-import CartPayment from './Payment/Payment.jsx';
-import CartListInfo from '../../components/Cart/CartListInfo/CartListInfo.jsx';
-import CartConfirm from './Confirm/Confirm.jsx';
-import CartComplete from './Complete/Complete.jsx';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import CartListInfo from '../../components/Cart/CartListInfo/CartListInfo.jsx';
+import CartProgressBar from '../../components/Cart/CartProgressBar/CartProgressBar.jsx';
+import classes from './Cart.module.scss';
+import CartComplete from './Complete/Complete.jsx';
+import CartConfirm from './Confirm/Confirm.jsx';
+import CartPayment from './Payment/Payment.jsx';
 
 const Checkout = () => {
   const params = useParams();

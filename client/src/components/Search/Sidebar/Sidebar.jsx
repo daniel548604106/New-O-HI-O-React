@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import classes from './Sidebar.module.scss';
 import qs from 'query-string';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
+
+import classes from './Sidebar.module.scss';
+
 const Sidebar = () => {
   const location = useLocation();
   const query = qs.parse(location.search);

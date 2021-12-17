@@ -1,7 +1,8 @@
 import React from 'react';
-import classes from './About.module.scss';
-import Reminder from '../../../../Global/Reminder/Reminder.jsx';
+
 import Button from '../../../../Global/Button/Button.jsx';
+import Reminder from '../../../../Global/Reminder/Reminder.jsx';
+import classes from './About.module.scss';
 const About = () => {
   return (
     <div>

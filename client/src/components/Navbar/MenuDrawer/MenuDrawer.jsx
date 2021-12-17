@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import classes from './MenuDrawer.module.scss';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { openLoginModal } from '../../../store/index/indexAction';
-import PersonIcon from '@material-ui/icons/Person';
-import { useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import EmailIcon from '@material-ui/icons/Email';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import PersonIcon from '@material-ui/icons/Person';
+import Cookie from 'js-cookie';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { openLoginModal } from '../../../store/index/indexAction';
 import About from './About/About.jsx';
 import Categories from './Categories/Categories.jsx';
-import Cookie from 'js-cookie';
+import classes from './MenuDrawer.module.scss';
+
 const MenuDrawer = ({ onClick = () => {} }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();

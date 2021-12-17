@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
 import { Badge } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
-import classes from './Header.module.scss';
-import Logo from '../../assets/images/global/O.HI.O-logo.svg';
-import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+
+import { ReactComponent as Heart } from '../../assets/images/global/Icon/Outline/heart.svg';
+import { ReactComponent as Menu } from '../../assets/images/global/Icon/Outline/menu-alt-2.svg';
+import { ReactComponent as Search } from '../../assets/images/global/Icon/Outline/search.svg';
 import { ReactComponent as ShoppingBag } from '../../assets/images/global/Icon/Outline/shopping-bag.svg';
 import { ReactComponent as User } from '../../assets/images/global/Icon/Outline/user.svg';
-import { ReactComponent as Search } from '../../assets/images/global/Icon/Outline/search.svg';
-import { ReactComponent as Menu } from '../../assets/images/global/Icon/Outline/menu-alt-2.svg';
-import { ReactComponent as Heart } from '../../assets/images/global/Icon/Outline/heart.svg';
-import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
-import SearchBar from './SearchBar/SearchBar.jsx';
-import Dropdown from './Dropdown/Dropdown.jsx';
 import DefaultImage from '../../assets/images/global/O.HI.O-footer.svg';
+import Logo from '../../assets/images/global/O.HI.O-logo.svg';
+import { openLoginModal, openMenuDrawer } from '../../store/index/indexAction';
+import NavMenu from '../Navbar/NavMenu/NavMenu.jsx';
+import Dropdown from './Dropdown/Dropdown.jsx';
+import classes from './Header.module.scss';
+import SearchBar from './SearchBar/SearchBar.jsx';
 const Navbar = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();

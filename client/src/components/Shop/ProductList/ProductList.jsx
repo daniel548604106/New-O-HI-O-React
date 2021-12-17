@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import classes from './ProductList.module.scss';
-import { useLocation } from 'react-router-dom';
-import ProductCard from './ProductCard.jsx';
-import PropTypes from 'prop-types';
 import NotesIcon from '@material-ui/icons/Notes';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import ProductCard from './ProductCard.jsx';
+import classes from './ProductList.module.scss';
+
 const filterTypes = [
   {
     name: '設計館推薦',

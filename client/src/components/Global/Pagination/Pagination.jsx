@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Pagination.module.scss';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
+import classes from './Pagination.module.scss';
 const Pagination = ({ currentPage, setCurrentPage, totalPage }) => {
   const [paginationArray, setPaginationArray] = useState([]);
 

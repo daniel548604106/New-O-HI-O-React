@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import Star from '../../../assets/images/global/star.png';
-import StarGrey from '../../../assets/images/global/star-grey.png';
-import classes from './Stars.module.scss';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+
+import StarGrey from '../../../assets/images/global/star-grey.png';
+import Star from '../../../assets/images/global/star.png';
+import classes from './Stars.module.scss';
+
 const Stars = ({ score }) => {
   const [starArr, setStarArr] = useState([]);
   useEffect(() => {

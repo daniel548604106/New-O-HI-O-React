@@ -1,8 +1,9 @@
-import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import classes from './ChatHeader.module.scss';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { toggleChat } from '../../../store/chat/chatAction';
+import classes from './ChatHeader.module.scss';
 
 const ChatHeader = () => {
   const dispatch = useDispatch();

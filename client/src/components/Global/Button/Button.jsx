@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
+import PropTypes from 'prop-types';
+import React from 'react';
 const Button = ({ text, color, backgroundColor, iconType, border }) => {
   return (
     <button

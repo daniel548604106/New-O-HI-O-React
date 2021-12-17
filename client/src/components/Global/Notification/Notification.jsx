@@ -1,7 +1,8 @@
-import React from 'react';
-import classes from './Notification.module.scss';
-import PropTypes from 'prop-types';
 import CloseIcon from '@material-ui/icons/Close';
+import PropTypes from 'prop-types';
+import React from 'react';
+
+import classes from './Notification.module.scss';
 const Notification = ({ title }) => {
   return (
     <div className={classes.notificationBg}>
